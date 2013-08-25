@@ -5,10 +5,12 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        android:minSdkVersion="7"
+        android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
 
     <application
         android:allowBackup="true"
@@ -16,13 +18,10 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.bun.popupnotifications.NotificationActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name="com.bun.popupnotifications.NotificationActivity"           
+            android:theme="@style/Theme.D1NoTitleDim"     
+            >
+            
         </activity>
 
         <service
@@ -37,6 +36,14 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibilityservice" />
         </service>
+        
+        <receiver
+	    android:name=".NotificationReceiver"
+	    android:enabled="true" >
+	       <intent-filter>
+	           <action android:name="com.bun.popupnotification.NOTIFICATION_CHANGED"></action>
+	       </intent-filter>
+	</receiver>
     </application>
 
 </manifest>

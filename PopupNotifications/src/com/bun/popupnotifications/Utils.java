@@ -8,7 +8,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.app.Notification;
+import android.app.ActivityManager.RunningTaskInfo;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -22,7 +24,7 @@ import android.widget.TextView;
 
 public class Utils {
 
-	public static LinkedHashMap<String, ArrayList<NotificationBean>> notMap = new LinkedHashMap<String, ArrayList<NotificationBean>>();
+	public static ArrayList<NotificationBean> notList = new ArrayList<NotificationBean>();
 
 	private Context ctx;
 
@@ -267,11 +269,15 @@ public class Utils {
 
 		String retString = retMessage.toString().replaceAll("\\[", "").replaceAll("\\]", "");
 
-		return retString;
+		return retString.split("\n")[0];
 	}
 
 
 	public Boolean performValidation(AccessibilityEvent event){
+		
+		if(isForgroundApp(ctx, event.getPackageName().toString())){
+			return false;
+		}
 
 		String appMuteDate = SharedPreferenceUtils.getAppData(ctx, event.getPackageName().toString());
 		
@@ -341,6 +347,25 @@ public class Utils {
 		}
 		
 		return appName;
+	}
+	
+	public static Boolean isForgroundApp(Context ctx, String packageName){
+		
+		ActivityManager am = (ActivityManager) ctx.getSystemService("activity");
+    	// The first in the list of RunningTasks is always the foreground task.
+    	RunningTaskInfo foregroundTaskInfo = am.getRunningTasks(1).get(0);
+    	
+    	String foregroundTaskPackageName = foregroundTaskInfo.topActivity.getPackageName();
+    	
+    	if(foregroundTaskPackageName.equals("com.google.android.talk")){
+    		foregroundTaskPackageName = "com.google.android.gsf";
+    	}
+    	
+    	if(foregroundTaskPackageName.equals(packageName)){
+    		return true;
+    	}
+    	
+    	return false;
 	}
 
 }

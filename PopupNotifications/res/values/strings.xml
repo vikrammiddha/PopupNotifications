@@ -4,5 +4,6 @@
     <string name="app_name">PopupNotifications</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="package_name">com.bun.popupnotifications</string>
 
 </resources>

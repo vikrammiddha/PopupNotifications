@@ -15,20 +15,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class NotificationsAdapter extends BaseAdapter{
-	
+
+	static class ViewHolder {
+		public TextView text;
+		public ImageView image;
+	}
+
 	private ArrayList<NotificationBean> nList = new ArrayList<NotificationBean>();
 	private Context context;
-	
+
 	public NotificationsAdapter(Context context) {
 		super();
 		this.context = context;
-		
+
 	}
-	
+
 	public void addNotification(NotificationBean notf){
 		nList.add(0, notf);
 	}
-	
+
 	public void clearNotifications(){
 		nList.clear();
 	}
@@ -52,31 +57,35 @@ public class NotificationsAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
-		
-		
+
+
 		NotificationBean n = nList.get(position);
 		if(view == null){
 			LayoutInflater inflater =
-					LayoutInflater.from(parent.getContext());
+					(LayoutInflater) context
+			        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			view = inflater.inflate(
 					R.layout.notification_row, parent, false);
 			
+			ViewHolder viewHolder = new ViewHolder();
+		      viewHolder.text = (TextView) view.findViewById(R.id.notMessageTextId);
+		      viewHolder.image = (ImageView)view.findViewById(R.id.appImageViewId);
+		      view.setTag(viewHolder);
+
 		}
 		
-		View v = view.findViewById(R.id.appImageViewId);
-		ImageView timeTextView = (ImageView)v;
-		timeTextView.setImageDrawable(n.getIcon());
+		ViewHolder holder = (ViewHolder) view.getTag();
 		
-		v = view.findViewById(R.id.notMessageTextId);
-		TextView tv = (TextView)v;
+		holder.image.setImageDrawable(n.getIcon());
+
 		String message = "";
-		
+
 		if(n.getSender() != null && !n.getSender().trim().equals("")){
 			message = n.getSender() + " : ";
 		}
-		                            
+
 		message += n.getMessage();
-		tv.setText(message);
+		holder.text.setText(message);
 		return view;
 	}
 

@@ -14,7 +14,21 @@ public class NotificationBean {
 	private String message;
 	private PendingIntent pendingIntent;
 	private String sender;
+	private String content;
+	private Drawable notIcon;
 	
+	public Drawable getNotIcon() {
+		return notIcon;
+	}
+	public void setNotIcon(Drawable notIcon) {
+		this.notIcon = notIcon;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public String getSender() {
 		return sender;
 	}

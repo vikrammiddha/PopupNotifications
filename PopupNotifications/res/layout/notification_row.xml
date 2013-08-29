@@ -13,17 +13,14 @@
         android:padding="0.0dip"
         android:src="@drawable/ic_launcher" />
 
-    <com.bun.popupnotifications.EllipsizingTextView
+    <TextView
         android:id="@+id/notMessageTextId"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="20"
-        
-        android:ellipsize="end"
         android:gravity="left|center"
-        android:maxLines="4"
         android:padding="5.0dip"
-        android:scrollHorizontally="true"
+        android:maxLines="5"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />

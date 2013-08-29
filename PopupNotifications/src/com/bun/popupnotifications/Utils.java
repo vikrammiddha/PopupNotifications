@@ -169,10 +169,14 @@ public class Utils {
 
 			try{
 				Notification notification = (Notification) event.getParcelableData();
+				Log.d("Notification Service", "ticker Text-----" + notification.tickerText.toString());
 				LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				ViewGroup localView = (ViewGroup) inflater.inflate(notification.contentView.getLayoutId(), null);
-				notification.contentView.reapply(ctx.getApplicationContext(), localView);
-
+				try{
+					notification.contentView.reapply(ctx.getApplicationContext(), localView);
+				}catch(Exception e){
+					
+				}
 				ArrayList<TextView> views = new ArrayList<TextView>();
 
 				getAllTextView(views, localView);

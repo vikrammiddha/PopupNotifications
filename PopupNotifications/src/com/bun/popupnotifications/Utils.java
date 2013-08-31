@@ -3,6 +3,7 @@ package com.bun.popupnotifications;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -279,6 +280,13 @@ public class Utils {
 
 	public Boolean performValidation(AccessibilityEvent event){
 		
+		Notification n = (Notification) event.getParcelableData();
+		
+		if(n == null || ((n.flags & Notification.FLAG_NO_CLEAR) == Notification.FLAG_NO_CLEAR) ||
+        ((n.flags & Notification.FLAG_ONGOING_EVENT) == Notification.FLAG_ONGOING_EVENT)){
+			return false;
+		}
+		
 		if(isForgroundApp(ctx, event.getPackageName().toString())){
 			return false;
 		}
@@ -371,5 +379,7 @@ public class Utils {
     	
     	return false;
 	}
+	
+	
 
 }

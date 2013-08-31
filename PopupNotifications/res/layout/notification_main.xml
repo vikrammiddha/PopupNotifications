@@ -31,7 +31,7 @@
                 android:id="@+id/notificationsListViewId"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"                
-                android:divider="#0C0A42"
+                android:divider="#FFFFFF"
                 android:layout_gravity="center"
                 android:dividerHeight="3px" />
 

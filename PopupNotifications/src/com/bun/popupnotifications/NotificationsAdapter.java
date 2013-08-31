@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 
 import android.content.Context;
+import android.graphics.Typeface;
 
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +19,9 @@ import android.widget.TextView;
 public class NotificationsAdapter extends BaseAdapter{
 
 	static class ViewHolder {
-		public TextView text;
+		public VerticalMarqueeTextView text;
 		public ImageView image;
+		public TextView timeText;
 	}
 
 	private ArrayList<NotificationBean> nList = new ArrayList<NotificationBean>();
@@ -31,7 +34,7 @@ public class NotificationsAdapter extends BaseAdapter{
 	}
 
 	public void addNotification(NotificationBean notf){
-		nList.add(0, notf);
+		nList.add(notf);
 	}
 
 	public void clearNotifications(){
@@ -57,7 +60,8 @@ public class NotificationsAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
-
+		
+		
 
 		NotificationBean n = nList.get(position);
 		if(view == null){
@@ -68,8 +72,9 @@ public class NotificationsAdapter extends BaseAdapter{
 					R.layout.notification_row, parent, false);
 			
 			ViewHolder viewHolder = new ViewHolder();
-		      viewHolder.text = (TextView) view.findViewById(R.id.notMessageTextId);
+		      viewHolder.text = (VerticalMarqueeTextView) view.findViewById(R.id.notMessageTextId);
 		      viewHolder.image = (ImageView)view.findViewById(R.id.appImageViewId);
+		      viewHolder.timeText = (TextView) view.findViewById(R.id.notTimeTextId);
 		      view.setTag(viewHolder);
 
 		}
@@ -84,8 +89,19 @@ public class NotificationsAdapter extends BaseAdapter{
 			message = n.getSender() + " : ";
 		}
 
-		message += n.getMessage();
+		message += n.getMessage();		
+		
+		
 		holder.text.setText(message);
+		
+		Typeface tf = Typeface.createFromAsset(context.getAssets(),
+		        "fonts/robotomedium.ttf");
+		
+		holder.text.setTypeface(tf);
+		
+		holder.timeText.setMovementMethod(new ScrollingMovementMethod());
+		
+		holder.timeText.setText(n.getNotTime());
 		return view;
 	}
 

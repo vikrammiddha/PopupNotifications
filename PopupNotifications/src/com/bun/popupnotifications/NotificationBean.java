@@ -16,7 +16,14 @@ public class NotificationBean {
 	private String sender;
 	private String content;
 	private Drawable notIcon;
+	private String notTime;
 	
+	public String getNotTime() {
+		return notTime;
+	}
+	public void setNotTime(String notTime) {
+		this.notTime = notTime;
+	}
 	public Drawable getNotIcon() {
 		return notIcon;
 	}

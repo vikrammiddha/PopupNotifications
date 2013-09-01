@@ -19,8 +19,9 @@ import android.widget.TextView;
 public class NotificationsAdapter extends BaseAdapter{
 
 	static class ViewHolder {
-		public VerticalMarqueeTextView text;
+		public TextView text;
 		public ImageView image;
+		public ImageView smallImage;
 		public TextView timeText;
 	}
 
@@ -33,12 +34,16 @@ public class NotificationsAdapter extends BaseAdapter{
 
 	}
 
-	public void addNotification(NotificationBean notf){
+	public void addNotification(NotificationBean notf){ 
+		if(nList == null){
+			nList = new ArrayList<NotificationBean>();
+		}
 		nList.add(notf);
 	}
 
 	public void clearNotifications(){
 		nList.clear();
+		//nList = null;
 	}
 	@Override
 	public int getCount() {
@@ -59,12 +64,10 @@ public class NotificationsAdapter extends BaseAdapter{
 	}
 
 	@Override
-	public View getView(int position, View view, ViewGroup parent) {
-		
-		
+	public View getView(int position, View view, ViewGroup parent) {		
 
 		NotificationBean n = nList.get(position);
-		if(view == null){
+		if(view == null || view.getTag() == null){
 			LayoutInflater inflater =
 					(LayoutInflater) context
 			        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -72,8 +75,11 @@ public class NotificationsAdapter extends BaseAdapter{
 					R.layout.notification_row, parent, false);
 			
 			ViewHolder viewHolder = new ViewHolder();
-		      viewHolder.text = (VerticalMarqueeTextView) view.findViewById(R.id.notMessageTextId);
+		      viewHolder.text = (TextView) view.findViewById(R.id.notMessageTextId);
+		     // viewHolder.text.setMovementMethod(new ScrollingMovementMethod());
+		     // viewHolder.text.setSelected(true);
 		      viewHolder.image = (ImageView)view.findViewById(R.id.appImageViewId);
+		      viewHolder.smallImage = (ImageView)view.findViewById(R.id.appImageSmallId);
 		      viewHolder.timeText = (TextView) view.findViewById(R.id.notTimeTextId);
 		      view.setTag(viewHolder);
 
@@ -82,26 +88,23 @@ public class NotificationsAdapter extends BaseAdapter{
 		ViewHolder holder = (ViewHolder) view.getTag();
 		
 		holder.image.setImageDrawable(n.getIcon());
+		holder.smallImage.setImageDrawable(n.getNotIcon());
 
 		String message = "";
 
-		if(n.getSender() != null && !n.getSender().trim().equals("")){
+		if(n.getSender() != null && !n.getSender().trim().equals("")){ 
 			message = n.getSender() + " : ";
 		}
 
 		message += n.getMessage();		
 		
 		
-		holder.text.setText(message);
+		holder.text.setText(message);	
 		
-		Typeface tf = Typeface.createFromAsset(context.getAssets(),
-		        "fonts/robotomedium.ttf");
+		//holder.text.setTypeface(Utils.tf);	 	
 		
-		holder.text.setTypeface(tf);
+		holder.timeText.setText(n.getNotTime());		
 		
-		holder.timeText.setMovementMethod(new ScrollingMovementMethod());
-		
-		holder.timeText.setText(n.getNotTime());
 		return view;
 	}
 

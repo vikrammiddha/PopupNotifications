@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"   
-    android:gravity="center"
-    android:paddingLeft="10.0dip"
-    android:paddingRight="10.0dip"
-    android:orientation="vertical"
     android:id="@+id/mainLayoutId"
-      >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="10.0dip"
+    android:paddingRight="10.0dip" >
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="350.0dip"        
+        android:layout_height="400.0dip"
+        android:id="@+id/expandingLayoutId"
         android:background="#00000000"
-        android:orientation="vertical"
-        android:gravity="bottom" >
+        android:gravity="center"
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -30,24 +30,24 @@
             <ListView
                 android:id="@+id/notificationsListViewId"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"                
-                android:divider="#FFFFFF"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:divider="#FFFFFF"
                 android:dividerHeight="3px" />
-
-            
         </LinearLayout>
-       
+
+        
     </LinearLayout>
-     <Button
-                android:id="@+id/CloseWindowId"
-                android:layout_width="fill_parent"
-                android:layout_height="45.0dip"
-                android:layout_gravity="center"              
-                android:onClick="clearNotifications"
-                android:text="Dismiss All"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:background="@drawable/layout_bg" />
+    
+    <Button
+            android:id="@+id/CloseWindowId"
+            android:layout_width="fill_parent"
+            android:layout_height="45.0dip"
+            android:layout_gravity="center"
+            android:background="@drawable/layout_bg"
+            android:onClick="clearNotifications"
+            android:text="Dismiss All"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
 </LinearLayout>

@@ -11,9 +11,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -39,7 +41,7 @@ public class NotificationActivity extends Activity {
 				
 		myLock = myKeyGuard.newKeyguardLock(KEYGUARD_SERVICE);
 
-		window.addFlags(//WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+		window.addFlags(//WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON 
 				WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
 				); 
 
@@ -47,7 +49,7 @@ public class NotificationActivity extends Activity {
 
 		setContentView(R.layout.notification_main);
 		
-		
+		//Utils.tf = Typeface.createFromAsset(this.getAssets(),"fonts/robotomedium.ttf");
 
 		adapter = new NotificationsAdapter(this);
 		layout = (ListView) findViewById(R.id.notificationsListViewId);	
@@ -82,8 +84,10 @@ public class NotificationActivity extends Activity {
 
 	};
 
-	public void clearNotifications(View view){
+	public void clearNotifications(View view){		
 		Utils.notList.clear();
+		adapter.clearNotifications();
+		//Utils.tf = null;
 		finish();
 
 	}
@@ -92,7 +96,7 @@ public class NotificationActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.notification, menu);
-
+		
 		return true;
 	}
 
@@ -110,6 +114,21 @@ public class NotificationActivity extends Activity {
 
 		adapter.notifyDataSetChanged();
 		layout.setAdapter(adapter);
+		
+		LinearLayout ll = (LinearLayout) findViewById(R.id.expandingLayoutId);	
+		
+		LayoutParams params = ll.getLayoutParams();
+				
+		// Changes the height and width to the specified *pixels*
+		if(ll.getHeight() > 300){
+			params.height = 600;
+		}else{
+			params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+		}
+		
+		params.width = LinearLayout.LayoutParams.FILL_PARENT;
+		
+		ll.setLayoutParams(params);
 	}
 
 	@Override
@@ -141,25 +160,8 @@ public class NotificationActivity extends Activity {
 	}
 
 	private void setLayoutBackground(){
-		WallpaperManager wallpaperManager1 = WallpaperManager
-				.getInstance(getApplicationContext());
-		final Drawable wallpaperDrawable1 = wallpaperManager1.peekDrawable();
-
-
-		KeyguardManager kgMgr = 
-				(KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
-		boolean showing = kgMgr.inKeyguardRestrictedInputMode();
-
-		if (wallpaperDrawable1!=null && showing)
-		{                       
-			//getWindow().setBackgroundDrawable(wallpaperDrawable1);
-			LinearLayout ll = (LinearLayout) findViewById(R.id.mainLayoutId);	
-			ll.setBackgroundColor(Color.parseColor("#90FFFFFF"));
-
-		}else if(!showing){
-			LinearLayout ll = (LinearLayout) findViewById(R.id.mainLayoutId);	
-			ll.setBackgroundColor(Color.parseColor("#90FFFFFF"));
-		}
+		LinearLayout ll = (LinearLayout) findViewById(R.id.mainLayoutId);	
+		ll.setBackgroundColor(Color.parseColor("#90FFFFFF"));
 
 	}
 

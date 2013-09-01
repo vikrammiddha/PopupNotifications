@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="top"
+    android:gravity="top"
     android:orientation="horizontal" >
 
     <LinearLayout
@@ -29,15 +31,21 @@
             android:textColor="#FFFFFF" />
     </LinearLayout>
 
-    <com.bun.popupnotifications.VerticalMarqueeTextView
+    <TextView
         android:id="@+id/notMessageTextId"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="20"
+        android:layout_weight="25"
         android:gravity="left|center"
-        android:maxLines="5"
+        android:maxLines="10"
         android:padding="5.0dip"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#FFFFFF" />
+
+    <ImageView
+        android:id="@+id/appImageSmallId"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="95" />
 
 </LinearLayout>

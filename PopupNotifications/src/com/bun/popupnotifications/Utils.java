@@ -15,7 +15,9 @@ import android.app.ActivityManager.RunningTaskInfo;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -26,6 +28,8 @@ import android.widget.TextView;
 public class Utils {
 
 	public static ArrayList<NotificationBean> notList = new ArrayList<NotificationBean>();
+	
+	//public static Typeface tf ;
 
 	private Context ctx;
 
@@ -287,7 +291,7 @@ public class Utils {
 			return false;
 		}
 		
-		if(isForgroundApp(ctx, event.getPackageName().toString())){
+		if(isForgroundApp(ctx, event.getPackageName().toString()) && isScreenOn()){
 			return false;
 		}
 
@@ -380,6 +384,10 @@ public class Utils {
     	return false;
 	}
 	
-	
+	private Boolean isScreenOn(){
+		PowerManager pm = (PowerManager)ctx.getSystemService(Context.POWER_SERVICE);
+		boolean isScreenOn = pm.isScreenOn();
+		return isScreenOn;
+	}
 
 }

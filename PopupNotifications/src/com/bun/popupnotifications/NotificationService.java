@@ -169,11 +169,11 @@ public class NotificationService extends AccessibilityService {
 
 			bean.setPendingIntent(nnn.contentIntent);
 
-			DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+			DateFormat formatter = new SimpleDateFormat("HH:mm");
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTimeInMillis(System.currentTimeMillis());
 			String formattedDate = formatter.format(calendar.getTime());
-			
+
 			bean.setNotTime(formattedDate);
 
 			Utils.notList.add(0,bean);
@@ -184,7 +184,7 @@ public class NotificationService extends AccessibilityService {
 			Log.d("Notification Service", "Sender-----" + bean.getSender());*/
 
 			if(Utils.isForgroundApp(this, getString(R.string.package_name))){
-				Log.d("Notification Service", "Broadcast---");
+				//Log.d("Notification Service", "Broadcast---");
 				this.sendBroadcast(new Intent(NotificationReceiver.ACTION_NOTIFICATION_CHANGED));
 
 			}else{
@@ -199,6 +199,8 @@ public class NotificationService extends AccessibilityService {
 		}
 
 	}
+
+	
 
 	private void turnScreenOn() 
 	{
@@ -219,7 +221,7 @@ public class NotificationService extends AccessibilityService {
 					wl.release();
 				}
 			};
-			worker.schedule(task, 10, TimeUnit.SECONDS);
+			worker.schedule(task, 15, TimeUnit.SECONDS);
 		}                     
 	}
 
@@ -289,124 +291,124 @@ public class NotificationService extends AccessibilityService {
 			View v;                                         
 			// try to get big text                          
 			v = localView.findViewById(big_notification_content_text);
-					if (v != null && v instanceof TextView)
+			if (v != null && v instanceof TextView)
+			{
+				text = ((TextView)v).getText();
+			}
+
+			// get title string if available
+			View titleView = localView.findViewById(notification_title_id );
+			View bigTitleView = localView.findViewById(big_notification_title_id );
+			View inboxTitleView = localView.findViewById(inbox_notification_title_id );
+			if (titleView  != null && titleView  instanceof TextView)
+			{
+				title = ((TextView)titleView).getText();
+			} else if (bigTitleView != null && bigTitleView instanceof TextView)
+			{
+				title = ((TextView)bigTitleView).getText();
+			} else if  (inboxTitleView != null && inboxTitleView instanceof TextView)
+			{
+				title = ((TextView)inboxTitleView).getText();
+			}
+
+			// try to extract details lines 
+			content = null;
+			v = localView.findViewById(inbox_notification_event_1_id);
+			if (v != null && v instanceof TextView) 
+			{
+				CharSequence s = ((TextView)v).getText();
+				if (!s.equals(""))
+					content = s;
+			}
+
+			if (!useFirstEvent)
+			{
+				v = localView.findViewById(inbox_notification_event_2_id);
+				if (v != null && v instanceof TextView) 
+				{
+					CharSequence s = ((TextView)v).getText();
+					if (!s.equals("")) 
+						content = TextUtils.concat(content,"\n",s);
+				}
+
+				v = localView.findViewById(inbox_notification_event_3_id);
+				if (v != null && v instanceof TextView)  
+				{
+					CharSequence s = ((TextView)v).getText();
+					if (!s.equals("")) 
+						content = TextUtils.concat(content,"\n",s);
+				}
+
+				v = localView.findViewById(inbox_notification_event_4_id);
+				if (v != null && v instanceof TextView)  
+				{
+					CharSequence s = ((TextView)v).getText();
+					if (!s.equals("")) 
+						content = TextUtils.concat(content,"\n",s);
+				}
+
+				v = localView.findViewById(inbox_notification_event_5_id);
+				if (v != null && v instanceof TextView)  
+				{
+					CharSequence s = ((TextView)v).getText();
+					if (!s.equals("")) 
+						content = TextUtils.concat(content,"\n",s);
+				}
+
+				v = localView.findViewById(inbox_notification_event_6_id);
+				if (v != null && v instanceof TextView)  
+				{
+					CharSequence s = ((TextView)v).getText();
+					if (!s.equals("")) 
+						content = TextUtils.concat(content,"\n",s);
+				}
+
+				v = localView.findViewById(inbox_notification_event_7_id);
+				if (v != null && v instanceof TextView)  
+				{
+					CharSequence s = ((TextView)v).getText();
+					if (!s.equals("")) 
+						content = TextUtils.concat(content,"\n",s);
+				}
+
+				v = localView.findViewById(inbox_notification_event_8_id);
+				if (v != null && v instanceof TextView)  
+				{
+					CharSequence s = ((TextView)v).getText();
+					if (!s.equals("")) 
+						content = TextUtils.concat(content,"\n",s);
+				}
+
+				v = localView.findViewById(inbox_notification_event_9_id);
+				if (v != null && v instanceof TextView)  
+				{
+					CharSequence s = ((TextView)v).getText();
+					if (!s.equals("")) 
+						content = TextUtils.concat(content,"\n",s);
+				}
+
+				v = localView.findViewById(inbox_notification_event_10_id);
+				if (v != null && v instanceof TextView)  
+				{
+					CharSequence s = ((TextView)v).getText();
+					if (!s.equals("")) 
+						content = TextUtils.concat(content,"\n",s);
+				}
+			}
+
+			// if no content lines, try to get subtext
+			if (content == null)
+			{
+				v = localView.findViewById(notification_subtext_id);
+				if (v != null && v instanceof TextView)
+				{
+					CharSequence s = ((TextView)v).getText();
+					if (!s.equals(""))
 					{
-						text = ((TextView)v).getText();
+						content = s;
 					}
-
-					// get title string if available
-					View titleView = localView.findViewById(notification_title_id );
-					View bigTitleView = localView.findViewById(big_notification_title_id );
-					View inboxTitleView = localView.findViewById(inbox_notification_title_id );
-					if (titleView  != null && titleView  instanceof TextView)
-					{
-						title = ((TextView)titleView).getText();
-					} else if (bigTitleView != null && bigTitleView instanceof TextView)
-					{
-						title = ((TextView)bigTitleView).getText();
-					} else if  (inboxTitleView != null && inboxTitleView instanceof TextView)
-					{
-						title = ((TextView)inboxTitleView).getText();
-					}
-
-					// try to extract details lines 
-					content = null;
-							v = localView.findViewById(inbox_notification_event_1_id);
-							if (v != null && v instanceof TextView) 
-							{
-								CharSequence s = ((TextView)v).getText();
-								if (!s.equals(""))
-									content = s;
-							}
-
-							if (!useFirstEvent)
-							{
-								v = localView.findViewById(inbox_notification_event_2_id);
-								if (v != null && v instanceof TextView) 
-								{
-									CharSequence s = ((TextView)v).getText();
-									if (!s.equals("")) 
-										content = TextUtils.concat(content,"\n",s);
-								}
-
-								v = localView.findViewById(inbox_notification_event_3_id);
-								if (v != null && v instanceof TextView)  
-								{
-									CharSequence s = ((TextView)v).getText();
-									if (!s.equals("")) 
-										content = TextUtils.concat(content,"\n",s);
-								}
-
-								v = localView.findViewById(inbox_notification_event_4_id);
-								if (v != null && v instanceof TextView)  
-								{
-									CharSequence s = ((TextView)v).getText();
-									if (!s.equals("")) 
-										content = TextUtils.concat(content,"\n",s);
-								}
-
-								v = localView.findViewById(inbox_notification_event_5_id);
-								if (v != null && v instanceof TextView)  
-								{
-									CharSequence s = ((TextView)v).getText();
-									if (!s.equals("")) 
-										content = TextUtils.concat(content,"\n",s);
-								}
-
-								v = localView.findViewById(inbox_notification_event_6_id);
-								if (v != null && v instanceof TextView)  
-								{
-									CharSequence s = ((TextView)v).getText();
-									if (!s.equals("")) 
-										content = TextUtils.concat(content,"\n",s);
-								}
-
-								v = localView.findViewById(inbox_notification_event_7_id);
-								if (v != null && v instanceof TextView)  
-								{
-									CharSequence s = ((TextView)v).getText();
-									if (!s.equals("")) 
-										content = TextUtils.concat(content,"\n",s);
-								}
-
-								v = localView.findViewById(inbox_notification_event_8_id);
-								if (v != null && v instanceof TextView)  
-								{
-									CharSequence s = ((TextView)v).getText();
-									if (!s.equals("")) 
-										content = TextUtils.concat(content,"\n",s);
-								}
-
-								v = localView.findViewById(inbox_notification_event_9_id);
-								if (v != null && v instanceof TextView)  
-								{
-									CharSequence s = ((TextView)v).getText();
-									if (!s.equals("")) 
-										content = TextUtils.concat(content,"\n",s);
-								}
-
-								v = localView.findViewById(inbox_notification_event_10_id);
-								if (v != null && v instanceof TextView)  
-								{
-									CharSequence s = ((TextView)v).getText();
-									if (!s.equals("")) 
-										content = TextUtils.concat(content,"\n",s);
-								}
-							}
-
-							// if no content lines, try to get subtext
-							if (content == null)
-							{
-								v = localView.findViewById(notification_subtext_id);
-								if (v != null && v instanceof TextView)
-								{
-									CharSequence s = ((TextView)v).getText();
-									if (!s.equals(""))
-									{
-										content = s;
-									}
-								}
-							}       
+				}
+			}       
 		}
 
 		if (title!=null)

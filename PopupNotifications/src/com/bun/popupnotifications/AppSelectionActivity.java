@@ -7,136 +7,192 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TreeSet;
 
-import android.app.Activity;
+import com.actionbarsherlock.app.SherlockActivity;
+
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ProgressBar;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
-public class AppSelectionActivity extends Activity{
-	
+public class AppSelectionActivity extends SherlockActivity{
+
 	ListView layout;
 	AppSelectionAdapter adapter;
-	
+	EditText searchBox;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.app_selection_main);
-		
-		 
-		
 		layout = (ListView) findViewById(R.id.appSelectionMainListViewId);	
-		
+
 		adapter = new AppSelectionAdapter(this);
-		
-		new Load().execute();
-		
+
+		new Load().execute();	
+
 	}
 	
-	 ProgressDialog progDailog ;
-	
+	@Override
+    public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
+		Log.d("App Selection", "Menu Item ===" + item.getTitle() + "=== Id==" + item.getItemId());
+        switch (item.getItemId()) {
+            case 0:
+            	searchBox = (EditText) item.getActionView();
+                searchBox.addTextChangedListener(new TextWatcher() {
+
+        	        @Override
+        	        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        	            // Call back the Adapter with current character to Filter
+        	            adapter.getFilter().filter(s.toString());
+        	        }
+
+        	        @Override
+        	        public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+        	        }
+
+        	        @Override
+        	        public void afterTextChanged(Editable s) {
+        	        }
+        	    });
+                searchBox.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
+        }   
+        return super.onOptionsItemSelected(item);
+    } 
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		//Used to put dark icons on light action bar
+		boolean isLight = false;
+
+		menu.add("Search")
+		.setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
+		.setActionView(R.layout.collapsible_edittext)
+		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+
+		return true;
+	}
+
+	ProgressDialog progDailog ;
+
 	private class Load extends AsyncTask<String, String, String> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progDailog = new ProgressDialog(AppSelectionActivity.this);
-            progDailog.setMessage("Loading...");
-            progDailog.setIndeterminate(false);
-            progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progDailog.setCancelable(true);
-            progDailog.show();
-        }
-        @Override
-        protected String doInBackground(String... aurl) {
-        	populateAdapter();
-            return null;
-        }
-        @Override
-        protected void onPostExecute(String unused) {
-            super.onPostExecute(unused);
-            progDailog.dismiss();
-            layout.setAdapter(adapter);
-        }
-    }
-	
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progDailog = new ProgressDialog(AppSelectionActivity.this);
+			progDailog.setMessage("Loading...");
+			progDailog.setIndeterminate(false);
+			progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			progDailog.setCancelable(true);
+			progDailog.show();
+		}
+		@Override
+		protected String doInBackground(String... aurl) {
+			populateAdapter();
+			return null;
+		}
+		@Override
+		protected void onPostExecute(String unused) {
+			super.onPostExecute(unused);
+			progDailog.dismiss();
+			layout.setAdapter(adapter);
+		}
+	}
+
 	private void populateAdapter(){
-		
+
 		final PackageManager pm = this.getApplicationContext().getPackageManager();
 		List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
 		HashMap<String,String> appNamesMap = new HashMap<String, String>();
-		
-		
+
+
 		TreeSet<String> allowedApps = new TreeSet<String>();
 		TreeSet<String> otherApps = new TreeSet<String>();
-		
+
 		allowedApps = SharedPreferenceUtils.getAllAlowedApps(this);
 
 		for (ApplicationInfo packageInfo : packages) {
-			
+
 			appNamesMap.put(packageInfo.packageName, packageInfo.loadLabel(pm).toString());
-			
+
 			if(!allowedApps.contains(packageInfo.packageName)){
 				otherApps.add(packageInfo.packageName);
-				
+
 			}
-			
+
 		}
-		
+
 		ArrayList<ApplicationBean> aList = new ArrayList<ApplicationBean>();
-		
+
 		for(String pack : allowedApps){
 			ApplicationBean bean = new ApplicationBean();
-			
+
 			bean.setPackageName(pack);
-			bean.setAppName(appNamesMap.get(bean.getPackageName()));			
+			bean.setAppName(appNamesMap.get(bean.getPackageName()));	
+			
+			if(bean.getAppName() == null)
+				continue;
 			bean.setAppIcon(getAppIcon(bean.getPackageName()));
 			bean.setIsSelected(true);
 			aList.add(bean);
 		}
-		
+
 		Collections.sort(aList, new Comparator<ApplicationBean>(){
-			  public int compare(ApplicationBean a1, ApplicationBean a2) {
-			    return a1.getAppName().compareToIgnoreCase(a2.getAppName());
-			  }
-			});
-		
+			public int compare(ApplicationBean a1, ApplicationBean a2) {
+				Log.d("App Selection", "Package NAme----" + a1.getPackageName());
+				return a1.getAppName().compareToIgnoreCase(a2.getAppName());
+			}
+		});
+
 		adapter.addAppList(aList);
-		
+
 		aList.clear();
-		
+
 		for(String pack : otherApps){
 			ApplicationBean bean = new ApplicationBean();
-			
+
 			bean.setPackageName(pack);
-			bean.setAppName(appNamesMap.get(bean.getPackageName()));			
+			bean.setAppName(appNamesMap.get(bean.getPackageName()));
+			
+			if(bean.getAppName() == null)
+				continue;
+			
 			bean.setAppIcon(getAppIcon(bean.getPackageName()));
 			bean.setIsSelected(false);
 			aList.add(bean);
 		}
-		
+
 		Collections.sort(aList, new Comparator<ApplicationBean>(){
-			  public int compare(ApplicationBean a1, ApplicationBean a2) {
-			    return a1.getAppName().compareToIgnoreCase(a2.getAppName());
-			  }
-			});
-		
+			public int compare(ApplicationBean a1, ApplicationBean a2) {
+				return a1.getAppName().compareToIgnoreCase(a2.getAppName());
+			}
+		});
+
 		adapter.addAppList(aList);
-		
+
 		aList.clear();
-		
-		
-		
-		
-		
+
+
+
+
+
 	}
-	
+
 	private Drawable getAppIcon(String packageName){
 		Drawable icon = null;
 		try{
@@ -144,11 +200,11 @@ public class AppSelectionActivity extends Activity{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
+
 		if(icon == null){
 			icon = this.getResources().getDrawable( R.drawable.ic_launcher );
 		}
-		
+
 		return icon;
 	}
 

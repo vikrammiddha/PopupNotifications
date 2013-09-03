@@ -9,33 +9,31 @@
         android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.GET_TASKS" />
-    
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name="com.bun.popupnotifications.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.bun.popupnotifications.NotificationActivity"           
-            android:theme="@style/Theme.D1NoTitleDim"  
-            android:noHistory="true"  
-            android:excludeFromRecents="true"            
-            >
-            
+            android:name="com.bun.popupnotifications.NotificationActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:theme="@style/Theme.D1NoTitleDim" >
         </activity>
-        
         <activity
-           android:name="AppSelectionActivity"
-           android:label="@string/app_name" >
-           <intent-filter>
-               <action android:name="android.intent.action.MAIN" />
+            android:name="AppSelectionActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-               <category android:name="android.intent.category.LAUNCHER" />
-           </intent-filter>
-       </activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+       
 
         <service
             android:name=".NotificationService"
@@ -49,14 +47,15 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibilityservice" />
         </service>
-        
+
         <receiver
-	    android:name=".NotificationReceiver"
-	    android:enabled="true" >
-	       <intent-filter>
-	           <action android:name="com.bun.popupnotification.NOTIFICATION_CHANGED"></action>
-	       </intent-filter>
-	</receiver>
+            android:name=".NotificationReceiver"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="com.bun.popupnotification.NOTIFICATION_CHANGED" >
+                </action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

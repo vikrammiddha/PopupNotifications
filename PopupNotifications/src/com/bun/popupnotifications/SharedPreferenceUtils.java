@@ -1,5 +1,9 @@
 package com.bun.popupnotifications;
 
+import java.util.HashSet;
+import java.util.Map;
+import java.util.TreeSet;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -40,7 +44,7 @@ public class SharedPreferenceUtils {
 
 		appPref_editor = appsPref.edit();
 		appPref_editor.remove(packageName);
-		
+		appPref_editor.commit();
 	}
 	
 	public static void populateDefaultApps(Context ctx){
@@ -53,6 +57,21 @@ public class SharedPreferenceUtils {
 		setAllowedApps(ctx,"com.android.phone", "");
 		setAllowedApps(ctx,"com.facebook.katana", "");
 		setAllowedApps(ctx,"com.tencent.mm", "");
+	}
+	
+	public static TreeSet<String> getAllAlowedApps(Context ctx){
+		
+		appsPref = ctx.getSharedPreferences(
+				APP_LIST, Context.MODE_PRIVATE);
+		TreeSet<String> retSet = new TreeSet<String>();
+		
+		Map<String,?> keys = appsPref.getAll();
+
+		for(Map.Entry<String,?> entry : keys.entrySet()){
+			retSet.add(entry.getKey());
+		 }
+		
+		return retSet;
 	}
 
 }

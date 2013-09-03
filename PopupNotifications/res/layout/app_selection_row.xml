@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center"
+     >
+
+    <ImageView
+        android:id="@+id/appSelectionIconId"
+        android:layout_width="fill_parent"
+        android:layout_height="45.0dip"
+        android:layout_gravity="center"
+        android:layout_weight="80"        
+        android:src="@drawable/ic_launcher"
+        android:padding="4.0dip" />
+
+    <TextView
+        android:id="@+id/appSelectionTextId"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="40"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000000" />
+
+    <CheckBox
+        android:id="@+id/appSelectionCheckBoxId"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_weight="80"
+        android:text="" />
+
+</LinearLayout>

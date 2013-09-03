@@ -8,7 +8,9 @@ import android.graphics.Typeface;
 
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 
 import android.widget.BaseAdapter;
@@ -103,7 +105,31 @@ public class NotificationsAdapter extends BaseAdapter{
 		
 		//holder.text.setTypeface(Utils.tf);	 	
 		
-		holder.timeText.setText(n.getNotTime());		
+		holder.timeText.setText(n.getNotTime());
+		
+		/*holder.text.setVerticalScrollBarEnabled(true);
+		holder.text.setMovementMethod(new ScrollingMovementMethod());
+		
+		OnTouchListener listener = new OnTouchListener() {
+		      @Override
+		      public boolean onTouch(View v, MotionEvent event) {
+		                boolean isLarger;
+
+		                isLarger = ((TextView) v).getLineCount()
+		                        * ((TextView) v).getLineHeight() > v.getHeight();
+		                if (event.getAction() == MotionEvent.ACTION_MOVE
+		                        && isLarger) {
+		                    v.getParent().requestDisallowInterceptTouchEvent(true);
+
+		                } else {
+		                    v.getParent().requestDisallowInterceptTouchEvent(false);
+
+		                }
+		                return false;
+		            }
+		        };
+
+		holder.text.setOnTouchListener(listener);*/
 		
 		return view;
 	}

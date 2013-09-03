@@ -26,19 +26,25 @@ public final class R {
         public static final int layout_bg=0x7f020002;
     }
     public static final class id {
-        public static final int CloseWindowId=0x7f090003;
-        public static final int action_settings=0x7f090008;
-        public static final int appImageSmallId=0x7f090007;
-        public static final int appImageViewId=0x7f090004;
-        public static final int expandingLayoutId=0x7f090001;
-        public static final int mainLayoutId=0x7f090000;
-        public static final int notMessageTextId=0x7f090006;
-        public static final int notTimeTextId=0x7f090005;
-        public static final int notificationsListViewId=0x7f090002;
+        public static final int CloseWindowId=0x7f090007;
+        public static final int action_settings=0x7f09000c;
+        public static final int appImageSmallId=0x7f09000b;
+        public static final int appImageViewId=0x7f090008;
+        public static final int appSelectionCheckBoxId=0x7f090003;
+        public static final int appSelectionIconId=0x7f090001;
+        public static final int appSelectionMainListViewId=0x7f090000;
+        public static final int appSelectionTextId=0x7f090002;
+        public static final int expandingLayoutId=0x7f090005;
+        public static final int mainLayoutId=0x7f090004;
+        public static final int notMessageTextId=0x7f09000a;
+        public static final int notTimeTextId=0x7f090009;
+        public static final int notificationsListViewId=0x7f090006;
     }
     public static final class layout {
-        public static final int notification_main=0x7f030000;
-        public static final int notification_row=0x7f030001;
+        public static final int app_selection_main=0x7f030000;
+        public static final int app_selection_row=0x7f030001;
+        public static final int notification_main=0x7f030002;
+        public static final int notification_row=0x7f030003;
     }
     public static final class menu {
         public static final int notification=0x7f080000;

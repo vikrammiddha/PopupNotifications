@@ -12,6 +12,7 @@ import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.ActivityManager.RunningTaskInfo;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -28,6 +29,14 @@ import android.widget.TextView;
 public class Utils {
 
 	public static ArrayList<NotificationBean> notList = new ArrayList<NotificationBean>();
+	public static HashMap<String, PendingIntent> intentMap = new HashMap<String, PendingIntent>();
+	
+	public static ArrayList<NotificationBean> getNotList(){
+		if(notList == null){
+			notList = new ArrayList<NotificationBean>();
+		}
+		return notList;
+	}
 	
 	//public static Typeface tf ;
 

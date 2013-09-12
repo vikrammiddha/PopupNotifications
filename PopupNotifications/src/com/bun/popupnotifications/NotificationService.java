@@ -73,7 +73,8 @@ public class NotificationService extends AccessibilityService {
 
 		if(utils.performValidation(event)){
 			Notification nnn = (Notification) event.getParcelableData();
-
+			
+			
 			NotificationBean bean = new NotificationBean();
 
 			String packageName = event.getPackageName().toString();
@@ -111,54 +112,60 @@ public class NotificationService extends AccessibilityService {
 			}
 
 
+			try{
+				RemoteViews rv = nnn.bigContentView != null ? nnn.bigContentView : nnn.contentView;
+				LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				ViewGroup localView = (ViewGroup) inflater.inflate(rv.getLayoutId(), null);
+				rv.reapply(getApplicationContext(), localView);
+	
+	
+	
+				//recursiveDetectNotificationsIds(localView);
+				extractTextFromView(rv, true, bean);
+	
+				if (bean.getMessage() == null || bean.getMessage().equals("") &&
+						bean.getContent() != null && !bean.getContent().equals(""))
+				{
+					bean.setMessage(bean.getContent());
+					bean.setContent(null);
+				}
+	
+				if (bean.getMessage() == null)
+				{                                                       
+					bean.setMessage(nnn.tickerText.toString());                                                
+				}
+				if (bean.getSender() == null)
+				{
+					if (info != null)
+						bean.setSender(getPackageManager().getApplicationLabel(ai).toString());
+					else
+						bean.setSender(packageName);
+					
+				}
+				bean.setAppName(getPackageManager().getApplicationLabel(ai).toString());
+				if(bean.getSender() != null && !"".equals(bean.getSender())){
+					String tempSender = bean.getSender();
+					if(tempSender.contains(bean.getAppName())){
+						tempSender = null;
+					}
 
-			RemoteViews rv = nnn.bigContentView != null ? nnn.bigContentView : nnn.contentView;
-			LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			ViewGroup localView = (ViewGroup) inflater.inflate(rv.getLayoutId(), null);
-			rv.reapply(getApplicationContext(), localView);
+					if(tempSender != null && tempSender.toLowerCase().contains("new message")){
+						tempSender = null;
+					}
 
-
-
-			//recursiveDetectNotificationsIds(localView);
-			extractTextFromView(rv, true, bean);
-
-			if (bean.getMessage() == null || bean.getMessage().equals("") &&
-					bean.getContent() != null && !bean.getContent().equals(""))
-			{
-				bean.setMessage(bean.getContent());
-				bean.setContent(null);
+					bean.setSender(tempSender);
+				}
+			}catch(Exception e){
+				bean.setMessage(nnn.tickerText.toString());  
+				bean.setAppName(getPackageManager().getApplicationLabel(ai).toString());
 			}
+			
 
-			if (bean.getMessage() == null)
-			{                                                       
-				bean.setMessage(nnn.tickerText.toString());                                                
-			}
-			if (bean.getSender() == null)
-			{
-				if (info != null)
-					bean.setSender(getPackageManager().getApplicationLabel(ai).toString());
-				else
-					bean.setSender(packageName);
-			}
-
-			bean.setAppName(getPackageManager().getApplicationLabel(ai).toString());
-
-			Log.d("Notification Service", "title  -----" + bean.getSender());
+			/*Log.d("Notification Service", "title  -----" + bean.getSender());
 			Log.d("Notification Service", "text  -----" + bean.getMessage());
-			Log.d("Notification Service", "content  -----" + bean.getContent());
+			Log.d("Notification Service", "content  -----" + bean.getContent());*/
 
-			if(bean.getSender() != null && !"".equals(bean.getSender())){
-				String tempSender = bean.getSender();
-				if(tempSender.contains(bean.getAppName())){
-					tempSender = null;
-				}
-
-				if(tempSender != null && tempSender.toLowerCase().contains("new message")){
-					tempSender = null;
-				}
-
-				bean.setSender(tempSender);
-			}
+			
 
 			bean.setPackageName(event.getPackageName().toString());
 			//utils.populateBeanDetails(event, bean);
@@ -167,7 +174,7 @@ public class NotificationService extends AccessibilityService {
 				return;
 			}
 
-			bean.setPendingIntent(nnn.contentIntent);
+			//bean.setPendingIntent(nnn.contentIntent);
 
 			DateFormat formatter = new SimpleDateFormat("HH:mm");
 			Calendar calendar = Calendar.getInstance();
@@ -176,18 +183,33 @@ public class NotificationService extends AccessibilityService {
 
 			bean.setNotTime(formattedDate);
 
-			Utils.notList.add(0,bean);
+			bean.setWhen(nnn.when);
+			
+			//bean.setTickerText(nnn.tickerText.toString());
+			
+			Utils.intentMap.put(bean.getPackageName(), nnn.contentIntent);
 
-			/*Log.d("Notification Service", "App-----" + bean.getAppName());
+			Log.d("Notification Service", "App-----" + bean.getAppName());
 			Log.d("Notification Service", "package-----" + bean.getPackageName());
 			Log.d("Notification Service", "Message-----" + bean.getMessage());
-			Log.d("Notification Service", "Sender-----" + bean.getSender());*/
+			Log.d("Notification Service", "Sender-----" + bean.getSender());
+			Log.d("Notification Service", "Sender-----" + bean.getUniqueValue());
 
 			if(Utils.isForgroundApp(this, getString(R.string.package_name))){
+				Utils.getNotList().add(0,bean);
 				//Log.d("Notification Service", "Broadcast---");
 				this.sendBroadcast(new Intent(NotificationReceiver.ACTION_NOTIFICATION_CHANGED));
 
 			}else{
+				if(Utils.notList != null){
+					for(NotificationBean n : Utils.notList){
+						n = null;
+					}		
+					
+					Utils.notList.clear();
+				Utils.notList = null;
+				}
+				Utils.getNotList().add(0,bean);
 				Log.d("Notification Service", "New Intent----");
 				Intent dialogIntent = new Intent(getBaseContext(), NotificationActivity.class);				
 				dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -40,6 +40,8 @@ public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 	}
 	
 	public void addAppList(ArrayList<ApplicationBean> appList){
+		if(nList == null)
+			nList = new ArrayList<ApplicationBean>();
 		nList.addAll(appList);
 	}
 
@@ -52,7 +54,7 @@ public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 
 	public void clearNotifications(){
 		nList.clear();
-		//nList = null;
+		nList = null;
 	}
 	@Override
 	public int getCount() {

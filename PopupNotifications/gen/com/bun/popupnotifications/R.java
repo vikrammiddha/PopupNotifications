@@ -26,43 +26,79 @@ public final class R {
         public static final int ic_search=0x7f020002;
         public static final int ic_search_inverse=0x7f020003;
         public static final int layout_bg=0x7f020004;
+        public static final int remove=0x7f020005;
     }
     public static final class id {
-        public static final int CloseWindowId=0x7f090008;
-        public static final int action_settings=0x7f09000d;
-        public static final int appImageSmallId=0x7f09000c;
-        public static final int appImageViewId=0x7f090009;
+        public static final int CloseWindowId=0x7f090019;
+        public static final int appImageSmallId=0x7f09001d;
+        public static final int appImageViewId=0x7f09001a;
         public static final int appSelectionCheckBoxId=0x7f090003;
         public static final int appSelectionIconId=0x7f090001;
         public static final int appSelectionMainListViewId=0x7f090000;
         public static final int appSelectionTextId=0x7f090002;
-        public static final int expandingLayoutId=0x7f090006;
-        public static final int mainLayoutId=0x7f090005;
-        public static final int notMessageTextId=0x7f09000b;
-        public static final int notTimeTextId=0x7f09000a;
-        public static final int notificationsListViewId=0x7f090007;
+        public static final int cpRoot=0x7f090005;
+        public static final int expandingLayoutId=0x7f090017;
+        public static final int mainLayoutId=0x7f090016;
+        public static final int menu_settings=0x7f09001e;
+        public static final int mute15min=0x7f09000a;
+        public static final int mute1hour=0x7f09000c;
+        public static final int mute30min=0x7f09000b;
+        public static final int mute4hours=0x7f09000d;
+        public static final int mute8hours=0x7f09000e;
+        public static final int muteAllApps=0x7f090008;
+        public static final int muteOptions1=0x7f090006;
+        public static final int muteOptions2=0x7f090009;
+        public static final int muteSelectedAppSelectionCheckBoxId=0x7f090014;
+        public static final int muteSelectedAppSelectionIconId=0x7f090011;
+        public static final int muteSelectedAppSelectionTextId=0x7f090012;
+        public static final int muteSelectedAppSummaryTextId=0x7f090013;
+        public static final int muteSelectedListViewId=0x7f090010;
+        public static final int muteSelectedRemoveId=0x7f090015;
+        public static final int muteSpecificApp=0x7f090007;
+        public static final int muteforeever=0x7f09000f;
+        public static final int notMessageTextId=0x7f09001c;
+        public static final int notTimeTextId=0x7f09001b;
+        public static final int notificationsListViewId=0x7f090018;
         public static final int searchBoxId=0x7f090004;
+        public static final int tutorial=0x7f09001f;
     }
     public static final class layout {
         public static final int app_selection_main=0x7f030000;
         public static final int app_selection_row=0x7f030001;
         public static final int collapsible_edittext=0x7f030002;
-        public static final int notification_main=0x7f030003;
-        public static final int notification_row=0x7f030004;
+        public static final int mute_app_dialogue=0x7f030003;
+        public static final int mute_selected_main=0x7f030004;
+        public static final int mute_selected_row=0x7f030005;
+        public static final int notification_main=0x7f030006;
+        public static final int notification_row=0x7f030007;
     }
     public static final class menu {
         public static final int notification=0x7f080000;
     }
     public static final class string {
-        public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
-        public static final int crash_dialog_comment_prompt=0x7f060007;
-        public static final int crash_dialog_ok_toast=0x7f060008;
-        public static final int crash_dialog_text=0x7f060006;
-        public static final int crash_dialog_title=0x7f060005;
-        public static final int crash_toast_text=0x7f060004;
-        public static final int hello_world=0x7f060002;
-        public static final int package_name=0x7f060003;
+        public static final int crash_dialog_comment_prompt=0x7f060006;
+        public static final int crash_dialog_ok_toast=0x7f060007;
+        public static final int crash_dialog_text=0x7f060005;
+        public static final int crash_dialog_title=0x7f060004;
+        public static final int crash_toast_text=0x7f060003;
+        public static final int hello_world=0x7f060001;
+        public static final int listViewPosition=0x7f060008;
+        public static final int menu_settings=0x7f060009;
+        public static final int menu_tutorial=0x7f06000a;
+        public static final int mute_15_mins=0x7f060011;
+        public static final int mute_1_hour=0x7f060013;
+        public static final int mute_30_mins=0x7f060012;
+        public static final int mute_4_hours=0x7f060014;
+        public static final int mute_8_hours=0x7f060015;
+        public static final int mute_all_apps=0x7f060010;
+        public static final int mute_foreever=0x7f060016;
+        public static final int package_name=0x7f060002;
+        public static final int pref_advanced_category=0x7f06000d;
+        public static final int pref_mute_category=0x7f06000c;
+        public static final int pref_mute_selected=0x7f06000f;
+        public static final int pref_notification_category=0x7f06000b;
+        public static final int pref_others_category=0x7f06000e;
     }
     public static final class style {
         /** 
@@ -97,5 +133,7 @@ public final class R {
     }
     public static final class xml {
         public static final int accessibilityservice=0x7f040000;
+        public static final int main_preference=0x7f040001;
+        public static final int notification_pref=0x7f040002;
     }
 }

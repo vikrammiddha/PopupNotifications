@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceScreen
+        android:key="second_preferencescreen"
+        android:title="@string/pref_notification_category" >
+        <CheckBoxPreference
+            android:key="prefer wifi"
+            android:title="Prefer WiFi" />
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="mute_settings"
+        android:title="@string/pref_mute_category" >
+        <CheckBoxPreference
+                android:key="mute_all_apps"
+                android:title="Mute All Apps" />
+
+            <PreferenceScreen
+                android:key="mute_selected_screen"
+                android:title="@string/pref_mute_selected" >
+            </PreferenceScreen>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="second_preferencescreen"
+        android:title="@string/pref_advanced_category" >
+        <CheckBoxPreference
+            android:key="prefer wifi"
+            android:title="Prefer WiFi" />
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="second_preferencescreen"
+        android:title="@string/pref_others_category" >
+        <CheckBoxPreference
+            android:key="prefer wifi"
+            android:title="Prefer WiFi" />
+    </PreferenceScreen>
+
+</PreferenceScreen>

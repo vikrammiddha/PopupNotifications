@@ -25,6 +25,7 @@ public class NotificationsAdapter extends BaseAdapter{
 		public ImageView image;
 		public ImageView smallImage;
 		public TextView timeText;
+		
 	}
 
 	private ArrayList<NotificationBean> nList = new ArrayList<NotificationBean>();
@@ -105,31 +106,8 @@ public class NotificationsAdapter extends BaseAdapter{
 		
 		//holder.text.setTypeface(Utils.tf);	 	
 		
-		holder.timeText.setText(n.getNotTime());
+		holder.timeText.setText(n.getNotTime());		
 		
-		/*holder.text.setVerticalScrollBarEnabled(true);
-		holder.text.setMovementMethod(new ScrollingMovementMethod());
-		
-		OnTouchListener listener = new OnTouchListener() {
-		      @Override
-		      public boolean onTouch(View v, MotionEvent event) {
-		                boolean isLarger;
-
-		                isLarger = ((TextView) v).getLineCount()
-		                        * ((TextView) v).getLineHeight() > v.getHeight();
-		                if (event.getAction() == MotionEvent.ACTION_MOVE
-		                        && isLarger) {
-		                    v.getParent().requestDisallowInterceptTouchEvent(true);
-
-		                } else {
-		                    v.getParent().requestDisallowInterceptTouchEvent(false);
-
-		                }
-		                return false;
-		            }
-		        };
-
-		holder.text.setOnTouchListener(listener);*/
 		
 		return view;
 	}

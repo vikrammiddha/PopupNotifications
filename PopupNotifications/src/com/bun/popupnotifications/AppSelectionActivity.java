@@ -11,6 +11,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -19,13 +20,16 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
-import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
+
 public class AppSelectionActivity extends SherlockActivity{
+
+
 
 	ListView layout;
 	AppSelectionAdapter adapter;
@@ -44,48 +48,69 @@ public class AppSelectionActivity extends SherlockActivity{
 		new Load().execute();	
 
 	}
-	
+
+
+
 	@Override
-    public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
+	public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
 		Log.d("App Selection", "Menu Item ===" + item.getTitle() + "=== Id==" + item.getItemId());
-        switch (item.getItemId()) {
-            case 0:
-            	searchBox = (EditText) item.getActionView();
-                searchBox.addTextChangedListener(new TextWatcher() {
 
-        	        @Override
-        	        public void onTextChanged(CharSequence s, int start, int before, int count) {
-        	            // Call back the Adapter with current character to Filter
-        	            adapter.getFilter().filter(s.toString());
-        	        }
 
-        	        @Override
-        	        public void beforeTextChanged(CharSequence s, int start, int count,int after) {
-        	        }
+		switch (item.getItemId()) {
+		case 0:
+			searchBox = (EditText) item.getActionView();
+			searchBox.addTextChangedListener(new TextWatcher() {
 
-        	        @Override
-        	        public void afterTextChanged(Editable s) {
-        	        }
-        	    });
-                searchBox.requestFocus();
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+				@Override
+				public void onTextChanged(CharSequence s, int start, int before, int count) {
+					// Call back the Adapter with current character to Filter
+					adapter.getFilter().filter(s.toString());
+				}
 
-        }   
-        return super.onOptionsItemSelected(item);
-    } 
+				@Override
+				public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+				}
+
+				@Override
+				public void afterTextChanged(Editable s) {
+				}
+			});
+			searchBox.requestFocus();
+			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+			break;
+
+		case 1:
+			Intent i = new Intent(this, NotificationPreferenceActivity.class);
+			startActivityForResult(i, 0);
+			break;
+
+		default:
+			return super.onOptionsItemSelected(item);
+
+		}   
+		return super.onOptionsItemSelected(item);
+	} 
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
 		//Used to put dark icons on light action bar
 		boolean isLight = false;
 
-		menu.add("Search")
+
+
+		menu.add(Menu.NONE,0,0,"Search")
 		.setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
 		.setActionView(R.layout.collapsible_edittext)
 		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
 
-		return true;
+		menu.add(Menu.NONE,1,1,getString(R.string.menu_settings)); 
+
+		menu.add(Menu.NONE,2,2,getString(R.string.menu_tutorial)); 
+
+		return super.onCreateOptionsMenu(menu);
+
+
 	}
 
 	ProgressDialog progDailog ;
@@ -116,80 +141,93 @@ public class AppSelectionActivity extends SherlockActivity{
 
 	private void populateAdapter(){
 
-		final PackageManager pm = this.getApplicationContext().getPackageManager();
-		List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
-		HashMap<String,String> appNamesMap = new HashMap<String, String>();
+		try{
+
+			if(adapter == null){
+				adapter = new AppSelectionAdapter(this);
+			}
+
+			final PackageManager pm = this.getApplicationContext().getPackageManager();
+			List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
+			HashMap<String,String> appNamesMap = new HashMap<String, String>();
 
 
-		TreeSet<String> allowedApps = new TreeSet<String>();
-		TreeSet<String> otherApps = new TreeSet<String>();
+			TreeSet<String> allowedApps = new TreeSet<String>();
+			TreeSet<String> otherApps = new TreeSet<String>();
 
-		allowedApps = SharedPreferenceUtils.getAllAlowedApps(this);
+			allowedApps = SharedPreferenceUtils.getAllAlowedApps(this);
 
-		for (ApplicationInfo packageInfo : packages) {
+			for (ApplicationInfo packageInfo : packages) {
 
-			appNamesMap.put(packageInfo.packageName, packageInfo.loadLabel(pm).toString());
+				if(packageInfo.loadLabel(pm).toString().startsWith("com.")){
+					continue;
+				}
 
-			if(!allowedApps.contains(packageInfo.packageName)){
-				otherApps.add(packageInfo.packageName);
+				appNamesMap.put(packageInfo.packageName, packageInfo.loadLabel(pm).toString());
+
+				if(!allowedApps.contains(packageInfo.packageName)){
+					otherApps.add(packageInfo.packageName);
+
+				}
 
 			}
 
-		}
+			ArrayList<ApplicationBean> aList = new ArrayList<ApplicationBean>();
 
-		ArrayList<ApplicationBean> aList = new ArrayList<ApplicationBean>();
+			for(String pack : allowedApps){
+				ApplicationBean bean = new ApplicationBean();
 
-		for(String pack : allowedApps){
-			ApplicationBean bean = new ApplicationBean();
+				bean.setPackageName(pack);
+				bean.setAppName(appNamesMap.get(bean.getPackageName()));	
 
-			bean.setPackageName(pack);
-			bean.setAppName(appNamesMap.get(bean.getPackageName()));	
-			
-			if(bean.getAppName() == null)
-				continue;
-			bean.setAppIcon(getAppIcon(bean.getPackageName()));
-			bean.setIsSelected(true);
-			aList.add(bean);
-		}
-
-		Collections.sort(aList, new Comparator<ApplicationBean>(){
-			public int compare(ApplicationBean a1, ApplicationBean a2) {
-				Log.d("App Selection", "Package NAme----" + a1.getPackageName());
-				return a1.getAppName().compareToIgnoreCase(a2.getAppName());
+				if(bean.getAppName() == null)
+					continue;
+				bean.setAppIcon(getAppIcon(bean.getPackageName()));
+				bean.setIsSelected(true);
+				aList.add(bean);
 			}
-		});
 
-		adapter.addAppList(aList);
+			Collections.sort(aList, new Comparator<ApplicationBean>(){
+				public int compare(ApplicationBean a1, ApplicationBean a2) {
+					Log.d("App Selection", "Package NAme----" + a1.getPackageName());
+					return a1.getAppName().compareToIgnoreCase(a2.getAppName());
+				}
+			});
 
-		aList.clear();
+			if(aList != null)
+				adapter.addAppList(aList);
 
-		for(String pack : otherApps){
-			ApplicationBean bean = new ApplicationBean();
+			aList.clear();
 
-			bean.setPackageName(pack);
-			bean.setAppName(appNamesMap.get(bean.getPackageName()));
-			
-			if(bean.getAppName() == null)
-				continue;
-			
-			bean.setAppIcon(getAppIcon(bean.getPackageName()));
-			bean.setIsSelected(false);
-			aList.add(bean);
-		}
+			for(String pack : otherApps){
+				ApplicationBean bean = new ApplicationBean();
 
-		Collections.sort(aList, new Comparator<ApplicationBean>(){
-			public int compare(ApplicationBean a1, ApplicationBean a2) {
-				return a1.getAppName().compareToIgnoreCase(a2.getAppName());
+				bean.setPackageName(pack);
+				bean.setAppName(appNamesMap.get(bean.getPackageName()));
+
+				if(bean.getAppName() == null)
+					continue;
+
+				bean.setAppIcon(getAppIcon(bean.getPackageName()));
+				bean.setIsSelected(false);
+				aList.add(bean);
 			}
-		});
 
-		adapter.addAppList(aList);
+			Collections.sort(aList, new Comparator<ApplicationBean>(){
+				public int compare(ApplicationBean a1, ApplicationBean a2) {
+					return a1.getAppName().compareToIgnoreCase(a2.getAppName());
+				}
+			});
 
-		aList.clear();
+			adapter.addAppList(aList);
 
+			aList.clear();
 
+			aList = null;
 
-
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 
 	}
 
@@ -206,6 +244,28 @@ public class AppSelectionActivity extends SherlockActivity{
 		}
 
 		return icon;
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		adapter.clearNotifications();
+		adapter = null;
+		try{
+			progDailog.dismiss();
+		}catch(Exception e){
+
+		}
+		finish();
+	}
+
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		//adapter = null;
+		finish();
 	}
 
 }

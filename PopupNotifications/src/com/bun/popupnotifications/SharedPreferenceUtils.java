@@ -12,6 +12,9 @@ public class SharedPreferenceUtils {
 	private static SharedPreferences appsPref;
 	private static SharedPreferences.Editor appPref_editor;
 	private static String APP_LIST = "APP_LIST";
+	private static SharedPreferences generalPref;
+	private static SharedPreferences.Editor genPref_editor;
+	private static String GENERAL_LIST = "GENERAL_LIST";
 
 	public static String getAppData(Context ctx, String packageName){
 

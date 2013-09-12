@@ -17,7 +17,29 @@ public class NotificationBean {
 	private String content;
 	private Drawable notIcon;
 	private String notTime;
+	private long when;
+	private String uniqueValue;
+	private String tickerText;	
 	
+
+	public String getTickerText() {
+		return tickerText;
+	}
+
+	public void setTickerText(String tickerText) {
+		this.tickerText = tickerText;
+	}
+
+	public String getUniqueValue(){
+		return packageName + message + sender;
+	}
+	
+	public long getWhen() {
+		return when;
+	}
+	public void setWhen(long when) {
+		this.when = when;
+	}
 	public String getNotTime() {
 		return notTime;
 	}

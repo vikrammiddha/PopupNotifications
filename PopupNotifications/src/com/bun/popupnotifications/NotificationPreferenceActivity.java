@@ -1,6 +1,7 @@
 package com.bun.popupnotifications;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,6 +24,8 @@ import android.widget.Toast;
 public class NotificationPreferenceActivity  extends PreferenceActivity{
 
 	SharedPreferences prefs;
+	
+	Context ctx;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity{
 		setMuteAllAppsPreferenceData();
 		
 		setSelectedAppListListener();
+		
+		ctx = this;
 
 	}
 	
@@ -59,19 +64,28 @@ public class NotificationPreferenceActivity  extends PreferenceActivity{
 	
 	private void setMuteAllAppsPreferenceData(){
 		
-		boolean muteAllApps = prefs.getBoolean("mute_all_apps", false);
-
+		boolean muteAllApps = false;
 		
+		final Preference customPref = (Preference) findPreference("mute_all_apps");
+		
+		String muteAllAppsPref = SharedPreferenceUtils.getAppData(this, "com.AA");
+		
+		if(!"--".equals(muteAllAppsPref)){
+			muteAllApps = true;
+		}
+				
 
 		if(muteAllApps){
-			muteAllAppsSummary = "All Apps Muted";
+			muteAllAppsSummary = "All Apps Muted till: "+ muteAllAppsPref;
 			getPreferenceScreen().findPreference("mute_selected_screen").setEnabled(false);
+			customPref.setEnabled(true);
 		}else{
 			muteAllAppsSummary = "";
 			getPreferenceScreen().findPreference("mute_selected_screen").setEnabled(true);
+			customPref.setEnabled(false);
 		}
 
-		final Preference customPref = (Preference) findPreference("mute_all_apps");
+		
 		customPref.setSummary(muteAllAppsSummary);
 		
 		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
@@ -87,6 +101,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity{
 	        	}else{
 	        		customPref.setSummary("");
 	        		getPreferenceScreen().findPreference("mute_selected_screen").setEnabled(true);
+	        		SharedPreferenceUtils.removeApp(ctx, "com.AA");
 	        	}
 	            return true;
 	        }
@@ -128,8 +143,13 @@ public class NotificationPreferenceActivity  extends PreferenceActivity{
 				radioGroup2 = (RadioGroup) layout.findViewById(R.id.muteOptions2);
 				int selectedId = radioGroup2.getCheckedRadioButtonId();				
 				radioButton2 = (RadioButton) layout.findViewById(selectedId);
+				
+				SharedPreferenceUtils.setAllowedApps(ctx, "com.AA", Utils.getMuteTime(ctx,radioButton2.getText().toString()));
+				
+				customPref.setSummary("All Apps Muted till: "+ Utils.getMuteTime(ctx,radioButton2.getText().toString()));
+				
 				Toast.makeText(NotificationPreferenceActivity.this,
-						radioButton2.getText(), Toast.LENGTH_SHORT).show();
+						Utils.getMuteToastText(ctx, ctx.getString(R.string.mute_all_apps), radioButton2.getText().toString(), ""), Toast.LENGTH_SHORT).show();
 			}
 		});
 		// Setting Negative "NO" Btn

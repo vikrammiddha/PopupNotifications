@@ -1,7 +1,9 @@
 package com.bun.popupnotifications;
 
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -306,6 +308,14 @@ public class Utils {
 
 		String appMuteDate = SharedPreferenceUtils.getAppData(ctx, event.getPackageName().toString());
 		
+		String allAppMuteDate = SharedPreferenceUtils.getAppData(ctx, "com.AA");
+		
+		if(allAppMuteDate != null && !"--".equals(allAppMuteDate) && !"".equals(allAppMuteDate.trim()) ){
+			if(HelperUtils.isBlockedTime(allAppMuteDate, ctx, "com.AA")){
+				return false;
+			}
+		}
+		
 		Log.d("Utils", "appMuteDate--" + appMuteDate);
 
 		if(appMuteDate != null && appMuteDate.equals("--")){
@@ -314,7 +324,7 @@ public class Utils {
 		
 		if(appMuteDate == null || "".equals(appMuteDate)){
 			return true;
-		}else if(HelperUtils.getCurrentTime() < HelperUtils.getDateTimeValue(appMuteDate)){
+		}else if(HelperUtils.isBlockedTime(appMuteDate, ctx, event.getPackageName().toString())){
 			return false;
 		}
 
@@ -397,6 +407,59 @@ public class Utils {
 		PowerManager pm = (PowerManager)ctx.getSystemService(Context.POWER_SERVICE);
 		boolean isScreenOn = pm.isScreenOn();
 		return isScreenOn;
+	}
+	
+	public static String getMuteTime(Context ctx, String dateText){		
+				
+		Calendar now = Calendar.getInstance();
+		
+		if(dateText.equals(ctx.getString(R.string.mute_15_mins))){
+			now.add(Calendar.MINUTE, 15);
+		}else if(dateText.equals(ctx.getString(R.string.mute_30_mins))){
+			now.add(Calendar.MINUTE, 30);
+		}else if(dateText.equals(ctx.getString(R.string.mute_1_hour))){
+			now.add(Calendar.HOUR, 1);
+		}else if(dateText.equals(ctx.getString(R.string.mute_4_hours))){
+			now.add(Calendar.HOUR, 4);
+		}else if(dateText.equals(ctx.getString(R.string.mute_8_hours))){
+			now.add(Calendar.HOUR, 8);
+		}else if(dateText.equals(ctx.getString(R.string.mute_foreever))){
+			return "For Ever"; // For Ever
+		}
+		
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+		
+		return df.format(now.getTime());
+		
+	}
+	
+	public static String getMuteToastText(Context ctx, String text1, String text2, String appName){
+		
+		
+		String retVal = "";
+		
+		if(text1.equals(ctx.getString(R.string.mute_this_apps))){
+			retVal = "Muted " + appName;
+		}else if(text1.equals(ctx.getString(R.string.mute_all_apps))){
+			retVal = "Muted all Apps";
+		}
+		
+		
+		if(text2.equals(ctx.getString(R.string.mute_15_mins))){
+			retVal += " for 15 minutes";
+		}else if(text2.equals(ctx.getString(R.string.mute_30_mins))){
+			retVal += " for 30 minutes";
+		}else if(text2.equals(ctx.getString(R.string.mute_1_hour))){
+			retVal += " for 1 hour";
+		}else if(text2.equals(ctx.getString(R.string.mute_4_hours))){
+			retVal += " for 4 hours";
+		}else if(text2.equals(ctx.getString(R.string.mute_8_hours))){
+			retVal += " for 8 hours";
+		}else if(text2.equals(ctx.getString(R.string.mute_foreever))){
+			retVal += " for ever";
+		}
+		
+		return retVal;
 	}
 
 }

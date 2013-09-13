@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Mute only this app" />
+            android:text="@string/mute_this_apps" />
 
         <RadioButton
             android:id="@+id/muteAllApps"

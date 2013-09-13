@@ -189,7 +189,7 @@ public class NotificationActivity extends Activity {
 	RadioGroup radioGroup2;
 	RadioButton radioButton2;
 	
-	private void showMuteOptions(NotificationBean n){
+	private void showMuteOptions(final NotificationBean n){
 		LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(LAYOUT_INFLATER_SERVICE);
 		final View layout = inflater.inflate(R.layout.mute_app_dialogue, (ViewGroup) findViewById(R.id.cpRoot));
 		
@@ -214,14 +214,26 @@ public class NotificationActivity extends Activity {
 				radioGroup1 = (RadioGroup) layout.findViewById(R.id.muteOptions1);
 				int selectedId = radioGroup1.getCheckedRadioButtonId();				
 				radioButton1 = (RadioButton) layout.findViewById(selectedId);
-				Toast.makeText(NotificationActivity.this,
-						radioButton1.getText(), Toast.LENGTH_SHORT).show();
+				
 				
 				radioGroup2 = (RadioGroup) layout.findViewById(R.id.muteOptions2);
 				selectedId = radioGroup2.getCheckedRadioButtonId();				
 				radioButton2 = (RadioButton) layout.findViewById(selectedId);
+				int opt1 = R.string.mute_this_apps;
+				int opt2 = R.string.mute_all_apps;				
+				
+				
+				if(radioButton1.getText().toString().equals(getString(opt1))){
+					SharedPreferenceUtils.setAllowedApps(ctx, n.getPackageName(), Utils.getMuteTime(ctx,radioButton2.getText().toString()));
+					
+				}else if(radioButton1.getText().toString().equals(getString(opt2))){
+					SharedPreferenceUtils.setAllowedApps(ctx, "com.AA", Utils.getMuteTime(ctx,radioButton2.getText().toString()));
+				} 
+				
+				
+				
 				Toast.makeText(NotificationActivity.this,
-						radioButton2.getText(), Toast.LENGTH_SHORT).show();
+						Utils.getMuteToastText(ctx, radioButton1.getText().toString(), radioButton2.getText().toString(), n.getAppName()), Toast.LENGTH_SHORT).show();
 			}
 		});
 		// Setting Negative "NO" Btn
@@ -245,9 +257,9 @@ public class NotificationActivity extends Activity {
 
 		for(NotificationBean n : Utils.notList){
 			
-			if(!alreadyEnteredValues.contains(n.getUniqueValue()))
+			//if(!alreadyEnteredValues.contains(n.getUniqueValue()))
 				adapter.addNotification(n);
-			alreadyEnteredValues.add(n.getUniqueValue());
+			//alreadyEnteredValues.add(n.getUniqueValue());
 		}
 
 		adapter.notifyDataSetChanged();

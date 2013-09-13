@@ -170,14 +170,31 @@ public class MuteSelectedAppActivity extends SherlockActivity{
 				if(bean.getAppName() == null)
 					continue;
 				bean.setAppIcon(getAppIcon(bean.getPackageName()));
-				bean.setIsSelected(true);
-				bean.setSummaryText("Muted Till : ");
+				
+				String spText = SharedPreferenceUtils.getAppData(this, bean.getPackageName());
+				
+				if(!spText.equals("--") && !spText.equals("")){
+					bean.setIsSelected(true);
+					bean.setSummaryText("Muted Till : " + spText);
+					bean.setRemoveIcon(this.getResources().getDrawable(R.drawable.remove));
+				}else{
+					bean.setIsSelected(false);
+					bean.setSummaryText("");
+				}
+				
+				
+				
 				aList.add(bean);
 			}
 
 			Collections.sort(aList, new Comparator<ApplicationBean>(){
 				public int compare(ApplicationBean a1, ApplicationBean a2) {
-					Log.d("App Selection", "Package NAme----" + a1.getPackageName());
+					int boolResult = a2.getIsSelected().compareTo(a1.getIsSelected());
+					
+					if(boolResult != 0){
+						return boolResult;
+					}
+					
 					return a1.getAppName().compareToIgnoreCase(a2.getAppName());
 				}
 			});

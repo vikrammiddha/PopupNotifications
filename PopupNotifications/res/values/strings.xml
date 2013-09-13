@@ -24,6 +24,7 @@
     <string name="pref_mute_selected">Mute Selected Apps</string>
     
     <string name="mute_all_apps">Mute All Apps</string>
+    <string name="mute_this_apps">Mute this Apps</string>
     <string name="mute_15_mins">Mute for 15 minutes</string>
     <string name="mute_30_mins">Mute for 30 minutes</string>
     <string name="mute_1_hour">Mute for 1 hour</string>

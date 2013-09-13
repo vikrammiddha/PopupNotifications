@@ -1,21 +1,45 @@
 package com.bun.popupnotifications;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+import android.content.Context;
+
+
+
 
 public class HelperUtils {
 	
-	public static int getDateTimeValue(String date){
-		DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss");
-        DateTime dt = formatter.parseDateTime(date);
-        return dt.getMillisOfSecond();
+	public static Boolean isBlockedTime(String s, Context ctx, String packageName){
+		
+		if(s.toUpperCase().equals("FOR EVER")){
+			return true;
+		}
+		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(System.currentTimeMillis());		
+		long dateNow = calendar.getTimeInMillis();		
+
+		
+		Date date = null;
+		try {
+			date = formatter.parse(s);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		long modifiedDate= date.getTime();
+		
+		if(dateNow < modifiedDate){
+			return true;
+		}else{
+			SharedPreferenceUtils.setAllowedApps(ctx, packageName, "");
+		}
+		
+		return false;
 	}
 	
-	public static int getCurrentTime(){
-		DateTime dt = new DateTime();
-		return dt.getMillisOfSecond();
-	}
-
 }

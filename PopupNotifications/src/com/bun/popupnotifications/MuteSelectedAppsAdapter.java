@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import android.widget.BaseAdapter;
@@ -106,32 +107,28 @@ public class MuteSelectedAppsAdapter extends BaseAdapter implements Filterable{
 		
 		holder.appNameText.setText(n.getAppName());
 		
-		if(!"--".equals(SharedPreferenceUtils.getAppData(context, n.getPackageName()))){
+		if(!n.getIsSelected()){
 			holder.cb.setChecked(n.getIsSelected());
+			holder.cb.setVisibility(View.VISIBLE);
 			holder.removeIcon.setVisibility(View.GONE);
+			
 		}else{
 			holder.removeIcon.setImageDrawable(n.getRemoveIcon());
+			holder.removeIcon.setVisibility(View.VISIBLE);
 			holder.cb.setVisibility(View.GONE);
+			holder.removeIcon.setOnClickListener(new OnClickListener() {
+			    public void onClick(View v) {
+			       SharedPreferenceUtils.setAllowedApps(context, n.getPackageName(), "");
+			       holder.removeIcon.setVisibility(View.GONE);
+			       holder.cb.setVisibility(View.VISIBLE);
+			       n.setIsSelected(false);
+			       holder.cb.setChecked(n.getIsSelected());
+			       holder.summaryText.setText("");
+			    }
+			});
 		}
 		
-		holder.summaryText.setText(n.getSummaryText());
-		
-		holder.cb.setOnClickListener(new View.OnClickListener() {
-	        public void onClick(View v) {
-	            CheckBox cb = (CheckBox) v;
-	            
-	            //planet.setSelected(cb.isChecked());
-	            if (holder.cb.isChecked()) {
-	                nList.get(position).setIsSelected(true);
-	                holder.cb.setChecked(true);
-	                SharedPreferenceUtils.setAllowedApps(context, n.getPackageName(), "");
-	            } else if (!holder.cb.isChecked()) {
-	            	nList.get(position).setIsSelected(false);
-	                holder.cb.setChecked(false);
-	                SharedPreferenceUtils.removeApp(context, n.getPackageName());
-	            }
-	        }
-	    });
+		holder.summaryText.setText(n.getSummaryText());		
 
 		return view;
 	}

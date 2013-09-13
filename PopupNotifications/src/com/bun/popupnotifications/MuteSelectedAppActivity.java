@@ -9,21 +9,36 @@ import java.util.TreeSet;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+
 import com.actionbarsherlock.view.MenuItem;
 
 
@@ -34,6 +49,7 @@ public class MuteSelectedAppActivity extends SherlockActivity{
 	ListView layout;
 	MuteSelectedAppsAdapter adapter;
 	EditText searchBox;
+	Context ctx;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +61,9 @@ public class MuteSelectedAppActivity extends SherlockActivity{
 
 		adapter = new MuteSelectedAppsAdapter(this);
 
-		new Load().execute();	
+		new Load().execute();
+
+		ctx = this;
 
 	}
 
@@ -79,7 +97,7 @@ public class MuteSelectedAppActivity extends SherlockActivity{
 			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 			imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 			break;
-		
+
 
 		default:
 			return super.onOptionsItemSelected(item);
@@ -145,7 +163,7 @@ public class MuteSelectedAppActivity extends SherlockActivity{
 
 
 			TreeSet<String> allowedApps = new TreeSet<String>();
-			
+
 
 			allowedApps = SharedPreferenceUtils.getAllAlowedApps(this);
 
@@ -170,9 +188,9 @@ public class MuteSelectedAppActivity extends SherlockActivity{
 				if(bean.getAppName() == null)
 					continue;
 				bean.setAppIcon(getAppIcon(bean.getPackageName()));
-				
+
 				String spText = SharedPreferenceUtils.getAppData(this, bean.getPackageName());
-				
+
 				if(!spText.equals("--") && !spText.equals("")){
 					bean.setIsSelected(true);
 					bean.setSummaryText("Muted Till : " + spText);
@@ -181,24 +199,24 @@ public class MuteSelectedAppActivity extends SherlockActivity{
 					bean.setIsSelected(false);
 					bean.setSummaryText("");
 				}
-				
-				
-				
+
+
+
 				aList.add(bean);
 			}
 
 			Collections.sort(aList, new Comparator<ApplicationBean>(){
 				public int compare(ApplicationBean a1, ApplicationBean a2) {
 					int boolResult = a2.getIsSelected().compareTo(a1.getIsSelected());
-					
+
 					if(boolResult != 0){
 						return boolResult;
 					}
-					
+
 					return a1.getAppName().compareToIgnoreCase(a2.getAppName());
 				}
 			});
-			
+
 			aList.removeAll(Collections.singleton(null));
 
 			if(aList != null){
@@ -209,13 +227,74 @@ public class MuteSelectedAppActivity extends SherlockActivity{
 			}
 
 			aList.clear();				
-			
+
 			aList = null;
 
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 
+	}
+
+	public void muteSelectedApps(View v){
+		showMuteOptions();
+	}
+	RadioGroup radioGroup1;
+
+	RadioGroup radioGroup2;
+	RadioButton radioButton2;
+
+	private void showMuteOptions(){
+		LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+		final View layout = inflater.inflate(R.layout.mute_app_dialogue, (ViewGroup) findViewById(R.id.cpRoot));
+
+
+
+		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
+				MuteSelectedAppActivity.this);
+
+		// Setting Dialog Title
+		alertDialog2.setTitle("");
+
+		// Setting Dialog Message
+		alertDialog2.setView(layout);
+
+		// Setting Icon to Dialog
+		//alertDialog2.setIcon(R.drawable.delete);
+
+		// Setting Positive "Yes" Btn
+		radioGroup1 = (RadioGroup) layout.findViewById(R.id.muteOptions1);
+		radioGroup1.setVisibility(View.GONE);
+
+		alertDialog2.setPositiveButton("Save",
+				new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {							
+
+				radioGroup2 = (RadioGroup) layout.findViewById(R.id.muteOptions2);
+				int selectedId = radioGroup2.getCheckedRadioButtonId();				
+				radioButton2 = (RadioButton) layout.findViewById(selectedId);
+
+				if(adapter.nList != null){
+					for(ApplicationBean ab : adapter.nList){
+						if(ab.getIsSelected())
+							SharedPreferenceUtils.setAllowedApps(ctx, ab.getPackageName(), Utils.getMuteTime(ctx,radioButton2.getText().toString()));
+					}
+				}
+				
+				finish();
+
+			}
+		});
+		// Setting Negative "NO" Btn
+		alertDialog2.setNegativeButton("Cancel",
+				new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {				
+				dialog.cancel();			
+
+			}
+		});
+
+		alertDialog2.show();
 	}
 
 	private Drawable getAppIcon(String packageName){

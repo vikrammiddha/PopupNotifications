@@ -255,7 +255,7 @@ public class NotificationActivity extends Activity {
 
 		HashSet<String> alreadyEnteredValues = new HashSet<String>();
 
-		for(NotificationBean n : Utils.notList){
+		for(NotificationBean n : Utils.getNotList()){
 			
 			//if(!alreadyEnteredValues.contains(n.getUniqueValue()))
 				adapter.addNotification(n);

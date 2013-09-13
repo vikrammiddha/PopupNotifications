@@ -71,6 +71,11 @@ public class NotificationPreferenceActivity  extends PreferenceActivity{
 		String muteAllAppsPref = SharedPreferenceUtils.getAppData(this, "com.AA");
 		
 		if(!"--".equals(muteAllAppsPref)){
+			SharedPreferences.Editor p = PreferenceManager.getDefaultSharedPreferences(this).edit();
+			p.putBoolean("mute_all_apps", true);
+			p.commit();
+			CheckBoxPreference cbp = (CheckBoxPreference)customPref;
+			cbp.setChecked(true);
 			muteAllApps = true;
 		}
 				
@@ -78,11 +83,10 @@ public class NotificationPreferenceActivity  extends PreferenceActivity{
 		if(muteAllApps){
 			muteAllAppsSummary = "All Apps Muted till: "+ muteAllAppsPref;
 			getPreferenceScreen().findPreference("mute_selected_screen").setEnabled(false);
-			customPref.setEnabled(true);
+			
 		}else{
 			muteAllAppsSummary = "";
-			getPreferenceScreen().findPreference("mute_selected_screen").setEnabled(true);
-			customPref.setEnabled(false);
+			getPreferenceScreen().findPreference("mute_selected_screen").setEnabled(true);			
 		}
 
 		

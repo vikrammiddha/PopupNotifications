@@ -83,7 +83,7 @@ public class MuteSelectedAppsAdapter extends BaseAdapter implements Filterable{
 	public View getView(final int position, View view, ViewGroup parent) {		
 
 		final ApplicationBean n = nList.get(position);
-		Log.d("adapter","Position===" + position);
+		//Log.d("adapter","Position===" + position);
 		if(view == null || view.getTag() == null){
 			LayoutInflater inflater =
 					(LayoutInflater) context
@@ -122,11 +122,29 @@ public class MuteSelectedAppsAdapter extends BaseAdapter implements Filterable{
 			       holder.removeIcon.setVisibility(View.GONE);
 			       holder.cb.setVisibility(View.VISIBLE);
 			       n.setIsSelected(false);
+			       n.setSummaryText("");
 			       holder.cb.setChecked(n.getIsSelected());
 			       holder.summaryText.setText("");
 			    }
 			});
 		}
+		
+		holder.cb.setOnClickListener(new View.OnClickListener() {
+	        public void onClick(View v) {
+	            CheckBox cb = (CheckBox) v;
+	            
+	            //planet.setSelected(cb.isChecked());
+	            if (holder.cb.isChecked()) {
+	                nList.get(position).setIsSelected(true);
+	                holder.cb.setChecked(true);
+	                SharedPreferenceUtils.setAllowedApps(context, n.getPackageName(), "");
+	            } else if (!holder.cb.isChecked()) {
+	            	nList.get(position).setIsSelected(false);
+	                holder.cb.setChecked(false);
+	                SharedPreferenceUtils.removeApp(context, n.getPackageName());
+	            }
+	        }
+	    });
 		
 		holder.summaryText.setText(n.getSummaryText());		
 

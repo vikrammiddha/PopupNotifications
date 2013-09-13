@@ -53,7 +53,7 @@ public class AppSelectionActivity extends SherlockActivity{
 
 	@Override
 	public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
-		Log.d("App Selection", "Menu Item ===" + item.getTitle() + "=== Id==" + item.getItemId());
+		//Log.d("App Selection", "Menu Item ===" + item.getTitle() + "=== Id==" + item.getItemId());
 
 
 		switch (item.getItemId()) {
@@ -189,7 +189,7 @@ public class AppSelectionActivity extends SherlockActivity{
 
 			Collections.sort(aList, new Comparator<ApplicationBean>(){
 				public int compare(ApplicationBean a1, ApplicationBean a2) {
-					Log.d("App Selection", "Package NAme----" + a1.getPackageName());
+					//Log.d("App Selection", "Package NAme----" + a1.getPackageName());
 					return a1.getAppName().compareToIgnoreCase(a2.getAppName());
 				}
 			});

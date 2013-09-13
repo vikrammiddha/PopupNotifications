@@ -9,6 +9,93 @@ package com.bun.popupnotifications;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>reveal</code></td><td>0</td><td></td></tr>
+<tr><td><code>dismiss</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int swipeActionLeft=0x7f010008;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>reveal</code></td><td>0</td><td></td></tr>
+<tr><td><code>dismiss</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int swipeActionRight=0x7f010009;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int swipeAnimationTime=0x7f010001;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int swipeBackView=0x7f010006;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int swipeCloseAllItemsWhenMoveList=0x7f010004;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int swipeFrontView=0x7f010005;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>both</code></td><td>1</td><td></td></tr>
+<tr><td><code>right</code></td><td>2</td><td></td></tr>
+<tr><td><code>left</code></td><td>3</td><td></td></tr>
+</table>
+         */
+        public static final int swipeMode=0x7f010007;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int swipeOffsetLeft=0x7f010002;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int swipeOffsetRight=0x7f010003;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int swipeOpenOnLongPress=0x7f010000;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -17,8 +104,8 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
         public static final int googletalk=0x7f020000;
@@ -29,39 +116,47 @@ public final class R {
         public static final int remove=0x7f020005;
     }
     public static final class id {
-        public static final int CloseWindowId=0x7f09001a;
-        public static final int appImageSmallId=0x7f09001e;
-        public static final int appImageViewId=0x7f09001b;
-        public static final int appSelectionCheckBoxId=0x7f090003;
-        public static final int appSelectionIconId=0x7f090001;
-        public static final int appSelectionMainListViewId=0x7f090000;
-        public static final int appSelectionTextId=0x7f090002;
-        public static final int cpRoot=0x7f090005;
-        public static final int expandingLayoutId=0x7f090018;
-        public static final int mainLayoutId=0x7f090017;
-        public static final int menu_settings=0x7f09001f;
-        public static final int mute15min=0x7f09000a;
-        public static final int mute1hour=0x7f09000c;
-        public static final int mute30min=0x7f09000b;
-        public static final int mute4hours=0x7f09000d;
-        public static final int mute8hours=0x7f09000e;
-        public static final int muteAllApps=0x7f090008;
-        public static final int muteAppsButtonId=0x7f090011;
-        public static final int muteOptions1=0x7f090006;
-        public static final int muteOptions2=0x7f090009;
-        public static final int muteSelectedAppSelectionCheckBoxId=0x7f090015;
-        public static final int muteSelectedAppSelectionIconId=0x7f090012;
-        public static final int muteSelectedAppSelectionTextId=0x7f090013;
-        public static final int muteSelectedAppSummaryTextId=0x7f090014;
-        public static final int muteSelectedListViewId=0x7f090010;
-        public static final int muteSelectedRemoveId=0x7f090016;
-        public static final int muteSpecificApp=0x7f090007;
-        public static final int muteforeever=0x7f09000f;
-        public static final int notMessageTextId=0x7f09001d;
-        public static final int notTimeTextId=0x7f09001c;
-        public static final int notificationsListViewId=0x7f090019;
-        public static final int searchBoxId=0x7f090004;
-        public static final int tutorial=0x7f090020;
+        public static final int CloseWindowId=0x7f050022;
+        public static final int appImageSmallId=0x7f050026;
+        public static final int appImageViewId=0x7f050023;
+        public static final int appSelectionCheckBoxId=0x7f050009;
+        public static final int appSelectionIconId=0x7f050007;
+        public static final int appSelectionMainListViewId=0x7f050006;
+        public static final int appSelectionTextId=0x7f050008;
+        public static final int back=0x7f050020;
+        public static final int both=0x7f050001;
+        public static final int cpRoot=0x7f05000b;
+        public static final int dismiss=0x7f050005;
+        public static final int expandingLayoutId=0x7f05001e;
+        public static final int front=0x7f050021;
+        public static final int left=0x7f050003;
+        public static final int mainLayoutId=0x7f05001d;
+        public static final int menu_settings=0x7f050027;
+        public static final int mute15min=0x7f050010;
+        public static final int mute1hour=0x7f050012;
+        public static final int mute30min=0x7f050011;
+        public static final int mute4hours=0x7f050013;
+        public static final int mute8hours=0x7f050014;
+        public static final int muteAllApps=0x7f05000e;
+        public static final int muteAppsButtonId=0x7f050017;
+        public static final int muteOptions1=0x7f05000c;
+        public static final int muteOptions2=0x7f05000f;
+        public static final int muteSelectedAppSelectionCheckBoxId=0x7f05001b;
+        public static final int muteSelectedAppSelectionIconId=0x7f050018;
+        public static final int muteSelectedAppSelectionTextId=0x7f050019;
+        public static final int muteSelectedAppSummaryTextId=0x7f05001a;
+        public static final int muteSelectedListViewId=0x7f050016;
+        public static final int muteSelectedRemoveId=0x7f05001c;
+        public static final int muteSpecificApp=0x7f05000d;
+        public static final int muteforeever=0x7f050015;
+        public static final int none=0x7f050000;
+        public static final int notMessageTextId=0x7f050025;
+        public static final int notTimeTextId=0x7f050024;
+        public static final int notificationsListViewId=0x7f05001f;
+        public static final int reveal=0x7f050004;
+        public static final int right=0x7f050002;
+        public static final int searchBoxId=0x7f05000a;
+        public static final int tutorial=0x7f050028;
     }
     public static final class layout {
         public static final int app_selection_main=0x7f030000;
@@ -74,33 +169,33 @@ public final class R {
         public static final int notification_row=0x7f030007;
     }
     public static final class menu {
-        public static final int notification=0x7f080000;
+        public static final int notification=0x7f090000;
     }
     public static final class string {
-        public static final int app_name=0x7f060000;
-        public static final int crash_dialog_comment_prompt=0x7f060006;
-        public static final int crash_dialog_ok_toast=0x7f060007;
-        public static final int crash_dialog_text=0x7f060005;
-        public static final int crash_dialog_title=0x7f060004;
-        public static final int crash_toast_text=0x7f060003;
-        public static final int hello_world=0x7f060001;
-        public static final int listViewPosition=0x7f060008;
-        public static final int menu_settings=0x7f060009;
-        public static final int menu_tutorial=0x7f06000a;
-        public static final int mute_15_mins=0x7f060012;
-        public static final int mute_1_hour=0x7f060014;
-        public static final int mute_30_mins=0x7f060013;
-        public static final int mute_4_hours=0x7f060015;
-        public static final int mute_8_hours=0x7f060016;
-        public static final int mute_all_apps=0x7f060010;
-        public static final int mute_foreever=0x7f060017;
-        public static final int mute_this_apps=0x7f060011;
-        public static final int package_name=0x7f060002;
-        public static final int pref_advanced_category=0x7f06000d;
-        public static final int pref_mute_category=0x7f06000c;
-        public static final int pref_mute_selected=0x7f06000f;
-        public static final int pref_notification_category=0x7f06000b;
-        public static final int pref_others_category=0x7f06000e;
+        public static final int app_name=0x7f070000;
+        public static final int crash_dialog_comment_prompt=0x7f070006;
+        public static final int crash_dialog_ok_toast=0x7f070007;
+        public static final int crash_dialog_text=0x7f070005;
+        public static final int crash_dialog_title=0x7f070004;
+        public static final int crash_toast_text=0x7f070003;
+        public static final int hello_world=0x7f070001;
+        public static final int listViewPosition=0x7f070008;
+        public static final int menu_settings=0x7f070009;
+        public static final int menu_tutorial=0x7f07000a;
+        public static final int mute_15_mins=0x7f070012;
+        public static final int mute_1_hour=0x7f070014;
+        public static final int mute_30_mins=0x7f070013;
+        public static final int mute_4_hours=0x7f070015;
+        public static final int mute_8_hours=0x7f070016;
+        public static final int mute_all_apps=0x7f070010;
+        public static final int mute_foreever=0x7f070017;
+        public static final int mute_this_apps=0x7f070011;
+        public static final int package_name=0x7f070002;
+        public static final int pref_advanced_category=0x7f07000d;
+        public static final int pref_mute_category=0x7f07000c;
+        public static final int pref_mute_selected=0x7f07000f;
+        public static final int pref_notification_category=0x7f07000b;
+        public static final int pref_others_category=0x7f07000e;
     }
     public static final class style {
         /** 
@@ -126,16 +221,198 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
-        public static final int Theme_D1NoTitleDim=0x7f070002;
+        public static final int AppTheme=0x7f080001;
+        public static final int Theme_D1NoTitleDim=0x7f080002;
     }
     public static final class xml {
         public static final int accessibilityservice=0x7f040000;
         public static final int main_preference=0x7f040001;
         public static final int notification_pref=0x7f040002;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a com_fortysevendeg_android_swipelistview_SwipeListView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #com_fortysevendeg_android_swipelistview_SwipeListView_swipeActionLeft com.bun.popupnotifications:swipeActionLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_fortysevendeg_android_swipelistview_SwipeListView_swipeActionRight com.bun.popupnotifications:swipeActionRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_fortysevendeg_android_swipelistview_SwipeListView_swipeAnimationTime com.bun.popupnotifications:swipeAnimationTime}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_fortysevendeg_android_swipelistview_SwipeListView_swipeBackView com.bun.popupnotifications:swipeBackView}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_fortysevendeg_android_swipelistview_SwipeListView_swipeCloseAllItemsWhenMoveList com.bun.popupnotifications:swipeCloseAllItemsWhenMoveList}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_fortysevendeg_android_swipelistview_SwipeListView_swipeFrontView com.bun.popupnotifications:swipeFrontView}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_fortysevendeg_android_swipelistview_SwipeListView_swipeMode com.bun.popupnotifications:swipeMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_fortysevendeg_android_swipelistview_SwipeListView_swipeOffsetLeft com.bun.popupnotifications:swipeOffsetLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_fortysevendeg_android_swipelistview_SwipeListView_swipeOffsetRight com.bun.popupnotifications:swipeOffsetRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_fortysevendeg_android_swipelistview_SwipeListView_swipeOpenOnLongPress com.bun.popupnotifications:swipeOpenOnLongPress}</code></td><td></td></tr>
+           </table>
+           @see #com_fortysevendeg_android_swipelistview_SwipeListView_swipeActionLeft
+           @see #com_fortysevendeg_android_swipelistview_SwipeListView_swipeActionRight
+           @see #com_fortysevendeg_android_swipelistview_SwipeListView_swipeAnimationTime
+           @see #com_fortysevendeg_android_swipelistview_SwipeListView_swipeBackView
+           @see #com_fortysevendeg_android_swipelistview_SwipeListView_swipeCloseAllItemsWhenMoveList
+           @see #com_fortysevendeg_android_swipelistview_SwipeListView_swipeFrontView
+           @see #com_fortysevendeg_android_swipelistview_SwipeListView_swipeMode
+           @see #com_fortysevendeg_android_swipelistview_SwipeListView_swipeOffsetLeft
+           @see #com_fortysevendeg_android_swipelistview_SwipeListView_swipeOffsetRight
+           @see #com_fortysevendeg_android_swipelistview_SwipeListView_swipeOpenOnLongPress
+         */
+        public static final int[] com_fortysevendeg_android_swipelistview_SwipeListView = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
+            0x7f010008, 0x7f010009
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#swipeActionLeft}
+          attribute's value can be found in the {@link #com_fortysevendeg_android_swipelistview_SwipeListView} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>reveal</code></td><td>0</td><td></td></tr>
+<tr><td><code>dismiss</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name com.bun.popupnotifications:swipeActionLeft
+        */
+        public static final int com_fortysevendeg_android_swipelistview_SwipeListView_swipeActionLeft = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#swipeActionRight}
+          attribute's value can be found in the {@link #com_fortysevendeg_android_swipelistview_SwipeListView} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>reveal</code></td><td>0</td><td></td></tr>
+<tr><td><code>dismiss</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name com.bun.popupnotifications:swipeActionRight
+        */
+        public static final int com_fortysevendeg_android_swipelistview_SwipeListView_swipeActionRight = 9;
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#swipeAnimationTime}
+          attribute's value can be found in the {@link #com_fortysevendeg_android_swipelistview_SwipeListView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.bun.popupnotifications:swipeAnimationTime
+        */
+        public static final int com_fortysevendeg_android_swipelistview_SwipeListView_swipeAnimationTime = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#swipeBackView}
+          attribute's value can be found in the {@link #com_fortysevendeg_android_swipelistview_SwipeListView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bun.popupnotifications:swipeBackView
+        */
+        public static final int com_fortysevendeg_android_swipelistview_SwipeListView_swipeBackView = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#swipeCloseAllItemsWhenMoveList}
+          attribute's value can be found in the {@link #com_fortysevendeg_android_swipelistview_SwipeListView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.bun.popupnotifications:swipeCloseAllItemsWhenMoveList
+        */
+        public static final int com_fortysevendeg_android_swipelistview_SwipeListView_swipeCloseAllItemsWhenMoveList = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#swipeFrontView}
+          attribute's value can be found in the {@link #com_fortysevendeg_android_swipelistview_SwipeListView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bun.popupnotifications:swipeFrontView
+        */
+        public static final int com_fortysevendeg_android_swipelistview_SwipeListView_swipeFrontView = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#swipeMode}
+          attribute's value can be found in the {@link #com_fortysevendeg_android_swipelistview_SwipeListView} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>both</code></td><td>1</td><td></td></tr>
+<tr><td><code>right</code></td><td>2</td><td></td></tr>
+<tr><td><code>left</code></td><td>3</td><td></td></tr>
+</table>
+          @attr name com.bun.popupnotifications:swipeMode
+        */
+        public static final int com_fortysevendeg_android_swipelistview_SwipeListView_swipeMode = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#swipeOffsetLeft}
+          attribute's value can be found in the {@link #com_fortysevendeg_android_swipelistview_SwipeListView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.bun.popupnotifications:swipeOffsetLeft
+        */
+        public static final int com_fortysevendeg_android_swipelistview_SwipeListView_swipeOffsetLeft = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#swipeOffsetRight}
+          attribute's value can be found in the {@link #com_fortysevendeg_android_swipelistview_SwipeListView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.bun.popupnotifications:swipeOffsetRight
+        */
+        public static final int com_fortysevendeg_android_swipelistview_SwipeListView_swipeOffsetRight = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#swipeOpenOnLongPress}
+          attribute's value can be found in the {@link #com_fortysevendeg_android_swipelistview_SwipeListView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.bun.popupnotifications:swipeOpenOnLongPress
+        */
+        public static final int com_fortysevendeg_android_swipelistview_SwipeListView_swipeOpenOnLongPress = 0;
+    };
 }

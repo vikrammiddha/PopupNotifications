@@ -9,9 +9,9 @@
     android:paddingRight="10.0dip" >
 
     <LinearLayout
+        android:id="@+id/expandingLayoutId"
         android:layout_width="fill_parent"
         android:layout_height="400.0dip"
-        android:id="@+id/expandingLayoutId"
         android:background="#00000000"
         android:gravity="center"
         android:orientation="vertical" >
@@ -27,27 +27,29 @@
             android:paddingBottom="10.0dip"
             android:paddingTop="10.0dip" >
 
-            <ListView
+            <com.fortysevendeg.android.swipelistview.SwipeListView 
+                xmlns:swipe="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/notificationsListViewId"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:divider="#FFFFFF"
-                android:dividerHeight="3px" />
+                android:listSelector="#00000000"
+                swipe:swipeBackView="@+id/back"                
+                swipe:swipeFrontView="@+id/front" 
+                swipe:swipeActionLeft="dismiss"
+                swipe:swipeActionRight="dismiss"
+                swipe:swipeMode="both" />
         </LinearLayout>
-
-        
     </LinearLayout>
-    
+
     <Button
-            android:id="@+id/CloseWindowId"
-            android:layout_width="fill_parent"
-            android:layout_height="45.0dip"
-            android:layout_gravity="center"
-            android:background="@drawable/layout_bg"
-            android:onClick="clearNotifications"
-            android:text="Dismiss All"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+        android:id="@+id/CloseWindowId"
+        android:layout_width="fill_parent"
+        android:layout_height="45.0dip"
+        android:layout_gravity="center"
+        android:background="@drawable/layout_bg"
+        android:onClick="clearNotifications"
+        android:text="Dismiss All"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
 
 </LinearLayout>

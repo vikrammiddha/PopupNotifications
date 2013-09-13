@@ -3,13 +3,16 @@ package com.bun.popupnotifications;
 import java.util.ArrayList;
 
 
+import android.app.PendingIntent.CanceledException;
 import android.content.Context;
 import android.graphics.Typeface;
 
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 
@@ -43,6 +46,12 @@ public class NotificationsAdapter extends BaseAdapter{
 		}
 		nList.add(notf);
 	}
+	
+	public void removeNotification(int pos){
+		if(nList != null){
+			nList.remove(pos);
+		}
+	}
 
 	public void clearNotifications(){
 		nList.clear();
@@ -67,7 +76,7 @@ public class NotificationsAdapter extends BaseAdapter{
 	}
 
 	@Override
-	public View getView(int position, View view, ViewGroup parent) {		
+	public View getView(final int position, View view, ViewGroup parent) {		
 
 		NotificationBean n = nList.get(position);
 		if(view == null || view.getTag() == null){
@@ -103,6 +112,7 @@ public class NotificationsAdapter extends BaseAdapter{
 		
 		
 		holder.text.setText(message);	
+		
 		
 		//holder.text.setTypeface(Utils.tf);	 	
 		

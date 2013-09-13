@@ -169,6 +169,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity{
 				CheckBoxPreference cbp = (CheckBoxPreference)customPref;
 				cbp.setChecked(false);
 				
+				getPreferenceScreen().findPreference("mute_selected_screen").setEnabled(true);
+				
 			}
 		});
 

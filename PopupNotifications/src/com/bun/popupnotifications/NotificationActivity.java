@@ -3,6 +3,9 @@ package com.bun.popupnotifications;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import com.fortysevendeg.android.swipelistview.BaseSwipeListViewListener;
+import com.fortysevendeg.android.swipelistview.SwipeListView;
+
 
 
 
@@ -49,7 +52,7 @@ import android.widget.Toast;
 public class NotificationActivity extends Activity {
 
 	NotificationsAdapter adapter;
-	ListView layout;
+	SwipeListView  layout;
 	KeyguardManager  myKeyGuard ; 
 	KeyguardLock myLock ; 
 	float historicX = Float.NaN, historicY = Float.NaN;
@@ -81,7 +84,7 @@ public class NotificationActivity extends Activity {
 		//Utils.tf = Typeface.createFromAsset(this.getAssets(),"fonts/robotomedium.ttf");
 
 		adapter = new NotificationsAdapter(this);
-		layout = (ListView) findViewById(R.id.notificationsListViewId);	
+		layout = (SwipeListView ) findViewById(R.id.notificationsListViewId);	
 		layout.setScrollingCacheEnabled(false);
 		//layout.setBackgroundColor(Color.TRANSPARENT);
 		populateAdapter(true);
@@ -102,6 +105,65 @@ public class NotificationActivity extends Activity {
 
 			}
 		});
+		
+		layout.setSwipeListViewListener(new BaseSwipeListViewListener() {
+            @Override
+            public void onOpened(int position, boolean toRight) {
+            	Log.d("swipe", "onOpened----------");
+            }
+
+            @Override
+            public void onClosed(int position, boolean fromRight) {
+            	Log.d("swipe", "onClosed----------");
+            }
+
+            @Override
+            public void onListChanged() {
+            	Log.d("swipe", "onListChanged----------");
+            }
+
+            @Override
+            public void onMove(int position, float x) {
+            	Log.d("swipe", "onMove---------");
+            }
+
+            @Override
+            public void onStartOpen(int position, int action, boolean right) {
+            	Log.d("swipe", "onStartOpen----------");
+            }
+
+            @Override
+            public void onStartClose(int position, boolean right) {
+            	Log.d("swipe", "onStartClose----------");
+            }
+
+            @Override
+            public void onClickFrontView(int position) {
+            	Log.d("swipe", "onClickFrontView----------");
+            }
+
+            @Override
+            public void onClickBackView(int position) {
+            	Log.d("swipe", "onClickBackView----------");            	
+            }
+
+            @Override
+            public void onDismiss(int[] reverseSortedPositions) {
+            	
+                for (int position : reverseSortedPositions) {
+                	//Log.d("swipe", "onDismiss----------" + position);
+                	adapter.removeNotification(position);
+                	Utils.notList.remove(position);
+                }
+                
+                if(Utils.notList.size() == 0){
+                	finish();
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+        });
+
 		
 		registerForContextMenu(layout);	
 

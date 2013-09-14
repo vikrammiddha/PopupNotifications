@@ -22,14 +22,17 @@
     <string name="pref_advanced_category">Advanced Settings</string>
     <string name="pref_others_category">Misc</string>
     <string name="pref_mute_selected">Mute Selected Apps</string>
+    <string name="pref_sleep_hours">Sleep Hours</string>
     
     <string name="mute_all_apps">Mute All Apps</string>
-    <string name="mute_this_apps">Mute this Apps</string>
+    <string name="mute_this_app">Mute this App</string>
     <string name="mute_15_mins">Mute for 15 minutes</string>
     <string name="mute_30_mins">Mute for 30 minutes</string>
     <string name="mute_1_hour">Mute for 1 hour</string>
     <string name="mute_4_hours">Mute for 4 hours</string>
     <string name="mute_8_hours">Mute for 8 hours</string>
     <string name="mute_foreever">Mute For Ever</string>
+    <string name="start_time">Start Time</string>
+    <string name="end_time">End Time</string>
 
 </resources>

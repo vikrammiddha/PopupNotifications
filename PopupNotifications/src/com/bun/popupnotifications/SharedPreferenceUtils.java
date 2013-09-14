@@ -6,6 +6,7 @@ import java.util.TreeSet;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class SharedPreferenceUtils {
 
@@ -28,6 +29,18 @@ public class SharedPreferenceUtils {
 
 		return retVal;	
 
+	}
+	
+	public static String getSleepTime(Context ctx, String time){
+		if("start_time".equals(time)){
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
+			String startTime = sp.getString("start_sleep_time", "00:00");
+			return startTime;
+		}else{
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
+			String endTime = sp.getString("end_sleep_time", "00:00");
+			return endTime;
+		}
 	}
 
 	public static void setAllowedApps(Context ctx, String packageName, String muteDate){
@@ -75,6 +88,12 @@ public class SharedPreferenceUtils {
 		 }
 		
 		return retSet;
+	}
+	
+	public static Object getGenericPreferenceValue(Context ctx, String key){
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
+		Boolean val = sp.getBoolean(key, false);
+		return val;
 	}
 
 }

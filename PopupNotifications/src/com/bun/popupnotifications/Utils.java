@@ -316,6 +316,10 @@ public class Utils {
 			}
 		}
 		
+		if(HelperUtils.isSleepTime(ctx)){
+			return false;
+		}
+		
 		Log.d("Utils", "appMuteDate--" + appMuteDate);
 
 		if(appMuteDate != null && appMuteDate.equals("--")){
@@ -438,7 +442,7 @@ public class Utils {
 		
 		String retVal = "";
 		
-		if(text1.equals(ctx.getString(R.string.mute_this_apps))){
+		if(text1.equals(ctx.getString(R.string.mute_this_app))){
 			retVal = "Muted " + appName;
 		}else if(text1.equals(ctx.getString(R.string.mute_all_apps))){
 			retVal = "Muted all Apps";

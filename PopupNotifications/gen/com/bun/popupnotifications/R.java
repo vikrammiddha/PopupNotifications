@@ -108,16 +108,18 @@ containing a value of this type.
         public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int googletalk=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int ic_search=0x7f020002;
-        public static final int ic_search_inverse=0x7f020003;
-        public static final int layout_bg=0x7f020004;
-        public static final int remove=0x7f020005;
+        public static final int badge_blue=0x7f020000;
+        public static final int badge_ifaux=0x7f020001;
+        public static final int googletalk=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int ic_search=0x7f020004;
+        public static final int ic_search_inverse=0x7f020005;
+        public static final int layout_bg=0x7f020006;
+        public static final int remove=0x7f020007;
     }
     public static final class id {
         public static final int CloseWindowId=0x7f050022;
-        public static final int appImageSmallId=0x7f050026;
+        public static final int appImageSmallId=0x7f050027;
         public static final int appImageViewId=0x7f050023;
         public static final int appSelectionCheckBoxId=0x7f050009;
         public static final int appSelectionIconId=0x7f050007;
@@ -127,11 +129,12 @@ containing a value of this type.
         public static final int both=0x7f050001;
         public static final int cpRoot=0x7f05000b;
         public static final int dismiss=0x7f050005;
+        public static final int endId=0x7f05002a;
         public static final int expandingLayoutId=0x7f05001e;
         public static final int front=0x7f050021;
         public static final int left=0x7f050003;
         public static final int mainLayoutId=0x7f05001d;
-        public static final int menu_settings=0x7f050027;
+        public static final int menu_settings=0x7f05002b;
         public static final int mute15min=0x7f050010;
         public static final int mute1hour=0x7f050012;
         public static final int mute30min=0x7f050011;
@@ -150,13 +153,16 @@ containing a value of this type.
         public static final int muteSpecificApp=0x7f05000d;
         public static final int muteforeever=0x7f050015;
         public static final int none=0x7f050000;
-        public static final int notMessageTextId=0x7f050025;
-        public static final int notTimeTextId=0x7f050024;
+        public static final int notMessageTextId=0x7f050026;
+        public static final int notTimeTextId=0x7f050025;
         public static final int notificationsListViewId=0x7f05001f;
+        public static final int prefTimePicker=0x7f050028;
         public static final int reveal=0x7f050004;
         public static final int right=0x7f050002;
         public static final int searchBoxId=0x7f05000a;
-        public static final int tutorial=0x7f050028;
+        public static final int startId=0x7f050029;
+        public static final int tutorial=0x7f05002c;
+        public static final int unreadCountTextId=0x7f050024;
     }
     public static final class layout {
         public static final int app_selection_main=0x7f030000;
@@ -167,6 +173,7 @@ containing a value of this type.
         public static final int mute_selected_row=0x7f030005;
         public static final int notification_main=0x7f030006;
         public static final int notification_row=0x7f030007;
+        public static final int time_preference=0x7f030008;
     }
     public static final class menu {
         public static final int notification=0x7f090000;
@@ -178,24 +185,27 @@ containing a value of this type.
         public static final int crash_dialog_text=0x7f070005;
         public static final int crash_dialog_title=0x7f070004;
         public static final int crash_toast_text=0x7f070003;
+        public static final int end_time=0x7f07001a;
         public static final int hello_world=0x7f070001;
         public static final int listViewPosition=0x7f070008;
         public static final int menu_settings=0x7f070009;
         public static final int menu_tutorial=0x7f07000a;
-        public static final int mute_15_mins=0x7f070012;
-        public static final int mute_1_hour=0x7f070014;
-        public static final int mute_30_mins=0x7f070013;
-        public static final int mute_4_hours=0x7f070015;
-        public static final int mute_8_hours=0x7f070016;
-        public static final int mute_all_apps=0x7f070010;
-        public static final int mute_foreever=0x7f070017;
-        public static final int mute_this_apps=0x7f070011;
+        public static final int mute_15_mins=0x7f070013;
+        public static final int mute_1_hour=0x7f070015;
+        public static final int mute_30_mins=0x7f070014;
+        public static final int mute_4_hours=0x7f070016;
+        public static final int mute_8_hours=0x7f070017;
+        public static final int mute_all_apps=0x7f070011;
+        public static final int mute_foreever=0x7f070018;
+        public static final int mute_this_app=0x7f070012;
         public static final int package_name=0x7f070002;
         public static final int pref_advanced_category=0x7f07000d;
         public static final int pref_mute_category=0x7f07000c;
         public static final int pref_mute_selected=0x7f07000f;
         public static final int pref_notification_category=0x7f07000b;
         public static final int pref_others_category=0x7f07000e;
+        public static final int pref_sleep_hours=0x7f070010;
+        public static final int start_time=0x7f070019;
     }
     public static final class style {
         /** 

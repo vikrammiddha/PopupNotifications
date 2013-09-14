@@ -2,6 +2,7 @@ package com.bun.popupnotifications;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 
 import com.fortysevendeg.android.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.android.swipelistview.SwipeListView;
@@ -78,7 +79,7 @@ public class NotificationActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.notification_main);
-		
+
 		ctx = this;
 
 		//Utils.tf = Typeface.createFromAsset(this.getAssets(),"fonts/robotomedium.ttf");
@@ -96,8 +97,10 @@ public class NotificationActivity extends Activity {
 
 				try {					
 					getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
-					Utils.intentMap.get(Utils.notList.get(position).getPackageName()).send();					
+					Utils.intentMap.get(adapter.getItem(position).getPackageName()).send();					
 					Utils.notList.clear();
+					Utils.intentMap.clear();
+					adapter.clearNotifications();
 				} catch (CanceledException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -105,66 +108,76 @@ public class NotificationActivity extends Activity {
 
 			}
 		});
-		
+
 		layout.setSwipeListViewListener(new BaseSwipeListViewListener() {
-            @Override
-            public void onOpened(int position, boolean toRight) {
-            	Log.d("swipe", "onOpened----------");
-            }
+			@Override
+			public void onOpened(int position, boolean toRight) {
+				Log.d("swipe", "onOpened----------");
+			}
 
-            @Override
-            public void onClosed(int position, boolean fromRight) {
-            	Log.d("swipe", "onClosed----------");
-            }
+			@Override
+			public void onClosed(int position, boolean fromRight) {
+				Log.d("swipe", "onClosed----------");
+			}
 
-            @Override
-            public void onListChanged() {
-            	Log.d("swipe", "onListChanged----------");
-            }
+			@Override
+			public void onListChanged() {
+				Log.d("swipe", "onListChanged----------");
+			}
 
-            @Override
-            public void onMove(int position, float x) {
-            	Log.d("swipe", "onMove---------");
-            }
+			@Override
+			public void onMove(int position, float x) {
+				//Log.d("swipe", "onMove---------");
+			}
 
-            @Override
-            public void onStartOpen(int position, int action, boolean right) {
-            	Log.d("swipe", "onStartOpen----------");
-            }
+			@Override
+			public void onStartOpen(int position, int action, boolean right) {
+				Log.d("swipe", "onStartOpen----------");
+			}
 
-            @Override
-            public void onStartClose(int position, boolean right) {
-            	Log.d("swipe", "onStartClose----------");
-            }
+			@Override
+			public void onStartClose(int position, boolean right) {
+				Log.d("swipe", "onStartClose----------");
+			}
 
-            @Override
-            public void onClickFrontView(int position) {
-            	Log.d("swipe", "onClickFrontView----------");
-            }
+			@Override
+			public void onClickFrontView(int position) {
+				Log.d("swipe", "onClickFrontView----------");
+			}
 
-            @Override
-            public void onClickBackView(int position) {
-            	Log.d("swipe", "onClickBackView----------");            	
-            }
+			@Override
+			public void onClickBackView(int position) {
+				Log.d("swipe", "onClickBackView----------"); 
+				getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+				try {
+					Utils.intentMap.get(Utils.notList.get(position).getPackageName()).send();
+				} catch (CanceledException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}					
+				Utils.notList.clear();
+			}
 
-            @Override
-            public void onDismiss(int[] reverseSortedPositions) {
-            	
-                for (int position : reverseSortedPositions) {
-                	//Log.d("swipe", "onDismiss----------" + position);
-                	adapter.removeNotification(position);
-                	Utils.notList.remove(position);
-                }
-                
-                if(Utils.notList.size() == 0){
-                	finish();
-                }
-                adapter.notifyDataSetChanged();
-            }
+			@Override
+			public void onDismiss(int[] reverseSortedPositions) {
 
-        });
+				for (int position : reverseSortedPositions) {
+					//Log.d("swipe", "onDismiss----------" + position);
+					adapter.removeNotification(position);
+					Utils.notList.remove(position);
+				}
 
-		
+				if(adapter.getAdapterSize() == 0){
+					finish();
+					Utils.notList.clear();
+					Utils.intentMap.clear();
+				}
+				adapter.notifyDataSetChanged();
+			}
+
+		});
+
+
 		registerForContextMenu(layout);	
 
 	}
@@ -189,7 +202,7 @@ public class NotificationActivity extends Activity {
 
 		Utils.notList.clear();
 		Utils.notList = null;
-		
+
 		Utils.intentMap.clear();
 
 		adapter.clearNotifications();
@@ -247,15 +260,15 @@ public class NotificationActivity extends Activity {
 
 	RadioGroup radioGroup1;
 	RadioButton radioButton1;
-	  
+
 	RadioGroup radioGroup2;
 	RadioButton radioButton2;
-	
+
 	private void showMuteOptions(final NotificationBean n){
 		LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(LAYOUT_INFLATER_SERVICE);
 		final View layout = inflater.inflate(R.layout.mute_app_dialogue, (ViewGroup) findViewById(R.id.cpRoot));
-		
-		
+
+
 
 		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
 				NotificationActivity.this);
@@ -276,24 +289,24 @@ public class NotificationActivity extends Activity {
 				radioGroup1 = (RadioGroup) layout.findViewById(R.id.muteOptions1);
 				int selectedId = radioGroup1.getCheckedRadioButtonId();				
 				radioButton1 = (RadioButton) layout.findViewById(selectedId);
-				
-				
+
+
 				radioGroup2 = (RadioGroup) layout.findViewById(R.id.muteOptions2);
 				selectedId = radioGroup2.getCheckedRadioButtonId();				
 				radioButton2 = (RadioButton) layout.findViewById(selectedId);
-				int opt1 = R.string.mute_this_apps;
+				int opt1 = R.string.mute_this_app;
 				int opt2 = R.string.mute_all_apps;				
-				
-				
+
+
 				if(radioButton1.getText().toString().equals(getString(opt1))){
 					SharedPreferenceUtils.setAllowedApps(ctx, n.getPackageName(), Utils.getMuteTime(ctx,radioButton2.getText().toString()));
-					
+
 				}else if(radioButton1.getText().toString().equals(getString(opt2))){
 					SharedPreferenceUtils.setAllowedApps(ctx, "com.AA", Utils.getMuteTime(ctx,radioButton2.getText().toString()));
 				} 
-				
-				
-				
+
+
+
 				Toast.makeText(NotificationActivity.this,
 						Utils.getMuteToastText(ctx, radioButton1.getText().toString(), radioButton2.getText().toString(), n.getAppName()), Toast.LENGTH_SHORT).show();
 			}
@@ -317,13 +330,29 @@ public class NotificationActivity extends Activity {
 
 		HashSet<String> alreadyEnteredValues = new HashSet<String>();
 
-		for(NotificationBean n : Utils.getNotList()){
-			
-			//if(!alreadyEnteredValues.contains(n.getUniqueValue()))
-				adapter.addNotification(n);
-			//alreadyEnteredValues.add(n.getUniqueValue());
-		}
+		if(HelperUtils.isExpandedNotifications(ctx)){
 
+			for(NotificationBean n : Utils.getNotList()){
+
+				//if(!alreadyEnteredValues.contains(n.getUniqueValue()))
+				adapter.addNotification(n);
+				//alreadyEnteredValues.add(n.getUniqueValue());
+			}
+		}else{
+			LinkedHashMap<String,NotificationBean> lhm = new LinkedHashMap<String,NotificationBean>();
+			for(NotificationBean n : Utils.getNotList()){
+				if(lhm.get(n.getPackageName()) == null){
+					n.setNotCount(1);
+					lhm.put(n.getPackageName(), n);
+				}else{
+					lhm.get(n.getPackageName()).setNotCount(lhm.get(n.getPackageName()).getNotCount() + 1);
+				}
+			}
+			
+			for(NotificationBean nb : lhm.values()){
+				adapter.addNotification(nb);
+			}
+		}
 		adapter.notifyDataSetChanged();
 		layout.setAdapter(adapter);
 

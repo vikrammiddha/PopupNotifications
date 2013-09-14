@@ -20,7 +20,16 @@ public class NotificationBean {
 	private long when;
 	private String uniqueValue;
 	private String tickerText;	
+	private int notCount;
 	
+
+	public int getNotCount() {
+		return notCount;
+	}
+
+	public void setNotCount(int notCount) {
+		this.notCount = notCount;
+	}
 
 	public String getTickerText() {
 		return tickerText;

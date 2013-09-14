@@ -2,18 +2,21 @@ package com.bun.popupnotifications;
 
 import java.util.ArrayList;
 
+import com.readystatesoftware.viewbadger.BadgeView;
 
-import android.app.PendingIntent.CanceledException;
+
+
 import android.content.Context;
-import android.graphics.Typeface;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RoundRectShape;
 
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
+
 import android.view.View;
-import android.view.WindowManager;
-import android.view.View.OnTouchListener;
+
 import android.view.ViewGroup;
 
 import android.widget.BaseAdapter;
@@ -28,7 +31,7 @@ public class NotificationsAdapter extends BaseAdapter{
 		public ImageView image;
 		public ImageView smallImage;
 		public TextView timeText;
-		
+		public TextView badge;
 	}
 
 	private ArrayList<NotificationBean> nList = new ArrayList<NotificationBean>();
@@ -45,6 +48,13 @@ public class NotificationsAdapter extends BaseAdapter{
 			nList = new ArrayList<NotificationBean>();
 		}
 		nList.add(notf);
+	}
+	
+	public  int getAdapterSize(){
+		if(nList == null){
+			return 0;
+		}
+		return nList.size();
 	}
 	
 	public void removeNotification(int pos){
@@ -64,7 +74,7 @@ public class NotificationsAdapter extends BaseAdapter{
 	}
 
 	@Override
-	public Object getItem(int position) {
+	public NotificationBean getItem(int position) {
 		// TODO Auto-generated method stub
 		return nList.get(position);
 	}
@@ -93,6 +103,7 @@ public class NotificationsAdapter extends BaseAdapter{
 		      viewHolder.image = (ImageView)view.findViewById(R.id.appImageViewId);
 		      viewHolder.smallImage = (ImageView)view.findViewById(R.id.appImageSmallId);
 		      viewHolder.timeText = (TextView) view.findViewById(R.id.notTimeTextId);
+		      viewHolder.badge = (TextView) view.findViewById(R.id.unreadCountTextId);
 		      view.setTag(viewHolder);
 
 		}
@@ -114,10 +125,23 @@ public class NotificationsAdapter extends BaseAdapter{
 		holder.text.setText(message);	
 		
 		
-		//holder.text.setTypeface(Utils.tf);	 	
+		if(n.getNotCount() > 0){
+			holder.badge.setText(String.valueOf(n.getNotCount()));
+			
+			Resources r = context.getResources();
+			float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, r.getDisplayMetrics());
+			int r1 = (int)px;
+			float[] outerR = new float[] {r1, r1, r1, r1, r1, r1, r1, r1};
+	        
+			RoundRectShape rr = new RoundRectShape(outerR, null, null);
+			ShapeDrawable drawable = new ShapeDrawable(rr);
+			drawable.getPaint().setColor(Color.RED);
+			holder.badge.setBackground(drawable);
+		}else{
+			holder.badge.setVisibility(View.GONE);
+		}
 		
 		holder.timeText.setText(n.getNotTime());		
-		
 		
 		return view;
 	}

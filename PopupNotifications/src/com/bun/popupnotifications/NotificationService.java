@@ -185,6 +185,8 @@ public class NotificationService extends AccessibilityService {
 
 			bean.setWhen(nnn.when);
 			
+			//bean.setNotCount(1);
+			
 			//bean.setTickerText(nnn.tickerText.toString());
 			
 			Utils.intentMap.put(bean.getPackageName(), nnn.contentIntent);

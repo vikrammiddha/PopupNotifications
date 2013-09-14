@@ -2,26 +2,52 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <PreferenceScreen
-        android:key="second_preferencescreen"
+        android:key="notification_preference"
         android:title="@string/pref_notification_category" >
         <CheckBoxPreference
-            android:key="prefer wifi"
-            android:title="Prefer WiFi" />
+            android:key="expanded_notification"
+            android:title="Show Expanded Notifications"
+            android:summary="Expanded Notifications displays each notifications separately." />
     </PreferenceScreen>
     <PreferenceScreen
         android:key="mute_settings"
         android:title="@string/pref_mute_category" >
         <CheckBoxPreference
-                android:key="mute_all_apps"
-                android:title="Mute All Apps" />
+            android:key="mute_all_apps"
+            android:title="Mute All Apps" />
 
-            <PreferenceScreen
-                android:key="mute_selected_screen"
-                android:title="@string/pref_mute_selected" >
-            </PreferenceScreen>
+        <PreferenceScreen
+            android:key="mute_selected_screen"
+            android:title="@string/pref_mute_selected" >
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:key="sleep_hours_screen"
+            android:title="@string/pref_sleep_hours" >
+            <CheckBoxPreference
+                android:key="mute_sleep_hours"
+                android:title="@string/pref_sleep_hours" >
+            </CheckBoxPreference>
+
+            <com.bun.popupnotifications.TimePreference
+                android:id="@+id/startId"
+                android:name="@string/start_time"
+                android:dependency="mute_sleep_hours"
+                android:dialogLayout="@layout/time_preference"
+                android:key="start_sleep_time"
+                android:summary="test"
+                android:title="@string/start_time" />
+            <com.bun.popupnotifications.TimePreference
+                android:id="@+id/endId"
+                android:name="@string/end_time"
+                android:dependency="mute_sleep_hours"
+                android:dialogLayout="@layout/time_preference"
+                android:key="end_sleep_time"
+                android:summary="test"
+                android:title="@string/end_time" />
+        </PreferenceScreen>
     </PreferenceScreen>
     <PreferenceScreen
-        android:key="second_preferencescreen"
+        android:key="notification_preference"
         android:title="@string/pref_advanced_category" >
         <CheckBoxPreference
             android:key="prefer wifi"

@@ -12,6 +12,7 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.app.PendingIntent;
@@ -21,6 +22,9 @@ import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.PowerManager;
+import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -326,11 +330,20 @@ public class Utils {
 			return false;
 		}
 		
+		if(HelperUtils.isLockscreenOnly(ctx)){
+			KeyguardManager myKM = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE);
+			if( !myKM.inKeyguardRestrictedInputMode()) {
+				return false;
+			}
+		}
+		
 		if(appMuteDate == null || "".equals(appMuteDate)){
 			return true;
 		}else if(HelperUtils.isBlockedTime(appMuteDate, ctx, event.getPackageName().toString())){
 			return false;
 		}
+		
+		
 
 		return true;
 
@@ -464,6 +477,52 @@ public class Utils {
 		}
 		
 		return retVal;
+	}
+	
+	private static String accServiceId = "com.bun.popupnotifications/com.bun.popupnotifications.NotificationService";
+	
+	public static boolean isAccessibilityEnabled(Context context) {	  
+
+		int accessibilityEnabled = 0;
+		final String LIGHTFLOW_ACCESSIBILITY_SERVICE = "com.example.test/com.example.text.ccessibilityService";
+		boolean accessibilityFound = false;
+		try {
+			accessibilityEnabled = Settings.Secure.getInt(context.getContentResolver(),android.provider.Settings.Secure.ACCESSIBILITY_ENABLED);
+			Log.d("test", "ACCESSIBILITY: " + accessibilityEnabled);
+		} catch (SettingNotFoundException e) {
+			Log.d("test", "Error finding setting, default accessibility to not found: " + e.getMessage());
+		}
+
+		TextUtils.SimpleStringSplitter mStringColonSplitter = new TextUtils.SimpleStringSplitter(':');
+
+		if (accessibilityEnabled==1){
+			Log.d("test", "***ACCESSIBILIY IS ENABLED***: ");
+
+
+			String settingValue = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+			Log.d("test", "Setting: " + settingValue);
+			if (settingValue != null) {
+				TextUtils.SimpleStringSplitter splitter = mStringColonSplitter;
+				splitter.setString(settingValue);
+				while (splitter.hasNext()) {
+					String accessabilityService = splitter.next();
+					Log.d("test", "Setting: " + accessabilityService);
+					if (accessabilityService.equalsIgnoreCase(accServiceId)){
+						Log.d("test", "We've found the correct setting - accessibility is switched on!");
+						return true;
+					}
+				}
+			}
+
+			Log.d("test", "***END***");
+		}
+		else{
+
+			Log.d("test", "***ACCESSIBILIY IS DISABLED***");
+			return false;
+		}
+		return false;
+
 	}
 
 }

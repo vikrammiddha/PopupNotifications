@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 
+
 import com.fortysevendeg.android.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.android.swipelistview.SwipeListView;
 
@@ -12,6 +13,8 @@ import com.fortysevendeg.android.swipelistview.SwipeListView;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
 
 
 import android.app.Activity;
@@ -29,6 +32,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Display;
@@ -64,6 +68,7 @@ public class NotificationActivity extends Activity {
 	static final int DELTA = 50;
 	enum Direction {LEFT, RIGHT;}
 	public Context ctx;
+	
 
 
 	@Override
@@ -184,7 +189,10 @@ public class NotificationActivity extends Activity {
 
 		registerForContextMenu(layout);	
 
+
 	}
+		
+	
 
 
 	private NotificationReceiver mReceiver = new NotificationReceiver() {

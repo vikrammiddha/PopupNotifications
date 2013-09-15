@@ -6,6 +6,7 @@ import java.util.TreeSet;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 
 public class SharedPreferenceUtils {
@@ -13,10 +14,7 @@ public class SharedPreferenceUtils {
 	private static SharedPreferences appsPref;
 	private static SharedPreferences.Editor appPref_editor;
 	private static String APP_LIST = "APP_LIST";
-	private static SharedPreferences generalPref;
-	private static SharedPreferences.Editor genPref_editor;
-	private static String GENERAL_LIST = "GENERAL_LIST";
-
+	
 	public static String getAppData(Context ctx, String packageName){
 
 
@@ -107,6 +105,20 @@ public class SharedPreferenceUtils {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public static void resetAllPreferenceSettings(Context ctx){
+		appsPref = ctx.getSharedPreferences(
+				APP_LIST, Context.MODE_PRIVATE);
+		appPref_editor = appsPref.edit();
+		appPref_editor.clear();
+		appPref_editor.commit();
+		
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+	    Editor editor = sharedPrefs.edit();
+	    editor.clear();
+	    editor.commit();
+		
 	}
 
 }

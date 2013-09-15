@@ -73,8 +73,8 @@ public class NotificationService extends AccessibilityService {
 
 		if(utils.performValidation(event)){
 			Notification nnn = (Notification) event.getParcelableData();
-			
-			
+
+
 			NotificationBean bean = new NotificationBean();
 
 			String packageName = event.getPackageName().toString();
@@ -117,19 +117,19 @@ public class NotificationService extends AccessibilityService {
 				LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				ViewGroup localView = (ViewGroup) inflater.inflate(rv.getLayoutId(), null);
 				rv.reapply(getApplicationContext(), localView);
-	
-	
-	
+
+
+
 				//recursiveDetectNotificationsIds(localView);
 				extractTextFromView(rv, true, bean);
-	
+
 				if (bean.getMessage() == null || bean.getMessage().equals("") &&
 						bean.getContent() != null && !bean.getContent().equals(""))
 				{
 					bean.setMessage(bean.getContent());
 					bean.setContent(null);
 				}
-	
+
 				if (bean.getMessage() == null)
 				{                                                       
 					bean.setMessage(nnn.tickerText.toString());                                                
@@ -140,7 +140,7 @@ public class NotificationService extends AccessibilityService {
 						bean.setSender(getPackageManager().getApplicationLabel(ai).toString());
 					else
 						bean.setSender(packageName);
-					
+
 				}
 				bean.setAppName(getPackageManager().getApplicationLabel(ai).toString());
 				if(bean.getSender() != null && !"".equals(bean.getSender())){
@@ -159,13 +159,13 @@ public class NotificationService extends AccessibilityService {
 				bean.setMessage(nnn.tickerText.toString());  
 				bean.setAppName(getPackageManager().getApplicationLabel(ai).toString());
 			}
-			
+
 
 			/*Log.d("Notification Service", "title  -----" + bean.getSender());
 			Log.d("Notification Service", "text  -----" + bean.getMessage());
 			Log.d("Notification Service", "content  -----" + bean.getContent());*/
 
-			
+
 
 			bean.setPackageName(event.getPackageName().toString());
 			//utils.populateBeanDetails(event, bean);
@@ -184,11 +184,11 @@ public class NotificationService extends AccessibilityService {
 			bean.setNotTime(formattedDate);
 
 			bean.setWhen(nnn.when);
-			
+
 			//bean.setNotCount(1);
-			
+
 			//bean.setTickerText(nnn.tickerText.toString());
-			
+
 			Utils.intentMap.put(bean.getPackageName(), nnn.contentIntent);
 
 			Log.d("Notification Service", "App-----" + bean.getAppName());
@@ -207,9 +207,9 @@ public class NotificationService extends AccessibilityService {
 					for(NotificationBean n : Utils.notList){
 						n = null;
 					}		
-					
+
 					Utils.notList.clear();
-				Utils.notList = null;
+					Utils.notList = null;
 				}
 				Utils.getNotList().add(0,bean);
 				Log.d("Notification Service", "New Intent----");
@@ -218,13 +218,15 @@ public class NotificationService extends AccessibilityService {
 				getApplication().startActivity(dialogIntent);
 			}
 
-			turnScreenOn();
+			if(HelperUtils.wakeOnNotification(ctx)){
+				turnScreenOn();
+			}
 
 		}
 
 	}
 
-	
+
 
 	private void turnScreenOn() 
 	{

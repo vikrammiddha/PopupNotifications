@@ -123,6 +123,8 @@ public class NotificationsAdapter extends BaseAdapter{
 		
 		holder.text.setTextColor(HelperUtils.getFontColor(context));
 		
+		//holder.text.setMaxLines(HelperUtils.getTextSize(context));
+		
 		if(n.getNotCount() > 0){
 			holder.badge.setText(String.valueOf(n.getNotCount()));
 			

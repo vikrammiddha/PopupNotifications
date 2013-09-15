@@ -13,6 +13,11 @@
     <string name="crash_dialog_comment_prompt">You might add your comments about the problem below:</string>
     <string name="crash_dialog_ok_toast">Thank you !</string>
     <string name="listViewPosition">1</string>
+    <string name="talkback_fix">Talkback Fix</string>
+    <string name="click_disable">Click Disable</string>
+    <string name="reset_completed">Reset Completed</string>
+    <string name="service_warning">Popup Notifications service is not running currently. This service should be running for you to get notifications.</string>    
+    <string name="tts_warning">Due to a bug in Samsungs\'s Software, you can experience the phone to read aloud some of your actions.\n \nTo prevent this, you will need to disable Samsung TTS and Google TTS. This will not affect any app using TTS features.</string>
     
     <string name="menu_settings">Settings</string>
     <string name="menu_tutorial">Tutorial</string>
@@ -24,6 +29,14 @@
     <string name="pref_mute_selected">Mute Selected Apps</string>
     <string name="pref_sleep_hours">Sleep Hours</string>
     <string name="font_color">Choose notification text color.</string>
+    <string name="pref_category_accessibility">Accessibility Service</string>
+    <string name="pref_settings_service_inactive">Service inactive</string>
+    <string name="samsung_tts">Disable Samsung TTS</string>
+    <string name="google_tts">Disable Google TTS</string>
+    <string name="reset_settings">Reset all Settings</string>
+    <string name="reset_message">Click on Yes to reset all the settings.</string>
+    
+    
     
     <string name="mute_all_apps">Mute All Apps</string>
     <string name="mute_this_app">Mute this App</string>

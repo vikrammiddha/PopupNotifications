@@ -84,9 +84,9 @@ public class HelperUtils {
 		return false;
 
 	}
-	
+
 	public static Boolean isTransparentBackround(Context ctx){
-		
+
 		if((Boolean)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "transparent_background", "Boolean")){
 			return true;
 		}
@@ -114,6 +114,46 @@ public class HelperUtils {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public static Integer getTextSize(Context ctx){
+
+		try{
+			return (Integer)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "background_color_not", "Integer");
+		}catch(Exception e){
+			e.printStackTrace();
+			return 10;
+		}
+	}
+
+	public static Boolean wakeOnNotification(Context ctx){
+
+		try{
+
+			if((Boolean)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "wake_up", "Boolean")){
+				return true;
+			}
+		}catch(Exception e){
+			return false;
+		}		
+		
+		return false;
+
+	}
+	
+	public static Boolean isLockscreenOnly(Context ctx){
+
+		try{
+
+			if((Boolean)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "lockscreen_only", "Boolean")){
+				return true;
+			}
+		}catch(Exception e){
+			return false;
+		}		
+		
+		return false;
+
 	}
 
 }

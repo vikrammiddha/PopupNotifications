@@ -1,5 +1,6 @@
 package com.bun.popupnotifications;
 
+
 import yuku.ambilwarna.AmbilWarnaDialog;
 import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener;
 import android.app.AlertDialog;
@@ -9,7 +10,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -17,6 +21,7 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +41,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		super.onCreate(savedInstanceState);
 
 		addPreferencesFromResource(R.xml.main_preference);
-		
+
 		ctx = this;
 
 		prefs = PreferenceManager
@@ -46,11 +51,11 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		setSelectedAppListListener();
 
-		setTimerPreference();
-		
+		setTimerPreference();	
+
 		//setFontColorListener();
 
-		
+
 
 		Preference pref = findPreference("start_sleep_time");
 		pref.setSummary(prefs.getString("start_sleep_time", "00:00"));
@@ -58,13 +63,214 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		Preference pref1 = findPreference("end_sleep_time");
 		pref1.setSummary(prefs.getString("end_sleep_time", "00:00"));
 
+		Preference pref2 = findPreference("settings_service_enable");
+		Boolean isAccServiceRunning = Utils.isAccessibilityEnabled(this);
+		if(isAccServiceRunning){
+			pref2.setTitle("Service active");
+		}else{
+			pref2.setTitle("Service inactive");
+		}
+
+		setaccServiceListener();
+
+		setTalkBackFix();
+
+		setResetSettingsListener();
 	}
+
+	private void setResetSettingsListener(){
+		Preference pref = findPreference("reset_settings");
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+
+				alertForResetSettings();
+
+				return true;
+			}
+		});
+	}
+
+	private void setTalkBackFix(){
+		if(isSamsungPhoneWithTTS(ctx)){
+			Preference pref = findPreference("talkback_fix");
+			pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+				@Override
+				public boolean onPreferenceClick(Preference preference) {
+
+					alertForSamsungTTS();
+
+					return true;
+				}
+			});
+
+			Preference pref1 = findPreference("samsung_tts");
+			pref1.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+				@Override
+				public boolean onPreferenceClick(Preference preference) {
+
+					Intent intent1 = new Intent();
+					intent1.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+					Uri uri1 = Uri.fromParts("package", "com.samsung.SMT",
+							null);
+					intent1.setData(uri1);
+					startActivity(intent1);
+
+					Toast.makeText(getApplicationContext(),R.string.click_disable, 
+							Toast.LENGTH_SHORT).show();
+
+					return true;
+				}
+			});
+
+			Preference pref2 = findPreference("google_tts");
+			pref2.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+				@Override
+				public boolean onPreferenceClick(Preference preference) {
+
+					Intent intent = new Intent();
+					intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+					Uri uri = Uri.fromParts("package", "com.google.android.tts",
+							null);
+					intent.setData(uri);
+					startActivity(intent);
+
+					Toast.makeText(getApplicationContext(),R.string.click_disable, 
+							Toast.LENGTH_SHORT).show();
+
+					return true;
+				}
+			});
+
+
+		}
+	}
+
+	private void alertForSamsungTTS(){
+		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
+				NotificationPreferenceActivity.this);
+
+		// Setting Dialog Title
+		alertDialog2.setTitle("Warning");
+
+		// Setting Dialog Message
+		alertDialog2.setMessage(R.string.tts_warning);
+
+		// Setting Icon to Dialog
+		//alertDialog2.setIcon(R.drawable.delete);
+
+		// Setting Positive "Yes" Btn
+		alertDialog2.setPositiveButton("Close",
+				new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+
+				dialog.cancel();
+
+
+			}
+		});
+
+		// Showing Alert Dialog
+		alertDialog2.show();
+
+	}
+
+	private void alertForResetSettings(){
+		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
+				NotificationPreferenceActivity.this);
+
+		// Setting Dialog Title
+		alertDialog2.setTitle("Warning");
+
+		// Setting Dialog Message
+		alertDialog2.setMessage(R.string.reset_message);
+
+		// Setting Icon to Dialog
+		//alertDialog2.setIcon(R.drawable.delete);
+
+		// Setting Positive "Yes" Btn
+		alertDialog2.setPositiveButton("Yes",
+				new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+
+				SharedPreferenceUtils.resetAllPreferenceSettings(ctx);
+				
+				Toast.makeText(getApplicationContext(),R.string.reset_completed, 
+						Toast.LENGTH_SHORT).show();
+
+			}
+		});
+
+		// Setting Negative "NO" Btn
+		alertDialog2.setNegativeButton("Cancel",
+				new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {				
+				dialog.cancel();
+			}
+		});
+
+		// Showing Alert Dialog
+		alertDialog2.show();
+
+	}
+
+	public boolean isSamsungPhoneWithTTS(Context context) {
+
+		boolean retour = false;
+
+		try {
+			@SuppressWarnings("unused")
+			ApplicationInfo info = context.getPackageManager()
+			.getApplicationInfo("com.samsung.SMT", 0);
+			retour = true;
+		} catch (PackageManager.NameNotFoundException e) {
+			retour = false;
+		}
+
+
+
+		return retour;
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+
+		Preference pref2 = findPreference("settings_service_enable");
+		Boolean isAccServiceRunning = Utils.isAccessibilityEnabled(this);
+		if(isAccServiceRunning){
+			pref2.setTitle("Service active");
+		}else{
+			pref2.setTitle("Service inactive");
+		}
+	}
+
+	private void setaccServiceListener(){
+		Preference pref = findPreference("settings_service_enable");
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+
+				Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS); 
+				startActivityForResult(intent, 0);
+
+				return true;
+			}
+		});
+	}
+
 
 	private void setTimerPreference(){
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 	}
 
-	
+
 
 	private void setSelectedAppListListener(){
 		Preference pref = findPreference("mute_selected_screen");

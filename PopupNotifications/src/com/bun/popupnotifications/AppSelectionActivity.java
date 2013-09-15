@@ -8,16 +8,21 @@ import java.util.List;
 import java.util.TreeSet;
 
 import com.actionbarsherlock.app.SherlockActivity;
-
+ 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
@@ -34,6 +39,7 @@ public class AppSelectionActivity extends SherlockActivity{
 	ListView layout;
 	AppSelectionAdapter adapter;
 	EditText searchBox;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,49 @@ public class AppSelectionActivity extends SherlockActivity{
 
 		new Load().execute();	
 
+
+		Boolean serviceStatus = Utils.isAccessibilityEnabled(this);
+
+		if(serviceStatus == false){
+			showServiceAlert();
+		}
+
+	}
+
+	
+
+	private void showServiceAlert(){
+		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
+				AppSelectionActivity.this);
+
+		// Setting Dialog Title
+		alertDialog2.setTitle("Popup Notification Service");
+
+		// Setting Dialog Message
+		alertDialog2.setMessage(R.string.service_warning);
+
+		// Setting Icon to Dialog
+		//alertDialog2.setIcon(R.drawable.delete);
+
+		// Setting Positive "Yes" Btn
+		alertDialog2.setPositiveButton("ACTIVATE",
+				new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS); 
+				startActivityForResult(intent, 0);
+			}
+		});
+		// Setting Negative "NO" Btn
+		alertDialog2.setNegativeButton("LATER",
+				new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+
+				dialog.cancel();
+			}
+		});
+
+		// Showing Alert Dialog
+		alertDialog2.show();
 	}
 
 

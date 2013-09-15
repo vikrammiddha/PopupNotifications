@@ -23,6 +23,7 @@
     <string name="pref_others_category">Misc</string>
     <string name="pref_mute_selected">Mute Selected Apps</string>
     <string name="pref_sleep_hours">Sleep Hours</string>
+    <string name="font_color">Choose notification text color.</string>
     
     <string name="mute_all_apps">Mute All Apps</string>
     <string name="mute_this_app">Mute this App</string>

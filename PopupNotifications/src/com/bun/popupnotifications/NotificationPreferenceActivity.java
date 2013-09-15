@@ -1,5 +1,7 @@
 package com.bun.popupnotifications;
 
+import yuku.ambilwarna.AmbilWarnaDialog;
+import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -18,7 +21,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -34,6 +36,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		super.onCreate(savedInstanceState);
 
 		addPreferencesFromResource(R.xml.main_preference);
+		
+		ctx = this;
 
 		prefs = PreferenceManager
 				.getDefaultSharedPreferences(this);
@@ -43,12 +47,14 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setSelectedAppListListener();
 
 		setTimerPreference();
-
-		ctx = this;
 		
+		//setFontColorListener();
+
+		
+
 		Preference pref = findPreference("start_sleep_time");
 		pref.setSummary(prefs.getString("start_sleep_time", "00:00"));
-		
+
 		Preference pref1 = findPreference("end_sleep_time");
 		pref1.setSummary(prefs.getString("end_sleep_time", "00:00"));
 
@@ -57,7 +63,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 	private void setTimerPreference(){
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 	}
-	
+
 	
 
 	private void setSelectedAppListListener(){
@@ -204,7 +210,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 			Preference pref = findPreference("end_sleep_time");
 			pref.setSummary(sp.getString(key, "00:00"));
 		}
-		
+
 	}
 
 

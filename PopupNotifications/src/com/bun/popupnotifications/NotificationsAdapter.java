@@ -2,9 +2,6 @@ package com.bun.popupnotifications;
 
 import java.util.ArrayList;
 
-import com.readystatesoftware.viewbadger.BadgeView;
-
-
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -124,6 +121,7 @@ public class NotificationsAdapter extends BaseAdapter{
 		
 		holder.text.setText(message);	
 		
+		holder.text.setTextColor(HelperUtils.getFontColor(context));
 		
 		if(n.getNotCount() > 0){
 			holder.badge.setText(String.valueOf(n.getNotCount()));
@@ -141,7 +139,8 @@ public class NotificationsAdapter extends BaseAdapter{
 			holder.badge.setVisibility(View.GONE);
 		}
 		
-		holder.timeText.setText(n.getNotTime());		
+		holder.timeText.setText(n.getNotTime());	
+		holder.timeText.setTextColor(HelperUtils.getFontColor(context));
 		
 		return view;
 	}

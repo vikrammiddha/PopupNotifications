@@ -30,7 +30,7 @@ public class SharedPreferenceUtils {
 		return retVal;	
 
 	}
-	
+
 	public static String getSleepTime(Context ctx, String time){
 		if("start_time".equals(time)){
 			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
@@ -53,7 +53,7 @@ public class SharedPreferenceUtils {
 		appPref_editor.commit();
 
 	}
-	
+
 	public static void removeApp(Context ctx, String packageName){
 		appsPref = ctx.getSharedPreferences(
 				APP_LIST, Context.MODE_PRIVATE);
@@ -62,9 +62,9 @@ public class SharedPreferenceUtils {
 		appPref_editor.remove(packageName);
 		appPref_editor.commit();
 	}
-	
+
 	public static void populateDefaultApps(Context ctx){
-		
+
 		setAllowedApps(ctx,"com.google.android.gsf", "");
 		setAllowedApps(ctx,"com.whatsapp", "");
 		setAllowedApps(ctx,"com.android.email", "");
@@ -74,26 +74,39 @@ public class SharedPreferenceUtils {
 		setAllowedApps(ctx,"com.facebook.katana", "");
 		setAllowedApps(ctx,"com.tencent.mm", "");
 	}
-	
+
 	public static TreeSet<String> getAllAlowedApps(Context ctx){
-		
+
 		appsPref = ctx.getSharedPreferences(
 				APP_LIST, Context.MODE_PRIVATE);
 		TreeSet<String> retSet = new TreeSet<String>();
-		
+
 		Map<String,?> keys = appsPref.getAll();
 
 		for(Map.Entry<String,?> entry : keys.entrySet()){
 			retSet.add(entry.getKey());
-		 }
-		
+		}
+
 		return retSet;
 	}
-	
-	public static Object getGenericPreferenceValue(Context ctx, String key){
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
-		Boolean val = sp.getBoolean(key, false);
-		return val;
+
+	public static Object getGenericPreferenceValue(Context ctx, String key, String type){
+
+		try{
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
+			Object val = null;
+			if(type.toUpperCase().equals("BOOLEAN")){
+				val = sp.getBoolean(key, false);
+			}else if(type.toUpperCase().equals("STRING")){
+				val = sp.getString(key, "");
+			}else if(type.toUpperCase().equals("INTEGER")){
+				val = sp.getInt(key, 0);
+			}
+			return val;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

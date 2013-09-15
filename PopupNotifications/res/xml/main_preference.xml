@@ -8,6 +8,24 @@
             android:key="expanded_notification"
             android:title="Show Expanded Notifications"
             android:summary="Expanded Notifications displays each notifications separately." />
+        <CheckBoxPreference
+            android:key="full_screen_notification"
+            android:title="Show FullScreen Notifications"
+            android:summary="Notifications will be shown on full screen instead of a small window." />
+         <yuku.ambilwarna.widget.AmbilWarnaPreference
+                android:key="font_color"
+                android:defaultValue="0xff6699cc" 
+                android:title="Notification text color" />
+         <yuku.ambilwarna.widget.AmbilWarnaPreference
+                android:key="background_color_not"
+                android:defaultValue="0xff6699cc" 
+                android:title="Notification background color" />
+         <CheckBoxPreference
+            android:key="transparent_background"
+            android:title="Set transparent background"
+            android:summary="" />
+         
+        
     </PreferenceScreen>
     <PreferenceScreen
         android:key="mute_settings"

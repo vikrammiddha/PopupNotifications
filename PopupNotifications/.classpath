@@ -10,6 +10,5 @@
 	<classpathentry kind="lib" path="libs/actionbarsherlock.jar"/>
 	<classpathentry kind="lib" path="libs/swipe.jar"/>
 	<classpathentry kind="lib" path="libs/nineoldandroids-2.4.0.jar"/>
-	<classpathentry kind="lib" path="libs/android-viewbadger.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

@@ -27,8 +27,11 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,6 +44,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -348,7 +352,7 @@ public class NotificationActivity extends Activity {
 					lhm.get(n.getPackageName()).setNotCount(lhm.get(n.getPackageName()).getNotCount() + 1);
 				}
 			}
-			
+
 			for(NotificationBean nb : lhm.values()){
 				adapter.addNotification(nb);
 			}
@@ -359,17 +363,65 @@ public class NotificationActivity extends Activity {
 		LinearLayout ll = (LinearLayout) findViewById(R.id.expandingLayoutId);	
 
 		LayoutParams params = ll.getLayoutParams();
+		
+		LinearLayout ll1 = (LinearLayout) findViewById(R.id.expandingLayoutId1);
 
 		// Changes the height and width to the specified *pixels*
-		if(ll.getHeight() > 300){
-			params.height = 600;
-		}else{
-			params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+		if(HelperUtils.isFullScreenNotifications(ctx)){
+			Display display = getWindowManager().getDefaultDisplay(); 
+			int screenWidth = display.getWidth();
+			int screenHeight = display.getHeight();
+			params.height = (int)(screenHeight * 0.85);
+			params.width = (int)(screenWidth * 0.95);			
+			ll1.setLayoutParams(params);
+		}else
+		{
+			if(ll.getHeight() > 300){
+				params.height = 600;
+			}else{
+				params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+			}
+
+			params.width = LinearLayout.LayoutParams.FILL_PARENT;
 		}
 
-		params.width = LinearLayout.LayoutParams.FILL_PARENT;
-
 		ll.setLayoutParams(params);
+		Button dismissButton = (Button) findViewById(R.id.CloseWindowId);	
+		
+		if(HelperUtils.getBackgroundColor(ctx) != null ){
+			int strokeWidth = 3; // 3dp
+		    int roundRadius = 10; // 8dp
+		    int strokeColor = Color.parseColor("#B1BCBE");
+		    int fillColor = HelperUtils.getBackgroundColor(ctx);
+
+		    GradientDrawable gd = new GradientDrawable();
+		    gd.setColor(fillColor);
+		    gd.setCornerRadius(roundRadius);
+		    gd.setStroke(strokeWidth, strokeColor);	
+		    
+		    ll1.setBackground(gd);
+		    
+		    
+		    int strokeWidth1 = 3; // 3dp
+		    int roundRadius1 = 10; // 8dp
+		    int strokeColor1 = Color.parseColor("#B1BCBE");
+		    int fillColor1 = HelperUtils.getBackgroundColor(ctx);
+
+		    GradientDrawable gd1 = new GradientDrawable();
+		    gd1.setColor(fillColor1);
+		    gd1.setCornerRadius(roundRadius1);
+		    gd1.setStroke(strokeWidth1, strokeColor1);	
+		    dismissButton.setBackgroundDrawable(gd1);
+		    
+		    if(HelperUtils.isTransparentBackround(ctx)){
+		    	ll1.getBackground().setAlpha(200);
+		    	dismissButton.getBackground().setAlpha(200);
+		    }
+		}
+		
+		
+		dismissButton.setTextColor(HelperUtils.getFontColor(ctx));
 	}
 
 	@Override

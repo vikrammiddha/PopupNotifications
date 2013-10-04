@@ -12,8 +12,11 @@ import android.preference.PreferenceManager;
 public class SharedPreferenceUtils {
 
 	private static SharedPreferences appsPref;
+	private static SharedPreferences blockedAppsPref;
 	private static SharedPreferences.Editor appPref_editor;
+	private static SharedPreferences.Editor blockedPref_editor;
 	private static String APP_LIST = "APP_LIST";
+	private static String BLOCKED_LIST = "BLOCKED_LIST";
 	
 	public static String getAppData(Context ctx, String packageName){
 
@@ -51,6 +54,17 @@ public class SharedPreferenceUtils {
 		appPref_editor.commit();
 
 	}
+	
+	public static void setBlockedApps(Context ctx, String packageName, String muteDate){
+
+		blockedAppsPref = ctx.getSharedPreferences(
+				BLOCKED_LIST, Context.MODE_PRIVATE);
+
+		blockedPref_editor = blockedAppsPref.edit();
+		blockedPref_editor.putString(packageName, "--");
+		blockedPref_editor.commit();
+
+	}
 
 	public static void removeApp(Context ctx, String packageName){
 		appsPref = ctx.getSharedPreferences(
@@ -59,6 +73,15 @@ public class SharedPreferenceUtils {
 		appPref_editor = appsPref.edit();
 		appPref_editor.remove(packageName);
 		appPref_editor.commit();
+	}
+	
+	public static void removeBlockedApp(Context ctx, String packageName){
+		blockedAppsPref = ctx.getSharedPreferences(
+				BLOCKED_LIST, Context.MODE_PRIVATE);
+
+		blockedPref_editor = blockedAppsPref.edit();
+		blockedPref_editor.remove(packageName);
+		blockedPref_editor.commit();
 	}
 
 	public static void populateDefaultApps(Context ctx){
@@ -80,6 +103,21 @@ public class SharedPreferenceUtils {
 		TreeSet<String> retSet = new TreeSet<String>();
 
 		Map<String,?> keys = appsPref.getAll();
+
+		for(Map.Entry<String,?> entry : keys.entrySet()){
+			retSet.add(entry.getKey());
+		}
+
+		return retSet;
+	}
+	
+	public static TreeSet<String> getAllBlockedApps(Context ctx){
+
+		blockedAppsPref = ctx.getSharedPreferences(
+				BLOCKED_LIST, Context.MODE_PRIVATE);
+		TreeSet<String> retSet = new TreeSet<String>();
+
+		Map<String,?> keys = blockedAppsPref.getAll();
 
 		for(Map.Entry<String,?> entry : keys.entrySet()){
 			retSet.add(entry.getKey());
@@ -119,6 +157,17 @@ public class SharedPreferenceUtils {
 	    editor.clear();
 	    editor.commit();
 		
+	}
+	
+	public static Boolean isBlockedApp(Context ctx, String packageName){
+		String retVal = null;
+
+		blockedAppsPref = ctx.getSharedPreferences(
+				BLOCKED_LIST, Context.MODE_PRIVATE);
+
+		retVal = (String) blockedAppsPref.getString(packageName, null );
+
+		return retVal == null ? false : true;	
 	}
 
 }

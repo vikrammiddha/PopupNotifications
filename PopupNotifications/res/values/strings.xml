@@ -35,6 +35,8 @@
     <string name="google_tts">Disable Google TTS</string>
     <string name="reset_settings">Reset all Settings</string>
     <string name="reset_message">Click on Yes to reset all the settings.</string>
+    <string name="blocked_apps">Blocked Apps</string>
+    <string name="blocked_apps_summary">Notifications will not appear when these apps are in use.</string>
     
     
     

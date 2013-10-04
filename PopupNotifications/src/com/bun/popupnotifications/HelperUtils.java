@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningTaskInfo;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -203,6 +205,25 @@ public class HelperUtils {
 
 		return false;
 
+	}
+	
+	public static Boolean isBlockedApp(Context ctx, String packageName){
+		try{
+			ActivityManager am = (ActivityManager) ctx.getSystemService("activity");
+	    	// The first in the list of RunningTasks is always the foreground task.
+	    	RunningTaskInfo foregroundTaskInfo = am.getRunningTasks(1).get(0);
+	    	
+	    	packageName = foregroundTaskInfo.topActivity.getPackageName();
+	    	
+			if((Boolean)SharedPreferenceUtils.isBlockedApp(ctx, packageName)){
+				return true;
+			}
+			
+		}catch(Exception e){
+			return false;
+		}
+		
+		return false;
 	}
 
 }

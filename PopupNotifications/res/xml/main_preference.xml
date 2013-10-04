@@ -92,6 +92,14 @@
             android:title="@string/reset_settings" >
         </PreferenceScreen>
     </PreferenceScreen>
+    
+     <PreferenceScreen
+        android:key="blocked_apps"
+        android:title="@string/blocked_apps"
+        android:summary="@string/blocked_apps_summary"
+         />
+        
+    
 
     <PreferenceCategory
         android:key="service"

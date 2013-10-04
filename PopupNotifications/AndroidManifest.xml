@@ -29,6 +29,11 @@
             android:label="Muted Apps List"
              >
         </activity>
+         <activity
+            android:name="com.bun.popupnotifications.BlockedAppsActivity"
+            android:label="Blocked Apps"
+             >
+        </activity>
         
         <activity
             android:name="com.bun.popupnotifications.TimePreference"

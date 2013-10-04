@@ -320,6 +320,10 @@ public class Utils {
 			}
 		}
 		
+		if(HelperUtils.isBlockedApp(ctx,event.getPackageName().toString())){
+			return false;
+		}
+		
 		if(HelperUtils.isSleepTime(ctx)){
 			return false;
 		}

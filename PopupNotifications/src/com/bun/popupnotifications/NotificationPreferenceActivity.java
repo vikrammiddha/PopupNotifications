@@ -50,6 +50,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setMuteAllAppsPreferenceData();
 
 		setSelectedAppListListener();
+		
+		setBlockedAppListener();
 
 		setTimerPreference();	
 
@@ -76,6 +78,21 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setTalkBackFix();
 
 		setResetSettingsListener();
+	}
+	
+	private void setBlockedAppListener(){
+		Preference pref = findPreference("blocked_apps");
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+
+				Intent testIntent = new Intent(getApplicationContext(), BlockedAppsActivity.class);
+				startActivity(testIntent);
+
+				return true;
+			}
+		});
 	}
 
 	private void setResetSettingsListener(){

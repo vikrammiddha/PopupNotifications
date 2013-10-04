@@ -202,27 +202,29 @@ containing a value of this type.
     }
     public static final class string {
         public static final int app_name=0x7f070000;
+        public static final int blocked_apps=0x7f07001d;
+        public static final int blocked_apps_summary=0x7f07001e;
         public static final int click_disable=0x7f07000a;
         public static final int crash_dialog_comment_prompt=0x7f070006;
         public static final int crash_dialog_ok_toast=0x7f070007;
         public static final int crash_dialog_text=0x7f070005;
         public static final int crash_dialog_title=0x7f070004;
         public static final int crash_toast_text=0x7f070003;
-        public static final int end_time=0x7f070026;
+        public static final int end_time=0x7f070028;
         public static final int font_color=0x7f070016;
         public static final int google_tts=0x7f07001a;
         public static final int hello_world=0x7f070001;
         public static final int listViewPosition=0x7f070008;
         public static final int menu_settings=0x7f07000e;
         public static final int menu_tutorial=0x7f07000f;
-        public static final int mute_15_mins=0x7f07001f;
-        public static final int mute_1_hour=0x7f070021;
-        public static final int mute_30_mins=0x7f070020;
-        public static final int mute_4_hours=0x7f070022;
-        public static final int mute_8_hours=0x7f070023;
-        public static final int mute_all_apps=0x7f07001d;
-        public static final int mute_foreever=0x7f070024;
-        public static final int mute_this_app=0x7f07001e;
+        public static final int mute_15_mins=0x7f070021;
+        public static final int mute_1_hour=0x7f070023;
+        public static final int mute_30_mins=0x7f070022;
+        public static final int mute_4_hours=0x7f070024;
+        public static final int mute_8_hours=0x7f070025;
+        public static final int mute_all_apps=0x7f07001f;
+        public static final int mute_foreever=0x7f070026;
+        public static final int mute_this_app=0x7f070020;
         public static final int package_name=0x7f070002;
         public static final int pref_advanced_category=0x7f070012;
         public static final int pref_category_accessibility=0x7f070017;
@@ -237,7 +239,7 @@ containing a value of this type.
         public static final int reset_settings=0x7f07001b;
         public static final int samsung_tts=0x7f070019;
         public static final int service_warning=0x7f07000c;
-        public static final int start_time=0x7f070025;
+        public static final int start_time=0x7f070027;
         public static final int talkback_fix=0x7f070009;
         public static final int tts_warning=0x7f07000d;
     }

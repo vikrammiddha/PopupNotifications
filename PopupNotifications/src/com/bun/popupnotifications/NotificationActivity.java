@@ -160,7 +160,7 @@ public class NotificationActivity extends Activity {
 				getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 				try {
 					Utils.intentMap.get(Utils.notList.get(position).getPackageName()).send();
-				} catch (CanceledException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}					

@@ -242,7 +242,14 @@ public class AppSelectionActivity extends SherlockActivity{
 					return a1.getAppName().compareToIgnoreCase(a2.getAppName());
 				}
 			});
-
+			
+			if(adapter == null){
+				adapter = new AppSelectionAdapter(this);
+			}
+			
+			Log.d("adapter", "adapter=======" + adapter);
+			Log.d("adapter", "aList=======" + aList);
+			
 			if(aList != null)
 				adapter.addAppList(aList);
 
@@ -314,6 +321,7 @@ public class AppSelectionActivity extends SherlockActivity{
 		// TODO Auto-generated method stub
 		super.onPause();
 		//adapter = null;
+		progDailog.dismiss();
 		finish();
 	}
 

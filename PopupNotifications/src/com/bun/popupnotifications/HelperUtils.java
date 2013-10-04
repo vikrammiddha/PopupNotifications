@@ -53,17 +53,66 @@ public class HelperUtils {
 
 
 		DateFormat formatter = new SimpleDateFormat("HH:mm");
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(System.currentTimeMillis());			
-		String currentTime = formatter.format(calendar.getTime());
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		//get current date time with Date()
+		Date date = new Date();
+		String tempCurrentDate = dateFormat.format(date);	
+		tempCurrentDate = tempCurrentDate.split(" ")[1];
+		
+		Date currentDateTime = null;
 
-		int startInt = Integer.valueOf(startTime.replaceAll(":", ""));
-		int endInt = Integer.valueOf(endTime.replaceAll(":", ""));
-		int currentInt = Integer.valueOf(currentTime.replaceAll(":", ""));
+		Date startDateTime = null;
+		Date endDateTime = null;
+		try {
+			startDateTime = formatter.parse(startTime);
+			endDateTime = formatter.parse(endTime);
+			currentDateTime = formatter.parse(tempCurrentDate);
+			
+			if(startDateTime.after(endDateTime)){
+				
+				Date now = new Date();
+				
+				startDateTime.setYear(now.getYear());
+				startDateTime.setMonth(now.getMonth());
+				startDateTime.setDate(now.getDay());
+				
+				endDateTime.setYear(now.getYear());
+				endDateTime.setMonth(now.getMonth());
+				endDateTime.setDate(now.getDay());
+				
+				Calendar cal = Calendar.getInstance();
+		        cal.setTime(endDateTime);
+		        cal.add(Calendar.DATE, 1);
+		        
+		        endDateTime = cal.getTime();
+				
+		        currentDateTime.setYear(now.getYear());
+		        currentDateTime.setMonth(now.getMonth());
+		        currentDateTime.setDate(now.getDay());
+		        
+		        Calendar cal1 = Calendar.getInstance();
+		        cal1.setTime(currentDateTime);
+		        cal1.add(Calendar.DATE, 1);
+		        
+		        currentDateTime = cal1.getTime();
+				
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(currentDateTime.after(startDateTime) && currentDateTime.before(endDateTime)){
+			return true;
+		}
+
+		/*long startInt = startDateTime.getTime();
+		long endInt = endDateTime.getTime();
+		long currentInt = currentDateTime.getTime();
 
 		if(currentInt > startInt && currentInt < endInt){
 			return true;
-		}
+		}*/
 
 		return false;
 	}
@@ -136,11 +185,11 @@ public class HelperUtils {
 		}catch(Exception e){
 			return false;
 		}		
-		
+
 		return false;
 
 	}
-	
+
 	public static Boolean isLockscreenOnly(Context ctx){
 
 		try{
@@ -151,7 +200,7 @@ public class HelperUtils {
 		}catch(Exception e){
 			return false;
 		}		
-		
+
 		return false;
 
 	}

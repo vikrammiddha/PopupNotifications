@@ -58,11 +58,11 @@ public class TimePreference extends DialogPreference {
     super.onBindDialogView(view);
     timePicker = (TimePicker) view.findViewById(R.id.prefTimePicker);
     if(R.string.start_time == id){
-    	String startTime = getSharedPreferences().getString("start_sleep_time", "00:00");
+    	String startTime = getSharedPreferences().getString("start_sleep_time", "23:00");
     	timePicker.setCurrentHour(Integer.valueOf(startTime.split(":")[0]));
         timePicker.setCurrentMinute(Integer.valueOf(startTime.split(":")[1]));
     }else{
-    	String endTime = getSharedPreferences().getString("end_sleep_time", "00:00");
+    	String endTime = getSharedPreferences().getString("end_sleep_time", "07:00");
     	timePicker.setCurrentHour(Integer.valueOf(endTime.split(":")[0]));
         timePicker.setCurrentMinute(Integer.valueOf(endTime.split(":")[1]));
     }

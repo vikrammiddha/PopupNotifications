@@ -6,41 +6,41 @@
         android:title="@string/pref_notification_category" >
         <CheckBoxPreference
             android:key="expanded_notification"
-            android:summary="Expanded Notifications displays each notifications separately."
-            android:title="Show Expanded Notifications" />
+            android:summary="@string/expanded_not_summary"
+            android:title="@string/show_expanded_notifications" />
         <CheckBoxPreference
             android:key="full_screen_notification"
-            android:summary="Notifications will be shown on full screen instead of a small window."
-            android:title="Show FullScreen Notifications" />
+            android:summary="@string/show_fullscreen_summary"
+            android:title="@string/show_fullscreen_not" />
 
         <yuku.ambilwarna.widget.AmbilWarnaPreference
-            android:defaultValue="0xff6699cc"
+            android:defaultValue="0xffffffff"
             android:key="font_color"
-            android:title="Notification text color" />
+            android:title="@string/not_text_color" />
         <yuku.ambilwarna.widget.AmbilWarnaPreference
-            android:defaultValue="0xff6699cc"
+            android:defaultValue="0xff000000"
             android:key="background_color_not"
-            android:title="Notification background color" />
+            android:title="@string/not_back_color" />
 
         <CheckBoxPreference
             android:key="transparent_background"
             android:summary=""
-            android:title="Set transparent background" />
+            android:title="@string/set_transparent_background" />
         <CheckBoxPreference
             android:key="wake_up"
             android:summary=""
-            android:title="Wake on Notification" />
+            android:title="@string/wake_on_not" />
         <CheckBoxPreference
             android:key="lockscreen_only"
-            android:summary="Display Notifications only when screen is locked."
-            android:title="Lock Screen Only" />
+            android:summary="@string/lock_screen_only_summary"
+            android:title="@string/lock_screen_only" />
     </PreferenceScreen>
     <PreferenceScreen
         android:key="mute_settings"
         android:title="@string/pref_mute_category" >
         <CheckBoxPreference
             android:key="mute_all_apps"
-            android:title="Mute All Apps" />
+            android:title="@string/mute_all_apps" />
 
         <PreferenceScreen
             android:key="mute_selected_screen"

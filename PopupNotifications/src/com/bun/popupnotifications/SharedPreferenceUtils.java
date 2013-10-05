@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 public class SharedPreferenceUtils {
 
@@ -45,6 +46,8 @@ public class SharedPreferenceUtils {
 	}
 
 	public static void setAllowedApps(Context ctx, String packageName, String muteDate){
+		
+		Log.d("SP", "============" + packageName);
 
 		appsPref = ctx.getSharedPreferences(
 				APP_LIST, Context.MODE_PRIVATE);
@@ -86,14 +89,7 @@ public class SharedPreferenceUtils {
 
 	public static void populateDefaultApps(Context ctx){
 
-		setAllowedApps(ctx,"com.google.android.gsf", "");
-		setAllowedApps(ctx,"com.whatsapp", "");
-		setAllowedApps(ctx,"com.android.email", "");
-		setAllowedApps(ctx,"com.google.android.gm", "");
-		setAllowedApps(ctx,"com.android.mms", "");
-		setAllowedApps(ctx,"com.android.phone", "");
-		setAllowedApps(ctx,"com.facebook.katana", "");
-		setAllowedApps(ctx,"com.tencent.mm", "");
+		
 	}
 
 	public static TreeSet<String> getAllAlowedApps(Context ctx){
@@ -156,6 +152,8 @@ public class SharedPreferenceUtils {
 	    Editor editor = sharedPrefs.edit();
 	    editor.clear();
 	    editor.commit();
+	    
+	    loadDefaultSettings(ctx);
 		
 	}
 	
@@ -168,6 +166,31 @@ public class SharedPreferenceUtils {
 		retVal = (String) blockedAppsPref.getString(packageName, null );
 
 		return retVal == null ? false : true;	
+	}
+	
+	public static void loadDefaultSettings(Context ctx){
+		setAllowedApps(ctx,"com.google.android.gsf", "");
+		setAllowedApps(ctx,"com.whatsapp", "");
+		setAllowedApps(ctx,"com.android.email", "");
+		setAllowedApps(ctx,"com.google.android.gm", "");
+		setAllowedApps(ctx,"com.android.mms", "");
+		setAllowedApps(ctx,"com.android.phone", "");
+		setAllowedApps(ctx,"com.facebook.katana", "");
+		setAllowedApps(ctx,"com.tencent.mm", "");
+		setAllowedApps(ctx,"com.linkedin.android", "");
+		setAllowedApps(ctx,"com.google.android.talk", "");		
+		setAllowedApps(ctx,"com.sonyericsson.conversations", "");
+		
+		setBlockedApps(ctx,"com.google.android.youtube", "");
+		setBlockedApps(ctx,"com.google.android.videos", "");
+		
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
+		sp.edit().putBoolean("expanded_notification", true).commit();
+		sp.edit().putBoolean("full_screen_notification", false).commit();
+		sp.edit().putBoolean("transparent_background", true).commit();
+		sp.edit().putBoolean("wake_up", true).commit();
+		sp.edit().putBoolean("mute_sleep_hours", true).commit();
+		
 	}
 
 }

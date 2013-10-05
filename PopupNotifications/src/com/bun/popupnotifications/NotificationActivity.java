@@ -223,7 +223,7 @@ public class NotificationActivity extends Activity {
 		
 
 
-		//registerForContextMenu(layout);	
+		registerForContextMenu(layout);	
 
 
 	}
@@ -275,7 +275,7 @@ public class NotificationActivity extends Activity {
 		NotificationBean n = (NotificationBean)adapter.getItem(contextMenuInfo.position);
 		if(n.getAppName() != null){
 			menu.setHeaderTitle("");  
-			menu.add(0, v.getId(), 0, "Mute App");
+			menu.add(0, v.getId(), 0, getString(R.string.mute_app));
 
 		}
 		//menu.add(0, v.getId(), 0, "Delete the Contact"); 
@@ -294,7 +294,7 @@ public class NotificationActivity extends Activity {
 		int intIndexSelected = info.position; 
 
 
-		if(item.getTitle()=="Mute App")
+		if(item.getTitle().equals(ctx.getString(R.string.mute_app)))
 		{
 			NotificationBean n = (NotificationBean)adapter.getItem(intIndexSelected);
 			showMuteOptions(n);
@@ -331,7 +331,7 @@ public class NotificationActivity extends Activity {
 		//alertDialog2.setIcon(R.drawable.delete);
 
 		// Setting Positive "Yes" Btn
-		alertDialog2.setPositiveButton("Save",
+		alertDialog2.setPositiveButton(ctx.getString(R.string.save),
 				new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				radioGroup1 = (RadioGroup) layout.findViewById(R.id.muteOptions1);
@@ -360,7 +360,7 @@ public class NotificationActivity extends Activity {
 			}
 		});
 		// Setting Negative "NO" Btn
-		alertDialog2.setNegativeButton("Cancel",
+		alertDialog2.setNegativeButton(ctx.getString(R.string.cancel),
 				new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {				
 				dialog.cancel();

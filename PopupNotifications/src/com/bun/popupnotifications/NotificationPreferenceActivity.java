@@ -60,17 +60,17 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 
 		Preference pref = findPreference("start_sleep_time");
-		pref.setSummary(prefs.getString("start_sleep_time", "00:00"));
+		pref.setSummary(prefs.getString("start_sleep_time", "23:00"));
 
 		Preference pref1 = findPreference("end_sleep_time");
-		pref1.setSummary(prefs.getString("end_sleep_time", "00:00"));
+		pref1.setSummary(prefs.getString("end_sleep_time", "07:00"));
 
 		Preference pref2 = findPreference("settings_service_enable");
 		Boolean isAccServiceRunning = Utils.isAccessibilityEnabled(this);
 		if(isAccServiceRunning){
-			pref2.setTitle("Service active");
+			pref2.setTitle(getString(R.string.service_active));
 		}else{
-			pref2.setTitle("Service inactive");
+			pref2.setTitle(getString(R.string.service_inactive));
 		}
 
 		setaccServiceListener();
@@ -172,7 +172,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 				NotificationPreferenceActivity.this);
 
 		// Setting Dialog Title
-		alertDialog2.setTitle("Warning");
+		alertDialog2.setTitle(getString(R.string.warning));
 
 		// Setting Dialog Message
 		alertDialog2.setMessage(R.string.tts_warning);
@@ -181,7 +181,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		//alertDialog2.setIcon(R.drawable.delete);
 
 		// Setting Positive "Yes" Btn
-		alertDialog2.setPositiveButton("Close",
+		alertDialog2.setPositiveButton(getString(R.string.close),
 				new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 
@@ -201,7 +201,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 				NotificationPreferenceActivity.this);
 
 		// Setting Dialog Title
-		alertDialog2.setTitle("Warning");
+		alertDialog2.setTitle(getString(R.string.warning));
 
 		// Setting Dialog Message
 		alertDialog2.setMessage(R.string.reset_message);
@@ -210,7 +210,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		//alertDialog2.setIcon(R.drawable.delete);
 
 		// Setting Positive "Yes" Btn
-		alertDialog2.setPositiveButton("Yes",
+		alertDialog2.setPositiveButton(getString(R.string.yes),
 				new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 
@@ -223,7 +223,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		});
 
 		// Setting Negative "NO" Btn
-		alertDialog2.setNegativeButton("Cancel",
+		alertDialog2.setNegativeButton(getString(R.string.cancel),
 				new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {				
 				dialog.cancel();
@@ -261,9 +261,9 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		Preference pref2 = findPreference("settings_service_enable");
 		Boolean isAccServiceRunning = Utils.isAccessibilityEnabled(this);
 		if(isAccServiceRunning){
-			pref2.setTitle("Service active");
+			pref2.setTitle(getString(R.string.service_active));
 		}else{
-			pref2.setTitle("Service inactive");
+			pref2.setTitle(getString(R.string.service_inactive));
 		}
 	}
 
@@ -325,7 +325,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 
 		if(muteAllApps){
-			muteAllAppsSummary = "All Apps Muted till: "+ muteAllAppsPref;
+			muteAllAppsSummary = getString(R.string.all_apps_muted_till)+ muteAllAppsPref;
 			getPreferenceScreen().findPreference("mute_selected_screen").setEnabled(false);
 
 		}else{
@@ -343,7 +343,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 					Object newValue) {
 
 				if(Boolean.valueOf(newValue.toString())){
-					customPref.setSummary("All Apps Muted");
+					customPref.setSummary(getString(R.string.all_apps_muted));
 					getPreferenceScreen().findPreference("mute_selected_screen").setEnabled(false);
 					showMuteOptions(customPref);
 				}else{
@@ -394,14 +394,14 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 				SharedPreferenceUtils.setAllowedApps(ctx, "com.AA", Utils.getMuteTime(ctx,radioButton2.getText().toString()));
 
-				customPref.setSummary("All Apps Muted till: "+ Utils.getMuteTime(ctx,radioButton2.getText().toString()));
+				customPref.setSummary(getString(R.string.all_apps_muted_till)+ Utils.getMuteTime(ctx,radioButton2.getText().toString()));
 
 				Toast.makeText(NotificationPreferenceActivity.this,
 						Utils.getMuteToastText(ctx, ctx.getString(R.string.mute_all_apps), radioButton2.getText().toString(), ""), Toast.LENGTH_SHORT).show();
 			}
 		});
 		// Setting Negative "NO" Btn
-		alertDialog2.setNegativeButton("Cancel",
+		alertDialog2.setNegativeButton(getString(R.string.cancel),
 				new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {				
 				dialog.cancel();
@@ -423,15 +423,16 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sp, String key) {
+		//Log.d("pref", "Value Changed---" + sp.getInt(key, 0));
 		// TODO Auto-generated method stub
 		if(key.equals("start_sleep_time")){
-			Log.d("pref", "Value Changed---" + sp.getString(key, "00:00"));
+			Log.d("pref", "Value Changed---" + sp.getString(key, "23:00"));
 			Preference pref = findPreference("start_sleep_time");
-			pref.setSummary(sp.getString(key, "00:00"));
+			pref.setSummary(sp.getString(key, "23:00"));
 		}else if(key.equals("end_sleep_time")){
-			Log.d("pref", "Value Changed---" + sp.getString(key, "00:00"));
+			Log.d("pref", "Value Changed---" + sp.getString(key, "07:00"));
 			Preference pref = findPreference("end_sleep_time");
-			pref.setSummary(sp.getString(key, "00:00"));
+			pref.setSummary(sp.getString(key, "07:00"));
 		}
 
 	}

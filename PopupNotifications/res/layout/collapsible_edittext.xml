@@ -3,6 +3,6 @@
     android:id="@+id/searchBoxId"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:hint="Search Application"
+    android:hint="@string/search_applications"
     android:textColor="#FFFFFF"
     />

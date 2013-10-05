@@ -16,7 +16,7 @@ public class HelperUtils {
 
 	public static Boolean isBlockedTime(String s, Context ctx, String packageName){
 
-		if(s.toUpperCase().equals("FOR EVER")){
+		if(s.toUpperCase().equals(ctx.getString(R.string.for_ever))){
 			return true;
 		}
 		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");

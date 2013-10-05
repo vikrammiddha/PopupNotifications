@@ -49,7 +49,7 @@
         android:layout_gravity="center"
         android:background="@drawable/layout_bg"
         android:onClick="clearNotifications"
-        android:text="Dismiss All"
+        android:text="@string/dismiss_all"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 

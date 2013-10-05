@@ -70,7 +70,7 @@ public class AppSelectionActivity extends SherlockActivity{
 				AppSelectionActivity.this);
 
 		// Setting Dialog Title
-		alertDialog2.setTitle("Popup Notification Service");
+		alertDialog2.setTitle(getString(R.string.popup_not_service));
 
 		// Setting Dialog Message
 		alertDialog2.setMessage(R.string.service_warning);
@@ -79,7 +79,7 @@ public class AppSelectionActivity extends SherlockActivity{
 		//alertDialog2.setIcon(R.drawable.delete);
 
 		// Setting Positive "Yes" Btn
-		alertDialog2.setPositiveButton("ACTIVATE",
+		alertDialog2.setPositiveButton(getString(R.string.activate),
 				new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS); 
@@ -87,7 +87,7 @@ public class AppSelectionActivity extends SherlockActivity{
 			}
 		});
 		// Setting Negative "NO" Btn
-		alertDialog2.setNegativeButton("LATER",
+		alertDialog2.setNegativeButton(getString(R.string.later),
 				new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 
@@ -154,7 +154,7 @@ public class AppSelectionActivity extends SherlockActivity{
 
 
 
-		menu.add(Menu.NONE,0,0,"Search")
+		menu.add(Menu.NONE,0,0,getString(R.string.search))
 		.setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
 		.setActionView(R.layout.collapsible_edittext)
 		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
@@ -177,7 +177,7 @@ public class AppSelectionActivity extends SherlockActivity{
 		protected void onPreExecute() {
 			super.onPreExecute();
 			progDailog = new ProgressDialog(AppSelectionActivity.this);
-			progDailog.setMessage("Loading...");
+			progDailog.setMessage(getString(R.string.loading));
 			progDailog.setIndeterminate(false);
 			progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 			progDailog.setCancelable(true);
@@ -216,7 +216,7 @@ public class AppSelectionActivity extends SherlockActivity{
 
 			for (ApplicationInfo packageInfo : packages) {
 
-				if(packageInfo.loadLabel(pm).toString().startsWith("com.")){
+				if(packageInfo.loadLabel(pm).toString().startsWith(getString(R.string.com))){
 					continue;
 				}
 
@@ -255,8 +255,8 @@ public class AppSelectionActivity extends SherlockActivity{
 				adapter = new AppSelectionAdapter(this);
 			}
 			
-			Log.d("adapter", "adapter=======" + adapter);
-			Log.d("adapter", "aList=======" + aList);
+			//Log.d("adapter", "adapter=======" + adapter);
+			//Log.d("adapter", "aList=======" + aList);
 			
 			if(aList != null)
 				adapter.addAppList(aList);
@@ -282,6 +282,10 @@ public class AppSelectionActivity extends SherlockActivity{
 					return a1.getAppName().compareToIgnoreCase(a2.getAppName());
 				}
 			});
+			
+			if(adapter == null){
+				adapter = new AppSelectionAdapter(this);
+			}
 
 			adapter.addAppList(aList);
 

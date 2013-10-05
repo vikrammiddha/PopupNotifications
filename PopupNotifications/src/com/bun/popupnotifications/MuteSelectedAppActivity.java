@@ -60,10 +60,12 @@ public class MuteSelectedAppActivity extends SherlockActivity{
 		layout = (ListView) findViewById(R.id.muteSelectedListViewId);	
 
 		adapter = new MuteSelectedAppsAdapter(this);
-
+		
+		ctx = this;
+		
 		new Load().execute();
 
-		ctx = this;
+		
 
 	}
 
@@ -71,7 +73,7 @@ public class MuteSelectedAppActivity extends SherlockActivity{
 
 	@Override
 	public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
-		Log.d("App Selection", "Menu Item ===" + item.getTitle() + "=== Id==" + item.getItemId());
+		//Log.d("App Selection", "Menu Item ===" + item.getTitle() + "=== Id==" + item.getItemId());
 
 
 		switch (item.getItemId()) {
@@ -113,7 +115,7 @@ public class MuteSelectedAppActivity extends SherlockActivity{
 
 
 
-		menu.add(Menu.NONE,0,0,"Search")
+		menu.add(Menu.NONE,0,0,ctx.getString(R.string.search))
 		.setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
 		.setActionView(R.layout.collapsible_edittext)
 		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);		
@@ -130,7 +132,7 @@ public class MuteSelectedAppActivity extends SherlockActivity{
 		protected void onPreExecute() {
 			super.onPreExecute();
 			progDailog = new ProgressDialog(MuteSelectedAppActivity.this);
-			progDailog.setMessage("Loading...");
+			progDailog.setMessage(ctx.getString(R.string.loading));
 			progDailog.setIndeterminate(false);
 			progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 			progDailog.setCancelable(true);
@@ -169,7 +171,7 @@ public class MuteSelectedAppActivity extends SherlockActivity{
 
 			for (ApplicationInfo packageInfo : packages) {
 
-				if(packageInfo.loadLabel(pm).toString().startsWith("com.")){
+				if(packageInfo.loadLabel(pm).toString().startsWith(ctx.getString(R.string.com))){
 					continue;
 				}
 
@@ -193,7 +195,7 @@ public class MuteSelectedAppActivity extends SherlockActivity{
 
 				if(!spText.equals("--") && !spText.equals("")){
 					bean.setIsSelected(true);
-					bean.setSummaryText("Muted Till : " + spText);
+					bean.setSummaryText(ctx.getString(R.string.muted_till) + spText);
 					bean.setRemoveIcon(this.getResources().getDrawable(R.drawable.remove));
 				}else{
 					bean.setIsSelected(false);

@@ -100,7 +100,7 @@ public class BlockedAppsActivity extends SherlockActivity{
 		//Used to put dark icons on light action bar
 		boolean isLight = false;
 		
-		menu.add(Menu.NONE,0,0,"Search")
+		menu.add(Menu.NONE,0,0,getString(R.string.search))
 		.setIcon(isLight ? R.drawable.ic_search_inverse : R.drawable.ic_search)
 		.setActionView(R.layout.collapsible_edittext)
 		.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);	
@@ -117,7 +117,7 @@ public class BlockedAppsActivity extends SherlockActivity{
 		protected void onPreExecute() {
 			super.onPreExecute();
 			progDailog = new ProgressDialog(BlockedAppsActivity.this);
-			progDailog.setMessage("Loading...");
+			progDailog.setMessage(getString(R.string.loading));
 			progDailog.setIndeterminate(false);
 			progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 			progDailog.setCancelable(true);
@@ -156,7 +156,7 @@ public class BlockedAppsActivity extends SherlockActivity{
 
 			for (ApplicationInfo packageInfo : packages) {
 
-				if(packageInfo.loadLabel(pm).toString().startsWith("com.")){
+				if(packageInfo.loadLabel(pm).toString().startsWith(getString(R.string.com))){
 					continue;
 				}
 

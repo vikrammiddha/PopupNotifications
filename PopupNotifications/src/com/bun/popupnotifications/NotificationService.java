@@ -38,7 +38,7 @@ import android.widget.TextView;
 
 public class NotificationService extends AccessibilityService { 
 
-	DBController controller;	
+		
 	private Context ctx;
 	public Utils utils;
 	BroadcastReceiver mScreenReceiver = new ScreenReceiver();
@@ -521,7 +521,7 @@ public class NotificationService extends AccessibilityService {
 	@Override
 	protected void onServiceConnected() {
 		try{			
-			SharedPreferenceUtils.populateDefaultApps(this);
+			SharedPreferenceUtils.loadDefaultSettings(this);
 			Log.d("NotificationHistory", "notification service started.");
 			ctx = this;	      
 			utils = new Utils(ctx);

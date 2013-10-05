@@ -54,5 +54,53 @@
     
     <string name="market_url">market://details?id=com.bun.popupnotifications</string>
     
+    
+    
+    <string name="popup_not_service">Popup Notification Service</string>
+    <string name="activate">Activate</string>
+    <string name="later">Later</string>
+    <string name="search">Search</string>
+    <string name="loading">Loading....</string>
+    <string name="com">com.</string>
+    <string name="for_ever">FOR EVER</string>
+    <string name="mute_app">Mute App</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="service_active">Service Active</string>
+    <string name="service_inactive">Service Inactive</string>
+    <string name="warning">Warning</string>
+    <string name="close">Close</string>
+    <string name="yes">Yes</string>
+    <string name="all_apps_muted_till">All Apps Muted till: </string>
+    <string name="all_apps_muted">All Apps Muted</string>
+    <string name="broadcast_receiver_string">com.bun.popupnotification.NOTIFICATION_CHANGED</string>
+    <string name="muted_till">Muted till: </string>
+    <string name="muted">Muted </string>
+    <string name="mins_15"> for 15 minutes</string>
+    <string name="mins_30"> for 30 minutes</string>
+    <string name="hour_1"> for 1 hour</string>
+    <string name="hour_4"> for 4 hours</string>
+    <string name="hour_8"> for 8 hours</string>
+    <string name="forever"> for ever</string>
+    <string name="search_applications">Search Application</string>
+    <string name="mute_selected_apps">Mute Selected Apps</string>
+    <string name="dismiss_all">Dismiss All</string>
+    <string name="show_expanded_notifications">Show Expanded Notifications</string>
+    <string name="expanded_not_summary">Expanded Notifications displays each notifications separately.</string>
+    <string name="show_fullscreen_not">Show FullScreen Notifications</string>
+    <string name="show_fullscreen_summary">Notifications will be shown on full screen instead of a small window.</string>
+    <string name="not_text_color">Notification text color</string>
+    <string name="not_back_color">Notification background color</string>
+    <string name="set_transparent_background">Set transparent background</string>
+    <string name="wake_on_not">Wake on Notification</string>
+    <string name="lock_screen_only">Lock Screen Only</string>
+    <string name="lock_screen_only_summary">Display Notifications only when screen is locked.</string>
+    <string name="lock_screen_only">Lock Screen Only</string>
+    <string name="lock_screen_only">Lock Screen Only</string>
+    
+    
+    
+    
+    
 
 </resources>

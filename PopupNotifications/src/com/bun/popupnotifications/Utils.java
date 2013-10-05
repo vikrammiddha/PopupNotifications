@@ -460,24 +460,24 @@ public class Utils {
 		String retVal = "";
 		
 		if(text1.equals(ctx.getString(R.string.mute_this_app))){
-			retVal = "Muted " + appName;
+			retVal = ctx.getString(R.string.muted) + " " + appName;
 		}else if(text1.equals(ctx.getString(R.string.mute_all_apps))){
-			retVal = "Muted all Apps";
+			retVal = ctx.getString(R.string.mute_all_apps);
 		}
 		
 		
 		if(text2.equals(ctx.getString(R.string.mute_15_mins))){
-			retVal += " for 15 minutes";
+			retVal += " " + ctx.getString(R.string.mins_15);
 		}else if(text2.equals(ctx.getString(R.string.mute_30_mins))){
-			retVal += " for 30 minutes";
+			retVal +=  " " + ctx.getString(R.string.mins_30);
 		}else if(text2.equals(ctx.getString(R.string.mute_1_hour))){
-			retVal += " for 1 hour";
+			retVal +=  " " + ctx.getString(R.string.hour_1);
 		}else if(text2.equals(ctx.getString(R.string.mute_4_hours))){
-			retVal += " for 4 hours";
+			retVal += " " +  ctx.getString(R.string.hour_4);
 		}else if(text2.equals(ctx.getString(R.string.mute_8_hours))){
-			retVal += " for 8 hours";
+			retVal +=  " " + ctx.getString(R.string.hour_8);
 		}else if(text2.equals(ctx.getString(R.string.mute_foreever))){
-			retVal += " for ever";
+			retVal +=  " " + ctx.getString(R.string.mute_foreever);
 		}
 		
 		return retVal;

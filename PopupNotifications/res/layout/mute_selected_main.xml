@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_weight="90"
-        android:text="Mute Selected Apps"
+        android:text="@string/mute_selected_apps"
         android:onClick="muteSelectedApps"
         android:layout_gravity="center"
         />

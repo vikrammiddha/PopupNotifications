@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Popup Notifications</string>
+    <string name="app_name">Popup Noti Free</string>
     
     <string name="hello_world">Hello world!</string>
-    <string name="package_name">com.bun.popupnotifications</string>
+    <string name="package_name">com.bun.popupnotificationsfree</string>
     <string name="crash_toast_text">Ooooops ! Popup Notification Crashed. Collecting Data !</string>
     <string name="crash_dialog_title">Popup Notification has crashed</string>
     <string name="crash_dialog_text">An unexpected error occurred forcing the
@@ -52,11 +52,11 @@
     <string name="start_time">Start Time</string>
     <string name="end_time">End Time</string>
     
-    <string name="market_url">market://details?id=com.bun.popupnotifications</string>
+    <string name="market_url">market://details?id=com.bun.popupnotificationsfree</string>
     
     
     
-    <string name="popup_not_service">Popup Notification Service</string>
+    <string name="popup_not_service">Popup Noti Free Service</string>
     <string name="activate">Activate</string>
     <string name="later">Later</string>
     <string name="search">Search</string>

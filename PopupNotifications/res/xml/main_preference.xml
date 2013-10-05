@@ -54,7 +54,7 @@
                 android:title="@string/pref_sleep_hours" >
             </CheckBoxPreference>
 
-            <com.bun.popupnotifications.TimePreference
+            <com.bun.popupnotificationsfree.TimePreference
                 android:id="@+id/startId"
                 android:name="@string/start_time"
                 android:dependency="mute_sleep_hours"
@@ -62,7 +62,7 @@
                 android:key="start_sleep_time"
                 android:summary="test"
                 android:title="@string/start_time" />
-            <com.bun.popupnotifications.TimePreference
+            <com.bun.popupnotificationsfree.TimePreference
                 android:id="@+id/endId"
                 android:name="@string/end_time"
                 android:dependency="mute_sleep_hours"

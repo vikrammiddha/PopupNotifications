@@ -170,16 +170,16 @@ public class SharedPreferenceUtils {
 	
 	public static void loadDefaultSettings(Context ctx){
 		setAllowedApps(ctx,"com.google.android.gsf", "");
-		setAllowedApps(ctx,"com.whatsapp", "");
+		//setAllowedApps(ctx,"com.whatsapp", "");
 		setAllowedApps(ctx,"com.android.email", "");
-		setAllowedApps(ctx,"com.google.android.gm", "");
-		setAllowedApps(ctx,"com.android.mms", "");
-		setAllowedApps(ctx,"com.android.phone", "");
-		setAllowedApps(ctx,"com.facebook.katana", "");
-		setAllowedApps(ctx,"com.tencent.mm", "");
-		setAllowedApps(ctx,"com.linkedin.android", "");
-		setAllowedApps(ctx,"com.google.android.talk", "");		
-		setAllowedApps(ctx,"com.sonyericsson.conversations", "");
+		//setAllowedApps(ctx,"com.google.android.gm", "");
+		//setAllowedApps(ctx,"com.android.mms", "");
+		//setAllowedApps(ctx,"com.android.phone", "");
+		//setAllowedApps(ctx,"com.facebook.katana", "");
+		//setAllowedApps(ctx,"com.tencent.mm", "");
+		//setAllowedApps(ctx,"com.linkedin.android", "");
+		//setAllowedApps(ctx,"com.google.android.talk", "");		
+		//setAllowedApps(ctx,"com.sonyericsson.conversations", "");
 		
 		setBlockedApps(ctx,"com.google.android.youtube", "");
 		setBlockedApps(ctx,"com.google.android.videos", "");

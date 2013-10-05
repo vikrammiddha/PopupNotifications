@@ -53,6 +53,7 @@
     <string name="end_time">End Time</string>
     
     <string name="market_url">market://details?id=com.bun.popupnotificationsfree</string>
+    <string name="market_url_paid">market://details?id=com.bun.popupnotifications</string>
     
     
     
@@ -97,6 +98,10 @@
     <string name="lock_screen_only_summary">Display Notifications only when screen is locked.</string>
     <string name="lock_screen_only">Lock Screen Only</string>
     <string name="lock_screen_only">Lock Screen Only</string>
+    
+    <string name="free_app_limit">Only 2 apps can be selected in free version. Upgrade to Pro version to remove this limit.</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="upgrade_to_pro">Upgrade to Pro version to remove limit of 2 apps.</string>
     
     
     

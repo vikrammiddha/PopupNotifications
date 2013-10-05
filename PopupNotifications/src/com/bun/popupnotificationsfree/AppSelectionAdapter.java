@@ -6,8 +6,12 @@ import java.util.List;
 import com.bun.popupnotificationsfree.R;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 
 import android.view.View;
@@ -19,7 +23,10 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 	
@@ -115,9 +122,17 @@ public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 	            
 	            //planet.setSelected(cb.isChecked());
 	            if (holder.cb.isChecked()) {
-	                nList.get(position).setIsSelected(true);
-	                holder.cb.setChecked(true);
-	                SharedPreferenceUtils.setAllowedApps(context, n.getPackageName(), "");
+	                
+	                if((SharedPreferenceUtils.getAllAlowedApps(context).size()+1) > 2){
+	                	showBuyMessage();
+	                	nList.get(position).setIsSelected(false);
+		                holder.cb.setChecked(false);
+	                	
+	                }else{
+	                	SharedPreferenceUtils.setAllowedApps(context, n.getPackageName(), "");
+	                	nList.get(position).setIsSelected(true);
+		                holder.cb.setChecked(true);
+	                }
 	            } else if (!holder.cb.isChecked()) {
 	            	nList.get(position).setIsSelected(false);
 	                holder.cb.setChecked(false);
@@ -128,6 +143,46 @@ public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 
 		return view;
 	}
+	
+	
+	private void showBuyMessage(){
+		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
+				context);
+
+		// Setting Dialog Title
+		alertDialog2.setTitle(context.getString(R.string.warning));
+
+		// Setting Dialog Message
+		alertDialog2.setMessage(R.string.free_app_limit);
+
+		// Setting Icon to Dialog
+		//alertDialog2.setIcon(R.drawable.delete);
+
+		// Setting Positive "Yes" Btn
+		alertDialog2.setPositiveButton(context.getString(R.string.upgrade),
+				new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				
+				Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(context.getString(R.string.market_url_paid)));
+	        	context.startActivity(intent);
+				
+			}
+		});
+
+		// Setting Negative "NO" Btn
+		alertDialog2.setNegativeButton(context.getString(R.string.cancel),
+				new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {				
+				dialog.cancel();
+			}
+		});
+
+		// Showing Alert Dialog
+		alertDialog2.show();
+
+	}
+	
+	
 	
 	@Override
 	public Filter getFilter() {

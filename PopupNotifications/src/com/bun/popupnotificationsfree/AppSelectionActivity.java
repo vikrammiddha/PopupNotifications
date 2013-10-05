@@ -61,6 +61,8 @@ public class AppSelectionActivity extends SherlockActivity{
 		if(serviceStatus == false){
 			showServiceAlert();
 		}
+		
+		
 
 	}
 
@@ -144,6 +146,10 @@ public class AppSelectionActivity extends SherlockActivity{
 			Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(getString(R.string.market_url)));
         	startActivity(intent);
 			break;
+			
+		case 4:
+			showBuyMessage();
+			break;
 
 		default:
 			return super.onOptionsItemSelected(item);
@@ -151,6 +157,43 @@ public class AppSelectionActivity extends SherlockActivity{
 		}   
 		return super.onOptionsItemSelected(item);
 	} 
+	
+	private void showBuyMessage(){
+		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
+				this);
+
+		// Setting Dialog Title
+		alertDialog2.setTitle(this.getString(R.string.warning));
+
+		// Setting Dialog Message
+		alertDialog2.setMessage(R.string.upgrade_to_pro);
+
+		// Setting Icon to Dialog
+		//alertDialog2.setIcon(R.drawable.delete);
+
+		// Setting Positive "Yes" Btn
+		alertDialog2.setPositiveButton(this.getString(R.string.upgrade),
+				new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				
+				Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(getString(R.string.market_url_paid)));
+	        	startActivity(intent);
+				
+			}
+		});
+
+		// Setting Negative "NO" Btn
+		alertDialog2.setNegativeButton(this.getString(R.string.cancel),
+				new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {				
+				dialog.cancel();
+			}
+		});
+
+		// Showing Alert Dialog
+		alertDialog2.show();
+
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
@@ -166,9 +209,12 @@ public class AppSelectionActivity extends SherlockActivity{
 
 		menu.add(Menu.NONE,1,1,getString(R.string.menu_settings)); 
 
-		menu.add(Menu.NONE,2,2,getString(R.string.menu_tutorial)); 
+		//menu.add(Menu.NONE,2,2,getString(R.string.menu_tutorial)); 
 		
 		menu.add(Menu.NONE,3,3,getString(R.string.menu_rateus)); 
+		
+		menu.add(Menu.NONE,4,4,getString(R.string.upgrade)); 
+		
 
 		return super.onCreateOptionsMenu(menu);
 

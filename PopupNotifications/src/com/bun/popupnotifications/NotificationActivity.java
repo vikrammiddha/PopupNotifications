@@ -12,7 +12,11 @@ import com.fortysevendeg.android.swipelistview.SwipeListView;
 
 
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
+import android.os.StrictMode;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 
@@ -23,6 +27,7 @@ import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
 import android.app.WallpaperManager;
 import android.app.PendingIntent.CanceledException;
+import android.app.admin.DevicePolicyManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -41,6 +46,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnTouchListener;
@@ -68,13 +74,16 @@ public class NotificationActivity extends Activity {
 	static final int DELTA = 50;
 	enum Direction {LEFT, RIGHT;}
 	public Context ctx;
+	Window window;
+	
+	public Boolean unlockLockScreen = false;
 	
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		//Debug.startMethodTracing("popup");
-		Window window = getWindow();
+		window = getWindow();
 		super.onCreate(savedInstanceState);	
 
 		myKeyGuard = (KeyguardManager)getSystemService(Context.KEYGUARD_SERVICE);
@@ -84,7 +93,14 @@ public class NotificationActivity extends Activity {
 		window.addFlags(//WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON 
 				WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
 				); 
-
+		
+		//KeyguardManager km = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+		//if(km.inKeyguardRestrictedInputMode()){
+			//unlockLockScreen = true;
+		//}
+		
+		//getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+		
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.notification_main);
@@ -99,13 +115,15 @@ public class NotificationActivity extends Activity {
 		//layout.setBackgroundColor(Color.TRANSPARENT);
 		populateAdapter(true);
 		setLayoutBackground();
+		
+		
 
 		layout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
 				try {					
-					getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+					//getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 					Utils.intentMap.get(adapter.getItem(position).getPackageName()).send();					
 					Utils.notList.clear();
 					Utils.intentMap.clear();
@@ -117,6 +135,8 @@ public class NotificationActivity extends Activity {
 
 			}
 		});
+		
+		
 
 		layout.setSwipeListViewListener(new BaseSwipeListViewListener() {
 			@Override
@@ -157,18 +177,30 @@ public class NotificationActivity extends Activity {
 			@Override
 			public void onClickBackView(int position) {
 				Log.d("swipe", "onClickBackView----------"); 
-				getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
-				try {
+				
+				
+				try {				
+										
 					Utils.intentMap.get(Utils.notList.get(position).getPackageName()).send();
+					unlockLockScreen = false;
+					
+					myLock.disableKeyguard();
+										
+					
+					//getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+					//getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}					
 				Utils.notList.clear();
+				
 			}
 
 			@Override
-			public void onDismiss(int[] reverseSortedPositions) {
+			public void onDismiss(int[] reverseSortedPositions) {				
+				
 
 				for (int position : reverseSortedPositions) {
 					//Log.d("swipe", "onDismiss----------" + position);
@@ -182,12 +214,16 @@ public class NotificationActivity extends Activity {
 					Utils.intentMap.clear();
 				}
 				adapter.notifyDataSetChanged();
+				
 			}
 
 		});
+				
+		
+		
 
 
-		registerForContextMenu(layout);	
+		//registerForContextMenu(layout);	
 
 
 	}
@@ -438,7 +474,8 @@ public class NotificationActivity extends Activity {
 		super.onPause();
 		//Utils.notList.clear();
 		unregisterReceiver(mReceiver);
-
+		
+						
 		//PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 
 		//if(pm.isScreenOn()){
@@ -451,6 +488,15 @@ public class NotificationActivity extends Activity {
 	}
 
 	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		myLock.reenableKeyguard();
+		
+		
+	}
+
+	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
@@ -458,15 +504,30 @@ public class NotificationActivity extends Activity {
 		IntentFilter intentFilter = new IntentFilter(NotificationReceiver.ACTION_NOTIFICATION_CHANGED);
 		registerReceiver(mReceiver, intentFilter);
 
-		populateAdapter(true);
-
+		populateAdapter(true);	
 
 
 	}
 
 	private void setLayoutBackground(){
+		
+		/*WallpaperManager wallpaperManager1 = WallpaperManager
+	            .getInstance(getApplicationContext());
+		final Drawable wallpaperDrawable1 = wallpaperManager1.peekDrawable();
+		
 		LinearLayout ll = (LinearLayout) findViewById(R.id.mainLayoutId);	
-		ll.setBackgroundColor(Color.parseColor("#90FFFFFF"));
+		
+		if (wallpaperDrawable1==null)
+		{                       
+			ll.setBackgroundColor(Color.parseColor("#90FFFFFF"));
+
+		}
+		else
+		{
+			ll.setBackground(wallpaperDrawable1);		    
+		}
+		
+		*/
 
 	}
 

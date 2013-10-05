@@ -22,7 +22,7 @@ public class NotificationBean {
 	private String tickerText;	
 	private int notCount;
 	
-
+	
 	public int getNotCount() {
 		return notCount;
 	}

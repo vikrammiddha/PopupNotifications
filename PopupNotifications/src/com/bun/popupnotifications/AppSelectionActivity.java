@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -133,6 +134,11 @@ public class AppSelectionActivity extends SherlockActivity{
 			Intent i = new Intent(this, NotificationPreferenceActivity.class);
 			startActivityForResult(i, 0);
 			break;
+			
+		case 3:
+			Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(getString(R.string.market_url)));
+        	startActivity(intent);
+			break;
 
 		default:
 			return super.onOptionsItemSelected(item);
@@ -156,6 +162,8 @@ public class AppSelectionActivity extends SherlockActivity{
 		menu.add(Menu.NONE,1,1,getString(R.string.menu_settings)); 
 
 		menu.add(Menu.NONE,2,2,getString(R.string.menu_tutorial)); 
+		
+		menu.add(Menu.NONE,3,3,getString(R.string.menu_rateus)); 
 
 		return super.onCreateOptionsMenu(menu);
 

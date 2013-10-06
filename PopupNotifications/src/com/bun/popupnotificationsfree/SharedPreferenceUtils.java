@@ -7,6 +7,7 @@ import java.util.TreeSet;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -190,6 +191,10 @@ public class SharedPreferenceUtils {
 		sp.edit().putBoolean("transparent_background", true).commit();
 		sp.edit().putBoolean("wake_up", true).commit();
 		sp.edit().putBoolean("mute_sleep_hours", true).commit();
+		sp.edit().putString("start_sleep_time", "23:00").commit();
+		sp.edit().putString("end_sleep_time", "07:00").commit();
+		sp.edit().putInt("font_color", Color.WHITE);
+		sp.edit().putInt("background_color_not", Color.BLACK);
 		
 	}
 

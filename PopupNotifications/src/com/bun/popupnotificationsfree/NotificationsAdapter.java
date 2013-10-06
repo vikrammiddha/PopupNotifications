@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 
@@ -121,9 +122,17 @@ public class NotificationsAdapter extends BaseAdapter{
 		message += n.getMessage();		
 		
 		
-		holder.text.setText(message);	
+		holder.text.setText(message);
 		
-		holder.text.setTextColor(HelperUtils.getFontColor(context));
+		int fontColor = HelperUtils.getFontColor(context);
+		
+		if(fontColor == 0){
+			holder.text.setTextColor(Color.WHITE);
+		}else{
+			holder.text.setTextColor(fontColor);
+		}
+		
+		
 		
 		//holder.text.setMaxLines(HelperUtils.getTextSize(context));
 		

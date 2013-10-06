@@ -432,13 +432,23 @@ public class NotificationActivity extends Activity {
 		}
 
 		ll.setLayoutParams(params);
-		Button dismissButton = (Button) findViewById(R.id.CloseWindowId);	
+		Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
+		
+		int fontColor = HelperUtils.getFontColor(ctx);
+		if(fontColor == 0){
+			fontColor = Color.WHITE;
+		}
+		
+		int bgColor = HelperUtils.getBackgroundColor(ctx);
+		if(bgColor == 0){
+			bgColor = Color.BLACK;
+		}
 		
 		if(HelperUtils.getBackgroundColor(ctx) != null ){
 			int strokeWidth = 3; // 3dp
 		    int roundRadius = 10; // 8dp
 		    int strokeColor = Color.parseColor("#B1BCBE");
-		    int fillColor = HelperUtils.getBackgroundColor(ctx);
+		    int fillColor = bgColor;
 
 		    GradientDrawable gd = new GradientDrawable();
 		    gd.setColor(fillColor);
@@ -451,7 +461,7 @@ public class NotificationActivity extends Activity {
 		    int strokeWidth1 = 3; // 3dp
 		    int roundRadius1 = 10; // 8dp
 		    int strokeColor1 = Color.parseColor("#B1BCBE");
-		    int fillColor1 = HelperUtils.getBackgroundColor(ctx);
+		    int fillColor1 = bgColor;
 
 		    GradientDrawable gd1 = new GradientDrawable();
 		    gd1.setColor(fillColor1);
@@ -466,7 +476,7 @@ public class NotificationActivity extends Activity {
 		}
 		
 		
-		dismissButton.setTextColor(HelperUtils.getFontColor(ctx));
+		dismissButton.setTextColor(fontColor);
 	}
 
 	@Override

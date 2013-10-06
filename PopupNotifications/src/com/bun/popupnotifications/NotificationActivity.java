@@ -75,9 +75,9 @@ public class NotificationActivity extends Activity {
 	enum Direction {LEFT, RIGHT;}
 	public Context ctx;
 	Window window;
-	
+
 	public Boolean unlockLockScreen = false;
-	
+
 
 
 	@Override
@@ -93,14 +93,14 @@ public class NotificationActivity extends Activity {
 		window.addFlags(//WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON 
 				WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
 				); 
-		
+
 		//KeyguardManager km = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
 		//if(km.inKeyguardRestrictedInputMode()){
-			//unlockLockScreen = true;
+		//unlockLockScreen = true;
 		//}
-		
+
 		//getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
-		
+
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.notification_main);
@@ -115,8 +115,8 @@ public class NotificationActivity extends Activity {
 		//layout.setBackgroundColor(Color.TRANSPARENT);
 		populateAdapter(true);
 		setLayoutBackground();
-		
-		
+
+
 
 		layout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -135,8 +135,8 @@ public class NotificationActivity extends Activity {
 
 			}
 		});
-		
-		
+
+
 
 		layout.setSwipeListViewListener(new BaseSwipeListViewListener() {
 			@Override
@@ -177,30 +177,30 @@ public class NotificationActivity extends Activity {
 			@Override
 			public void onClickBackView(int position) {
 				Log.d("swipe", "onClickBackView----------"); 
-				
-				
+
+
 				try {				
-										
+
 					Utils.intentMap.get(Utils.notList.get(position).getPackageName()).send();
 					unlockLockScreen = false;
-					
+
 					myLock.disableKeyguard();
-										
-					
+
+
 					//getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 					//getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-					
+
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}					
 				Utils.notList.clear();
-				
+
 			}
 
 			@Override
 			public void onDismiss(int[] reverseSortedPositions) {				
-				
+
 
 				for (int position : reverseSortedPositions) {
 					//Log.d("swipe", "onDismiss----------" + position);
@@ -214,21 +214,21 @@ public class NotificationActivity extends Activity {
 					Utils.intentMap.clear();
 				}
 				adapter.notifyDataSetChanged();
-				
+
 			}
 
 		});
-				
-		
-		
+
+
+
 
 
 		registerForContextMenu(layout);	
 
 
 	}
-		
-	
+
+
 
 
 	private NotificationReceiver mReceiver = new NotificationReceiver() {
@@ -407,7 +407,7 @@ public class NotificationActivity extends Activity {
 		LinearLayout ll = (LinearLayout) findViewById(R.id.expandingLayoutId);	
 
 		LayoutParams params = ll.getLayoutParams();
-		
+
 		LinearLayout ll1 = (LinearLayout) findViewById(R.id.expandingLayoutId1);
 
 		// Changes the height and width to the specified *pixels*
@@ -431,41 +431,50 @@ public class NotificationActivity extends Activity {
 		}
 
 		ll.setLayoutParams(params);
-		Button dismissButton = (Button) findViewById(R.id.CloseWindowId);	
-		
+		Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
+		int fontColor = HelperUtils.getFontColor(ctx);
+		if(fontColor == 0){
+			fontColor = Color.WHITE;
+		}
+
+		int bgColor = HelperUtils.getBackgroundColor(ctx);
+		if(bgColor == 0){
+			bgColor = Color.BLACK;
+		}
+
 		if(HelperUtils.getBackgroundColor(ctx) != null ){
 			int strokeWidth = 3; // 3dp
-		    int roundRadius = 10; // 8dp
-		    int strokeColor = Color.parseColor("#B1BCBE");
-		    int fillColor = HelperUtils.getBackgroundColor(ctx);
+			int roundRadius = 10; // 8dp
+			int strokeColor = Color.parseColor("#B1BCBE");
+			int fillColor = bgColor;
 
-		    GradientDrawable gd = new GradientDrawable();
-		    gd.setColor(fillColor);
-		    gd.setCornerRadius(roundRadius);
-		    gd.setStroke(strokeWidth, strokeColor);	
-		    
-		    ll1.setBackground(gd);
-		    
-		    
-		    int strokeWidth1 = 3; // 3dp
-		    int roundRadius1 = 10; // 8dp
-		    int strokeColor1 = Color.parseColor("#B1BCBE");
-		    int fillColor1 = HelperUtils.getBackgroundColor(ctx);
+			GradientDrawable gd = new GradientDrawable();
+			gd.setColor(fillColor);
+			gd.setCornerRadius(roundRadius);
+			gd.setStroke(strokeWidth, strokeColor);	
 
-		    GradientDrawable gd1 = new GradientDrawable();
-		    gd1.setColor(fillColor1);
-		    gd1.setCornerRadius(roundRadius1);
-		    gd1.setStroke(strokeWidth1, strokeColor1);	
-		    dismissButton.setBackgroundDrawable(gd1);
-		    
-		    if(HelperUtils.isTransparentBackround(ctx)){
-		    	ll1.getBackground().setAlpha(200);
-		    	dismissButton.getBackground().setAlpha(200);
-		    }
+			ll1.setBackground(gd);
+
+
+			int strokeWidth1 = 3; // 3dp
+			int roundRadius1 = 10; // 8dp
+			int strokeColor1 = Color.parseColor("#B1BCBE");
+			int fillColor1 = bgColor;
+
+			GradientDrawable gd1 = new GradientDrawable();
+			gd1.setColor(fillColor1);
+			gd1.setCornerRadius(roundRadius1);
+			gd1.setStroke(strokeWidth1, strokeColor1);	
+			dismissButton.setBackgroundDrawable(gd1);
+
+			if(HelperUtils.isTransparentBackround(ctx)){
+				ll1.getBackground().setAlpha(200);
+				dismissButton.getBackground().setAlpha(200);
+			}
 		}
-		
-		
-		dismissButton.setTextColor(HelperUtils.getFontColor(ctx));
+
+
+		dismissButton.setTextColor(fontColor);
 	}
 
 	@Override
@@ -474,8 +483,8 @@ public class NotificationActivity extends Activity {
 		super.onPause();
 		//Utils.notList.clear();
 		unregisterReceiver(mReceiver);
-		
-						
+
+
 		//PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 
 		//if(pm.isScreenOn()){
@@ -492,8 +501,8 @@ public class NotificationActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		myLock.reenableKeyguard();
-		
-		
+
+
 	}
 
 	@Override
@@ -510,13 +519,13 @@ public class NotificationActivity extends Activity {
 	}
 
 	private void setLayoutBackground(){
-		
+
 		/*WallpaperManager wallpaperManager1 = WallpaperManager
 	            .getInstance(getApplicationContext());
 		final Drawable wallpaperDrawable1 = wallpaperManager1.peekDrawable();
-		
+
 		LinearLayout ll = (LinearLayout) findViewById(R.id.mainLayoutId);	
-		
+
 		if (wallpaperDrawable1==null)
 		{                       
 			ll.setBackgroundColor(Color.parseColor("#90FFFFFF"));
@@ -526,8 +535,8 @@ public class NotificationActivity extends Activity {
 		{
 			ll.setBackground(wallpaperDrawable1);		    
 		}
-		
-		*/
+
+		 */
 
 	}
 

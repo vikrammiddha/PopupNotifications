@@ -96,7 +96,11 @@ public class AppSelectionActivity extends SherlockActivity{
 		});
 
 		// Showing Alert Dialog
-		alertDialog2.show();
+		try{
+			alertDialog2.show();
+		}catch(Exception e){
+			
+		}
 	}
 
 
@@ -161,7 +165,7 @@ public class AppSelectionActivity extends SherlockActivity{
 
 		menu.add(Menu.NONE,1,1,getString(R.string.menu_settings)); 
 
-		menu.add(Menu.NONE,2,2,getString(R.string.menu_tutorial)); 
+		//menu.add(Menu.NONE,2,2,getString(R.string.menu_tutorial)); 
 		
 		menu.add(Menu.NONE,3,3,getString(R.string.menu_rateus)); 
 

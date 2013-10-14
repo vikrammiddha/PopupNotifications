@@ -1,28 +1,23 @@
 package com.bun.popupnotifications;
 
-import java.util.HashMap;
+
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 
 
-import com.fortysevendeg.android.swipelistview.BaseSwipeListViewListener;
-import com.fortysevendeg.android.swipelistview.SwipeListView;
+import com.espian.showcaseview.ShowcaseView;
+import com.espian.showcaseview.ShowcaseView.OnShowcaseEventListener;
+
+//import com.fortysevendeg.android.swipelistview.BaseSwipeListViewListener;
+//import com.fortysevendeg.android.swipelistview.SwipeListView;
 
 
 
 
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.PowerManager;
-import android.os.PowerManager.WakeLock;
-import android.os.StrictMode;
-import android.provider.Settings;
-import android.provider.Settings.SettingNotFoundException;
-
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.KeyguardManager;
 import android.app.KeyguardManager.KeyguardLock;
 import android.app.WallpaperManager;
@@ -34,9 +29,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -54,6 +51,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -64,7 +62,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class NotificationActivity extends Activity {
+@SuppressLint("NewApi")
+public class NotificationActivity extends Activity  implements View.OnClickListener,
+ShowcaseView.OnShowcaseEventListener{
 
 	NotificationsAdapter adapter;
 	SwipeListView  layout;
@@ -78,6 +78,22 @@ public class NotificationActivity extends Activity {
 
 	public Boolean unlockLockScreen = false;
 
+	int screenWidth;
+	int screenHeight;
+
+	int rowPos = -1;
+
+	Activity act;
+
+	Boolean isItemClicked = false;
+
+	ShowcaseView sv;
+	ShowcaseView sv1;
+	ShowcaseView sv2;
+	ShowcaseView sv3;
+	ShowcaseView sv4;
+
+	ShowcaseView.ConfigOptions co = new ShowcaseView.ConfigOptions();
 
 
 	@Override
@@ -94,6 +110,10 @@ public class NotificationActivity extends Activity {
 				WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
 				); 
 
+		Display display = getWindowManager().getDefaultDisplay(); 
+		screenWidth = display.getWidth();
+		screenHeight = display.getHeight();
+
 		//KeyguardManager km = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
 		//if(km.inKeyguardRestrictedInputMode()){
 		//unlockLockScreen = true;
@@ -107,6 +127,9 @@ public class NotificationActivity extends Activity {
 
 		ctx = this;
 
+		act = this;
+
+
 		//Utils.tf = Typeface.createFromAsset(this.getAssets(),"fonts/robotomedium.ttf");
 
 		adapter = new NotificationsAdapter(this);
@@ -116,52 +139,48 @@ public class NotificationActivity extends Activity {
 		populateAdapter(true);
 		setLayoutBackground();
 
+		registerForContextMenu(layout);	
 
+		layout.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {              
+				isItemClicked = true;
 
-		layout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-
-				try {					
-					//getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
-					Utils.intentMap.get(adapter.getItem(position).getPackageName()).send();					
-					Utils.notList.clear();
-					Utils.intentMap.clear();
-					adapter.clearNotifications();
-				} catch (CanceledException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
+			} 
 		});
 
-
-
 		layout.setSwipeListViewListener(new BaseSwipeListViewListener() {
+
 			@Override
 			public void onOpened(int position, boolean toRight) {
-				Log.d("swipe", "onOpened----------");
+				Log.d("swipe", "onOpened----------" + toRight);
+
 			}
 
 			@Override
 			public void onClosed(int position, boolean fromRight) {
-				Log.d("swipe", "onClosed----------");
+				Log.d("swipe", "onClosed----------" + fromRight);
 			}
 
 			@Override
 			public void onListChanged() {
-				Log.d("swipe", "onListChanged----------");
+				//Log.d("swipe", "onListChanged----------");
 			}
 
 			@Override
 			public void onMove(int position, float x) {
-				//Log.d("swipe", "onMove---------");
+				//Log.d("swipe", "onMove----------" + x);
+				//if((screenWidth*.40 < x)){
+
+				//}
+
 			}
 
 			@Override
 			public void onStartOpen(int position, int action, boolean right) {
-				Log.d("swipe", "onStartOpen----------");
+				if(right){
+					rowPos = position;
+				}
+				Log.d("swipe", "onStartOpen----------" + right + "===" + action);
 			}
 
 			@Override
@@ -171,63 +190,89 @@ public class NotificationActivity extends Activity {
 
 			@Override
 			public void onClickFrontView(int position) {
+				isItemClicked = true;
 				Log.d("swipe", "onClickFrontView----------");
+				//if(sv.isShown()){
+				//sv.animateGesture(0, 0, 400, 0);
+				//}
 			}
 
 			@Override
 			public void onClickBackView(int position) {
-				Log.d("swipe", "onClickBackView----------"); 
+				Log.d("swipe", "onClickBackView----------"); 		
 
-
-				try {				
-
-					Utils.intentMap.get(Utils.notList.get(position).getPackageName()).send();
-					unlockLockScreen = false;
-
-					myLock.disableKeyguard();
-
-
-					//getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
-					//getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}					
-				Utils.notList.clear();
-
+				isItemClicked = true;
 			}
 
 			@Override
-			public void onDismiss(int[] reverseSortedPositions) {				
+			public void onDismiss(int[] reverseSortedPositions) {	
+				Log.d("swipe", "onDismiss----------" + rowPos); 
+				if(rowPos >= 0){
+					try {
+						if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+							getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+						}else{
+							if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+								Utils.reenableKeyguard(ctx, false);					
+							}
+						}
 
-
+						//Log.d("not activity", "intent----------" + Utils.notList.get(position).getPackageName());
+						Utils.intentMap.get(Utils.notList.get(rowPos).getPackageName()).send();
+						unlockLockScreen=true;
+						Utils.getNotList().clear();
+						Utils.intentMap.clear();
+						finish();
+						return;
+						//Utils.notList.clear();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 				for (int position : reverseSortedPositions) {
-					//Log.d("swipe", "onDismiss----------" + position);
+					Log.d("swipe", "onDismiss----------" + position);
 					adapter.removeNotification(position);
-					Utils.notList.remove(position);
+					Utils.getNotList().remove(position);
 				}
 
 				if(adapter.getAdapterSize() == 0){
 					finish();
-					Utils.notList.clear();
+					Utils.getNotList().clear();
 					Utils.intentMap.clear();
 				}
 				adapter.notifyDataSetChanged();
-
 			}
 
 		});
 
+		if(!SharedPreferenceUtils.getFirstTimeRun(ctx)){
+			co.hideOnClickOutside = false;
+			co.shotType = ShowcaseView.TYPE_ONE_SHOT;
+			//co.shotType = ShowcaseView.TYPE_ONE_SHOT;
+			sv = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", "Click on Next button to start Tutorial.", co);
+			sv.setOnShowcaseEventListener(this);
+		}
+
+		//ShowcaseViews views = new ShowcaseViews(this, R.layout.showcase_view_template);
+		//views.addView(new ShowcaseViews.ViewProperties(R.id.notificationsListViewId, R.string.right_swipe, R.string.left_swipe));
+		//views.addView(new ShowcaseViews.ViewProperties(R.id.notificationsListViewId, R.string.left_swipe, R.string.right_swipe));
+		//views.show();
+
+		//sv2 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.left_swipe), co);
+		//sv2.setOnShowcaseEventListener(this);
+
+		//sv3 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.long_press), co);
+		//sv3.setOnShowcaseEventListener(this);
+
+		//sv4 = ShowcaseView.insertShowcaseView(R.id.CloseWindowId, this, "Tutorial", getString(R.string.dismiss_all_tutorial), co);
+		//sv4.setOnShowcaseEventListener(this);
 
 
-
-
-		registerForContextMenu(layout);	
+		//onCoachMark();
 
 
 	}
-
 
 
 
@@ -239,9 +284,10 @@ public class NotificationActivity extends Activity {
 	};
 
 	public void clearNotifications(View view){	
-		clearData();
+		clearData();	
 
 	}
+
 
 	private void clearData(){
 		for(NotificationBean n : Utils.notList){
@@ -263,6 +309,8 @@ public class NotificationActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		//getMenuInflater().inflate(R.menu.notification, menu);
 
+
+
 		return true;
 	}
 
@@ -270,6 +318,11 @@ public class NotificationActivity extends Activity {
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		// TODO Auto-generated method stub
+
+		if(isItemClicked){
+			isItemClicked = false;
+			return;
+		}
 		super.onCreateContextMenu(menu, v, menuInfo);
 		AdapterView.AdapterContextMenuInfo contextMenuInfo = (AdapterView.AdapterContextMenuInfo)menuInfo;
 		NotificationBean n = (NotificationBean)adapter.getItem(contextMenuInfo.position);
@@ -414,15 +467,16 @@ public class NotificationActivity extends Activity {
 
 		if(HelperUtils.isFullScreenNotifications(ctx)){
 			Display display = getWindowManager().getDefaultDisplay(); 
-			int screenWidth = display.getWidth();
-			int screenHeight = display.getHeight();
+			//int screenWidth = display.getWidth();
+			//int screenHeight = display.getHeight();
 			params.height = (int)(screenHeight * 0.85);
 			params.width = (int)(screenWidth * 0.95);			
 			ll1.setLayoutParams(params);
 		}else
 		{
-			if(ll.getHeight() > 300){
-				params.height = 600;
+			Log.d("not_Activity", "ll height===" + getLayoutHeight());
+			if(ll.getHeight() >= (int)(screenHeight * 0.5)){
+				params.height = (int)(screenHeight * 0.5);
 			}else{
 				params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
 			}
@@ -453,7 +507,12 @@ public class NotificationActivity extends Activity {
 			gd.setCornerRadius(roundRadius);
 			gd.setStroke(strokeWidth, strokeColor);	
 
-			ll1.setBackground(gd);
+			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+				ll1.setBackground(gd);
+			}else{
+				ll1.setBackgroundDrawable(gd);
+			}
+
 
 
 			int strokeWidth1 = 3; // 3dp
@@ -469,12 +528,21 @@ public class NotificationActivity extends Activity {
 
 			if(HelperUtils.isTransparentBackround(ctx)){
 				ll1.getBackground().setAlpha(200);
+
 				dismissButton.getBackground().setAlpha(200);
 			}
 		}
 
 
 		dismissButton.setTextColor(fontColor);
+	}
+
+	private int getLayoutHeight(){
+		int size = 0;
+		for(int i=0; i<adapter.getCount(); i++){
+			size += adapter.getItem(i).getViewSize();
+		}
+		return size;
 	}
 
 	@Override
@@ -500,7 +568,17 @@ public class NotificationActivity extends Activity {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		myLock.reenableKeyguard();
+
+		Utils.getNotList().clear();
+
+		if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN && unlockLockScreen == false) {
+			//Utils.reenableKeyguard(getApplicationContext());
+			KeyguardManager keyguardManager = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE); 
+			KeyguardManager.KeyguardLock keyguardLock = keyguardManager.newKeyguardLock("MyKeyguardLock"); 	        
+			//keyguardLock.reenableKeyguard();
+			keyguardLock = null;
+		}
+		//myLock.reenableKeyguard();
 
 
 	}
@@ -514,7 +592,7 @@ public class NotificationActivity extends Activity {
 		registerReceiver(mReceiver, intentFilter);
 
 		populateAdapter(true);	
-
+		unlockLockScreen = false;
 
 	}
 
@@ -539,5 +617,52 @@ public class NotificationActivity extends Activity {
 		 */
 
 	}
+
+
+	@Override
+	public void onShowcaseViewHide(ShowcaseView ssv) {
+		Log.d("not", "onShowcaseViewHide ==============" + ssv.getScrollX() + "====" + ssv.getScrollY());
+		SharedPreferenceUtils.setFirstTimeRun(ctx, true);
+		if(ssv == sv){
+			sv1 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.right_swipe), co);
+			sv1.setOnShowcaseEventListener(this);
+
+			//sv1.animateGesture(0,Float.valueOf((float) (screenHeight * .5)) ,Float.valueOf((float) (screenWidth * .9)), Float.valueOf((float) (screenHeight * .5)));
+			sv1.animateGesture(0,(float) (sv.getBottom()/2) ,(float) (layout.getRight()), (float) (sv.getBottom()/2));
+		}else if(ssv == sv1){
+			sv2 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.left_swipe), co);
+			sv2.setOnShowcaseEventListener(this);
+			sv2.animateGesture((float) (layout.getRight()),(float) (sv.getBottom()/2) ,0, (float) (sv.getBottom()/2));
+		}else if(ssv == sv2){
+			sv3 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.long_press), co);
+			sv3.setOnShowcaseEventListener(this);
+			//sv3.animateGesture((float) (sv2.getLeft() + sv2.getWidth() / 2),(float) (sv2.getLeft() + sv2.getWidth() / 2) ,(float) (sv2.getLeft() + sv2.getWidth() / 2), (float) (sv2.getLeft() + sv2.getWidth() / 2));
+			sv3.animateGesture((float) (sv2.getRight()/2),(float) (sv2.getBottom()/2) ,(float) (sv2.getRight()/2), (float) (sv2.getBottom()/2));
+		}else if(ssv == sv3){		
+			View button = findViewById(R.id.CloseWindowId);
+			sv4 = ShowcaseView.insertShowcaseView(R.id.CloseWindowId, this, "Tutorial", getString(R.string.dismiss_all_tutorial), co);
+			sv4.setOnShowcaseEventListener(this);
+
+			sv4.animateGesture((float) (button.getRight()/2),(float) (button.getBottom()) ,(float) (button.getRight()/2), (float) (button.getBottom()));
+
+		}else if(ssv == sv4){
+
+		}
+	}
+
+
+	@Override
+	public void onShowcaseViewShow(ShowcaseView arg0) {
+		// TODO Auto-generated method stub
+		Log.d("not", "onShowcaseViewShow ==============" + arg0);
+
+	}
+
+	@Override
+	public void onClick(View view) {
+		Log.d("not", "onClick ==============");
+	}
+
+
 
 }

@@ -10,6 +10,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import android.accessibilityservice.AccessibilityService;
+import android.annotation.SuppressLint;
+import android.app.KeyguardManager;
 import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -36,6 +38,7 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViews.RemoteView;
 import android.widget.TextView;
 
+@SuppressLint("NewApi")
 public class NotificationService extends AccessibilityService { 
 
 		
@@ -66,6 +69,7 @@ public class NotificationService extends AccessibilityService {
 	public int notification_title_id = 0;
 	private final Context context = null;
 
+	@SuppressLint("NewApi")
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
 
@@ -113,7 +117,17 @@ public class NotificationService extends AccessibilityService {
 
 
 			try{
-				RemoteViews rv = nnn.bigContentView != null ? nnn.bigContentView : nnn.contentView;
+				RemoteViews rv = null;
+				try{
+					if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+						rv = nnn.bigContentView != null ? nnn.bigContentView : nnn.contentView;
+					}else{
+						rv = nnn.contentView;
+					}
+					
+				}catch(Exception e){
+					rv = nnn.contentView;
+				}
 				LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				ViewGroup localView = (ViewGroup) inflater.inflate(rv.getLayoutId(), null);
 				rv.reapply(getApplicationContext(), localView);
@@ -536,6 +550,8 @@ public class NotificationService extends AccessibilityService {
 		}
 
 	}
+	
+	
 
 	public class ScreenReceiver extends BroadcastReceiver {
 
@@ -545,13 +561,18 @@ public class NotificationService extends AccessibilityService {
 		public void onReceive(Context context, Intent intent) {
 			if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
 				isScreenOn = false;
+				if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+					Utils.reenableKeyguard(ctx, true);					
+				}
 			} else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
 				isScreenOn = true;
-
+				
 			}
 		}
 
 	}
+	
+	
 
 
 }

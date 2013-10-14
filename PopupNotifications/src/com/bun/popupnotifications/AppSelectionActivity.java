@@ -47,7 +47,7 @@ public class AppSelectionActivity extends SherlockActivity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.app_selection_main);
+		setContentView(R.layout.app_selection_main); 
 		layout = (ListView) findViewById(R.id.appSelectionMainListViewId);	
 
 		adapter = new AppSelectionAdapter(this);

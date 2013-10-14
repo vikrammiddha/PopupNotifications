@@ -21,8 +21,17 @@ public class NotificationBean {
 	private String uniqueValue;
 	private String tickerText;	
 	private int notCount;
+	private int viewSize;
 	
 	
+	public int getViewSize() {
+		return viewSize;
+	}
+
+	public void setViewSize(int viewSize) {
+		this.viewSize = viewSize;
+	}
+
 	public int getNotCount() {
 		return notCount;
 	}

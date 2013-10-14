@@ -157,6 +157,16 @@ public class SharedPreferenceUtils {
 		loadDefaultSettings(ctx);
 
 	}
+	
+	public static void setFirstTimeRun(Context ctx, Boolean bool){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putBoolean("FirstTimeRun", bool).commit();
+	}
+	
+	public static Boolean getFirstTimeRun(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getBoolean("FirstTimeRun", false);
+	}
 
 	public static Boolean isBlockedApp(Context ctx, String packageName){
 		String retVal = null;

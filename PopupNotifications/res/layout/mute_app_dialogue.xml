@@ -1,77 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cpRoot"
-    android:layout_width="fill_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <RadioGroup
-        android:id="@+id/muteOptions1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+    <LinearLayout
+        android:id="@+id/cpRoot"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <RadioButton
-            android:id="@+id/muteSpecificApp"
+        <RadioGroup
+            android:id="@+id/muteOptions1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/mute_this_app" />
+            android:layout_height="wrap_content" >
 
-        <RadioButton
-            android:id="@+id/muteAllApps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mute_all_apps" />
+            <RadioButton
+                android:id="@+id/muteSpecificApp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/mute_this_app" />
 
-       
-    </RadioGroup>
-	
-     <View
+            <RadioButton
+                android:id="@+id/muteAllApps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mute_all_apps" />
+        </RadioGroup>
+
+        <View
             android:layout_width="fill_parent"
             android:layout_height="2dp"
             android:background="@android:color/white" />
-     
-    <RadioGroup
-        android:id="@+id/muteOptions2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
 
-        <RadioButton
-            android:id="@+id/mute15min"
+        <RadioGroup
+            android:id="@+id/muteOptions2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/mute_15_mins" />
+            android:layout_height="wrap_content" >
 
-        <RadioButton
-            android:id="@+id/mute30min"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mute_30_mins" />
+            <RadioButton
+                android:id="@+id/mute15min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/mute_15_mins" />
 
-        <RadioButton
-            android:id="@+id/mute1hour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mute_1_hour" />
+            <RadioButton
+                android:id="@+id/mute30min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mute_30_mins" />
 
-        <RadioButton
-            android:id="@+id/mute4hours"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mute_4_hours" />
+            <RadioButton
+                android:id="@+id/mute1hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mute_1_hour" />
 
-        <RadioButton
-            android:id="@+id/mute8hours"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mute_8_hours" />
+            <RadioButton
+                android:id="@+id/mute4hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mute_4_hours" />
 
-        <RadioButton
-            android:id="@+id/muteforeever"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mute_foreever" />
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/mute8hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mute_8_hours" />
 
-</LinearLayout>
+            <RadioButton
+                android:id="@+id/muteforeever"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mute_foreever" />
+        </RadioGroup>
+    </LinearLayout>
+
+</ScrollView>

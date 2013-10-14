@@ -36,14 +36,16 @@ public class Utils {
 
 	public static ArrayList<NotificationBean> notList = new ArrayList<NotificationBean>();
 	public static HashMap<String, PendingIntent> intentMap = new HashMap<String, PendingIntent>();
-	
+	public static KeyguardManager.KeyguardLock keyguardLock;
+
+
 	public static ArrayList<NotificationBean> getNotList(){
 		if(notList == null){
 			notList = new ArrayList<NotificationBean>();
 		}
 		return notList;
 	}
-	
+
 	//public static Typeface tf ;
 
 	private Context ctx;
@@ -124,7 +126,7 @@ public class Utils {
 		if(packageName.equals("com.whatsapp")){
 			if(raw.get(1).contains("message") && raw.get(2).contains("@")){
 				message = raw.get(2).split(":") [0] + ":\n\n" + raw.get(2).split(":") [1];
-						//raw.get(2).split("@")[1].split(":")[0] + ":\n\n" +  raw.get(2).split("@")[0];
+				//raw.get(2).split("@")[1].split(":")[0] + ":\n\n" +  raw.get(2).split("@")[0];
 			}
 			else if(raw.get(2).contains(":")){
 				String groupName = "";
@@ -195,7 +197,7 @@ public class Utils {
 				try{
 					notification.contentView.reapply(ctx.getApplicationContext(), localView);
 				}catch(Exception e){
-					
+
 				}
 				ArrayList<TextView> views = new ArrayList<TextView>();
 
@@ -234,7 +236,7 @@ public class Utils {
 				}				
 
 				String[] strArr = addInfo.split("\n");
-				
+
 				if(strArr.length == 1){
 					retMessage.append(strArr[0]).append(" ");
 				}else{
@@ -257,15 +259,15 @@ public class Utils {
 			message = String.valueOf(event.getText());
 
 		}
-		
+
 		if(!addInfo.equals("")){
 			bean.setSender(getSender(addInfo, addInfo));
 		}else{
 			bean.setSender(getSender(message, addInfo));
 		}
-		
+
 		bean.setMessage(retMessage.toString());
-		
+
 
 	}
 
@@ -298,56 +300,56 @@ public class Utils {
 
 
 	public Boolean performValidation(AccessibilityEvent event){
-		
+
 		Notification n = (Notification) event.getParcelableData();
-		
+
 		if(n == null || ((n.flags & Notification.FLAG_NO_CLEAR) == Notification.FLAG_NO_CLEAR) ||
-        ((n.flags & Notification.FLAG_ONGOING_EVENT) == Notification.FLAG_ONGOING_EVENT)){
+				((n.flags & Notification.FLAG_ONGOING_EVENT) == Notification.FLAG_ONGOING_EVENT)){
 			return false;
 		}
-		
+
 		if(isForgroundApp(ctx, event.getPackageName().toString()) && isScreenOn()){
 			return false;
 		}
 
 		String appMuteDate = SharedPreferenceUtils.getAppData(ctx, event.getPackageName().toString());
-		
+
 		String allAppMuteDate = SharedPreferenceUtils.getAppData(ctx, "com.AA");
-		
+
 		if(allAppMuteDate != null && !"--".equals(allAppMuteDate) && !"".equals(allAppMuteDate.trim()) ){
 			if(HelperUtils.isBlockedTime(allAppMuteDate, ctx, "com.AA")){
 				return false;
 			}
 		}
-		
+
 		if(HelperUtils.isBlockedApp(ctx,event.getPackageName().toString())){
 			return false;
 		}
-		
+
 		if(HelperUtils.isSleepTime(ctx)){
 			return false;
 		}
-		
+
 		Log.d("Utils", "appMuteDate--" + appMuteDate);
 
 		if(appMuteDate != null && appMuteDate.equals("--")){
 			return false;
 		}
-		
+
 		if(HelperUtils.isLockscreenOnly(ctx)){
 			KeyguardManager myKM = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE);
 			if( !myKM.inKeyguardRestrictedInputMode()) {
 				return false;
 			}
 		}
-		
+
 		if(appMuteDate == null || "".equals(appMuteDate)){
 			return true;
 		}else if(HelperUtils.isBlockedTime(appMuteDate, ctx, event.getPackageName().toString())){
 			return false;
 		}
-		
-		
+
+
 
 		return true;
 
@@ -395,45 +397,45 @@ public class Utils {
 			}
 		}
 	}
-	
+
 	private String getMeaningFullAppName(String appName){
-		
+
 		if(appName.toUpperCase().equals("GOOGLE SERVICES FRAMEWORK")){
 			return "Google Talk";
 		}
-		
+
 		return appName;
 	}
-	
+
 	public static Boolean isForgroundApp(Context ctx, String packageName){
-		
+
 		ActivityManager am = (ActivityManager) ctx.getSystemService("activity");
-    	// The first in the list of RunningTasks is always the foreground task.
-    	RunningTaskInfo foregroundTaskInfo = am.getRunningTasks(1).get(0);
-    	
-    	String foregroundTaskPackageName = foregroundTaskInfo.topActivity.getPackageName();
-    	
-    	if(foregroundTaskPackageName.equals("com.google.android.talk")){
-    		foregroundTaskPackageName = "com.google.android.gsf";
-    	}
-    	
-    	if(foregroundTaskPackageName.equals(packageName)){
-    		return true;
-    	}
-    	
-    	return false;
+		// The first in the list of RunningTasks is always the foreground task.
+		RunningTaskInfo foregroundTaskInfo = am.getRunningTasks(1).get(0);
+
+		String foregroundTaskPackageName = foregroundTaskInfo.topActivity.getPackageName();
+
+		if(foregroundTaskPackageName.equals("com.google.android.talk")){
+			foregroundTaskPackageName = "com.google.android.gsf";
+		}
+
+		if(foregroundTaskPackageName.equals(packageName)){
+			return true;
+		}
+
+		return false;
 	}
-	
+
 	private Boolean isScreenOn(){
 		PowerManager pm = (PowerManager)ctx.getSystemService(Context.POWER_SERVICE);
 		boolean isScreenOn = pm.isScreenOn();
 		return isScreenOn;
 	}
-	
+
 	public static String getMuteTime(Context ctx, String dateText){		
-				
+
 		Calendar now = Calendar.getInstance();
-		
+
 		if(dateText.equals(ctx.getString(R.string.mute_15_mins))){
 			now.add(Calendar.MINUTE, 15);
 		}else if(dateText.equals(ctx.getString(R.string.mute_30_mins))){
@@ -447,25 +449,25 @@ public class Utils {
 		}else if(dateText.equals(ctx.getString(R.string.mute_foreever))){
 			return "For Ever"; // For Ever
 		}
-		
+
 		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-		
+
 		return df.format(now.getTime());
-		
+
 	}
-	
+
 	public static String getMuteToastText(Context ctx, String text1, String text2, String appName){
-		
-		
+
+
 		String retVal = "";
-		
+
 		if(text1.equals(ctx.getString(R.string.mute_this_app))){
 			retVal = ctx.getString(R.string.muted) + " " + appName;
 		}else if(text1.equals(ctx.getString(R.string.mute_all_apps))){
 			retVal = ctx.getString(R.string.mute_all_apps);
 		}
-		
-		
+
+
 		if(text2.equals(ctx.getString(R.string.mute_15_mins))){
 			retVal += " " + ctx.getString(R.string.mins_15);
 		}else if(text2.equals(ctx.getString(R.string.mute_30_mins))){
@@ -479,12 +481,12 @@ public class Utils {
 		}else if(text2.equals(ctx.getString(R.string.mute_foreever))){
 			retVal +=  " " + ctx.getString(R.string.mute_foreever);
 		}
-		
+
 		return retVal;
 	}
-	
+
 	private static String accServiceId = "com.bun.popupnotifications/com.bun.popupnotifications.NotificationService";
-	
+
 	public static boolean isAccessibilityEnabled(Context context) {	  
 
 		int accessibilityEnabled = 0;
@@ -528,5 +530,25 @@ public class Utils {
 		return false;
 
 	}
+
+	public static synchronized void reenableKeyguard(Context ctx, Boolean isEnable) {
+		try{
+			KeyguardManager keyguardManager = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE); 
+			if ( keyguardLock == null ) {
+				keyguardLock = keyguardManager.newKeyguardLock("MyKeyguardLock");
+			}
+
+			if(isEnable){
+				keyguardLock.reenableKeyguard();
+				keyguardLock = null;
+			}else{
+				keyguardLock.disableKeyguard();
+			}
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
 
 }

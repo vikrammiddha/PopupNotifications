@@ -28,16 +28,16 @@
             android:paddingBottom="10.0dip"
             android:paddingTop="10.0dip" >
 
-            <com.fortysevendeg.android.swipelistview.SwipeListView 
+            <com.bun.popupnotifications.SwipeListView
                 xmlns:swipe="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/notificationsListViewId"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:listSelector="#00000000"
-                swipe:swipeBackView="@+id/back"                
-                swipe:swipeFrontView="@+id/front" 
                 swipe:swipeActionLeft="dismiss"
                 swipe:swipeActionRight="dismiss"
+                swipe:swipeBackView="@+id/back"
+                swipe:swipeFrontView="@+id/front"
                 swipe:swipeMode="both" />
         </LinearLayout>
     </LinearLayout>

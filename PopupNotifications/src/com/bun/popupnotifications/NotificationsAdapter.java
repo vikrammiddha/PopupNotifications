@@ -3,12 +3,14 @@ package com.bun.popupnotifications;
 import java.util.ArrayList;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 
@@ -21,6 +23,7 @@ import android.widget.ImageView;
 
 import android.widget.TextView;
 
+@SuppressLint("NewApi")
 public class NotificationsAdapter extends BaseAdapter{
 
 	static class ViewHolder {
@@ -144,14 +147,22 @@ public class NotificationsAdapter extends BaseAdapter{
 			RoundRectShape rr = new RoundRectShape(outerR, null, null);
 			ShapeDrawable drawable = new ShapeDrawable(rr);
 			drawable.getPaint().setColor(Color.RED);
-			holder.badge.setBackground(drawable);
+			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+				holder.badge.setBackground(drawable);
+			}else{
+				holder.badge.setBackgroundDrawable(drawable);
+				
+			}
+			
 		}else{
 			holder.badge.setVisibility(View.GONE);
 		}
 
 		holder.timeText.setText(n.getNotTime());	
 		holder.timeText.setTextColor(HelperUtils.getFontColor(context));
-
+		Log.d("adapter", "view height ====" + holder.text.getHeight());
+		nList.get(position).setViewSize(holder.text.getHeight());
+		
 		return view;
 	}
 

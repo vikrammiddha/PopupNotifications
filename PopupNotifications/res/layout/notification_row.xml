@@ -4,7 +4,7 @@
     android:layout_height="fill_parent" >
 
     <LinearLayout
-        android:id="@+id/front"
+        android:id="@+id/back"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="top"
@@ -73,11 +73,12 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/back"
+        android:id="@+id/front"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="top"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+         >
     </LinearLayout>
 
 </FrameLayout>

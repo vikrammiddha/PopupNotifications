@@ -17,6 +17,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -24,8 +25,13 @@ import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.PowerManager;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
@@ -68,6 +74,7 @@ public class NotificationService extends AccessibilityService {
 	public int notification_text_id = 0;
 	public int notification_title_id = 0;
 	private final Context context = null;
+	private boolean deviceCovered = false;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -531,6 +538,10 @@ public class NotificationService extends AccessibilityService {
 		n.bigContentView.reapply(getApplicationContext(), localView);
 		recursiveDetectNotificationsIds(localView);
 	}
+	
+	SensorManager sensorManager = null;
+	Sensor proximitySensor = null;
+	SensorEventListener sensorListener = null;
 
 	@Override
 	protected void onServiceConnected() {
@@ -544,11 +555,58 @@ public class NotificationService extends AccessibilityService {
 			mScreenReceiver = new ScreenReceiver();
 			registerReceiver(mScreenReceiver, filter);
 			detectNotificationIds();
+			if (Build.MODEL.toLowerCase().contains("NEXUS") && SharedPreferenceUtils.getFirstTimeRun(ctx))
+			{
+				registerProximitySensor();
+			}
 
 		}catch(Exception e){
 			Log.e("NotificationHistory", "Failed to configure accessibility service", e);
 		}
 
+	}
+	
+	private void registerProximitySensor(){
+		sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+		proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+		sensorListener = new SensorEventListener()
+		{
+			@Override
+			public void onAccuracyChanged(Sensor sensor, int accuracy) 
+			{
+			}
+
+			@Override
+			public void onSensorChanged(SensorEvent event) 
+			{
+				if (event.values[0] == 0)
+				{
+					deviceCovered = true;
+				}
+				else
+				{
+					if (deviceCovered)
+					{
+						deviceCovered = false;
+						SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(NotificationService.this);
+						if(HelperUtils.wakeOnNotification(ctx)){
+							turnScreenOn();
+						}
+					}
+				}
+			}				
+		};
+		startProximityMontior();
+	}
+	
+	public void startProximityMontior()
+	{	
+		if (proximitySensor != null)
+		{
+			sensorManager.registerListener(sensorListener, proximitySensor, SensorManager.SENSOR_DELAY_UI);
+		}
+		else registerProximitySensor();
+			
 	}
 	
 	

@@ -53,7 +53,8 @@
     <string name="end_time">End Time</string>
     
     <string name="market_url">market://details?id=com.bun.popupnotifications</string>
-    
+    <string name="follow_on_facebook">Follow on facebook</string>
+    <string name="facebook_url">https://www.facebook.com/bunnydecoder</string>
     
     
     <string name="popup_not_service">Popup Notification Service</string>

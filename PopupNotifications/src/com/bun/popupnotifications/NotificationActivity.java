@@ -106,7 +106,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 		myLock = myKeyGuard.newKeyguardLock(KEYGUARD_SERVICE);
 
-		window.addFlags(//WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON 
+		window.addFlags(
 				WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
 				); 
 
@@ -114,12 +114,7 @@ ShowcaseView.OnShowcaseEventListener{
 		screenWidth = display.getWidth();
 		screenHeight = display.getHeight();
 
-		//KeyguardManager km = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
-		//if(km.inKeyguardRestrictedInputMode()){
-		//unlockLockScreen = true;
-		//}
-
-		//getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+		
 
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -128,14 +123,12 @@ ShowcaseView.OnShowcaseEventListener{
 		ctx = this;
 
 		act = this;
-
-
-		//Utils.tf = Typeface.createFromAsset(this.getAssets(),"fonts/robotomedium.ttf");
+		
 
 		adapter = new NotificationsAdapter(this);
 		layout = (SwipeListView ) findViewById(R.id.notificationsListViewId);	
 		layout.setScrollingCacheEnabled(false);
-		//layout.setBackgroundColor(Color.TRANSPARENT);
+		
 		populateAdapter(true);
 		setLayoutBackground();
 
@@ -152,13 +145,13 @@ ShowcaseView.OnShowcaseEventListener{
 
 			@Override
 			public void onOpened(int position, boolean toRight) {
-				Log.d("swipe", "onOpened----------" + toRight);
+				//Log.d("swipe", "onOpened----------" + toRight);
 
 			}
 
 			@Override
 			public void onClosed(int position, boolean fromRight) {
-				Log.d("swipe", "onClosed----------" + fromRight);
+				//Log.d("swipe", "onClosed----------" + fromRight);
 			}
 
 			@Override
@@ -180,27 +173,23 @@ ShowcaseView.OnShowcaseEventListener{
 				if(right){
 					rowPos = position;
 				}
-				Log.d("swipe", "onStartOpen----------" + right + "===" + action);
+				//Log.d("swipe", "onStartOpen----------" + right + "===" + action);
 			}
 
 			@Override
 			public void onStartClose(int position, boolean right) {
-				Log.d("swipe", "onStartClose----------");
+				//Log.d("swipe", "onStartClose----------");
 			}
 
 			@Override
 			public void onClickFrontView(int position) {
 				isItemClicked = true;
-				Log.d("swipe", "onClickFrontView----------");
-				//if(sv.isShown()){
-				//sv.animateGesture(0, 0, 400, 0);
-				//}
+				//Log.d("swipe", "onClickFrontView----------");				
 			}
 
 			@Override
 			public void onClickBackView(int position) {
-				Log.d("swipe", "onClickBackView----------"); 		
-
+				Log.d("swipe", "onClickBackView----------");
 				isItemClicked = true;
 			}
 
@@ -252,24 +241,7 @@ ShowcaseView.OnShowcaseEventListener{
 			//co.shotType = ShowcaseView.TYPE_ONE_SHOT;
 			sv = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", "Click on Next button to start Tutorial.", co);
 			sv.setOnShowcaseEventListener(this);
-		}
-
-		//ShowcaseViews views = new ShowcaseViews(this, R.layout.showcase_view_template);
-		//views.addView(new ShowcaseViews.ViewProperties(R.id.notificationsListViewId, R.string.right_swipe, R.string.left_swipe));
-		//views.addView(new ShowcaseViews.ViewProperties(R.id.notificationsListViewId, R.string.left_swipe, R.string.right_swipe));
-		//views.show();
-
-		//sv2 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.left_swipe), co);
-		//sv2.setOnShowcaseEventListener(this);
-
-		//sv3 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.long_press), co);
-		//sv3.setOnShowcaseEventListener(this);
-
-		//sv4 = ShowcaseView.insertShowcaseView(R.id.CloseWindowId, this, "Tutorial", getString(R.string.dismiss_all_tutorial), co);
-		//sv4.setOnShowcaseEventListener(this);
-
-
-		//onCoachMark();
+		}	
 
 
 	}
@@ -306,11 +278,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.notification, menu);
-
-
-
+		
 		return true;
 	}
 
@@ -435,9 +403,9 @@ ShowcaseView.OnShowcaseEventListener{
 
 			for(NotificationBean n : Utils.getNotList()){
 
-				//if(!alreadyEnteredValues.contains(n.getUniqueValue()))
+				
 				adapter.addNotification(n);
-				//alreadyEnteredValues.add(n.getUniqueValue());
+				
 			}
 		}else{
 			LinkedHashMap<String,NotificationBean> lhm = new LinkedHashMap<String,NotificationBean>();
@@ -467,8 +435,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 		if(HelperUtils.isFullScreenNotifications(ctx)){
 			Display display = getWindowManager().getDefaultDisplay(); 
-			//int screenWidth = display.getWidth();
-			//int screenHeight = display.getHeight();
+			
 			params.height = (int)(screenHeight * 0.85);
 			params.width = (int)(screenWidth * 0.95);			
 			ll1.setLayoutParams(params);
@@ -549,19 +516,9 @@ ShowcaseView.OnShowcaseEventListener{
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		//Utils.notList.clear();
+		
 		unregisterReceiver(mReceiver);
 
-
-		//PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-
-		//if(pm.isScreenOn()){
-		//clearData();
-		//}
-
-		//Utils.notList.clear();
-		//Debug.stopMethodTracing();
-		//finish();
 	}
 
 	@Override
@@ -569,18 +526,16 @@ ShowcaseView.OnShowcaseEventListener{
 		// TODO Auto-generated method stub
 		super.onDestroy();
 
-		Utils.getNotList().clear();
+		
 
 		if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN && unlockLockScreen == false) {
-			//Utils.reenableKeyguard(getApplicationContext());
+			
 			KeyguardManager keyguardManager = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE); 
 			KeyguardManager.KeyguardLock keyguardLock = keyguardManager.newKeyguardLock("MyKeyguardLock"); 	        
-			//keyguardLock.reenableKeyguard();
+			
 			keyguardLock = null;
 		}
-		//myLock.reenableKeyguard();
-
-
+		
 	}
 
 	@Override
@@ -597,24 +552,7 @@ ShowcaseView.OnShowcaseEventListener{
 	}
 
 	private void setLayoutBackground(){
-
-		/*WallpaperManager wallpaperManager1 = WallpaperManager
-	            .getInstance(getApplicationContext());
-		final Drawable wallpaperDrawable1 = wallpaperManager1.peekDrawable();
-
-		LinearLayout ll = (LinearLayout) findViewById(R.id.mainLayoutId);	
-
-		if (wallpaperDrawable1==null)
-		{                       
-			ll.setBackgroundColor(Color.parseColor("#90FFFFFF"));
-
-		}
-		else
-		{
-			ll.setBackground(wallpaperDrawable1);		    
-		}
-
-		 */
+		
 
 	}
 
@@ -626,8 +564,6 @@ ShowcaseView.OnShowcaseEventListener{
 		if(ssv == sv){
 			sv1 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.right_swipe), co);
 			sv1.setOnShowcaseEventListener(this);
-
-			//sv1.animateGesture(0,Float.valueOf((float) (screenHeight * .5)) ,Float.valueOf((float) (screenWidth * .9)), Float.valueOf((float) (screenHeight * .5)));
 			sv1.animateGesture(0,(float) (sv.getBottom()/2) ,(float) (layout.getRight()), (float) (sv.getBottom()/2));
 		}else if(ssv == sv1){
 			sv2 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.left_swipe), co);
@@ -635,8 +571,7 @@ ShowcaseView.OnShowcaseEventListener{
 			sv2.animateGesture((float) (layout.getRight()),(float) (sv.getBottom()/2) ,0, (float) (sv.getBottom()/2));
 		}else if(ssv == sv2){
 			sv3 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.long_press), co);
-			sv3.setOnShowcaseEventListener(this);
-			//sv3.animateGesture((float) (sv2.getLeft() + sv2.getWidth() / 2),(float) (sv2.getLeft() + sv2.getWidth() / 2) ,(float) (sv2.getLeft() + sv2.getWidth() / 2), (float) (sv2.getLeft() + sv2.getWidth() / 2));
+			sv3.setOnShowcaseEventListener(this);			
 			sv3.animateGesture((float) (sv2.getRight()/2),(float) (sv2.getBottom()/2) ,(float) (sv2.getRight()/2), (float) (sv2.getBottom()/2));
 		}else if(ssv == sv3){		
 			View button = findViewById(R.id.CloseWindowId);

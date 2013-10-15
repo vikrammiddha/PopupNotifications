@@ -143,6 +143,11 @@ public class AppSelectionActivity extends SherlockActivity{
 			Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(getString(R.string.market_url)));
         	startActivity(intent);
 			break;
+			
+		case 4:
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.facebook_url)));
+			startActivity(browserIntent);
+			break;
 
 		default:
 			return super.onOptionsItemSelected(item);
@@ -167,7 +172,9 @@ public class AppSelectionActivity extends SherlockActivity{
 
 		//menu.add(Menu.NONE,2,2,getString(R.string.menu_tutorial)); 
 		
-		menu.add(Menu.NONE,3,3,getString(R.string.menu_rateus)); 
+		menu.add(Menu.NONE,3,3,getString(R.string.menu_rateus));
+		
+		menu.add(Menu.NONE,4,4,getString(R.string.follow_on_facebook));
 
 		return super.onCreateOptionsMenu(menu);
 

@@ -114,7 +114,7 @@ ShowcaseView.OnShowcaseEventListener{
 		screenWidth = display.getWidth();
 		screenHeight = display.getHeight();
 
-		
+
 
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -123,12 +123,12 @@ ShowcaseView.OnShowcaseEventListener{
 		ctx = this;
 
 		act = this;
-		
+
 
 		adapter = new NotificationsAdapter(this);
 		layout = (SwipeListView ) findViewById(R.id.notificationsListViewId);	
 		layout.setScrollingCacheEnabled(false);
-		
+
 		populateAdapter(true);
 		setLayoutBackground();
 
@@ -172,12 +172,15 @@ ShowcaseView.OnShowcaseEventListener{
 			public void onStartOpen(int position, int action, boolean right) {
 				if(right){
 					rowPos = position;
+				}else{
+					rowPos = -1;
 				}
 				//Log.d("swipe", "onStartOpen----------" + right + "===" + action);
 			}
 
 			@Override
 			public void onStartClose(int position, boolean right) {
+				rowPos = -1;
 				//Log.d("swipe", "onStartClose----------");
 			}
 
@@ -207,10 +210,13 @@ ShowcaseView.OnShowcaseEventListener{
 						}
 
 						//Log.d("not activity", "intent----------" + Utils.notList.get(position).getPackageName());
-						Utils.intentMap.get(Utils.notList.get(rowPos).getPackageName()).send();
+						//Utils.intentMap.get(Utils.getNotList().get(rowPos).getPackageName()).send();
+						Utils.intentMap.get(adapter.getItem(rowPos).getPackageName()).send();
 						unlockLockScreen=true;
 						Utils.getNotList().clear();
 						Utils.intentMap.clear();
+						adapter.removeAllNotifications();
+						adapter.notifyDataSetChanged();
 						finish();
 						return;
 						//Utils.notList.clear();
@@ -224,11 +230,13 @@ ShowcaseView.OnShowcaseEventListener{
 					adapter.removeNotification(position);
 					Utils.getNotList().remove(position);
 				}
+				
+				setBackgroundHeight(true);
 
 				if(adapter.getAdapterSize() == 0){
 					finish();
 					Utils.getNotList().clear();
-					Utils.intentMap.clear();
+					Utils.intentMap.clear();	
 				}
 				adapter.notifyDataSetChanged();
 			}
@@ -262,11 +270,11 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 	private void clearData(){
-		for(NotificationBean n : Utils.notList){
+		for(NotificationBean n : Utils.getNotList()){
 			n = null;
 		}		
 
-		Utils.notList.clear();
+		Utils.getNotList().clear();
 		Utils.notList = null;
 
 		Utils.intentMap.clear();
@@ -278,7 +286,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		
+
 		return true;
 	}
 
@@ -402,14 +410,16 @@ ShowcaseView.OnShowcaseEventListener{
 		if(HelperUtils.isExpandedNotifications(ctx)){
 
 			for(NotificationBean n : Utils.getNotList()){
-
-				
+				if(n.getIsOddRow())
+					continue;
 				adapter.addNotification(n);
-				
+
 			}
 		}else{
 			LinkedHashMap<String,NotificationBean> lhm = new LinkedHashMap<String,NotificationBean>();
 			for(NotificationBean n : Utils.getNotList()){
+				if(n.getIsOddRow())
+					continue;
 				if(lhm.get(n.getPackageName()) == null){
 					n.setNotCount(1);
 					lhm.put(n.getPackageName(), n);
@@ -425,33 +435,12 @@ ShowcaseView.OnShowcaseEventListener{
 		adapter.notifyDataSetChanged();
 		layout.setAdapter(adapter);
 
-		LinearLayout ll = (LinearLayout) findViewById(R.id.expandingLayoutId);	
+		//LinearLayout ll = (LinearLayout) findViewById(R.id.expandingLayoutId);			
 
-		LayoutParams params = ll.getLayoutParams();
+		setBackgroundHeight(false);
 
 		LinearLayout ll1 = (LinearLayout) findViewById(R.id.expandingLayoutId1);
 
-		// Changes the height and width to the specified *pixels*
-
-		if(HelperUtils.isFullScreenNotifications(ctx)){
-			Display display = getWindowManager().getDefaultDisplay(); 
-			
-			params.height = (int)(screenHeight * 0.85);
-			params.width = (int)(screenWidth * 0.95);			
-			ll1.setLayoutParams(params);
-		}else
-		{
-			Log.d("not_Activity", "ll height===" + getLayoutHeight());
-			if(ll.getHeight() >= (int)(screenHeight * 0.5)){
-				params.height = (int)(screenHeight * 0.5);
-			}else{
-				params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-			}
-
-			params.width = LinearLayout.LayoutParams.FILL_PARENT;
-		}
-
-		ll.setLayoutParams(params);
 		Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
 		int fontColor = HelperUtils.getFontColor(ctx);
 		if(fontColor == 0){
@@ -503,20 +492,48 @@ ShowcaseView.OnShowcaseEventListener{
 
 		dismissButton.setTextColor(fontColor);
 	}
+	
+	int notBackHeight = 0;
 
-	private int getLayoutHeight(){
-		int size = 0;
-		for(int i=0; i<adapter.getCount(); i++){
-			size += adapter.getItem(i).getViewSize();
+	private void setBackgroundHeight(Boolean isDismissed){
+		LinearLayout ll1 = (LinearLayout) findViewById(R.id.expandingLayoutId1);
+		
+		
+		LayoutParams params = ll1.getLayoutParams();
+
+		// Changes the height and width to the specified *pixels*
+
+		if(HelperUtils.isFullScreenNotifications(ctx)){
+			Display display = getWindowManager().getDefaultDisplay(); 
+
+			params.height = (int)(screenHeight * 0.85);
+			params.width = (int)(screenWidth * 0.95);			
+			ll1.setLayoutParams(params);
+		}else
+		{
+			//Log.d("not_Activity", "ll height===" + getLayoutHeight() + "==" + (int)(screenHeight * 0.5));
+			if(ll1.getHeight() >= (int)(screenHeight * 0.5) && !isDismissed){
+				params.height = (int)(screenHeight * 0.5);
+			}else{
+				if(isDismissed && ll1.getHeight() >= (int)(screenHeight * 0.5)){
+					params.height = (int)(screenHeight * 0.5);
+				}else{
+					params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+				}
+			}
+
+			params.width = LinearLayout.LayoutParams.FILL_PARENT;
 		}
-		return size;
+
+		ll1.setLayoutParams(params);
 	}
 
+	
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		
+
 		unregisterReceiver(mReceiver);
 
 	}
@@ -526,16 +543,16 @@ ShowcaseView.OnShowcaseEventListener{
 		// TODO Auto-generated method stub
 		super.onDestroy();
 
-		
+		//Utils.notCounter = 1;
 
 		if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN && unlockLockScreen == false) {
-			
+
 			KeyguardManager keyguardManager = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE); 
 			KeyguardManager.KeyguardLock keyguardLock = keyguardManager.newKeyguardLock("MyKeyguardLock"); 	        
-			
+
 			keyguardLock = null;
 		}
-		
+
 	}
 
 	@Override
@@ -552,14 +569,14 @@ ShowcaseView.OnShowcaseEventListener{
 	}
 
 	private void setLayoutBackground(){
-		
+
 
 	}
 
 
 	@Override
 	public void onShowcaseViewHide(ShowcaseView ssv) {
-		Log.d("not", "onShowcaseViewHide ==============" + ssv.getScrollX() + "====" + ssv.getScrollY());
+		//Log.d("not", "onShowcaseViewHide ==============" + ssv.getScrollX() + "====" + ssv.getScrollY());
 		SharedPreferenceUtils.setFirstTimeRun(ctx, true);
 		if(ssv == sv){
 			sv1 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.right_swipe), co);

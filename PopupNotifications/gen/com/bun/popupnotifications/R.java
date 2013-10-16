@@ -194,9 +194,10 @@ containing a value of this type.
         public static final int ic_search_inverse=0x7f020010;
         public static final int layout_bg=0x7f020011;
         public static final int leftarrow=0x7f020012;
-        public static final int remove=0x7f020013;
-        public static final int rightarrow=0x7f020014;
-        public static final int touch=0x7f020015;
+        public static final int logo=0x7f020013;
+        public static final int remove=0x7f020014;
+        public static final int rightarrow=0x7f020015;
+        public static final int touch=0x7f020016;
     }
     public static final class id {
         public static final int CloseWindowId=0x7f050031;

@@ -45,9 +45,10 @@ int drawable ic_search 0x7f02000f
 int drawable ic_search_inverse 0x7f020010
 int drawable layout_bg 0x7f020011
 int drawable leftarrow 0x7f020012
-int drawable remove 0x7f020013
-int drawable rightarrow 0x7f020014
-int drawable touch 0x7f020015
+int drawable logo 0x7f020013
+int drawable remove 0x7f020014
+int drawable rightarrow 0x7f020015
+int drawable touch 0x7f020016
 int id CloseWindowId 0x7f050031
 int id ambilwarna_cursor 0x7f05000e
 int id ambilwarna_dialogView 0x7f05000a

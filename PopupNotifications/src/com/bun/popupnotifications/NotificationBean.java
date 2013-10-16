@@ -21,16 +21,24 @@ public class NotificationBean {
 	private String uniqueValue;
 	private String tickerText;	
 	private int notCount;
-	private int viewSize;
+	private Boolean isOddRow; 
 	
 	
-	public int getViewSize() {
-		return viewSize;
+	
+	public Boolean getIsOddRow() {
+		return isOddRow;
 	}
 
-	public void setViewSize(int viewSize) {
-		this.viewSize = viewSize;
+	public void setIsOddRow(Boolean isOddRow) {
+		this.isOddRow = isOddRow;
 	}
+
+
+
+	public void setUniqueValue(String uniqueValue) {
+		this.uniqueValue = uniqueValue;
+	}
+
 
 	public int getNotCount() {
 		return notCount;

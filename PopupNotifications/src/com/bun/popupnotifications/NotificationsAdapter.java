@@ -42,6 +42,10 @@ public class NotificationsAdapter extends BaseAdapter{
 		this.context = context;
 
 	}
+	
+	public void removeAllNotifications(){
+		nList.clear();
+	}
 
 	public void addNotification(NotificationBean notf){ 
 		if(nList == null){
@@ -107,9 +111,12 @@ public class NotificationsAdapter extends BaseAdapter{
 			view.setTag(viewHolder);
 
 		}
+		
+		
 
 		ViewHolder holder = (ViewHolder) view.getTag();
-
+		
+		
 		holder.image.setImageDrawable(n.getIcon());
 		holder.smallImage.setImageDrawable(n.getNotIcon());
 
@@ -160,9 +167,7 @@ public class NotificationsAdapter extends BaseAdapter{
 
 		holder.timeText.setText(n.getNotTime());	
 		holder.timeText.setTextColor(HelperUtils.getFontColor(context));
-		Log.d("adapter", "view height ====" + holder.text.getHeight());
-		nList.get(position).setViewSize(holder.text.getHeight());
-		
+				
 		return view;
 	}
 

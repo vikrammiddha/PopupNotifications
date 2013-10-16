@@ -37,6 +37,7 @@ public class Utils {
 	public static ArrayList<NotificationBean> notList = new ArrayList<NotificationBean>();
 	public static HashMap<String, PendingIntent> intentMap = new HashMap<String, PendingIntent>();
 	public static KeyguardManager.KeyguardLock keyguardLock;
+	
 
 
 	public static ArrayList<NotificationBean> getNotList(){
@@ -342,6 +343,7 @@ public class Utils {
 				return false;
 			}
 		}
+				
 
 		if(appMuteDate == null || "".equals(appMuteDate)){
 			return true;
@@ -349,9 +351,31 @@ public class Utils {
 			return false;
 		}
 
-
-
+		// Below code is to prevent duplicate messages. Specially for Whatsapp.
+		
+		
 		return true;
+
+	}
+	
+	public static Boolean checkForDuplicates(NotificationBean n){
+		
+		int count = 0;
+		
+		for(NotificationBean bn : getNotList()){
+			if(bn.getUniqueValue().equals(n.getUniqueValue())){
+				count++;
+			}
+		}
+		
+		if(count%2 != 0){
+			n.setIsOddRow(true);
+		}else{
+			n.setIsOddRow(false);
+		}		
+		
+		return false;
+		
 
 	}
 

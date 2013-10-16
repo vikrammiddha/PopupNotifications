@@ -170,7 +170,7 @@ public class NotificationService extends AccessibilityService {
 						tempSender = null;
 					}
 
-					if(tempSender != null && tempSender.toLowerCase().contains("new message")){
+					if(tempSender != null && (tempSender.toLowerCase().contains("new message") || tempSender.toLowerCase().contains("new email message"))){
 						tempSender = null;
 					}
 
@@ -195,7 +195,7 @@ public class NotificationService extends AccessibilityService {
 				return;
 			}
 
-			//bean.setPendingIntent(nnn.contentIntent);
+			bean.setPendingIntent(nnn.contentIntent);
 
 			DateFormat formatter = new SimpleDateFormat("HH:mm");
 			Calendar calendar = Calendar.getInstance();
@@ -205,6 +205,12 @@ public class NotificationService extends AccessibilityService {
 			bean.setNotTime(formattedDate);
 
 			bean.setWhen(nnn.when);
+						
+			bean.setUniqueValue(bean.getPackageName() + bean.getSender() + bean.getMessage());
+			
+			if(Utils.checkForDuplicates(bean)){
+				//return;
+			}
 
 			//bean.setNotCount(1);
 

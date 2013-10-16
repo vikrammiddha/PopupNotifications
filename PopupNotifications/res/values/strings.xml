@@ -100,9 +100,9 @@
     <string name="lock_screen_only">Lock Screen Only</string>
     
     
-    <string name="left_swipe">Left Swipe to dismiss the notification.</string>
-    <string name="right_swipe">Right Swipe to open the App.</string>
-    <string name="long_press">Long press to Mute the notifications.</string>
+    <string name="left_swipe">Left Swipe on notification to dismiss the notification.</string>
+    <string name="right_swipe">Right Swipe on notification to open the App.</string>
+    <string name="long_press">Long press on notification to Mute the notifications.</string>
     <string name="start_tutorial">Start Tutorial</string>
     <string name="start_tutorial_click">Click on Start Tutorial button to start the tutorial.</string>
     <string name="dismiss_all_tutorial">Dismiss All closes the notification screen.</string>

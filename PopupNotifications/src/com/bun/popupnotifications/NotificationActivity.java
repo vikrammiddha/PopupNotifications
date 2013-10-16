@@ -248,6 +248,7 @@ ShowcaseView.OnShowcaseEventListener{
 			co.shotType = ShowcaseView.TYPE_ONE_SHOT;
 			//co.shotType = ShowcaseView.TYPE_ONE_SHOT;
 			sv = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", "Click on Next button to start Tutorial.", co);
+			sv.setShowcaseIndicatorScale(1.5f);
 			sv.setOnShowcaseEventListener(this);
 		}	
 
@@ -581,17 +582,20 @@ ShowcaseView.OnShowcaseEventListener{
 		if(ssv == sv){
 			sv1 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.right_swipe), co);
 			sv1.setOnShowcaseEventListener(this);
+			sv1.setShowcaseIndicatorScale(1.5f);
 			sv1.animateGesture(0,(float) (sv.getBottom()/2) ,(float) (layout.getRight()), (float) (sv.getBottom()/2));
 		}else if(ssv == sv1){
 			sv2 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.left_swipe), co);
 			sv2.setOnShowcaseEventListener(this);
+			sv2.setShowcaseIndicatorScale(1.5f);
 			sv2.animateGesture((float) (layout.getRight()),(float) (sv.getBottom()/2) ,0, (float) (sv.getBottom()/2));
 		}else if(ssv == sv2){
 			sv3 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.long_press), co);
+			sv3.setShowcaseIndicatorScale(1.5f);
 			sv3.setOnShowcaseEventListener(this);			
 			sv3.animateGesture((float) (sv2.getRight()/2),(float) (sv2.getBottom()/2) ,(float) (sv2.getRight()/2), (float) (sv2.getBottom()/2));
 		}else if(ssv == sv3){		
-			View button = findViewById(R.id.CloseWindowId);
+			View button = findViewById(R.id.expandingLayoutId);
 			sv4 = ShowcaseView.insertShowcaseView(R.id.CloseWindowId, this, "Tutorial", getString(R.string.dismiss_all_tutorial), co);
 			sv4.setOnShowcaseEventListener(this);
 

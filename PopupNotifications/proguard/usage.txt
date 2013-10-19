@@ -1,0 +1,2700 @@
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoIcsImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoJellyBeanMr2
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoStubImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompatIcs
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompatJellyBeanMr2
+android.support.v4.app.ActionBarDrawerToggle
+android.support.v4.app.ActionBarDrawerToggle$1
+android.support.v4.app.ActionBarDrawerToggle$ActionBarDrawerToggleImpl
+android.support.v4.app.ActionBarDrawerToggle$ActionBarDrawerToggleImplBase
+android.support.v4.app.ActionBarDrawerToggle$ActionBarDrawerToggleImplHC
+android.support.v4.app.ActionBarDrawerToggle$Delegate
+android.support.v4.app.ActionBarDrawerToggle$DelegateProvider
+android.support.v4.app.ActionBarDrawerToggle$SlideDrawable
+android.support.v4.app.ActionBarDrawerToggleHoneycomb
+android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo
+android.support.v4.app.ActivityCompat
+android.support.v4.app.ActivityCompatHoneycomb:
+    27:27:ActivityCompatHoneycomb()
+    34:35:static void dump(android.app.Activity,java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+android.support.v4.app.ActivityCompatJB
+android.support.v4.app.ActivityOptionsCompat
+android.support.v4.app.ActivityOptionsCompat$ActivityOptionsImplJB
+android.support.v4.app.ActivityOptionsCompatJB
+android.support.v4.app.BackStackRecord:
+    static final java.lang.String TAG
+    static final int OP_NULL
+    static final int OP_ADD
+    static final int OP_REPLACE
+    static final int OP_REMOVE
+    static final int OP_HIDE
+    static final int OP_SHOW
+    static final int OP_DETACH
+    static final int OP_ATTACH
+    338:338:public int getId()
+    342:342:public int getBreadCrumbTitleRes()
+    346:346:public int getBreadCrumbShortTitleRes()
+    350:353:public java.lang.CharSequence getBreadCrumbTitle()
+    357:360:public java.lang.CharSequence getBreadCrumbShortTitle()
+    379:380:public android.support.v4.app.FragmentTransaction add(android.support.v4.app.Fragment,java.lang.String)
+    384:385:public android.support.v4.app.FragmentTransaction add(int,android.support.v4.app.Fragment)
+    421:421:public android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment)
+    425:430:public android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment,java.lang.String)
+    434:439:public android.support.v4.app.FragmentTransaction remove(android.support.v4.app.Fragment)
+    443:448:public android.support.v4.app.FragmentTransaction hide(android.support.v4.app.Fragment)
+    452:457:public android.support.v4.app.FragmentTransaction show(android.support.v4.app.Fragment)
+    479:479:public android.support.v4.app.FragmentTransaction setCustomAnimations(int,int)
+    484:488:public android.support.v4.app.FragmentTransaction setCustomAnimations(int,int,int,int)
+    492:493:public android.support.v4.app.FragmentTransaction setTransition(int)
+    497:498:public android.support.v4.app.FragmentTransaction setTransitionStyle(int)
+    502:508:public android.support.v4.app.FragmentTransaction addToBackStack(java.lang.String)
+    512:512:public boolean isAddToBackStackAllowed()
+    516:521:public android.support.v4.app.FragmentTransaction disallowAddToBackStack()
+    525:527:public android.support.v4.app.FragmentTransaction setBreadCrumbTitle(int)
+    531:533:public android.support.v4.app.FragmentTransaction setBreadCrumbTitle(java.lang.CharSequence)
+    537:539:public android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(int)
+    543:545:public android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(java.lang.CharSequence)
+    578:578:public int commitAllowingStateLoss()
+    779:779:public int getTransition()
+    783:783:public int getTransitionStyle()
+    787:787:public boolean isEmpty()
+android.support.v4.app.DialogFragment
+android.support.v4.app.Fragment:
+    static final int INITIALIZING
+    static final int CREATED
+    static final int ACTIVITY_CREATED
+    static final int STOPPED
+    static final int STARTED
+    static final int RESUMED
+    489:489:public final int getId()
+    496:496:public final java.lang.String getTag()
+    507:511:public void setArguments(android.os.Bundle)
+    518:518:public final android.os.Bundle getArguments()
+    530:535:public void setInitialSavedState(android.support.v4.app.Fragment$SavedState)
+    549:551:public void setTargetFragment(android.support.v4.app.Fragment,int)
+    557:557:public final android.support.v4.app.Fragment getTargetFragment()
+    564:564:public final int getTargetRequestCode()
+    591:591:public final java.lang.CharSequence getText(int)
+    601:601:public final java.lang.String getString(int)
+    614:614:public final varargs java.lang.String getString(int,java.lang.Object[])
+    628:628:public final android.support.v4.app.FragmentManager getFragmentManager()
+    636:648:public final android.support.v4.app.FragmentManager getChildFragmentManager()
+    656:656:public final android.support.v4.app.Fragment getParentFragment()
+    663:663:public final boolean isAdded()
+    681:681:public final boolean isRemoving()
+    692:692:public final boolean isInLayout()
+    700:700:public final boolean isResumed()
+    709:709:public final boolean isVisible()
+    721:721:public final boolean isHidden()
+    726:726:public final boolean hasOptionsMenu()
+    731:731:public final boolean isMenuVisible()
+    759:764:public void setRetainInstance(boolean)
+    767:767:public final boolean getRetainInstance()
+    778:784:public void setHasOptionsMenu(boolean)
+    796:802:public void setMenuVisibility(boolean)
+    818:823:public void setUserVisibleHint(boolean)
+    830:830:public boolean getUserVisibleHint()
+    837:845:public android.support.v4.app.LoaderManager getLoaderManager()
+    853:857:public void startActivity(android.content.Intent)
+    864:868:public void startActivityForResult(android.content.Intent,int)
+    1019:1019:public android.view.View getView()
+    1306:1307:public void registerForContextMenu(android.view.View)
+    1317:1318:public void unregisterForContextMenu(android.view.View)
+    1428:1434:android.support.v4.app.Fragment findFragmentByWho(java.lang.String)
+android.support.v4.app.Fragment$SavedState:
+    309:311:Fragment$SavedState(android.os.Bundle)
+android.support.v4.app.FragmentActivity:
+    private static final java.lang.String TAG
+    static final java.lang.String FRAGMENTS_TAG
+    private static final int HONEYCOMB
+    static final int MSG_REALLY_STOPPED
+    static final int MSG_RESUME_PENDING
+    75:134:public FragmentActivity()
+    617:619:public java.lang.Object getLastCustomNonConfigurationInstance()
+    812:812:public android.support.v4.app.FragmentManager getSupportFragmentManager()
+    832:840:public void startActivityFromFragment(android.support.v4.app.Fragment,android.content.Intent,int)
+    861:866:public android.support.v4.app.LoaderManager getSupportLoaderManager()
+android.support.v4.app.FragmentActivity$1
+android.support.v4.app.FragmentActivity$2
+android.support.v4.app.FragmentActivity$FragmentTag:
+    public static final int Fragment_id
+    public static final int Fragment_name
+    public static final int Fragment_tag
+    134:134:FragmentActivity$FragmentTag()
+android.support.v4.app.FragmentManager:
+    public static final int POP_BACK_STACK_INCLUSIVE
+    142:142:public android.support.v4.app.FragmentTransaction openTransaction()
+    public abstract android.support.v4.app.Fragment findFragmentById(int)
+    public abstract void popBackStack()
+    public abstract boolean popBackStackImmediate()
+    public abstract void popBackStack(java.lang.String,int)
+    public abstract boolean popBackStackImmediate(java.lang.String,int)
+    public abstract void popBackStack(int,int)
+    public abstract boolean popBackStackImmediate(int,int)
+    public abstract int getBackStackEntryCount()
+    public abstract android.support.v4.app.FragmentManager$BackStackEntry getBackStackEntryAt(int)
+    public abstract void addOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    public abstract void removeOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    public abstract void putFragment(android.os.Bundle,java.lang.String,android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.Fragment getFragment(android.os.Bundle,java.lang.String)
+    public abstract java.util.List getFragments()
+    public abstract android.support.v4.app.Fragment$SavedState saveFragmentInstanceState(android.support.v4.app.Fragment)
+    public abstract void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+    345:346:public static void enableDebugLogging(boolean)
+android.support.v4.app.FragmentManager$BackStackEntry
+android.support.v4.app.FragmentManagerImpl:
+    static final java.lang.String TAG
+    static final java.lang.String TARGET_REQUEST_CODE_STATE_TAG
+    static final java.lang.String TARGET_STATE_TAG
+    static final java.lang.String VIEW_STATE_TAG
+    static final java.lang.String USER_VISIBLE_HINT_TAG
+    static final int ANIM_DUR
+    public static final int ANIM_STYLE_OPEN_ENTER
+    public static final int ANIM_STYLE_OPEN_EXIT
+    public static final int ANIM_STYLE_CLOSE_ENTER
+    public static final int ANIM_STYLE_CLOSE_EXIT
+    public static final int ANIM_STYLE_FADE_ENTER
+    public static final int ANIM_STYLE_FADE_EXIT
+    477:482:public void popBackStack()
+    493:498:public void popBackStack(java.lang.String,int)
+    502:504:public boolean popBackStackImmediate(java.lang.String,int)
+    509:517:public void popBackStack(int,int)
+    521:526:public boolean popBackStackImmediate(int,int)
+    531:531:public int getBackStackEntryCount()
+    536:536:public android.support.v4.app.FragmentManager$BackStackEntry getBackStackEntryAt(int)
+    541:545:public void addOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    549:552:public void removeOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    583:583:public java.util.List getFragments()
+    588:596:public android.support.v4.app.Fragment$SavedState saveFragmentInstanceState(android.support.v4.app.Fragment)
+    1330:1338:public android.support.v4.app.Fragment findFragmentByWho(java.lang.String)
+android.support.v4.app.FragmentManagerImpl$2
+android.support.v4.app.FragmentManagerImpl$3
+android.support.v4.app.FragmentManagerImpl$4
+android.support.v4.app.FragmentPagerAdapter
+android.support.v4.app.FragmentStatePagerAdapter
+android.support.v4.app.FragmentTabHost:
+    private android.widget.FrameLayout mRealTabContent
+    130:132:public FragmentTabHost(android.content.Context)
+    135:137:public FragmentTabHost(android.content.Context,android.util.AttributeSet)
+    140:172:private void initFragmentTabHost(android.content.Context,android.util.AttributeSet)
+    186:190:public void setup(android.content.Context,android.support.v4.app.FragmentManager)
+    193:205:public void setup(android.content.Context,android.support.v4.app.FragmentManager,int)
+    208:215:private void ensureContent()
+    223:242:public void addTab(android.widget.TabHost$TabSpec,java.lang.Class,android.os.Bundle)
+android.support.v4.app.FragmentTabHost$DummyTabFactory
+android.support.v4.app.FragmentTabHost$TabInfo:
+    67:71:FragmentTabHost$TabInfo(java.lang.String,java.lang.Class,android.os.Bundle)
+android.support.v4.app.FragmentTransaction:
+    public static final int TRANSIT_ENTER_MASK
+    public static final int TRANSIT_EXIT_MASK
+    public static final int TRANSIT_UNSET
+    public static final int TRANSIT_NONE
+    public static final int TRANSIT_FRAGMENT_OPEN
+    public static final int TRANSIT_FRAGMENT_CLOSE
+    public static final int TRANSIT_FRAGMENT_FADE
+    public abstract android.support.v4.app.FragmentTransaction add(android.support.v4.app.Fragment,java.lang.String)
+    public abstract android.support.v4.app.FragmentTransaction add(int,android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment,java.lang.String)
+    public abstract android.support.v4.app.FragmentTransaction remove(android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction hide(android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction show(android.support.v4.app.Fragment)
+    public abstract boolean isEmpty()
+    public abstract android.support.v4.app.FragmentTransaction setCustomAnimations(int,int)
+    public abstract android.support.v4.app.FragmentTransaction setCustomAnimations(int,int,int,int)
+    public abstract android.support.v4.app.FragmentTransaction setTransition(int)
+    public abstract android.support.v4.app.FragmentTransaction setTransitionStyle(int)
+    public abstract android.support.v4.app.FragmentTransaction addToBackStack(java.lang.String)
+    public abstract boolean isAddToBackStackAllowed()
+    public abstract android.support.v4.app.FragmentTransaction disallowAddToBackStack()
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbTitle(int)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbTitle(java.lang.CharSequence)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(int)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(java.lang.CharSequence)
+    public abstract int commitAllowingStateLoss()
+android.support.v4.app.ListFragment
+android.support.v4.app.ListFragment$1
+android.support.v4.app.ListFragment$2
+android.support.v4.app.LoaderManager:
+    public abstract android.support.v4.content.Loader initLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    public abstract android.support.v4.content.Loader restartLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    public abstract void destroyLoader(int)
+    public abstract android.support.v4.content.Loader getLoader(int)
+    public abstract void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+    177:178:public static void enableDebugLogging(boolean)
+android.support.v4.app.LoaderManagerImpl:
+    static final java.lang.String TAG
+    boolean mRetainingStarted
+    boolean mCreatingLoader
+    489:492:private android.support.v4.app.LoaderManagerImpl$LoaderInfo createLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    498:503:private android.support.v4.app.LoaderManagerImpl$LoaderInfo createAndInstallLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    508:515:void installLoader(android.support.v4.app.LoaderManagerImpl$LoaderInfo)
+    543:565:public android.support.v4.content.Loader initLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    593:647:public android.support.v4.content.Loader restartLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    658:678:public void destroyLoader(int)
+    686:697:public android.support.v4.content.Loader getLoader(int)
+android.support.v4.app.LoaderManagerImpl$LoaderInfo:
+    228:232:public LoaderManagerImpl$LoaderInfo(android.support.v4.app.LoaderManagerImpl,int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    362:415:public void onLoadComplete(android.support.v4.content.Loader,java.lang.Object)
+android.support.v4.app.NavUtils
+android.support.v4.app.NavUtils$NavUtilsImpl
+android.support.v4.app.NavUtils$NavUtilsImplBase
+android.support.v4.app.NavUtils$NavUtilsImplJB
+android.support.v4.app.NavUtilsJB
+android.support.v4.app.NotificationCompat:
+    public static final int FLAG_HIGH_PRIORITY
+    public static final int PRIORITY_DEFAULT
+    public static final int PRIORITY_LOW
+    public static final int PRIORITY_MIN
+    public static final int PRIORITY_HIGH
+    public static final int PRIORITY_MAX
+    34:819:public NotificationCompat()
+android.support.v4.app.NotificationCompat$Action:
+    824:828:public NotificationCompat$Action(int,java.lang.CharSequence,android.app.PendingIntent)
+android.support.v4.app.NotificationCompat$BigPictureStyle:
+    659:661:public NotificationCompat$BigPictureStyle(android.support.v4.app.NotificationCompat$Builder)
+    668:669:public android.support.v4.app.NotificationCompat$BigPictureStyle setBigContentTitle(java.lang.CharSequence)
+    676:678:public android.support.v4.app.NotificationCompat$BigPictureStyle setSummaryText(java.lang.CharSequence)
+    685:686:public android.support.v4.app.NotificationCompat$BigPictureStyle bigPicture(android.graphics.Bitmap)
+    693:695:public android.support.v4.app.NotificationCompat$BigPictureStyle bigLargeIcon(android.graphics.Bitmap)
+android.support.v4.app.NotificationCompat$BigTextStyle:
+    726:728:public NotificationCompat$BigTextStyle(android.support.v4.app.NotificationCompat$Builder)
+android.support.v4.app.NotificationCompat$Builder:
+    231:232:public android.support.v4.app.NotificationCompat$Builder setWhen(long)
+    247:248:public android.support.v4.app.NotificationCompat$Builder setUsesChronometer(boolean)
+    274:276:public android.support.v4.app.NotificationCompat$Builder setSmallIcon(int,int)
+    315:316:public android.support.v4.app.NotificationCompat$Builder setNumber(int)
+    332:335:public android.support.v4.app.NotificationCompat$Builder setProgress(int,int,boolean)
+    342:343:public android.support.v4.app.NotificationCompat$Builder setContent(android.widget.RemoteViews)
+    355:356:public android.support.v4.app.NotificationCompat$Builder setContentIntent(android.app.PendingIntent)
+    367:368:public android.support.v4.app.NotificationCompat$Builder setDeleteIntent(android.app.PendingIntent)
+    385:387:public android.support.v4.app.NotificationCompat$Builder setFullScreenIntent(android.app.PendingIntent,boolean)
+    395:396:public android.support.v4.app.NotificationCompat$Builder setTicker(java.lang.CharSequence)
+    405:407:public android.support.v4.app.NotificationCompat$Builder setTicker(java.lang.CharSequence,android.widget.RemoteViews)
+    414:415:public android.support.v4.app.NotificationCompat$Builder setLargeIcon(android.graphics.Bitmap)
+    422:424:public android.support.v4.app.NotificationCompat$Builder setSound(android.net.Uri)
+    434:436:public android.support.v4.app.NotificationCompat$Builder setSound(android.net.Uri,int)
+    446:447:public android.support.v4.app.NotificationCompat$Builder setVibrate(long[])
+    456:462:public android.support.v4.app.NotificationCompat$Builder setLights(int,int,int)
+    477:478:public android.support.v4.app.NotificationCompat$Builder setOngoing(boolean)
+    486:487:public android.support.v4.app.NotificationCompat$Builder setOnlyAlertOnce(boolean)
+    497:498:public android.support.v4.app.NotificationCompat$Builder setAutoCancel(boolean)
+    512:516:public android.support.v4.app.NotificationCompat$Builder setDefaults(int)
+    520:525:private void setFlag(int,boolean)
+    539:540:public android.support.v4.app.NotificationCompat$Builder setPriority(int)
+    560:561:public android.support.v4.app.NotificationCompat$Builder addAction(int,java.lang.CharSequence,android.app.PendingIntent)
+    587:587:public android.app.Notification getNotification()
+android.support.v4.app.NotificationCompat$InboxStyle:
+    788:790:public NotificationCompat$InboxStyle(android.support.v4.app.NotificationCompat$Builder)
+android.support.v4.app.NotificationCompat$Style:
+    623:627:public android.app.Notification build()
+android.support.v4.app.NotificationCompatHoneycomb:
+    25:25:NotificationCompatHoneycomb()
+android.support.v4.app.NotificationCompatIceCreamSandwich:
+    25:25:NotificationCompatIceCreamSandwich()
+android.support.v4.app.ServiceCompat
+android.support.v4.app.ShareCompat
+android.support.v4.app.ShareCompat$IntentBuilder
+android.support.v4.app.ShareCompat$IntentReader
+android.support.v4.app.ShareCompat$ShareCompatImpl
+android.support.v4.app.ShareCompat$ShareCompatImplBase
+android.support.v4.app.ShareCompat$ShareCompatImplICS
+android.support.v4.app.ShareCompat$ShareCompatImplJB
+android.support.v4.app.ShareCompatICS
+android.support.v4.app.ShareCompatJB
+android.support.v4.app.TaskStackBuilder
+android.support.v4.app.TaskStackBuilder$SupportParentable
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImpl
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImplBase
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImplHoneycomb
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImplJellybean
+android.support.v4.app.TaskStackBuilderHoneycomb
+android.support.v4.app.TaskStackBuilderJellybean
+android.support.v4.app.Watson
+android.support.v4.app.Watson$OnCreateOptionsMenuListener
+android.support.v4.app.Watson$OnOptionsItemSelectedListener
+android.support.v4.app.Watson$OnPrepareOptionsMenuListener
+android.support.v4.content.AsyncTaskLoader
+android.support.v4.content.AsyncTaskLoader$LoadTask
+android.support.v4.content.ContextCompat
+android.support.v4.content.ContextCompatHoneycomb
+android.support.v4.content.ContextCompatJellybean
+android.support.v4.content.CursorLoader
+android.support.v4.content.FileProvider
+android.support.v4.content.FileProvider$PathStrategy
+android.support.v4.content.FileProvider$SimplePathStrategy
+android.support.v4.content.IntentCompat
+android.support.v4.content.IntentCompat$IntentCompatImpl
+android.support.v4.content.IntentCompat$IntentCompatImplBase
+android.support.v4.content.IntentCompat$IntentCompatImplHC
+android.support.v4.content.IntentCompat$IntentCompatImplIcsMr1
+android.support.v4.content.IntentCompatHoneycomb
+android.support.v4.content.IntentCompatIcsMr1
+android.support.v4.content.Loader:
+    android.content.Context mContext
+    91:93:public Loader(android.content.Context)
+    103:106:public void deliverResult(java.lang.Object)
+    112:112:public android.content.Context getContext()
+    119:119:public int getId()
+    158:158:public boolean isStarted()
+    167:167:public boolean isAbandoned()
+    176:176:public boolean isReset()
+    218:219:public void forceLoad()
+    226:226:protected void onForceLoad()
+    262:264:public void abandon()
+    276:276:protected void onAbandon()
+    314:317:public boolean takeContentChanged()
+    328:329:public void commitContentChanged()
+    339:342:public void rollbackContentChanged()
+    353:361:public void onContentChanged()
+android.support.v4.content.Loader$ForceLoadContentObserver
+android.support.v4.content.Loader$OnLoadCompleteListener:
+    public abstract void onLoadComplete(android.support.v4.content.Loader,java.lang.Object)
+android.support.v4.content.LocalBroadcastManager
+android.support.v4.content.LocalBroadcastManager$1
+android.support.v4.content.LocalBroadcastManager$BroadcastRecord
+android.support.v4.content.LocalBroadcastManager$ReceiverRecord
+android.support.v4.content.ModernAsyncTask
+android.support.v4.content.ModernAsyncTask$1
+android.support.v4.content.ModernAsyncTask$2
+android.support.v4.content.ModernAsyncTask$3
+android.support.v4.content.ModernAsyncTask$4
+android.support.v4.content.ModernAsyncTask$AsyncTaskResult
+android.support.v4.content.ModernAsyncTask$InternalHandler
+android.support.v4.content.ModernAsyncTask$Status
+android.support.v4.content.ModernAsyncTask$WorkerRunnable
+android.support.v4.content.WakefulBroadcastReceiver
+android.support.v4.content.pm.ActivityInfoCompat
+android.support.v4.database.DatabaseUtilsCompat
+android.support.v4.graphics.drawable.DrawableCompat
+android.support.v4.graphics.drawable.DrawableCompat$BaseDrawableImpl
+android.support.v4.graphics.drawable.DrawableCompat$DrawableImpl
+android.support.v4.graphics.drawable.DrawableCompat$HoneycombDrawableImpl
+android.support.v4.graphics.drawable.DrawableCompatHoneycomb
+android.support.v4.hardware.display.DisplayManagerCompat
+android.support.v4.hardware.display.DisplayManagerCompat$JellybeanMr1Impl
+android.support.v4.hardware.display.DisplayManagerCompat$LegacyImpl
+android.support.v4.hardware.display.DisplayManagerJellybeanMr1
+android.support.v4.internal.view.SupportMenu
+android.support.v4.internal.view.SupportMenuItem
+android.support.v4.internal.view.SupportSubMenu
+android.support.v4.media.TransportController
+android.support.v4.media.TransportMediator
+android.support.v4.media.TransportMediator$1
+android.support.v4.media.TransportMediator$2
+android.support.v4.media.TransportMediatorCallback
+android.support.v4.media.TransportMediatorJellybeanMR2
+android.support.v4.media.TransportMediatorJellybeanMR2$1
+android.support.v4.media.TransportMediatorJellybeanMR2$2
+android.support.v4.media.TransportMediatorJellybeanMR2$3
+android.support.v4.media.TransportMediatorJellybeanMR2$4
+android.support.v4.media.TransportPerformer
+android.support.v4.media.TransportStateListener
+android.support.v4.net.ConnectivityManagerCompat
+android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$ConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$GingerbreadConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$HoneycombMR2ConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$JellyBeanConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompatGingerbread
+android.support.v4.net.ConnectivityManagerCompatHoneycombMR2
+android.support.v4.net.ConnectivityManagerCompatJellyBean
+android.support.v4.net.TrafficStatsCompat
+android.support.v4.net.TrafficStatsCompat$1
+android.support.v4.net.TrafficStatsCompat$BaseTrafficStatsCompatImpl
+android.support.v4.net.TrafficStatsCompat$BaseTrafficStatsCompatImpl$1
+android.support.v4.net.TrafficStatsCompat$BaseTrafficStatsCompatImpl$SocketTags
+android.support.v4.net.TrafficStatsCompat$IcsTrafficStatsCompatImpl
+android.support.v4.net.TrafficStatsCompat$TrafficStatsCompatImpl
+android.support.v4.net.TrafficStatsCompatIcs
+android.support.v4.os.ParcelableCompat:
+    26:42:public ParcelableCompat()
+android.support.v4.os.ParcelableCompatCreatorHoneycombMR2Stub:
+    22:22:ParcelableCompatCreatorHoneycombMR2Stub()
+android.support.v4.text.BidiFormatter
+android.support.v4.text.BidiFormatter$1
+android.support.v4.text.BidiFormatter$Builder
+android.support.v4.text.BidiFormatter$DirectionalityEstimator
+android.support.v4.text.ICUCompat
+android.support.v4.text.ICUCompat$ICUCompatImpl
+android.support.v4.text.ICUCompat$ICUCompatImplBase
+android.support.v4.text.ICUCompat$ICUCompatImplIcs
+android.support.v4.text.ICUCompatIcs
+android.support.v4.text.TextDirectionHeuristicCompat
+android.support.v4.text.TextDirectionHeuristicsCompat
+android.support.v4.text.TextDirectionHeuristicsCompat$1
+android.support.v4.text.TextDirectionHeuristicsCompat$AnyStrong
+android.support.v4.text.TextDirectionHeuristicsCompat$FirstStrong
+android.support.v4.text.TextDirectionHeuristicsCompat$TextDirectionAlgorithm
+android.support.v4.text.TextDirectionHeuristicsCompat$TextDirectionHeuristicImpl
+android.support.v4.text.TextDirectionHeuristicsCompat$TextDirectionHeuristicInternal
+android.support.v4.text.TextDirectionHeuristicsCompat$TextDirectionHeuristicLocale
+android.support.v4.text.TextUtilsCompat
+android.support.v4.util.AtomicFile
+android.support.v4.util.DebugUtils:
+    25:25:public DebugUtils()
+android.support.v4.util.LongSparseArray
+android.support.v4.util.LruCache
+android.support.v4.util.SparseArrayCompat:
+    52:52:public java.lang.Object get(int)
+    60:65:public java.lang.Object get(int,java.lang.Object)
+    73:81:public void delete(int)
+    87:88:public void remove(int)
+    94:98:public void removeAt(int)
+    107:111:public void removeAtRange(int,int)
+    146:190:public void put(int,java.lang.Object)
+    236:241:public void setValueAt(int,java.lang.Object)
+    249:253:public int indexOfKey(int)
+    265:273:public int indexOfValue(java.lang.Object)
+    296:323:public void append(int,java.lang.Object)
+    326:342:private static int binarySearch(int[],int,int,int)
+android.support.v4.util.TimeUtils
+android.support.v4.view.AccessibilityDelegateCompat
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateIcsImpl
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateIcsImpl$1
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateImpl
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateJellyBeanImpl
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateJellyBeanImpl$1
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateStubImpl
+android.support.v4.view.AccessibilityDelegateCompatIcs
+android.support.v4.view.AccessibilityDelegateCompatIcs$1
+android.support.v4.view.AccessibilityDelegateCompatIcs$AccessibilityDelegateBridge
+android.support.v4.view.AccessibilityDelegateCompatJellyBean
+android.support.v4.view.AccessibilityDelegateCompatJellyBean$1
+android.support.v4.view.AccessibilityDelegateCompatJellyBean$AccessibilityDelegateBridgeJellyBean
+android.support.v4.view.ActionProvider
+android.support.v4.view.ActionProvider$SubUiVisibilityListener
+android.support.v4.view.ActionProvider$VisibilityListener
+android.support.v4.view.GestureDetectorCompat
+android.support.v4.view.GestureDetectorCompat$GestureDetectorCompatImpl
+android.support.v4.view.GestureDetectorCompat$GestureDetectorCompatImplBase
+android.support.v4.view.GestureDetectorCompat$GestureDetectorCompatImplBase$GestureHandler
+android.support.v4.view.GestureDetectorCompat$GestureDetectorCompatImplJellybeanMr2
+android.support.v4.view.GravityCompat:
+    public static final int RELATIVE_LAYOUT_DIRECTION
+    public static final int START
+    public static final int END
+    public static final int RELATIVE_HORIZONTAL_GRAVITY_MASK
+    27:62:public GravityCompat()
+    132:133:public static void apply(int,int,int,android.graphics.Rect,android.graphics.Rect,int)
+    162:163:public static void apply(int,int,int,android.graphics.Rect,int,int,android.graphics.Rect,int)
+    186:187:public static void applyDisplay(int,android.graphics.Rect,android.graphics.Rect,int)
+android.support.v4.view.GravityCompat$GravityCompatImpl:
+    public abstract void apply(int,int,int,android.graphics.Rect,android.graphics.Rect,int)
+    public abstract void apply(int,int,int,android.graphics.Rect,int,int,android.graphics.Rect,int)
+    public abstract void applyDisplay(int,android.graphics.Rect,android.graphics.Rect,int)
+android.support.v4.view.GravityCompat$GravityCompatImplBase:
+    46:47:public void apply(int,int,int,android.graphics.Rect,android.graphics.Rect,int)
+    52:53:public void apply(int,int,int,android.graphics.Rect,int,int,android.graphics.Rect,int)
+    58:59:public void applyDisplay(int,android.graphics.Rect,android.graphics.Rect,int)
+android.support.v4.view.GravityCompat$GravityCompatImplJellybeanMr1:
+    71:72:public void apply(int,int,int,android.graphics.Rect,android.graphics.Rect,int)
+    77:79:public void apply(int,int,int,android.graphics.Rect,int,int,android.graphics.Rect,int)
+    83:84:public void applyDisplay(int,android.graphics.Rect,android.graphics.Rect,int)
+android.support.v4.view.GravityCompatJellybeanMr1:
+    23:23:GravityCompatJellybeanMr1()
+    31:32:public static void apply(int,int,int,android.graphics.Rect,android.graphics.Rect,int)
+    36:37:public static void apply(int,int,int,android.graphics.Rect,int,int,android.graphics.Rect,int)
+    40:41:public static void applyDisplay(int,android.graphics.Rect,android.graphics.Rect,int)
+android.support.v4.view.KeyEventCompat:
+    26:144:public KeyEventCompat()
+    176:176:public static int normalizeMetaState(int)
+    180:180:public static boolean metaStateHasModifiers(int,int)
+    184:184:public static boolean metaStateHasNoModifiers(int)
+    200:200:public static boolean isTracking(android.view.KeyEvent)
+    204:204:public static java.lang.Object getKeyDispatcherState(android.view.View)
+    209:209:public static boolean dispatch(android.view.KeyEvent,android.view.KeyEvent$Callback,java.lang.Object,java.lang.Object)
+android.support.v4.view.KeyEventCompat$BaseKeyEventVersionImpl:
+    private static final int META_MODIFIER_MASK
+    private static final int META_ALL_MASK
+    103:103:public boolean isTracking(android.view.KeyEvent)
+    108:108:public java.lang.Object getKeyDispatcherState(android.view.View)
+    114:114:public boolean dispatch(android.view.KeyEvent,android.view.KeyEvent$Callback,java.lang.Object,java.lang.Object)
+android.support.v4.view.KeyEventCompat$EclairKeyEventVersionImpl:
+    126:126:public boolean isTracking(android.view.KeyEvent)
+    131:131:public java.lang.Object getKeyDispatcherState(android.view.View)
+    137:137:public boolean dispatch(android.view.KeyEvent,android.view.KeyEvent$Callback,java.lang.Object,java.lang.Object)
+android.support.v4.view.KeyEventCompat$KeyEventVersionImpl:
+    public abstract int normalizeMetaState(int)
+    public abstract boolean isTracking(android.view.KeyEvent)
+    public abstract java.lang.Object getKeyDispatcherState(android.view.View)
+    public abstract boolean dispatch(android.view.KeyEvent,android.view.KeyEvent$Callback,java.lang.Object,java.lang.Object)
+android.support.v4.view.KeyEventCompatEclair:
+    23:23:KeyEventCompatEclair()
+    25:25:public static java.lang.Object getKeyDispatcherState(android.view.View)
+    30:30:public static boolean dispatch(android.view.KeyEvent,android.view.KeyEvent$Callback,java.lang.Object,java.lang.Object)
+    38:38:public static boolean isTracking(android.view.KeyEvent)
+android.support.v4.view.KeyEventCompatHoneycomb:
+    24:24:KeyEventCompatHoneycomb()
+android.support.v4.view.MarginLayoutParamsCompat
+android.support.v4.view.MarginLayoutParamsCompat$MarginLayoutParamsCompatImpl
+android.support.v4.view.MarginLayoutParamsCompat$MarginLayoutParamsCompatImplBase
+android.support.v4.view.MarginLayoutParamsCompat$MarginLayoutParamsCompatImplJbMr1
+android.support.v4.view.MarginLayoutParamsCompatJellybeanMr1
+android.support.v4.view.MenuCompat
+android.support.v4.view.MenuItemCompat
+android.support.v4.view.MenuItemCompat$BaseMenuVersionImpl
+android.support.v4.view.MenuItemCompat$HoneycombMenuVersionImpl
+android.support.v4.view.MenuItemCompat$IcsMenuVersionImpl
+android.support.v4.view.MenuItemCompat$IcsMenuVersionImpl$1
+android.support.v4.view.MenuItemCompat$MenuVersionImpl
+android.support.v4.view.MenuItemCompat$OnActionExpandListener
+android.support.v4.view.MenuItemCompatHoneycomb
+android.support.v4.view.MenuItemCompatIcs
+android.support.v4.view.MenuItemCompatIcs$OnActionExpandListenerWrapper
+android.support.v4.view.MenuItemCompatIcs$SupportActionExpandProxy
+android.support.v4.view.MotionEventCompat:
+    public static final int ACTION_MASK
+    public static final int ACTION_POINTER_DOWN
+    public static final int ACTION_POINTER_UP
+    public static final int ACTION_HOVER_MOVE
+    public static final int ACTION_SCROLL
+    public static final int ACTION_POINTER_INDEX_MASK
+    public static final int ACTION_POINTER_INDEX_SHIFT
+    public static final int ACTION_HOVER_ENTER
+    public static final int ACTION_HOVER_EXIT
+    25:80:public MotionEventCompat()
+android.support.v4.view.MotionEventCompatEclair:
+    24:24:MotionEventCompatEclair()
+android.support.v4.view.PagerAdapter:
+    public static final int POSITION_UNCHANGED
+    public static final int POSITION_NONE
+    78:79:public PagerAdapter()
+    276:277:public void notifyDataSetChanged()
+    307:307:public java.lang.CharSequence getPageTitle(int)
+android.support.v4.view.PagerTabStrip
+android.support.v4.view.PagerTabStrip$1
+android.support.v4.view.PagerTabStrip$2
+android.support.v4.view.PagerTitleStrip
+android.support.v4.view.PagerTitleStrip$1
+android.support.v4.view.PagerTitleStrip$PageListener
+android.support.v4.view.PagerTitleStrip$PagerTitleStripImpl
+android.support.v4.view.PagerTitleStrip$PagerTitleStripImplBase
+android.support.v4.view.PagerTitleStrip$PagerTitleStripImplIcs
+android.support.v4.view.PagerTitleStripIcs
+android.support.v4.view.PagerTitleStripIcs$SingleLineAllCapsTransform
+android.support.v4.view.VelocityTrackerCompat:
+    25:51:public VelocityTrackerCompat()
+android.support.v4.view.VelocityTrackerCompatHoneycomb:
+    24:24:VelocityTrackerCompatHoneycomb()
+android.support.v4.view.ViewCompat:
+    public static final int OVER_SCROLL_ALWAYS
+    public static final int OVER_SCROLL_IF_CONTENT_SCROLLS
+    public static final int OVER_SCROLL_NEVER
+    private static final long FAKE_FRAME_TIME
+    public static final int IMPORTANT_FOR_ACCESSIBILITY_AUTO
+    public static final int IMPORTANT_FOR_ACCESSIBILITY_YES
+    public static final int IMPORTANT_FOR_ACCESSIBILITY_NO
+    public static final int LAYER_TYPE_NONE
+    public static final int LAYER_TYPE_SOFTWARE
+    public static final int LAYER_TYPE_HARDWARE
+    public static final int LAYOUT_DIRECTION_LTR
+    public static final int LAYOUT_DIRECTION_RTL
+    public static final int LAYOUT_DIRECTION_INHERIT
+    public static final int LAYOUT_DIRECTION_LOCALE
+    34:397:public ViewCompat()
+    462:462:public static boolean canScrollVertically(android.view.View,int)
+    491:492:public static void setOverScrollMode(android.view.View,int)
+    528:529:public static void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    561:562:public static void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    597:598:public static void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    612:613:public static void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat)
+    624:624:public static boolean hasTransientState(android.view.View)
+    635:636:public static void setHasTransientState(android.view.View,boolean)
+    697:698:public static void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    713:713:public static int getImportantForAccessibility(android.view.View)
+    729:730:public static void setImportantForAccessibility(android.view.View,int)
+    747:747:public static boolean performAccessibilityAction(android.view.View,int,android.os.Bundle)
+    774:774:public static android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+    785:785:public static float getAlpha(android.view.View)
+    859:859:public static int getLabelFor(android.view.View)
+    870:871:public static void setLabelFor(android.view.View,int)
+    938:939:public static void setLayoutDirection(android.view.View,int)
+    950:950:public static android.view.ViewParent getParentForAccessibility(android.view.View)
+android.support.v4.view.ViewCompat$BaseViewCompatImpl:
+    175:175:public boolean canScrollVertically(android.view.View,int)
+    182:182:public void setOverScrollMode(android.view.View,int)
+    185:185:public void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat)
+    188:188:public void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    191:191:public void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    194:194:public void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    197:197:public boolean hasTransientState(android.view.View)
+    201:201:public void setHasTransientState(android.view.View,boolean)
+    212:213:public void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    218:218:public int getImportantForAccessibility(android.view.View)
+    222:222:public void setImportantForAccessibility(android.view.View,int)
+    224:224:public boolean performAccessibilityAction(android.view.View,int,android.os.Bundle)
+    227:227:public android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+    230:230:public float getAlpha(android.view.View)
+    239:239:public int getLabelFor(android.view.View)
+    243:243:public void setLabelFor(android.view.View,int)
+    256:256:public void setLayoutDirection(android.view.View,int)
+    260:260:public android.view.ViewParent getParentForAccessibility(android.view.View)
+android.support.v4.view.ViewCompat$GBViewCompatImpl:
+    287:288:public void setOverScrollMode(android.view.View,int)
+android.support.v4.view.ViewCompat$HCViewCompatImpl:
+    298:298:public float getAlpha(android.view.View)
+android.support.v4.view.ViewCompat$ICSViewCompatImpl:
+    325:325:public boolean canScrollVertically(android.view.View,int)
+    329:330:public void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    333:334:public void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    337:338:public void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    341:342:public void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat)
+android.support.v4.view.ViewCompat$JBViewCompatImpl:
+    348:348:public boolean hasTransientState(android.view.View)
+    352:353:public void setHasTransientState(android.view.View,boolean)
+    368:369:public void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    372:372:public int getImportantForAccessibility(android.view.View)
+    376:377:public void setImportantForAccessibility(android.view.View,int)
+    380:380:public boolean performAccessibilityAction(android.view.View,int,android.os.Bundle)
+    384:388:public android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+    393:393:public android.view.ViewParent getParentForAccessibility(android.view.View)
+android.support.v4.view.ViewCompat$JbMr1ViewCompatImpl:
+    401:401:public int getLabelFor(android.view.View)
+    406:407:public void setLabelFor(android.view.View,int)
+    421:422:public void setLayoutDirection(android.view.View,int)
+android.support.v4.view.ViewCompat$ViewCompatImpl:
+    public abstract boolean canScrollVertically(android.view.View,int)
+    public abstract void setOverScrollMode(android.view.View,int)
+    public abstract void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    public abstract void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    public abstract void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    public abstract void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat)
+    public abstract boolean hasTransientState(android.view.View)
+    public abstract void setHasTransientState(android.view.View,boolean)
+    public abstract void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    public abstract int getImportantForAccessibility(android.view.View)
+    public abstract void setImportantForAccessibility(android.view.View,int)
+    public abstract boolean performAccessibilityAction(android.view.View,int,android.os.Bundle)
+    public abstract android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+    public abstract float getAlpha(android.view.View)
+    public abstract int getLabelFor(android.view.View)
+    public abstract void setLabelFor(android.view.View,int)
+    public abstract void setLayoutDirection(android.view.View,int)
+    public abstract android.view.ViewParent getParentForAccessibility(android.view.View)
+android.support.v4.view.ViewCompatEclairMr1:
+    22:22:ViewCompatEclairMr1()
+android.support.v4.view.ViewCompatGingerbread:
+    21:21:ViewCompatGingerbread()
+    27:28:public static void setOverScrollMode(android.view.View,int)
+android.support.v4.view.ViewCompatHC:
+    23:23:ViewCompatHC()
+    29:29:public static float getAlpha(android.view.View)
+android.support.v4.view.ViewCompatICS:
+    27:27:ViewCompatICS()
+    34:34:public static boolean canScrollVertically(android.view.View,int)
+    38:39:public static void setAccessibilityDelegate(android.view.View,java.lang.Object)
+    42:43:public static void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    46:47:public static void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    50:51:public static void onInitializeAccessibilityNodeInfo(android.view.View,java.lang.Object)
+android.support.v4.view.ViewCompatJB:
+    26:26:ViewCompatJB()
+    29:29:public static boolean hasTransientState(android.view.View)
+    33:34:public static void setHasTransientState(android.view.View,boolean)
+    50:51:public static void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    54:54:public static int getImportantForAccessibility(android.view.View)
+    58:59:public static void setImportantForAccessibility(android.view.View,int)
+    62:62:public static boolean performAccessibilityAction(android.view.View,int,android.os.Bundle)
+    66:66:public static java.lang.Object getAccessibilityNodeProvider(android.view.View)
+    70:70:public static android.view.ViewParent getParentForAccessibility(android.view.View)
+android.support.v4.view.ViewCompatJellybeanMr1:
+    25:25:ViewCompatJellybeanMr1()
+    28:28:public static int getLabelFor(android.view.View)
+    32:33:public static void setLabelFor(android.view.View,int)
+    44:45:public static void setLayoutDirection(android.view.View,int)
+android.support.v4.view.ViewConfigurationCompat:
+    25:46:public ViewConfigurationCompat()
+android.support.v4.view.ViewConfigurationCompatFroyo:
+    24:24:ViewConfigurationCompatFroyo()
+android.support.v4.view.ViewGroupCompat
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatHCImpl
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatIcsImpl
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatImpl
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatStubImpl
+android.support.v4.view.ViewGroupCompatHC
+android.support.v4.view.ViewGroupCompatIcs
+android.support.v4.view.ViewPager:
+    private static final java.lang.String TAG
+    private static final boolean DEBUG
+    private static final boolean USE_CACHE
+    private static final int DEFAULT_OFFSCREEN_PAGES
+    private static final int MAX_SETTLE_DURATION
+    private static final int MIN_DISTANCE_FOR_FLING
+    private static final int DEFAULT_GUTTER_SIZE
+    private static final int MIN_FLING_VELOCITY
+    private boolean mIgnoreGutter
+    private static final int INVALID_POINTER
+    private static final int CLOSE_ENOUGH
+    private long mFakeDragBeginTime
+    private static final int DRAW_ORDER_DEFAULT
+    private static final int DRAW_ORDER_FORWARD
+    private static final int DRAW_ORDER_REVERSE
+    public static final int SCROLL_STATE_IDLE
+    public static final int SCROLL_STATE_DRAGGING
+    public static final int SCROLL_STATE_SETTLING
+    344:346:public ViewPager(android.content.Context)
+    349:351:public ViewPager(android.content.Context,android.util.AttributeSet)
+    354:379:void initViewPager()
+    608:620:public void setPageTransformer(boolean,android.support.v4.view.ViewPager$PageTransformer)
+    654:656:android.support.v4.view.ViewPager$OnPageChangeListener setInternalPageChangeListener(android.support.v4.view.ViewPager$OnPageChangeListener)
+    778:779:void smoothScrollTo(int,int)
+    2259:2275:public boolean beginFakeDrag()
+    2285:2306:public void endFakeDrag()
+    2316:2354:public void fakeDragBy(float)
+    2366:2366:public boolean isFakeDragging()
+    84:84:static synthetic void access$000(android.support.v4.view.ViewPager,int)
+    84:84:static synthetic android.support.v4.view.PagerAdapter access$200(android.support.v4.view.ViewPager)
+    84:84:static synthetic int access$300(android.support.v4.view.ViewPager)
+android.support.v4.view.ViewPager$3
+android.support.v4.view.ViewPager$MyAccessibilityDelegate
+android.support.v4.view.ViewPager$SimpleOnPageChangeListener
+android.support.v4.view.ViewParentCompat
+android.support.v4.view.ViewParentCompat$ViewParentCompatICSImpl
+android.support.v4.view.ViewParentCompat$ViewParentCompatImpl
+android.support.v4.view.ViewParentCompat$ViewParentCompatStubImpl
+android.support.v4.view.ViewParentCompatICS
+android.support.v4.view.WindowCompat
+android.support.v4.view.accessibility.AccessibilityEventCompat
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventIcsImpl
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventStubImpl
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventVersionImpl
+android.support.v4.view.accessibility.AccessibilityEventCompatIcs
+android.support.v4.view.accessibility.AccessibilityManagerCompat
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerIcsImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerIcsImpl$1
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerStubImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerVersionImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityStateChangeListenerCompat
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs$1
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoIcsImpl
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoJellybeanImpl
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoJellybeanMr2Impl
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoStubImpl
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompatIcs
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompatJellyBean
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompatJellybeanMr2
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderImpl
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl$1
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderStubImpl
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompatJellyBean
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompatJellyBean$1
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompatJellyBean$AccessibilityNodeInfoBridge
+android.support.v4.view.accessibility.AccessibilityRecordCompat
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordIcsImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordIcsMr1Impl
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordJellyBeanImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordStubImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompatIcs
+android.support.v4.view.accessibility.AccessibilityRecordCompatIcsMr1
+android.support.v4.view.accessibility.AccessibilityRecordCompatJellyBean
+android.support.v4.widget.CursorAdapter
+android.support.v4.widget.CursorAdapter$1
+android.support.v4.widget.CursorAdapter$ChangeObserver
+android.support.v4.widget.CursorAdapter$MyDataSetObserver
+android.support.v4.widget.CursorFilter
+android.support.v4.widget.CursorFilter$CursorFilterClient
+android.support.v4.widget.DrawerLayout:
+    private static final java.lang.String TAG
+    public static final int STATE_IDLE
+    public static final int STATE_DRAGGING
+    public static final int STATE_SETTLING
+    public static final int LOCK_MODE_UNLOCKED
+    public static final int LOCK_MODE_LOCKED_CLOSED
+    public static final int LOCK_MODE_LOCKED_OPEN
+    private static final int MIN_DRAWER_MARGIN
+    private static final int DEFAULT_SCRIM_COLOR
+    private static final int PEEK_DELAY
+    private static final int MIN_FLING_VELOCITY
+    private static final boolean ALLOW_EDGE_LOCK
+    private static final boolean CHILDREN_DISALLOW_INTERCEPT
+    private static final float TOUCH_SLOP_SENSITIVITY
+    217:218:public DrawerLayout(android.content.Context)
+    221:222:public DrawerLayout(android.content.Context,android.util.AttributeSet)
+    225:249:public DrawerLayout(android.content.Context,android.util.AttributeSet,int)
+    265:275:public void setDrawerShadow(android.graphics.drawable.Drawable,int)
+    285:286:public void setDrawerShadow(int,int)
+    394:399:public void setDrawerLockMode(int,android.view.View)
+    409:416:public int getDrawerLockMode(int)
+    536:544:void moveDrawerToOffset(android.view.View,float)
+    1031:1040:public void openDrawer(int)
+    1074:1083:public void closeDrawer(int)
+    1096:1099:public boolean isDrawerOpen(android.view.View)
+    1112:1116:public boolean isDrawerOpen(int)
+    1143:1147:public boolean isDrawerVisible(int)
+    1202:1213:void cancelChildViewTouch()
+android.support.v4.widget.DrawerLayout$AccessibilityDelegate
+android.support.v4.widget.DrawerLayout$LayoutParams:
+    1502:1504:public DrawerLayout$LayoutParams(int,int,int)
+android.support.v4.widget.DrawerLayout$SimpleDrawerListener
+android.support.v4.widget.DrawerLayout$ViewDragCallback:
+    1326:1328:public DrawerLayout$ViewDragCallback(android.support.v4.widget.DrawerLayout,int)
+    1331:1332:public void setDragger(android.support.v4.widget.ViewDragHelper)
+    1411:1433:private void peekDrawer()
+    1316:1316:static synthetic void access$000(android.support.v4.widget.DrawerLayout$ViewDragCallback)
+android.support.v4.widget.DrawerLayout$ViewDragCallback$1
+android.support.v4.widget.EdgeEffectCompat:
+    132:134:public EdgeEffectCompat(android.content.Context)
+    204:204:public boolean onAbsorb(int)
+android.support.v4.widget.EdgeEffectCompat$BaseEdgeEffectImpl:
+    60:60:public java.lang.Object newEdgeEffect(android.content.Context)
+    82:82:public boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectIcsImpl:
+    92:92:public java.lang.Object newEdgeEffect(android.content.Context)
+    116:116:public boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectImpl:
+    public abstract java.lang.Object newEdgeEffect(android.content.Context)
+    public abstract boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompatIcs:
+    28:28:EdgeEffectCompatIcs()
+    30:30:public static java.lang.Object newEdgeEffect(android.content.Context)
+    57:58:public static boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.ExploreByTouchHelper
+android.support.v4.widget.ExploreByTouchHelper$1
+android.support.v4.widget.ExploreByTouchHelper$ExploreByTouchNodeProvider
+android.support.v4.widget.ResourceCursorAdapter
+android.support.v4.widget.ScrollerCompat:
+    251:251:public static android.support.v4.widget.ScrollerCompat create(android.content.Context)
+    255:255:public static android.support.v4.widget.ScrollerCompat create(android.content.Context,android.view.animation.Interpolator)
+    258:260:ScrollerCompat(android.content.Context,android.view.animation.Interpolator)
+    314:314:public float getCurrVelocity()
+    341:342:public void startScroll(int,int,int,int)
+    382:383:public void fling(int,int,int,int,int,int,int,int)
+    410:412:public void fling(int,int,int,int,int,int,int,int,int,int)
+    437:438:public void notifyHorizontalEdgeReached(int,int,int)
+    454:455:public void notifyVerticalEdgeReached(int,int,int)
+    471:471:public boolean isOverScrolled()
+android.support.v4.widget.ScrollerCompat$ScrollerCompatImpl:
+    public abstract java.lang.Object createScroller(android.content.Context,android.view.animation.Interpolator)
+    public abstract float getCurrVelocity(java.lang.Object)
+    public abstract void startScroll(java.lang.Object,int,int,int,int)
+    public abstract void fling(java.lang.Object,int,int,int,int,int,int,int,int)
+    public abstract void fling(java.lang.Object,int,int,int,int,int,int,int,int,int,int)
+    public abstract void notifyHorizontalEdgeReached(java.lang.Object,int,int,int)
+    public abstract void notifyVerticalEdgeReached(java.lang.Object,int,int,int)
+    public abstract boolean isOverScrolled(java.lang.Object)
+android.support.v4.widget.ScrollerCompat$ScrollerCompatImplBase:
+    58:58:public java.lang.Object createScroller(android.content.Context,android.view.animation.Interpolator)
+    79:79:public float getCurrVelocity(java.lang.Object)
+    89:90:public void startScroll(java.lang.Object,int,int,int,int)
+    101:102:public void fling(java.lang.Object,int,int,int,int,int,int,int,int)
+    107:108:public void fling(java.lang.Object,int,int,int,int,int,int,int,int,int,int)
+    119:119:public void notifyHorizontalEdgeReached(java.lang.Object,int,int,int)
+    124:124:public void notifyVerticalEdgeReached(java.lang.Object,int,int,int)
+    129:129:public boolean isOverScrolled(java.lang.Object)
+android.support.v4.widget.ScrollerCompat$ScrollerCompatImplGingerbread:
+    146:146:public java.lang.Object createScroller(android.content.Context,android.view.animation.Interpolator)
+    166:166:public float getCurrVelocity(java.lang.Object)
+    176:177:public void startScroll(java.lang.Object,int,int,int,int)
+    188:190:public void fling(java.lang.Object,int,int,int,int,int,int,int,int)
+    195:197:public void fling(java.lang.Object,int,int,int,int,int,int,int,int,int,int)
+    207:208:public void notifyHorizontalEdgeReached(java.lang.Object,int,int,int)
+    212:213:public void notifyVerticalEdgeReached(java.lang.Object,int,int,int)
+    217:217:public boolean isOverScrolled(java.lang.Object)
+android.support.v4.widget.ScrollerCompat$ScrollerCompatImplIcs:
+    234:234:public float getCurrVelocity(java.lang.Object)
+android.support.v4.widget.ScrollerCompatGingerbread:
+    24:24:ScrollerCompatGingerbread()
+    26:26:public static java.lang.Object createScroller(android.content.Context,android.view.animation.Interpolator)
+    47:48:public static void startScroll(java.lang.Object,int,int,int,int)
+    57:58:public static void fling(java.lang.Object,int,int,int,int,int,int,int,int)
+    62:64:public static void fling(java.lang.Object,int,int,int,int,int,int,int,int,int,int)
+    72:73:public static void notifyHorizontalEdgeReached(java.lang.Object,int,int,int)
+    76:77:public static void notifyVerticalEdgeReached(java.lang.Object,int,int,int)
+    80:80:public static boolean isOverScrolled(java.lang.Object)
+android.support.v4.widget.ScrollerCompatIcs
+android.support.v4.widget.SearchViewCompat
+android.support.v4.widget.SearchViewCompat$OnCloseListenerCompat
+android.support.v4.widget.SearchViewCompat$OnQueryTextListenerCompat
+android.support.v4.widget.SearchViewCompat$SearchViewCompatHoneycombImpl
+android.support.v4.widget.SearchViewCompat$SearchViewCompatHoneycombImpl$1
+android.support.v4.widget.SearchViewCompat$SearchViewCompatHoneycombImpl$2
+android.support.v4.widget.SearchViewCompat$SearchViewCompatIcsImpl
+android.support.v4.widget.SearchViewCompat$SearchViewCompatImpl
+android.support.v4.widget.SearchViewCompat$SearchViewCompatStubImpl
+android.support.v4.widget.SearchViewCompatHoneycomb
+android.support.v4.widget.SearchViewCompatHoneycomb$1
+android.support.v4.widget.SearchViewCompatHoneycomb$2
+android.support.v4.widget.SearchViewCompatHoneycomb$OnCloseListenerCompatBridge
+android.support.v4.widget.SearchViewCompatHoneycomb$OnQueryTextListenerCompatBridge
+android.support.v4.widget.SearchViewCompatIcs
+android.support.v4.widget.SearchViewCompatIcs$MySearchView
+android.support.v4.widget.SimpleCursorAdapter
+android.support.v4.widget.SimpleCursorAdapter$CursorToStringConverter
+android.support.v4.widget.SimpleCursorAdapter$ViewBinder
+android.support.v4.widget.SlidingPaneLayout:
+    private static final java.lang.String TAG
+    private static final int DEFAULT_OVERHANG_SIZE
+    private static final int DEFAULT_FADE_COLOR
+    private static final int MIN_FLING_VELOCITY
+    244:245:public SlidingPaneLayout(android.content.Context)
+    248:249:public SlidingPaneLayout(android.content.Context,android.util.AttributeSet)
+    252:267:public SlidingPaneLayout(android.content.Context,android.util.AttributeSet,int)
+    328:331:void dispatchOnPanelSlide(android.view.View)
+    334:338:void dispatchOnPanelOpened(android.view.View)
+    341:345:void dispatchOnPanelClosed(android.view.View)
+    848:849:public void smoothSlideOpen()
+    866:867:public void smoothSlideClosed()
+    895:895:public boolean canSlide()
+    909:922:private void onPanelDragged(int)
+    1103:1122:protected boolean canScroll(android.view.View,boolean,int,int,int)
+    88:88:static synthetic boolean access$100(android.support.v4.widget.SlidingPaneLayout)
+    88:88:static synthetic android.support.v4.widget.ViewDragHelper access$200(android.support.v4.widget.SlidingPaneLayout)
+    88:88:static synthetic float access$300(android.support.v4.widget.SlidingPaneLayout)
+    88:88:static synthetic android.view.View access$400(android.support.v4.widget.SlidingPaneLayout)
+    88:88:static synthetic boolean access$502(android.support.v4.widget.SlidingPaneLayout,boolean)
+    88:88:static synthetic void access$600(android.support.v4.widget.SlidingPaneLayout,int)
+    88:88:static synthetic int access$700(android.support.v4.widget.SlidingPaneLayout)
+android.support.v4.widget.SlidingPaneLayout$AccessibilityDelegate
+android.support.v4.widget.SlidingPaneLayout$DragHelperCallback
+android.support.v4.widget.SlidingPaneLayout$LayoutParams:
+    1277:1278:public SlidingPaneLayout$LayoutParams(int,int)
+    1289:1291:public SlidingPaneLayout$LayoutParams(android.support.v4.widget.SlidingPaneLayout$LayoutParams)
+android.support.v4.widget.SlidingPaneLayout$PanelSlideListener:
+    public abstract void onPanelSlide(android.view.View,float)
+    public abstract void onPanelOpened(android.view.View)
+    public abstract void onPanelClosed(android.view.View)
+android.support.v4.widget.SlidingPaneLayout$SimplePanelSlideListener
+android.support.v4.widget.ViewDragHelper:
+    private static final java.lang.String TAG
+    public static final int INVALID_POINTER
+    public static final int STATE_IDLE
+    public static final int STATE_DRAGGING
+    public static final int STATE_SETTLING
+    public static final int EDGE_LEFT
+    public static final int EDGE_RIGHT
+    public static final int EDGE_TOP
+    public static final int EDGE_BOTTOM
+    public static final int EDGE_ALL
+    public static final int DIRECTION_HORIZONTAL
+    public static final int DIRECTION_VERTICAL
+    public static final int DIRECTION_ALL
+    private static final int EDGE_SIZE
+    private static final int BASE_SETTLE_DURATION
+    private static final int MAX_SETTLE_DURATION
+    347:347:public static android.support.v4.widget.ViewDragHelper create(android.view.ViewGroup,android.support.v4.widget.ViewDragHelper$Callback)
+    360:362:public static android.support.v4.widget.ViewDragHelper create(android.view.ViewGroup,float,android.support.v4.widget.ViewDragHelper$Callback)
+    373:392:private ViewDragHelper(android.content.Context,android.view.ViewGroup,android.support.v4.widget.ViewDragHelper$Callback)
+    401:402:public void setMinVelocity(float)
+    412:412:public float getMinVelocity()
+    437:438:public void setEdgeTrackingEnabled(int)
+    483:483:public int getActivePointerId()
+    690:701:public void flingCapturedView(int,int,int,int)
+    908:927:protected boolean canScroll(android.view.View,boolean,int,int,int,int)
+    1331:1337:public boolean isEdgeTouched(int)
+    1351:1351:public boolean isEdgeTouched(int,int)
+android.support.v4.widget.ViewDragHelper$2
+android.support.v4.widget.ViewDragHelper$Callback:
+    148:148:public ViewDragHelper$Callback()
+com.actionbarsherlock.ActionBarSherlock:
+    protected static final java.lang.String TAG
+    public static final boolean DEBUG
+    public static final int FLAG_DELEGATE
+    protected com.actionbarsherlock.view.MenuInflater mMenuInflater
+    144:144:public static boolean unregisterImplementation(java.lang.Class)
+    156:156:public static com.actionbarsherlock.ActionBarSherlock wrap(android.app.Activity)
+    256:261:protected ActionBarSherlock(android.app.Activity,int)
+    public abstract com.actionbarsherlock.app.ActionBar getActionBar()
+    public abstract boolean hasFeature(int)
+    public abstract boolean requestFeature(int)
+    public abstract void setUiOptions(int)
+    public abstract void setUiOptions(int,int)
+    public abstract void setTitle(java.lang.CharSequence)
+    704:705:public void setTitle(int)
+    public abstract void setProgressBarVisibility(boolean)
+    public abstract void setProgressBarIndeterminateVisibility(boolean)
+    public abstract void setProgressBarIndeterminate(boolean)
+    public abstract void setProgress(int)
+    public abstract void setSecondaryProgress(int)
+    774:781:public com.actionbarsherlock.view.MenuInflater getMenuInflater()
+    protected abstract android.content.Context getThemedContext()
+    public abstract com.actionbarsherlock.view.ActionMode startActionMode(com.actionbarsherlock.view.ActionMode$Callback)
+com.actionbarsherlock.ActionBarSherlock$Implementation:
+    public static final int DEFAULT_API
+    public static final int DEFAULT_DPI
+com.actionbarsherlock.ActionBarSherlock$OnActionModeFinishedListener
+com.actionbarsherlock.ActionBarSherlock$OnActionModeStartedListener
+com.actionbarsherlock.app.ActionBar:
+    public static final int NAVIGATION_MODE_STANDARD
+    public static final int NAVIGATION_MODE_LIST
+    public static final int NAVIGATION_MODE_TABS
+    public static final int DISPLAY_USE_LOGO
+    public static final int DISPLAY_SHOW_HOME
+    public static final int DISPLAY_HOME_AS_UP
+    public static final int DISPLAY_SHOW_TITLE
+    public static final int DISPLAY_SHOW_CUSTOM
+    public abstract void setCustomView(android.view.View)
+    public abstract void setCustomView(android.view.View,com.actionbarsherlock.app.ActionBar$LayoutParams)
+    public abstract void setCustomView(int)
+    public abstract void setIcon(int)
+    public abstract void setIcon(android.graphics.drawable.Drawable)
+    public abstract void setLogo(int)
+    public abstract void setLogo(android.graphics.drawable.Drawable)
+    public abstract void setListNavigationCallbacks(android.widget.SpinnerAdapter,com.actionbarsherlock.app.ActionBar$OnNavigationListener)
+    public abstract void setSelectedNavigationItem(int)
+    public abstract int getSelectedNavigationIndex()
+    public abstract int getNavigationItemCount()
+    public abstract void setTitle(java.lang.CharSequence)
+    public abstract void setTitle(int)
+    public abstract void setSubtitle(java.lang.CharSequence)
+    public abstract void setSubtitle(int)
+    public abstract void setDisplayOptions(int)
+    public abstract void setDisplayOptions(int,int)
+    public abstract void setDisplayUseLogoEnabled(boolean)
+    public abstract void setDisplayShowHomeEnabled(boolean)
+    public abstract void setDisplayHomeAsUpEnabled(boolean)
+    public abstract void setDisplayShowTitleEnabled(boolean)
+    public abstract void setDisplayShowCustomEnabled(boolean)
+    public abstract void setBackgroundDrawable(android.graphics.drawable.Drawable)
+    436:436:public void setStackedBackgroundDrawable(android.graphics.drawable.Drawable)
+    446:446:public void setSplitBackgroundDrawable(android.graphics.drawable.Drawable)
+    public abstract android.view.View getCustomView()
+    public abstract java.lang.CharSequence getTitle()
+    public abstract java.lang.CharSequence getSubtitle()
+    public abstract int getNavigationMode()
+    public abstract void setNavigationMode(int)
+    public abstract int getDisplayOptions()
+    public abstract com.actionbarsherlock.app.ActionBar$Tab newTab()
+    public abstract void addTab(com.actionbarsherlock.app.ActionBar$Tab)
+    public abstract void addTab(com.actionbarsherlock.app.ActionBar$Tab,boolean)
+    public abstract void addTab(com.actionbarsherlock.app.ActionBar$Tab,int)
+    public abstract void addTab(com.actionbarsherlock.app.ActionBar$Tab,int,boolean)
+    public abstract void removeTab(com.actionbarsherlock.app.ActionBar$Tab)
+    public abstract void removeTabAt(int)
+    public abstract void removeAllTabs()
+    public abstract void selectTab(com.actionbarsherlock.app.ActionBar$Tab)
+    public abstract com.actionbarsherlock.app.ActionBar$Tab getSelectedTab()
+    public abstract com.actionbarsherlock.app.ActionBar$Tab getTabAt(int)
+    public abstract int getTabCount()
+    public abstract int getHeight()
+    public abstract void show()
+    public abstract void hide()
+    public abstract boolean isShowing()
+    public abstract void addOnMenuVisibilityListener(com.actionbarsherlock.app.ActionBar$OnMenuVisibilityListener)
+    public abstract void removeOnMenuVisibilityListener(com.actionbarsherlock.app.ActionBar$OnMenuVisibilityListener)
+    670:670:public android.content.Context getThemedContext()
+com.actionbarsherlock.app.ActionBar$LayoutParams:
+    933:935:public ActionBar$LayoutParams(int,int)
+    947:950:public ActionBar$LayoutParams(com.actionbarsherlock.app.ActionBar$LayoutParams)
+    953:954:public ActionBar$LayoutParams(android.view.ViewGroup$LayoutParams)
+com.actionbarsherlock.app.ActionBar$Tab:
+    public static final int INVALID_POSITION
+    public abstract int getPosition()
+    public abstract com.actionbarsherlock.app.ActionBar$Tab setIcon(android.graphics.drawable.Drawable)
+    public abstract com.actionbarsherlock.app.ActionBar$Tab setIcon(int)
+    public abstract com.actionbarsherlock.app.ActionBar$Tab setText(java.lang.CharSequence)
+    public abstract com.actionbarsherlock.app.ActionBar$Tab setText(int)
+    public abstract com.actionbarsherlock.app.ActionBar$Tab setCustomView(android.view.View)
+    public abstract com.actionbarsherlock.app.ActionBar$Tab setCustomView(int)
+    public abstract com.actionbarsherlock.app.ActionBar$Tab setTag(java.lang.Object)
+    public abstract java.lang.Object getTag()
+    public abstract com.actionbarsherlock.app.ActionBar$Tab setTabListener(com.actionbarsherlock.app.ActionBar$TabListener)
+    public abstract com.actionbarsherlock.app.ActionBar$Tab setContentDescription(int)
+    public abstract com.actionbarsherlock.app.ActionBar$Tab setContentDescription(java.lang.CharSequence)
+com.actionbarsherlock.app.ActionBar$TabListener
+com.actionbarsherlock.app.SherlockActivity:
+    37:37:public com.actionbarsherlock.app.ActionBar getSupportActionBar()
+    41:41:public com.actionbarsherlock.view.ActionMode startActionMode(com.actionbarsherlock.view.ActionMode$Callback)
+    45:45:public void onActionModeStarted(com.actionbarsherlock.view.ActionMode)
+    48:48:public void onActionModeFinished(com.actionbarsherlock.view.ActionMode)
+    136:136:public com.actionbarsherlock.view.MenuInflater getSupportMenuInflater()
+    144:145:public void supportInvalidateOptionsMenu()
+    243:244:public void requestWindowFeature(long)
+    258:259:public void setSupportProgress(int)
+    262:263:public void setSupportProgressBarIndeterminate(boolean)
+    266:267:public void setSupportProgressBarIndeterminateVisibility(boolean)
+    270:271:public void setSupportProgressBarVisibility(boolean)
+    274:275:public void setSupportSecondaryProgress(int)
+com.actionbarsherlock.app.SherlockDialogFragment
+com.actionbarsherlock.app.SherlockExpandableListActivity
+com.actionbarsherlock.app.SherlockFragment
+com.actionbarsherlock.app.SherlockFragmentActivity
+com.actionbarsherlock.app.SherlockListActivity
+com.actionbarsherlock.app.SherlockListFragment
+com.actionbarsherlock.app.SherlockPreferenceActivity
+com.actionbarsherlock.internal.ActionBarSherlockCompat:
+    protected static final int DEFAULT_FEATURES
+    private static final java.lang.String PANELS_TAG
+    private com.actionbarsherlock.internal.widget.IcsProgressBar mHorizontalProgressBar
+    58:59:public ActionBarSherlockCompat(android.app.Activity,int)
+    121:122:public com.actionbarsherlock.app.ActionBar getActionBar()
+    148:148:protected android.content.Context getThemedContext()
+    155:156:public void setTitle(java.lang.CharSequence)
+    162:201:public com.actionbarsherlock.view.ActionMode startActionMode(com.actionbarsherlock.view.ActionMode$Callback)
+    600:600:public boolean onMenuItemSelected(int,com.actionbarsherlock.view.MenuItem)
+    612:614:public void setProgressBarVisibility(boolean)
+    620:622:public void setProgressBarIndeterminateVisibility(boolean)
+    628:630:public void setProgressBarIndeterminate(boolean)
+    636:637:public void setProgress(int)
+    643:645:public void setSecondaryProgress(int)
+    648:649:private void setFeatureInt(int,int)
+    654:665:private void updateInt(int,int,boolean)
+    668:671:private void onIntChanged(int,int)
+    674:715:private void updateProgressBars(int)
+    718:728:private void showProgressBars(com.actionbarsherlock.internal.widget.IcsProgressBar,com.actionbarsherlock.internal.widget.IcsProgressBar)
+    731:744:private void hideProgressBars(com.actionbarsherlock.internal.widget.IcsProgressBar,com.actionbarsherlock.internal.widget.IcsProgressBar)
+    761:771:private com.actionbarsherlock.internal.widget.IcsProgressBar getHorizontalProgressBar(boolean)
+    782:782:private int getFeatures()
+    821:822:public void setUiOptions(int)
+    828:829:public void setUiOptions(int,int)
+    109:109:static synthetic com.actionbarsherlock.internal.widget.ActionBarContextView access$0(com.actionbarsherlock.internal.ActionBarSherlockCompat)
+    107:107:static synthetic com.actionbarsherlock.view.ActionMode access$2(com.actionbarsherlock.internal.ActionBarSherlockCompat)
+    107:107:static synthetic void access$3(com.actionbarsherlock.internal.ActionBarSherlockCompat,com.actionbarsherlock.view.ActionMode)
+com.actionbarsherlock.internal.ActionBarSherlockCompat$ActionModeCallbackWrapper
+com.actionbarsherlock.internal.ActionBarSherlockNative:
+    private com.actionbarsherlock.internal.ActionBarSherlockNative$ActionModeWrapper mActionMode
+    27:28:public ActionBarSherlockNative(android.app.Activity,int)
+    35:36:public com.actionbarsherlock.app.ActionBar getActionBar()
+    101:103:public boolean hasFeature(int)
+    110:112:public boolean requestFeature(int)
+    119:120:public void setUiOptions(int)
+    126:127:public void setUiOptions(int,int)
+    157:158:public void setTitle(java.lang.CharSequence)
+    164:165:public void setProgressBarVisibility(boolean)
+    171:172:public void setProgressBarIndeterminateVisibility(boolean)
+    178:179:public void setProgressBarIndeterminate(boolean)
+    185:186:public void setProgress(int)
+    192:193:public void setSecondaryProgress(int)
+    197:206:protected android.content.Context getThemedContext()
+    213:232:public com.actionbarsherlock.view.ActionMode startActionMode(com.actionbarsherlock.view.ActionMode$Callback)
+    23:23:static synthetic void access$0(com.actionbarsherlock.internal.ActionBarSherlockNative,com.actionbarsherlock.internal.ActionBarSherlockNative$ActionModeWrapper)
+    23:23:static synthetic com.actionbarsherlock.internal.ActionBarSherlockNative$ActionModeWrapper access$1(com.actionbarsherlock.internal.ActionBarSherlockNative)
+    21:21:static synthetic android.app.Activity access$2(com.actionbarsherlock.internal.ActionBarSherlockNative)
+com.actionbarsherlock.internal.ActionBarSherlockNative$ActionModeCallbackWrapper
+com.actionbarsherlock.internal.ActionBarSherlockNative$ActionModeWrapper
+com.actionbarsherlock.internal.ResourcesCompat:
+    private static final java.lang.String TAG
+    18:18:private ResourcesCompat()
+    113:180:public static int loadLogoFromManifest(android.app.Activity)
+com.actionbarsherlock.internal.app.ActionBarImpl:
+    private android.content.Context mThemedContext
+    private com.actionbarsherlock.internal.app.ActionBarImpl$TabImpl mSelectedTab
+    com.actionbarsherlock.internal.app.ActionBarImpl$ActionModeImpl mActionMode
+    private static final int CONTEXT_DISPLAY_NORMAL
+    private static final int CONTEXT_DISPLAY_SPLIT
+    private static final int INVALID_POSITION
+    java.lang.Runnable mTabSelector
+    private com.actionbarsherlock.internal.nineoldandroids.animation.Animator mCurrentModeAnim
+    boolean mWasHiddenBeforeMode
+    147:150:public ActionBarImpl(android.app.Dialog)
+    215:230:private void ensureTabsExist()
+    255:256:public void addOnMenuVisibilityListener(com.actionbarsherlock.app.ActionBar$OnMenuVisibilityListener)
+    259:260:public void removeOnMenuVisibilityListener(com.actionbarsherlock.app.ActionBar$OnMenuVisibilityListener)
+    276:277:public void setCustomView(int)
+    281:282:public void setDisplayUseLogoEnabled(boolean)
+    286:287:public void setDisplayShowHomeEnabled(boolean)
+    291:292:public void setDisplayHomeAsUpEnabled(boolean)
+    296:297:public void setDisplayShowTitleEnabled(boolean)
+    301:302:public void setDisplayShowCustomEnabled(boolean)
+    311:312:public void setTitle(int)
+    316:317:public void setSubtitle(int)
+    320:331:public void setSelectedNavigationItem(int)
+    334:335:public void removeAllTabs()
+    338:346:private void cleanupTabs()
+    349:350:public void setTitle(java.lang.CharSequence)
+    353:354:public void setSubtitle(java.lang.CharSequence)
+    357:358:public void setDisplayOptions(int)
+    361:363:public void setDisplayOptions(int,int)
+    366:367:public void setBackgroundDrawable(android.graphics.drawable.Drawable)
+    370:371:public void setStackedBackgroundDrawable(android.graphics.drawable.Drawable)
+    374:377:public void setSplitBackgroundDrawable(android.graphics.drawable.Drawable)
+    380:380:public android.view.View getCustomView()
+    384:384:public java.lang.CharSequence getTitle()
+    388:388:public java.lang.CharSequence getSubtitle()
+    396:396:public int getDisplayOptions()
+    400:421:public com.actionbarsherlock.view.ActionMode startActionMode(com.actionbarsherlock.view.ActionMode$Callback)
+    425:439:private void configureTab(com.actionbarsherlock.app.ActionBar$Tab,int)
+    443:444:public void addTab(com.actionbarsherlock.app.ActionBar$Tab)
+    448:449:public void addTab(com.actionbarsherlock.app.ActionBar$Tab,int)
+    453:459:public void addTab(com.actionbarsherlock.app.ActionBar$Tab,boolean)
+    463:469:public void addTab(com.actionbarsherlock.app.ActionBar$Tab,int,boolean)
+    473:473:public com.actionbarsherlock.app.ActionBar$Tab newTab()
+    478:479:public void removeTab(com.actionbarsherlock.app.ActionBar$Tab)
+    483:504:public void removeTabAt(int)
+    508:538:public void selectTab(com.actionbarsherlock.app.ActionBar$Tab)
+    542:542:public com.actionbarsherlock.app.ActionBar$Tab getSelectedTab()
+    547:547:public int getHeight()
+    552:553:public void show()
+    556:588:void show(boolean)
+    592:620:public void hide()
+    623:623:public boolean isShowing()
+    627:639:void animateToMode(boolean)
+    642:655:public android.content.Context getThemedContext()
+    937:938:public void setCustomView(android.view.View)
+    942:944:public void setCustomView(android.view.View,com.actionbarsherlock.app.ActionBar$LayoutParams)
+    948:950:public void setListNavigationCallbacks(android.widget.SpinnerAdapter,com.actionbarsherlock.app.ActionBar$OnNavigationListener)
+    954:960:public int getSelectedNavigationIndex()
+    966:973:public int getNavigationItemCount()
+    979:979:public int getTabCount()
+    984:1004:public void setNavigationMode(int)
+    1008:1008:public com.actionbarsherlock.app.ActionBar$Tab getTabAt(int)
+    1014:1015:public void setIcon(int)
+    1019:1020:public void setIcon(android.graphics.drawable.Drawable)
+    1024:1025:public void setLogo(int)
+    1029:1030:public void setLogo(android.graphics.drawable.Drawable)
+    76:76:static synthetic com.actionbarsherlock.internal.widget.ActionBarContextView access$5(com.actionbarsherlock.internal.app.ActionBarImpl)
+    75:75:static synthetic com.actionbarsherlock.internal.widget.ActionBarView access$6(com.actionbarsherlock.internal.app.ActionBarImpl)
+    69:69:static synthetic android.content.Context access$7(com.actionbarsherlock.internal.app.ActionBarImpl)
+    79:79:static synthetic com.actionbarsherlock.internal.widget.ScrollingTabContainerView access$8(com.actionbarsherlock.internal.app.ActionBarImpl)
+com.actionbarsherlock.internal.app.ActionBarImpl$ActionModeImpl
+com.actionbarsherlock.internal.app.ActionBarImpl$TabImpl
+com.actionbarsherlock.internal.app.ActionBarWrapper:
+    private android.support.v4.app.FragmentTransaction mFragmentTransaction
+    44:44:public android.content.Context getThemedContext()
+    49:50:public void setCustomView(android.view.View)
+    54:61:public void setCustomView(android.view.View,com.actionbarsherlock.app.ActionBar$LayoutParams)
+    65:66:public void setCustomView(int)
+    70:71:public void setIcon(int)
+    75:76:public void setIcon(android.graphics.drawable.Drawable)
+    80:81:public void setLogo(int)
+    85:86:public void setLogo(android.graphics.drawable.Drawable)
+    90:92:public void setListNavigationCallbacks(android.widget.SpinnerAdapter,com.actionbarsherlock.app.ActionBar$OnNavigationListener)
+    103:104:public void setSelectedNavigationItem(int)
+    108:108:public int getSelectedNavigationIndex()
+    113:113:public int getNavigationItemCount()
+    118:119:public void setTitle(java.lang.CharSequence)
+    123:124:public void setTitle(int)
+    128:129:public void setSubtitle(java.lang.CharSequence)
+    133:134:public void setSubtitle(int)
+    138:142:public void setDisplayOptions(int)
+    146:152:public void setDisplayOptions(int,int)
+    156:157:public void setDisplayUseLogoEnabled(boolean)
+    161:162:public void setDisplayShowHomeEnabled(boolean)
+    166:167:public void setDisplayHomeAsUpEnabled(boolean)
+    171:172:public void setDisplayShowTitleEnabled(boolean)
+    176:177:public void setDisplayShowCustomEnabled(boolean)
+    181:182:public void setBackgroundDrawable(android.graphics.drawable.Drawable)
+    186:187:public void setStackedBackgroundDrawable(android.graphics.drawable.Drawable)
+    191:192:public void setSplitBackgroundDrawable(android.graphics.drawable.Drawable)
+    196:196:public android.view.View getCustomView()
+    201:201:public java.lang.CharSequence getTitle()
+    206:206:public java.lang.CharSequence getSubtitle()
+    211:211:public int getNavigationMode()
+    216:217:public void setNavigationMode(int)
+    221:221:public int getDisplayOptions()
+    384:384:public com.actionbarsherlock.app.ActionBar$Tab newTab()
+    389:390:public void addTab(com.actionbarsherlock.app.ActionBar$Tab)
+    394:395:public void addTab(com.actionbarsherlock.app.ActionBar$Tab,boolean)
+    399:400:public void addTab(com.actionbarsherlock.app.ActionBar$Tab,int)
+    404:405:public void addTab(com.actionbarsherlock.app.ActionBar$Tab,int,boolean)
+    409:410:public void removeTab(com.actionbarsherlock.app.ActionBar$Tab)
+    414:415:public void removeTabAt(int)
+    419:420:public void removeAllTabs()
+    424:425:public void selectTab(com.actionbarsherlock.app.ActionBar$Tab)
+    429:430:public com.actionbarsherlock.app.ActionBar$Tab getSelectedTab()
+    435:436:public com.actionbarsherlock.app.ActionBar$Tab getTabAt(int)
+    441:441:public int getTabCount()
+    446:446:public int getHeight()
+    451:452:public void show()
+    456:457:public void hide()
+    461:461:public boolean isShowing()
+    466:467:public void addOnMenuVisibilityListener(com.actionbarsherlock.app.ActionBar$OnMenuVisibilityListener)
+    471:472:public void removeOnMenuVisibilityListener(com.actionbarsherlock.app.ActionBar$OnMenuVisibilityListener)
+    17:17:static synthetic android.app.Activity access$0(com.actionbarsherlock.internal.app.ActionBarWrapper)
+    21:21:static synthetic android.support.v4.app.FragmentTransaction access$1(com.actionbarsherlock.internal.app.ActionBarWrapper)
+    21:21:static synthetic void access$2(com.actionbarsherlock.internal.app.ActionBarWrapper,android.support.v4.app.FragmentTransaction)
+com.actionbarsherlock.internal.app.ActionBarWrapper$TabWrapper
+com.actionbarsherlock.internal.nineoldandroids.animation.Animator:
+    public abstract long getStartDelay()
+    public abstract void setStartDelay(long)
+    public abstract com.actionbarsherlock.internal.nineoldandroids.animation.Animator setDuration(long)
+    public abstract long getDuration()
+    public abstract void setInterpolator(android.view.animation.Interpolator)
+    183:187:public void removeAllListeners()
+    217:217:public void setupStartValues()
+    229:229:public void setupEndValues()
+    240:240:public void setTarget(java.lang.Object)
+com.actionbarsherlock.internal.nineoldandroids.animation.AnimatorSet:
+    126:133:public varargs void playTogether(com.actionbarsherlock.internal.nineoldandroids.animation.Animator[])
+    141:152:public void playTogether(java.util.Collection)
+    161:171:public varargs void playSequentially(com.actionbarsherlock.internal.nineoldandroids.animation.Animator[])
+    180:190:public void playSequentially(java.util.List)
+    201:205:public java.util.ArrayList getChildAnimations()
+    217:225:public void setTarget(java.lang.Object)
+    235:238:public void setInterpolator(android.view.animation.Interpolator)
+    378:378:public long getStartDelay()
+    389:390:public void setStartDelay(long)
+    402:402:public long getDuration()
+    415:424:public com.actionbarsherlock.internal.nineoldandroids.animation.AnimatorSet setDuration(long)
+    429:432:public void setupStartValues()
+    436:439:public void setupEndValues()
+    1:1:public bridge synthetic com.actionbarsherlock.internal.nineoldandroids.animation.Animator setDuration(long)
+com.actionbarsherlock.internal.nineoldandroids.animation.AnimatorSet$Builder:
+    1062:1070:public com.actionbarsherlock.internal.nineoldandroids.animation.AnimatorSet$Builder before(com.actionbarsherlock.internal.nineoldandroids.animation.Animator)
+    1082:1090:public com.actionbarsherlock.internal.nineoldandroids.animation.AnimatorSet$Builder after(com.actionbarsherlock.internal.nineoldandroids.animation.Animator)
+    1103:1106:public com.actionbarsherlock.internal.nineoldandroids.animation.AnimatorSet$Builder after(long)
+com.actionbarsherlock.internal.nineoldandroids.animation.AnimatorSet$Dependency:
+    static final int WITH
+    static final int AFTER
+com.actionbarsherlock.internal.nineoldandroids.animation.IntKeyframeSet
+com.actionbarsherlock.internal.nineoldandroids.animation.Keyframe:
+    77:77:public static com.actionbarsherlock.internal.nineoldandroids.animation.Keyframe ofInt(float,int)
+    93:93:public static com.actionbarsherlock.internal.nineoldandroids.animation.Keyframe ofInt(float)
+    141:141:public static com.actionbarsherlock.internal.nineoldandroids.animation.Keyframe ofObject(float,java.lang.Object)
+    157:157:public static com.actionbarsherlock.internal.nineoldandroids.animation.Keyframe ofObject(float)
+    202:203:public void setFraction(float)
+    233:233:public java.lang.Class getType()
+com.actionbarsherlock.internal.nineoldandroids.animation.Keyframe$IntKeyframe
+com.actionbarsherlock.internal.nineoldandroids.animation.Keyframe$ObjectKeyframe
+com.actionbarsherlock.internal.nineoldandroids.animation.KeyframeSet:
+    54:65:public static varargs com.actionbarsherlock.internal.nineoldandroids.animation.KeyframeSet ofInt(int[])
+    85:111:public static varargs com.actionbarsherlock.internal.nineoldandroids.animation.KeyframeSet ofKeyframe(com.actionbarsherlock.internal.nineoldandroids.animation.Keyframe[])
+    116:127:public static varargs com.actionbarsherlock.internal.nineoldandroids.animation.KeyframeSet ofObject(java.lang.Object[])
+com.actionbarsherlock.internal.nineoldandroids.animation.ObjectAnimator:
+    private static final boolean DBG
+    121:121:public java.lang.String getPropertyName()
+    172:174:public static varargs com.actionbarsherlock.internal.nineoldandroids.animation.ObjectAnimator ofInt(java.lang.Object,java.lang.String,int[])
+    253:256:public static varargs com.actionbarsherlock.internal.nineoldandroids.animation.ObjectAnimator ofObject(java.lang.Object,java.lang.String,com.actionbarsherlock.internal.nineoldandroids.animation.TypeEvaluator,java.lang.Object[])
+    301:304:public static varargs com.actionbarsherlock.internal.nineoldandroids.animation.ObjectAnimator ofPropertyValuesHolder(java.lang.Object,com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder[])
+    309:320:public varargs void setIntValues(int[])
+    339:350:public varargs void setObjectValues(java.lang.Object[])
+    414:414:public java.lang.Object getTarget()
+    424:433:public void setTarget(java.lang.Object)
+    437:442:public void setupStartValues()
+    446:451:public void setupEndValues()
+com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder:
+    154:154:public static varargs com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder ofInt(java.lang.String,int[])
+    204:207:public static varargs com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder ofObject(java.lang.String,com.actionbarsherlock.internal.nineoldandroids.animation.TypeEvaluator,java.lang.Object[])
+    250:260:public static varargs com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder ofKeyframe(java.lang.String,com.actionbarsherlock.internal.nineoldandroids.animation.Keyframe[])
+    309:311:public varargs void setIntValues(int[])
+    337:344:public varargs void setKeyframes(com.actionbarsherlock.internal.nineoldandroids.animation.Keyframe[])
+    360:362:public varargs void setObjectValues(java.lang.Object[])
+    537:547:private void setupValue(java.lang.Object,com.actionbarsherlock.internal.nineoldandroids.animation.Keyframe)
+    558:559:void setupStartValue(java.lang.Object)
+    570:571:void setupEndValue(java.lang.Object)
+    641:643:public void setEvaluator(com.actionbarsherlock.internal.nineoldandroids.animation.TypeEvaluator)
+com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder$FloatPropertyValuesHolder:
+    883:887:public PropertyValuesHolder$FloatPropertyValuesHolder(java.lang.String,com.actionbarsherlock.internal.nineoldandroids.animation.FloatKeyframeSet)
+com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder$IntPropertyValuesHolder
+com.actionbarsherlock.internal.nineoldandroids.animation.ValueAnimator:
+    private static final long DEFAULT_FRAME_DELAY
+    static final int ANIMATION_START
+    static final int ANIMATION_FRAME
+    static final int STOPPED
+    static final int RUNNING
+    static final int SEEKED
+    public static final int RESTART
+    public static final int REVERSE
+    public static final int INFINITE
+    299:301:public static varargs com.actionbarsherlock.internal.nineoldandroids.animation.ValueAnimator ofInt(int[])
+    330:332:public static varargs com.actionbarsherlock.internal.nineoldandroids.animation.ValueAnimator ofPropertyValuesHolder(com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder[])
+    353:356:public static varargs com.actionbarsherlock.internal.nineoldandroids.animation.ValueAnimator ofObject(com.actionbarsherlock.internal.nineoldandroids.animation.TypeEvaluator,java.lang.Object[])
+    374:385:public varargs void setIntValues(int[])
+    434:446:public varargs void setObjectValues(java.lang.Object[])
+    477:477:public com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder[] getValues()
+    525:525:public long getDuration()
+    694:694:public long getStartDelay()
+    717:717:public static long getFrameDelay()
+    730:731:public static void setFrameDelay(long)
+    746:750:public java.lang.Object getAnimatedValue()
+    764:769:public java.lang.Object getAnimatedValue(java.lang.String)
+    782:783:public void setRepeatCount(int)
+    791:791:public int getRepeatCount()
+    802:803:public void setRepeatMode(int)
+    811:811:public int getRepeatMode()
+    822:826:public void addUpdateListener(com.actionbarsherlock.internal.nineoldandroids.animation.ValueAnimator$AnimatorUpdateListener)
+    832:837:public void removeAllUpdateListeners()
+    846:853:public void removeUpdateListener(com.actionbarsherlock.internal.nineoldandroids.animation.ValueAnimator$AnimatorUpdateListener)
+    880:880:public android.view.animation.Interpolator getInterpolator()
+    900:903:public void setEvaluator(com.actionbarsherlock.internal.nineoldandroids.animation.TypeEvaluator)
+    1011:1020:public void reverse()
+    1155:1155:public float getAnimatedFraction()
+    1241:1241:public static int getCurrentAnimationsCount()
+    1251:1254:public static void clearAllAnimations()
+    1:1:public bridge synthetic com.actionbarsherlock.internal.nineoldandroids.animation.Animator setDuration(long)
+com.actionbarsherlock.internal.nineoldandroids.view.NineViewGroup:
+    13:15:public NineViewGroup(android.content.Context)
+    17:19:public NineViewGroup(android.content.Context,android.util.AttributeSet)
+    21:23:public NineViewGroup(android.content.Context,android.util.AttributeSet,int)
+com.actionbarsherlock.internal.nineoldandroids.view.animation.AnimatorProxy:
+    60:60:public float getScaleX()
+    63:68:public void setScaleX(float)
+    70:70:public float getScaleY()
+    80:84:public int getScrollX()
+    87:91:public void setScrollX(int)
+    93:97:public int getScrollY()
+    100:104:public void setScrollY(int)
+com.actionbarsherlock.internal.nineoldandroids.widget.NineFrameLayout:
+    13:15:public NineFrameLayout(android.content.Context,android.util.AttributeSet)
+com.actionbarsherlock.internal.nineoldandroids.widget.NineHorizontalScrollView:
+    11:13:public NineHorizontalScrollView(android.content.Context)
+com.actionbarsherlock.internal.nineoldandroids.widget.NineLinearLayout:
+    13:15:public NineLinearLayout(android.content.Context,android.util.AttributeSet)
+com.actionbarsherlock.internal.view.ActionProviderWrapper:
+    12:14:public ActionProviderWrapper(com.actionbarsherlock.view.ActionProvider)
+com.actionbarsherlock.internal.view.StandaloneActionMode
+com.actionbarsherlock.internal.view.menu.ActionMenu
+com.actionbarsherlock.internal.view.menu.ActionMenuItem:
+    private final int mGroup
+    private final int mOrdering
+    private java.lang.CharSequence mTitleCondensed
+    private android.content.Intent mIntent
+    private char mShortcutNumericChar
+    private char mShortcutAlphabeticChar
+    private com.actionbarsherlock.view.MenuItem$OnMenuItemClickListener mClickListener
+    private static final int CHECKABLE
+    private static final int CHECKED
+    private static final int EXCLUSIVE
+    private static final int HIDDEN
+    private static final int ENABLED
+    60:68:public ActionMenuItem(android.content.Context,int,int,int,int,java.lang.CharSequence)
+    71:71:public char getAlphabeticShortcut()
+    75:75:public int getGroupId()
+    83:83:public android.content.Intent getIntent()
+    91:91:public android.view.ContextMenu$ContextMenuInfo getMenuInfo()
+    95:95:public char getNumericShortcut()
+    99:99:public int getOrder()
+    107:107:public java.lang.CharSequence getTitle()
+    111:111:public java.lang.CharSequence getTitleCondensed()
+    119:119:public boolean isCheckable()
+    123:123:public boolean isChecked()
+    127:127:public boolean isEnabled()
+    135:136:public com.actionbarsherlock.view.MenuItem setAlphabeticShortcut(char)
+    140:141:public com.actionbarsherlock.view.MenuItem setCheckable(boolean)
+    145:146:public com.actionbarsherlock.internal.view.menu.ActionMenuItem setExclusiveCheckable(boolean)
+    150:151:public com.actionbarsherlock.view.MenuItem setChecked(boolean)
+    155:156:public com.actionbarsherlock.view.MenuItem setEnabled(boolean)
+    160:162:public com.actionbarsherlock.view.MenuItem setIcon(android.graphics.drawable.Drawable)
+    172:173:public com.actionbarsherlock.view.MenuItem setIntent(android.content.Intent)
+    177:178:public com.actionbarsherlock.view.MenuItem setNumericShortcut(char)
+    182:183:public com.actionbarsherlock.view.MenuItem setOnMenuItemClickListener(com.actionbarsherlock.view.MenuItem$OnMenuItemClickListener)
+    187:189:public com.actionbarsherlock.view.MenuItem setShortcut(char,char)
+    198:199:public com.actionbarsherlock.view.MenuItem setTitle(int)
+    203:204:public com.actionbarsherlock.view.MenuItem setTitleCondensed(java.lang.CharSequence)
+    208:209:public com.actionbarsherlock.view.MenuItem setVisible(boolean)
+    213:222:public boolean invoke()
+    230:230:public com.actionbarsherlock.view.MenuItem setActionView(android.view.View)
+    249:249:public com.actionbarsherlock.view.MenuItem setActionProvider(com.actionbarsherlock.view.ActionProvider)
+    254:255:public com.actionbarsherlock.view.MenuItem setShowAsActionFlags(int)
+    265:265:public boolean collapseActionView()
+    276:276:public com.actionbarsherlock.view.MenuItem setOnActionExpandListener(com.actionbarsherlock.view.MenuItem$OnActionExpandListener)
+com.actionbarsherlock.internal.view.menu.ActionMenuItemView:
+    65:66:public ActionMenuItemView(android.content.Context)
+    69:70:public ActionMenuItemView(android.content.Context,android.util.AttributeSet)
+    74:82:public ActionMenuItemView(android.content.Context,android.util.AttributeSet,int)
+    200:200:public void setShortcut(boolean,char)
+    238:238:public boolean showsIcon()
+com.actionbarsherlock.internal.view.menu.ActionMenuPresenter:
+    151:153:public void setReserveOverflow(boolean)
+    510:512:public android.os.Parcelable onSaveInstanceState()
+    517:525:public void onRestoreInstanceState(android.os.Parcelable)
+    529:535:public void onSubUiVisibilityChanged(boolean)
+com.actionbarsherlock.internal.view.menu.ActionMenuPresenter$HasPermanentMenuKey:
+    128:128:private ActionMenuPresenter$HasPermanentMenuKey()
+com.actionbarsherlock.internal.view.menu.ActionMenuView:
+    static final int MIN_CELL_SIZE
+    static final int GENERATED_ITEM_PADDING
+    53:54:public ActionMenuView(android.content.Context)
+    57:62:public ActionMenuView(android.content.Context,android.util.AttributeSet)
+    69:69:public boolean isExpandedFormat()
+    466:466:public boolean isOverflowReserved()
+com.actionbarsherlock.internal.view.menu.ActionMenuView$LayoutParams:
+    571:573:public ActionMenuView$LayoutParams(int,int,boolean)
+com.actionbarsherlock.internal.view.menu.BaseMenuPresenter:
+    225:225:public int getId()
+com.actionbarsherlock.internal.view.menu.ListMenuItemView:
+    61:76:public ListMenuItemView(android.content.Context,android.util.AttributeSet,int)
+    79:80:public ListMenuItemView(android.content.Context,android.util.AttributeSet)
+    269:269:public boolean showsIcon()
+com.actionbarsherlock.internal.view.menu.MenuBuilder:
+    private static final java.lang.String PRESENTER_KEY
+    private static final java.lang.String ACTION_VIEW_STATES_KEY
+    private static final java.lang.String EXPANDED_ACTION_VIEW_ID
+    java.lang.CharSequence mHeaderTitle
+    android.graphics.drawable.Drawable mHeaderIcon
+    android.view.View mHeaderView
+    207:208:public com.actionbarsherlock.internal.view.menu.MenuBuilder setDefaultShowAsAction(int)
+    271:291:private void dispatchSaveInstanceState(android.os.Bundle)
+    294:312:private void dispatchRestoreInstanceState(android.os.Bundle)
+    315:316:public void savePresenterStates(android.os.Bundle)
+    319:320:public void restorePresenterStates(android.os.Bundle)
+    413:413:public com.actionbarsherlock.view.MenuItem add(java.lang.CharSequence)
+    417:417:public com.actionbarsherlock.view.MenuItem add(int)
+    425:425:public com.actionbarsherlock.view.MenuItem add(int,int,int,int)
+    429:429:public com.actionbarsherlock.view.SubMenu addSubMenu(java.lang.CharSequence)
+    433:433:public com.actionbarsherlock.view.SubMenu addSubMenu(int)
+    437:441:public com.actionbarsherlock.view.SubMenu addSubMenu(int,int,int,java.lang.CharSequence)
+    445:445:public com.actionbarsherlock.view.SubMenu addSubMenu(int,int,int,int)
+    450:474:public int addIntentOptions(int,int,int,android.content.ComponentName,android.content.Intent[],android.content.Intent,int,com.actionbarsherlock.view.MenuItem[])
+    478:479:public void removeItem(int)
+    482:495:public void removeGroup(int)
+    508:513:private void removeItemAtInt(int,boolean)
+    516:517:public void removeItemAt(int)
+    520:526:public void clearAll()
+    538:551:void setExclusiveItemChecked(com.actionbarsherlock.view.MenuItem)
+    554:563:public void setGroupCheckable(int,boolean,boolean)
+    566:580:public void setGroupVisible(int,boolean)
+    583:591:public void setGroupEnabled(int,boolean)
+    625:634:public int findItemIndex(int)
+    638:638:public int findGroupIndex(int)
+    642:656:public int findGroupIndex(int,int)
+    669:669:public boolean isShortcutKey(int,android.view.KeyEvent)
+    715:719:public void setShortcutsVisible(boolean)
+    768:780:public boolean performShortcut(int,android.view.KeyEvent,int)
+    791:819:void findItemsWithShortcutForKey(java.util.List,int,android.view.KeyEvent)
+    835:870:com.actionbarsherlock.internal.view.menu.MenuItemImpl findItemWithShortcutForKey(int,android.view.KeyEvent)
+    875:875:public boolean performIdentifierAction(int,int)
+    985:987:void onItemVisibleChanged(com.actionbarsherlock.internal.view.menu.MenuItemImpl)
+    1092:1097:public void clearHeader()
+    1101:1128:private void setHeaderInternal(int,java.lang.CharSequence,int,android.graphics.drawable.Drawable,android.view.View)
+    1138:1139:protected com.actionbarsherlock.internal.view.menu.MenuBuilder setHeaderTitleInt(java.lang.CharSequence)
+    1150:1151:protected com.actionbarsherlock.internal.view.menu.MenuBuilder setHeaderTitleInt(int)
+    1162:1163:protected com.actionbarsherlock.internal.view.menu.MenuBuilder setHeaderIconInt(android.graphics.drawable.Drawable)
+    1174:1175:protected com.actionbarsherlock.internal.view.menu.MenuBuilder setHeaderIconInt(int)
+    1186:1187:protected com.actionbarsherlock.internal.view.menu.MenuBuilder setHeaderViewInt(android.view.View)
+    1191:1191:public java.lang.CharSequence getHeaderTitle()
+    1195:1195:public android.graphics.drawable.Drawable getHeaderIcon()
+    1199:1199:public android.view.View getHeaderView()
+    1218:1219:public void setCurrentMenuInfo(android.view.ContextMenu$ContextMenuInfo)
+    1222:1223:void setOptionalIconsVisible(boolean)
+com.actionbarsherlock.internal.view.menu.MenuItemImpl:
+    private static final java.lang.String TAG
+    private static final int SHOW_AS_ACTION_MASK
+    private static final int CHECKABLE
+    private static final int CHECKED
+    private static final int EXCLUSIVE
+    private static final int HIDDEN
+    private static final int ENABLED
+    private static final int IS_ACTION
+    static final int NO_ICON
+    178:186:public com.actionbarsherlock.view.MenuItem setEnabled(boolean)
+    211:212:public com.actionbarsherlock.view.MenuItem setIntent(android.content.Intent)
+    216:216:java.lang.Runnable getCallback()
+    220:221:public com.actionbarsherlock.view.MenuItem setCallback(java.lang.Runnable)
+    229:235:public com.actionbarsherlock.view.MenuItem setAlphabeticShortcut(char)
+    243:249:public com.actionbarsherlock.view.MenuItem setNumericShortcut(char)
+    253:258:public com.actionbarsherlock.view.MenuItem setShortcut(char,char)
+    322:325:void setSubMenu(com.actionbarsherlock.internal.view.menu.SubMenuBuilder)
+    346:354:public com.actionbarsherlock.view.MenuItem setTitle(java.lang.CharSequence)
+    358:358:public com.actionbarsherlock.view.MenuItem setTitle(int)
+    366:375:public com.actionbarsherlock.view.MenuItem setTitleCondensed(java.lang.CharSequence)
+    391:395:public com.actionbarsherlock.view.MenuItem setIcon(android.graphics.drawable.Drawable)
+    413:419:public com.actionbarsherlock.view.MenuItem setCheckable(boolean)
+    423:424:public void setExclusiveCheckable(boolean)
+    435:443:public com.actionbarsherlock.view.MenuItem setChecked(boolean)
+    447:452:void setCheckedInt(boolean)
+    468:470:boolean setVisibleInt(boolean)
+    477:479:public com.actionbarsherlock.view.MenuItem setVisible(boolean)
+    483:484:public com.actionbarsherlock.view.MenuItem setOnMenuItemClickListener(com.actionbarsherlock.view.MenuItem$OnMenuItemClickListener)
+    497:497:public android.view.ContextMenu$ContextMenuInfo getMenuInfo()
+    585:588:public com.actionbarsherlock.view.MenuItem setActionProvider(com.actionbarsherlock.view.ActionProvider)
+    593:594:public com.actionbarsherlock.view.MenuItem setShowAsActionFlags(int)
+    631:632:public com.actionbarsherlock.view.MenuItem setOnActionExpandListener(com.actionbarsherlock.view.MenuItem$OnActionExpandListener)
+com.actionbarsherlock.internal.view.menu.MenuItemWrapper:
+    37:37:public int getGroupId()
+    42:42:public int getOrder()
+    47:48:public com.actionbarsherlock.view.MenuItem setTitle(java.lang.CharSequence)
+    53:54:public com.actionbarsherlock.view.MenuItem setTitle(int)
+    59:59:public java.lang.CharSequence getTitle()
+    64:65:public com.actionbarsherlock.view.MenuItem setTitleCondensed(java.lang.CharSequence)
+    70:70:public java.lang.CharSequence getTitleCondensed()
+    75:76:public com.actionbarsherlock.view.MenuItem setIcon(android.graphics.drawable.Drawable)
+    92:93:public com.actionbarsherlock.view.MenuItem setIntent(android.content.Intent)
+    98:98:public android.content.Intent getIntent()
+    103:104:public com.actionbarsherlock.view.MenuItem setShortcut(char,char)
+    109:110:public com.actionbarsherlock.view.MenuItem setNumericShortcut(char)
+    115:115:public char getNumericShortcut()
+    120:121:public com.actionbarsherlock.view.MenuItem setAlphabeticShortcut(char)
+    126:126:public char getAlphabeticShortcut()
+    131:132:public com.actionbarsherlock.view.MenuItem setCheckable(boolean)
+    137:137:public boolean isCheckable()
+    142:143:public com.actionbarsherlock.view.MenuItem setChecked(boolean)
+    148:148:public boolean isChecked()
+    153:154:public com.actionbarsherlock.view.MenuItem setVisible(boolean)
+    164:165:public com.actionbarsherlock.view.MenuItem setEnabled(boolean)
+    170:170:public boolean isEnabled()
+    188:191:public com.actionbarsherlock.view.MenuItem setOnMenuItemClickListener(com.actionbarsherlock.view.MenuItem$OnMenuItemClickListener)
+    204:204:public android.view.ContextMenu$ContextMenuInfo getMenuInfo()
+    214:215:public com.actionbarsherlock.view.MenuItem setShowAsActionFlags(int)
+    220:224:public com.actionbarsherlock.view.MenuItem setActionView(android.view.View)
+    253:254:public com.actionbarsherlock.view.MenuItem setActionProvider(com.actionbarsherlock.view.ActionProvider)
+    273:273:public boolean collapseActionView()
+    283:308:public com.actionbarsherlock.view.MenuItem setOnActionExpandListener(com.actionbarsherlock.view.MenuItem$OnActionExpandListener)
+    18:18:static synthetic com.actionbarsherlock.view.MenuItem$OnActionExpandListener access$0(com.actionbarsherlock.internal.view.menu.MenuItemWrapper)
+com.actionbarsherlock.internal.view.menu.MenuItemWrapper$1
+com.actionbarsherlock.internal.view.menu.MenuPopupHelper:
+    74:75:public MenuPopupHelper(android.content.Context,com.actionbarsherlock.internal.view.menu.MenuBuilder,android.view.View)
+    239:239:public com.actionbarsherlock.internal.view.menu.MenuView getMenuView(android.view.ViewGroup)
+    305:305:public int getId()
+    310:310:public android.os.Parcelable onSaveInstanceState()
+    315:315:public void onRestoreInstanceState(android.os.Parcelable)
+com.actionbarsherlock.internal.view.menu.MenuPresenter:
+    public abstract com.actionbarsherlock.internal.view.menu.MenuView getMenuView(android.view.ViewGroup)
+    public abstract void setCallback(com.actionbarsherlock.internal.view.menu.MenuPresenter$Callback)
+    public abstract int getId()
+    public abstract android.os.Parcelable onSaveInstanceState()
+    public abstract void onRestoreInstanceState(android.os.Parcelable)
+com.actionbarsherlock.internal.view.menu.MenuView:
+    public abstract int getWindowAnimations()
+com.actionbarsherlock.internal.view.menu.MenuView$ItemView:
+    public abstract void setTitle(java.lang.CharSequence)
+    public abstract void setEnabled(boolean)
+    public abstract void setCheckable(boolean)
+    public abstract void setChecked(boolean)
+    public abstract void setShortcut(boolean,char)
+    public abstract void setIcon(android.graphics.drawable.Drawable)
+    public abstract boolean showsIcon()
+com.actionbarsherlock.internal.view.menu.MenuWrapper:
+    34:34:public com.actionbarsherlock.view.MenuItem add(java.lang.CharSequence)
+    39:39:public com.actionbarsherlock.view.MenuItem add(int)
+    49:49:public com.actionbarsherlock.view.MenuItem add(int,int,int,int)
+    53:57:private com.actionbarsherlock.view.SubMenu addInternal(android.view.SubMenu)
+    62:62:public com.actionbarsherlock.view.SubMenu addSubMenu(java.lang.CharSequence)
+    67:67:public com.actionbarsherlock.view.SubMenu addSubMenu(int)
+    72:72:public com.actionbarsherlock.view.SubMenu addSubMenu(int,int,int,java.lang.CharSequence)
+    77:77:public com.actionbarsherlock.view.SubMenu addSubMenu(int,int,int,int)
+    83:92:public int addIntentOptions(int,int,int,android.content.ComponentName,android.content.Intent[],android.content.Intent,int,com.actionbarsherlock.view.MenuItem[])
+    97:99:public void removeItem(int)
+    103:110:public void removeGroup(int)
+    114:116:public void clear()
+    134:135:public void setGroupCheckable(int,boolean,boolean)
+    139:140:public void setGroupVisible(int,boolean)
+    144:145:public void setGroupEnabled(int,boolean)
+    149:149:public boolean hasVisibleItems()
+    173:173:public int size()
+    178:179:public com.actionbarsherlock.view.MenuItem getItem(int)
+    184:185:public void close()
+    189:189:public boolean performShortcut(int,android.view.KeyEvent,int)
+    194:194:public boolean isShortcutKey(int,android.view.KeyEvent)
+    199:199:public boolean performIdentifierAction(int,int)
+    204:205:public void setQwertyMode(boolean)
+com.actionbarsherlock.internal.view.menu.SubMenuBuilder:
+    36:40:public SubMenuBuilder(android.content.Context,com.actionbarsherlock.internal.view.menu.MenuBuilder,com.actionbarsherlock.internal.view.menu.MenuItemImpl)
+    54:55:public void setShortcutsVisible(boolean)
+    87:88:public com.actionbarsherlock.view.SubMenu setIcon(android.graphics.drawable.Drawable)
+    92:93:public com.actionbarsherlock.view.SubMenu setIcon(int)
+    97:97:public com.actionbarsherlock.view.SubMenu setHeaderIcon(android.graphics.drawable.Drawable)
+    101:101:public com.actionbarsherlock.view.SubMenu setHeaderIcon(int)
+    105:105:public com.actionbarsherlock.view.SubMenu setHeaderTitle(java.lang.CharSequence)
+    109:109:public com.actionbarsherlock.view.SubMenu setHeaderTitle(int)
+    113:113:public com.actionbarsherlock.view.SubMenu setHeaderView(android.view.View)
+com.actionbarsherlock.internal.view.menu.SubMenuWrapper:
+    20:21:public com.actionbarsherlock.view.SubMenu setHeaderTitle(int)
+    26:27:public com.actionbarsherlock.view.SubMenu setHeaderTitle(java.lang.CharSequence)
+    32:33:public com.actionbarsherlock.view.SubMenu setHeaderIcon(int)
+    38:39:public com.actionbarsherlock.view.SubMenu setHeaderIcon(android.graphics.drawable.Drawable)
+    44:45:public com.actionbarsherlock.view.SubMenu setHeaderView(android.view.View)
+    50:51:public void clearHeader()
+    55:56:public com.actionbarsherlock.view.SubMenu setIcon(int)
+    61:62:public com.actionbarsherlock.view.SubMenu setIcon(android.graphics.drawable.Drawable)
+    67:70:public com.actionbarsherlock.view.MenuItem getItem()
+com.actionbarsherlock.internal.widget.AbsActionBarView:
+    private static final int FADE_DURATION
+    55:57:public AbsActionBarView(android.content.Context)
+    60:62:public AbsActionBarView(android.content.Context,android.util.AttributeSet)
+    65:67:public AbsActionBarView(android.content.Context,android.util.AttributeSet,int)
+    135:175:public void animateToVisibility(int)
+com.actionbarsherlock.internal.widget.AbsActionBarView$VisibilityAnimListener:
+    255:256:protected AbsActionBarView$VisibilityAnimListener(com.actionbarsherlock.internal.widget.AbsActionBarView)
+    260:261:public com.actionbarsherlock.internal.widget.AbsActionBarView$VisibilityAnimListener withFinalVisibility(int)
+com.actionbarsherlock.internal.widget.ActionBarContainer:
+    50:51:public ActionBarContainer(android.content.Context)
+    54:78:public ActionBarContainer(android.content.Context,android.util.AttributeSet)
+com.actionbarsherlock.internal.widget.ActionBarContextView:
+    private static final int ANIMATE_IDLE
+    private static final int ANIMATE_IN
+    private static final int ANIMATE_OUT
+    70:71:public ActionBarContextView(android.content.Context)
+    74:75:public ActionBarContextView(android.content.Context,android.util.AttributeSet)
+    78:95:public ActionBarContextView(android.content.Context,android.util.AttributeSet,int)
+    204:249:public void initForMode(com.actionbarsherlock.view.ActionMode)
+    252:265:public void closeMode()
+    420:443:private com.actionbarsherlock.internal.nineoldandroids.animation.Animator makeOutAnimation()
+com.actionbarsherlock.internal.widget.ActionBarContextView$1
+com.actionbarsherlock.internal.widget.ActionBarView:
+    private static final java.lang.String TAG
+    public static final int DISPLAY_DEFAULT
+    private static final int DISPLAY_RELAYOUT_MASK
+    private static final int DEFAULT_CUSTOM_GRAVITY
+    private final android.view.View$OnClickListener mExpandedActionViewUpListener
+    168:262:public ActionBarView(android.content.Context,android.util.AttributeSet)
+    356:356:public boolean hasEmbeddedTabs()
+    129:129:static synthetic com.actionbarsherlock.app.ActionBar$OnNavigationListener access$0(com.actionbarsherlock.internal.widget.ActionBarView)
+    133:133:static synthetic com.actionbarsherlock.internal.widget.ActionBarView$ExpandedActionViewMenuPresenter access$1(com.actionbarsherlock.internal.widget.ActionBarView)
+    126:126:static synthetic com.actionbarsherlock.internal.view.menu.ActionMenuItem access$2(com.actionbarsherlock.internal.widget.ActionBarView)
+com.actionbarsherlock.internal.widget.ActionBarView$1
+com.actionbarsherlock.internal.widget.ActionBarView$2
+com.actionbarsherlock.internal.widget.ActionBarView$3
+com.actionbarsherlock.internal.widget.ActionBarView$ExpandedActionViewMenuPresenter:
+    1342:1342:public com.actionbarsherlock.internal.view.menu.MenuView getMenuView(android.view.ViewGroup)
+    1371:1371:public void setCallback(com.actionbarsherlock.internal.view.menu.MenuPresenter$Callback)
+    1453:1453:public int getId()
+    1458:1458:public android.os.Parcelable onSaveInstanceState()
+    1463:1463:public void onRestoreInstanceState(android.os.Parcelable)
+com.actionbarsherlock.internal.widget.ActionBarView$HomeView:
+    1211:1212:public ActionBarView$HomeView(android.content.Context)
+    1215:1216:public ActionBarView$HomeView(android.content.Context,android.util.AttributeSet)
+com.actionbarsherlock.internal.widget.CapitalizingButton:
+    private static final int R_styleable_Button_textAppearance
+    private static final int R_styleable_TextAppearance_textAllCaps
+    27:39:public CapitalizingButton(android.content.Context,android.util.AttributeSet)
+com.actionbarsherlock.internal.widget.CapitalizingTextView:
+    private static final int R_styleable_TextView_textAllCaps
+    23:24:public CapitalizingTextView(android.content.Context,android.util.AttributeSet)
+com.actionbarsherlock.internal.widget.IcsAbsSpinner:
+    private android.graphics.Rect mTouchFrame
+    59:61:public IcsAbsSpinner(android.content.Context)
+    64:65:public IcsAbsSpinner(android.content.Context,android.util.AttributeSet)
+    280:283:public void setSelection(int,boolean)
+    301:308:void setSelectionInt(int,boolean)
+    abstract void layout(int,boolean)
+    353:369:public int pointToPosition(int,int)
+com.actionbarsherlock.internal.widget.IcsAdapterView:
+    public static final int ITEM_VIEW_TYPE_IGNORE
+    public static final int ITEM_VIEW_TYPE_HEADER_OR_FOOTER
+    static final int SYNC_SELECTED_POSITION
+    static final int SYNC_FIRST_POSITION
+    static final int SYNC_MAX_DURATION_MILLIS
+    public static final int INVALID_POSITION
+    public static final long INVALID_ROW_ID
+    228:229:public IcsAdapterView(android.content.Context)
+    232:233:public IcsAdapterView(android.content.Context,android.util.AttributeSet)
+    267:276:public boolean performItemClick(android.view.View,int,long)
+    568:588:public int getPositionForView(android.view.View)
+    729:730:public java.lang.Object getItemAtPosition(int)
+com.actionbarsherlock.internal.widget.IcsAdapterView$AdapterContextMenuInfo
+com.actionbarsherlock.internal.widget.IcsAdapterView$AdapterDataSetObserver:
+    807:808:public void clearSavedState()
+com.actionbarsherlock.internal.widget.IcsAdapterView$OnItemLongClickListener:
+    public abstract boolean onItemLongClick(com.actionbarsherlock.internal.widget.IcsAdapterView,android.view.View,int,long)
+com.actionbarsherlock.internal.widget.IcsColorDrawable:
+    25:27:public IcsColorDrawable(int)
+com.actionbarsherlock.internal.widget.IcsLinearLayout:
+    private static final int LinearLayout_divider
+    private static final int LinearLayout_showDividers
+    private static final int LinearLayout_dividerPadding
+    public static final int SHOW_DIVIDER_NONE
+    public static final int SHOW_DIVIDER_BEGINNING
+    public static final int SHOW_DIVIDER_MIDDLE
+    public static final int SHOW_DIVIDER_END
+    56:65:public IcsLinearLayout(android.content.Context,android.util.AttributeSet)
+com.actionbarsherlock.internal.widget.IcsListPopupWindow:
+    private static final int EXPAND_LIST_TIMEOUT
+    public static final int POSITION_PROMPT_ABOVE
+    public static final int POSITION_PROMPT_BELOW
+    78:79:public IcsListPopupWindow(android.content.Context)
+com.actionbarsherlock.internal.widget.IcsProgressBar:
+    private static final int MAX_LEVEL
+    private static final int ANIMATION_RESOLUTION
+    private static final int TIMEOUT_SEND_ACCESSIBILITY_EVENT
+    private static final int ProgressBar_maxWidth
+    private static final int ProgressBar_maxHeight
+    private static final int ProgressBar_max
+    private static final int ProgressBar_progress
+    private static final int ProgressBar_secondaryProgress
+    private static final int ProgressBar_indeterminate
+    private static final int ProgressBar_indeterminateOnly
+    private static final int ProgressBar_indeterminateDrawable
+    private static final int ProgressBar_progressDrawable
+    private static final int ProgressBar_indeterminateDuration
+    private static final int ProgressBar_indeterminateBehavior
+    private static final int ProgressBar_minWidth
+    private static final int ProgressBar_minHeight
+    private static final int ProgressBar_interpolator
+    private static final int ProgressBar_animationResolution
+    265:266:public IcsProgressBar(android.content.Context)
+    269:270:public IcsProgressBar(android.content.Context,android.util.AttributeSet)
+    273:274:public IcsProgressBar(android.content.Context,android.util.AttributeSet,int)
+    457:457:public synchronized boolean isIndeterminate()
+    818:819:public final synchronized void incrementProgressBy(int)
+    829:830:public final synchronized void incrementSecondaryProgressBy(int)
+com.actionbarsherlock.internal.widget.IcsSpinner:
+    private static final int MAX_ITEMS_MEASURED
+    public static final int MODE_DROPDOWN
+    82:83:public IcsSpinner(android.content.Context,android.util.AttributeSet)
+com.actionbarsherlock.internal.widget.IcsToast:
+    public static final int LENGTH_LONG
+    public static final int LENGTH_SHORT
+    private static final java.lang.String TAG
+    38:38:public static android.widget.Toast makeText(android.content.Context,int,int)
+com.actionbarsherlock.internal.widget.IcsView
+com.actionbarsherlock.internal.widget.PopupWindowCompat:
+    69:71:public PopupWindowCompat(android.content.Context)
+    74:76:public PopupWindowCompat(android.content.Context,android.util.AttributeSet)
+    90:92:public PopupWindowCompat(int,int)
+    95:97:public PopupWindowCompat(android.view.View)
+    100:102:public PopupWindowCompat(android.view.View,int,int,boolean)
+    105:107:public PopupWindowCompat(android.view.View,int,int)
+com.actionbarsherlock.internal.widget.ScrollingTabContainerView:
+    protected com.actionbarsherlock.internal.nineoldandroids.animation.Animator mVisibilityAnim
+    protected final com.actionbarsherlock.internal.widget.ScrollingTabContainerView$VisibilityAnimListener mVisAnimListener
+    private static final int FADE_DURATION
+    69:82:public ScrollingTabContainerView(android.content.Context)
+    189:194:private com.actionbarsherlock.internal.widget.IcsLinearLayout createTabLayout()
+    219:240:public void animateToVisibility(int)
+    295:307:public void addTab(com.actionbarsherlock.app.ActionBar$Tab,boolean)
+    310:322:public void addTab(com.actionbarsherlock.app.ActionBar$Tab,int,boolean)
+    325:332:public void updateTab(int)
+    335:342:public void removeTabAt(int)
+    345:352:public void removeAllTabs()
+com.actionbarsherlock.internal.widget.ScrollingTabContainerView$TabView:
+    373:374:public ScrollingTabContainerView$TabView(android.content.Context,android.util.AttributeSet)
+com.actionbarsherlock.internal.widget.ScrollingTabContainerView$VisibilityAnimListener
+com.actionbarsherlock.internal.widget.TabsLinearLayout
+com.actionbarsherlock.view.ActionMode:
+    private java.lang.Object mTag
+    27:27:public ActionMode()
+    41:42:public void setTag(java.lang.Object)
+    55:55:public java.lang.Object getTag()
+    public abstract void setTitle(java.lang.CharSequence)
+    public abstract void setTitle(int)
+    public abstract void setSubtitle(java.lang.CharSequence)
+    public abstract void setSubtitle(int)
+    public abstract void setCustomView(android.view.View)
+    public abstract void invalidate()
+    public abstract com.actionbarsherlock.view.Menu getMenu()
+    public abstract java.lang.CharSequence getTitle()
+    public abstract java.lang.CharSequence getSubtitle()
+    public abstract android.view.View getCustomView()
+    public abstract com.actionbarsherlock.view.MenuInflater getMenuInflater()
+    166:166:public boolean isUiFocusable()
+com.actionbarsherlock.view.ActionMode$Callback:
+    public abstract boolean onCreateActionMode(com.actionbarsherlock.view.ActionMode,com.actionbarsherlock.view.Menu)
+    public abstract boolean onPrepareActionMode(com.actionbarsherlock.view.ActionMode,com.actionbarsherlock.view.Menu)
+    public abstract boolean onActionItemClicked(com.actionbarsherlock.view.ActionMode,com.actionbarsherlock.view.MenuItem)
+com.actionbarsherlock.view.ActionProvider:
+    69:70:public ActionProvider(android.content.Context)
+    152:155:public void subUiVisibilityChanged(boolean)
+com.actionbarsherlock.view.ActionProvider$SubUiVisibilityListener:
+    public abstract void onSubUiVisibilityChanged(boolean)
+com.actionbarsherlock.view.Menu:
+    public static final int USER_MASK
+    public static final int USER_SHIFT
+    public static final int CATEGORY_MASK
+    public static final int CATEGORY_SHIFT
+    public static final int NONE
+    public static final int FIRST
+    public static final int CATEGORY_CONTAINER
+    public static final int CATEGORY_SYSTEM
+    public static final int CATEGORY_SECONDARY
+    public static final int CATEGORY_ALTERNATIVE
+    public static final int FLAG_APPEND_TO_GROUP
+    public static final int FLAG_PERFORM_NO_CLOSE
+    public static final int FLAG_ALWAYS_PERFORM_CLOSE
+    public abstract com.actionbarsherlock.view.MenuItem add(java.lang.CharSequence)
+    public abstract com.actionbarsherlock.view.MenuItem add(int)
+    public abstract com.actionbarsherlock.view.MenuItem add(int,int,int,int)
+    public abstract com.actionbarsherlock.view.SubMenu addSubMenu(java.lang.CharSequence)
+    public abstract com.actionbarsherlock.view.SubMenu addSubMenu(int)
+    public abstract com.actionbarsherlock.view.SubMenu addSubMenu(int,int,int,java.lang.CharSequence)
+    public abstract com.actionbarsherlock.view.SubMenu addSubMenu(int,int,int,int)
+    public abstract int addIntentOptions(int,int,int,android.content.ComponentName,android.content.Intent[],android.content.Intent,int,com.actionbarsherlock.view.MenuItem[])
+    public abstract void removeItem(int)
+    public abstract void removeGroup(int)
+    public abstract void clear()
+    public abstract void setGroupCheckable(int,boolean,boolean)
+    public abstract void setGroupVisible(int,boolean)
+    public abstract void setGroupEnabled(int,boolean)
+    public abstract boolean hasVisibleItems()
+    public abstract int size()
+    public abstract com.actionbarsherlock.view.MenuItem getItem(int)
+    public abstract void close()
+    public abstract boolean performShortcut(int,android.view.KeyEvent,int)
+    public abstract boolean isShortcutKey(int,android.view.KeyEvent)
+    public abstract boolean performIdentifierAction(int,int)
+    public abstract void setQwertyMode(boolean)
+com.actionbarsherlock.view.MenuInflater
+com.actionbarsherlock.view.MenuInflater$InflatedOnMenuItemClickListener
+com.actionbarsherlock.view.MenuInflater$MenuState
+com.actionbarsherlock.view.MenuItem:
+    public static final int SHOW_AS_ACTION_NEVER
+    public static final int SHOW_AS_ACTION_IF_ROOM
+    public static final int SHOW_AS_ACTION_ALWAYS
+    public static final int SHOW_AS_ACTION_WITH_TEXT
+    public static final int SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW
+    public abstract int getGroupId()
+    public abstract int getOrder()
+    public abstract com.actionbarsherlock.view.MenuItem setTitle(java.lang.CharSequence)
+    public abstract com.actionbarsherlock.view.MenuItem setTitle(int)
+    public abstract java.lang.CharSequence getTitle()
+    public abstract com.actionbarsherlock.view.MenuItem setTitleCondensed(java.lang.CharSequence)
+    public abstract java.lang.CharSequence getTitleCondensed()
+    public abstract com.actionbarsherlock.view.MenuItem setIcon(android.graphics.drawable.Drawable)
+    public abstract com.actionbarsherlock.view.MenuItem setIntent(android.content.Intent)
+    public abstract android.content.Intent getIntent()
+    public abstract com.actionbarsherlock.view.MenuItem setShortcut(char,char)
+    public abstract com.actionbarsherlock.view.MenuItem setNumericShortcut(char)
+    public abstract char getNumericShortcut()
+    public abstract com.actionbarsherlock.view.MenuItem setAlphabeticShortcut(char)
+    public abstract char getAlphabeticShortcut()
+    public abstract com.actionbarsherlock.view.MenuItem setCheckable(boolean)
+    public abstract boolean isCheckable()
+    public abstract com.actionbarsherlock.view.MenuItem setChecked(boolean)
+    public abstract boolean isChecked()
+    public abstract com.actionbarsherlock.view.MenuItem setVisible(boolean)
+    public abstract com.actionbarsherlock.view.MenuItem setEnabled(boolean)
+    public abstract boolean isEnabled()
+    public abstract com.actionbarsherlock.view.MenuItem setOnMenuItemClickListener(com.actionbarsherlock.view.MenuItem$OnMenuItemClickListener)
+    public abstract android.view.ContextMenu$ContextMenuInfo getMenuInfo()
+    public abstract com.actionbarsherlock.view.MenuItem setShowAsActionFlags(int)
+    public abstract com.actionbarsherlock.view.MenuItem setActionView(android.view.View)
+    public abstract com.actionbarsherlock.view.MenuItem setActionProvider(com.actionbarsherlock.view.ActionProvider)
+    public abstract boolean collapseActionView()
+    public abstract com.actionbarsherlock.view.MenuItem setOnActionExpandListener(com.actionbarsherlock.view.MenuItem$OnActionExpandListener)
+com.actionbarsherlock.view.SubMenu:
+    public abstract com.actionbarsherlock.view.SubMenu setHeaderTitle(int)
+    public abstract com.actionbarsherlock.view.SubMenu setHeaderTitle(java.lang.CharSequence)
+    public abstract com.actionbarsherlock.view.SubMenu setHeaderIcon(int)
+    public abstract com.actionbarsherlock.view.SubMenu setHeaderIcon(android.graphics.drawable.Drawable)
+    public abstract com.actionbarsherlock.view.SubMenu setHeaderView(android.view.View)
+    public abstract void clearHeader()
+    public abstract com.actionbarsherlock.view.SubMenu setIcon(int)
+    public abstract com.actionbarsherlock.view.SubMenu setIcon(android.graphics.drawable.Drawable)
+    public abstract com.actionbarsherlock.view.MenuItem getItem()
+com.actionbarsherlock.view.Window:
+    public static final long FEATURE_ACTION_BAR
+    public static final long FEATURE_ACTION_BAR_OVERLAY
+    public static final long FEATURE_ACTION_MODE_OVERLAY
+    public static final long FEATURE_NO_TITLE
+    public static final long FEATURE_PROGRESS
+    public static final long FEATURE_INDETERMINATE_PROGRESS
+    48:49:private Window(android.content.Context)
+com.actionbarsherlock.view.Window$Callback:
+    public abstract boolean onMenuItemSelected(int,com.actionbarsherlock.view.MenuItem)
+com.actionbarsherlock.widget.ActivityChooserModel
+com.actionbarsherlock.widget.ActivityChooserModel$ActivityChooserModelClient
+com.actionbarsherlock.widget.ActivityChooserModel$ActivityResolveInfo
+com.actionbarsherlock.widget.ActivityChooserModel$ActivitySorter
+com.actionbarsherlock.widget.ActivityChooserModel$DefaultSorter
+com.actionbarsherlock.widget.ActivityChooserModel$HistoricalRecord
+com.actionbarsherlock.widget.ActivityChooserModel$HistoryLoader
+com.actionbarsherlock.widget.ActivityChooserModel$HistoryLoader$1
+com.actionbarsherlock.widget.ActivityChooserModel$HistoryPersister
+com.actionbarsherlock.widget.ActivityChooserModel$OnChooseActivityListener
+com.actionbarsherlock.widget.ActivityChooserView
+com.actionbarsherlock.widget.ActivityChooserView$1
+com.actionbarsherlock.widget.ActivityChooserView$2
+com.actionbarsherlock.widget.ActivityChooserView$3
+com.actionbarsherlock.widget.ActivityChooserView$ActivityChooserViewAdapter
+com.actionbarsherlock.widget.ActivityChooserView$Callbacks
+com.actionbarsherlock.widget.ActivityChooserView$SetActivated
+com.actionbarsherlock.widget.SearchView
+com.actionbarsherlock.widget.SearchView$1
+com.actionbarsherlock.widget.SearchView$10
+com.actionbarsherlock.widget.SearchView$11
+com.actionbarsherlock.widget.SearchView$12
+com.actionbarsherlock.widget.SearchView$2
+com.actionbarsherlock.widget.SearchView$3
+com.actionbarsherlock.widget.SearchView$4
+com.actionbarsherlock.widget.SearchView$5
+com.actionbarsherlock.widget.SearchView$6
+com.actionbarsherlock.widget.SearchView$7
+com.actionbarsherlock.widget.SearchView$8
+com.actionbarsherlock.widget.SearchView$9
+com.actionbarsherlock.widget.SearchView$OnCloseListener
+com.actionbarsherlock.widget.SearchView$OnQueryTextListener
+com.actionbarsherlock.widget.SearchView$OnSuggestionListener
+com.actionbarsherlock.widget.SearchView$SearchAutoComplete
+com.actionbarsherlock.widget.ShareActionProvider
+com.actionbarsherlock.widget.ShareActionProvider$OnShareTargetSelectedListener
+com.actionbarsherlock.widget.ShareActionProvider$ShareAcitivityChooserModelPolicy
+com.actionbarsherlock.widget.ShareActionProvider$ShareMenuItemOnMenuItemClickListener
+com.actionbarsherlock.widget.SuggestionsAdapter
+com.actionbarsherlock.widget.SuggestionsAdapter$ChildViewCache
+com.bun.popupnotificationsfree.AppSelectionAdapter:
+    51:55:public void addApplication(com.bun.popupnotificationsfree.ApplicationBean)
+com.bun.popupnotificationsfree.BlockedAppsAdapter:
+    51:55:public void addApplication(com.bun.popupnotificationsfree.ApplicationBean)
+com.bun.popupnotificationsfree.BuildConfig
+com.bun.popupnotificationsfree.HelperUtils:
+    27:27:public HelperUtils()
+    185:188:public static java.lang.Integer getTextSize(android.content.Context)
+com.bun.popupnotificationsfree.MuteSelectedAppActivity:
+    android.widget.RadioGroup radioGroup2
+    android.widget.RadioButton radioButton2
+com.bun.popupnotificationsfree.MuteSelectedAppsAdapter:
+    46:49:public void addAppList(java.util.ArrayList)
+com.bun.popupnotificationsfree.NotificationActivity:
+    static final int DELTA
+    android.widget.RadioGroup radioGroup1
+    android.widget.RadioButton radioButton1
+    android.widget.RadioGroup radioGroup2
+    android.widget.RadioButton radioButton2
+    602:604:public void onShowcaseViewShow(com.espian.showcaseview.ShowcaseView)
+com.bun.popupnotificationsfree.NotificationActivity$Direction
+com.bun.popupnotificationsfree.NotificationBean:
+    private java.lang.String tickerText
+    52:52:public java.lang.String getTickerText()
+    56:57:public void setTickerText(java.lang.String)
+    64:64:public long getWhen()
+    101:101:public android.app.PendingIntent getPendingIntent()
+com.bun.popupnotificationsfree.NotificationPreferenceActivity:
+    android.widget.RadioGroup radioGroup1
+    android.widget.RadioGroup radioGroup2
+    android.widget.RadioButton radioButton2
+    447:503:private void showMuteOptions(android.preference.Preference)
+com.bun.popupnotificationsfree.NotificationPreferenceActivity$17
+com.bun.popupnotificationsfree.NotificationPreferenceActivity$18
+com.bun.popupnotificationsfree.R:
+    10:10:public R()
+com.bun.popupnotificationsfree.R$attr
+com.bun.popupnotificationsfree.R$dimen
+com.bun.popupnotificationsfree.R$drawable
+com.bun.popupnotificationsfree.R$id
+com.bun.popupnotificationsfree.R$layout
+com.bun.popupnotificationsfree.R$menu
+com.bun.popupnotificationsfree.R$string
+com.bun.popupnotificationsfree.R$style
+com.bun.popupnotificationsfree.R$styleable:
+    441:441:public R$styleable()
+com.bun.popupnotificationsfree.R$xml
+com.bun.popupnotificationsfree.SharedPreferenceUtils:
+    private static android.content.SharedPreferences$Editor blockedPref_editor
+    14:14:public SharedPreferenceUtils()
+    64:71:public static void setBlockedApps(android.content.Context,java.lang.String,java.lang.String)
+    83:89:public static void removeBlockedApp(android.content.Context,java.lang.String)
+    94:94:public static void populateDefaultApps(android.content.Context)
+com.bun.popupnotificationsfree.ShowcaseViews
+com.bun.popupnotificationsfree.ShowcaseViews$1
+com.bun.popupnotificationsfree.ShowcaseViews$2
+com.bun.popupnotificationsfree.ShowcaseViews$ItemViewProperties
+com.bun.popupnotificationsfree.ShowcaseViews$OnShowcaseAcknowledged
+com.bun.popupnotificationsfree.ShowcaseViews$ViewProperties
+com.bun.popupnotificationsfree.SwipeListView:
+    public static final int SWIPE_MODE_DEFAULT
+    public static final int SWIPE_MODE_NONE
+    public static final int SWIPE_MODE_BOTH
+    public static final int SWIPE_MODE_RIGHT
+    public static final int SWIPE_MODE_LEFT
+    public static final int SWIPE_ACTION_REVEAL
+    public static final int SWIPE_ACTION_DISMISS
+    public static final int SWIPE_ACTION_CHOICE
+    public static final int SWIPE_ACTION_NONE
+    public static final java.lang.String SWIPE_DEFAULT_FRONT_VIEW
+    public static final java.lang.String SWIPE_DEFAULT_BACK_VIEW
+    private static final int TOUCH_STATE_REST
+    private static final int TOUCH_STATE_SCROLLING_X
+    private static final int TOUCH_STATE_SCROLLING_Y
+    232:233:public void recycle(android.view.View,int)
+    242:242:public boolean isChecked(int)
+    267:268:public void unselectedChoiceStates()
+    293:302:public void dismiss(int)
+    308:326:public void dismissSelected()
+    334:335:public void openAnimate(int)
+    343:344:public void closeAnimate(int)
+    680:681:public void closeOpenedItems()
+com.bun.popupnotificationsfree.SwipeListViewTouchListener:
+    private static final int DISPLACE_CHOICE
+    174:174:public boolean isListViewMoving()
+    327:328:protected void closeAnimate(int)
+    360:370:protected void unselectedChoiceStates()
+    376:385:protected int dismiss(int)
+    1003:1010:protected void handlerPendingDismisses(int)
+com.bun.popupnotificationsfree.SwipeListViewTouchListener$10
+com.bun.popupnotificationsfree.TimePreference:
+    private static final int DEFAULT_HOUR
+    private static final int DEFAULT_MINUTE
+com.bun.popupnotificationsfree.TutorialActivity
+com.bun.popupnotificationsfree.Utils:
+    65:157:public static java.lang.String getAppSpecificMessage(java.lang.String,android.app.Notification)
+    163:182:public void populateBeanDetails(android.view.accessibility.AccessibilityEvent,com.bun.popupnotificationsfree.NotificationBean)
+    187:275:private void setNotificationMessageAndSender(android.view.accessibility.AccessibilityEvent,com.bun.popupnotificationsfree.NotificationBean)
+    279:301:private java.lang.String getSender(java.lang.String,java.lang.String)
+    389:400:private java.lang.String getApplicationName(java.lang.String)
+    404:410:private void refreshApplicationList()
+    414:429:private void getAllTextView(java.util.ArrayList,android.view.ViewGroup)
+    433:437:private java.lang.String getMeaningFullAppName(java.lang.String)
+    460:462:private java.lang.Boolean isScreenOn()
+    467:485:public static java.lang.String getMuteTime(android.content.Context,java.lang.String)
+    492:515:public static java.lang.String getMuteToastText(android.content.Context,java.lang.String,java.lang.String,java.lang.String)
+com.espian.showcaseview.ShowcaseView:
+    public static final int TYPE_NO_LIMIT
+    public static final int TYPE_ONE_SHOT
+    public static final int INSERT_TO_DECOR
+    public static final int INSERT_TO_VIEW
+    public static final int ITEM_ACTION_HOME
+    public static final int ITEM_TITLE
+    public static final int ITEM_SPINNER
+    public static final int ITEM_ACTION_ITEM
+    public static final int ITEM_ACTION_OVERFLOW
+    protected static final java.lang.String PREFS_SHOWCASE_INTERNAL
+    public static final int INNER_CIRCLE_RADIUS
+    158:159:public void setShowcaseNoView()
+    198:205:public void setShowcasePosition(float,float)
+    209:265:public void setShowcaseItem(int,int,android.app.Activity)
+    269:318:private void showcaseActionItem(android.view.ViewParent,java.lang.Class,int,int)
+    322:334:private void showcaseSpinner(android.view.ViewParent,java.lang.Class)
+    338:350:private void showcaseTitle(android.view.ViewParent,java.lang.Class)
+    358:365:public void overrideButtonClick(android.view.View$OnClickListener)
+    368:369:protected void performButtonClick()
+    472:481:public void show()
+    484:491:private void fadeInShowcase()
+    521:524:public void setText(int,int)
+    553:556:public void pointTo(android.view.View)
+    565:568:public void pointTo(float,float)
+    621:632:public static com.espian.showcaseview.ShowcaseView insertShowcaseView(android.view.View,android.app.Activity,int,int,com.espian.showcaseview.ShowcaseView$ConfigOptions)
+    646:650:public static com.espian.showcaseview.ShowcaseView insertShowcaseView(int,android.app.Activity,int,int,com.espian.showcaseview.ShowcaseView$ConfigOptions)
+    655:666:public static com.espian.showcaseview.ShowcaseView insertShowcaseView(float,float,android.app.Activity,java.lang.String,java.lang.String,com.espian.showcaseview.ShowcaseView$ConfigOptions)
+    671:682:public static com.espian.showcaseview.ShowcaseView insertShowcaseView(float,float,android.app.Activity,int,int,com.espian.showcaseview.ShowcaseView$ConfigOptions)
+    686:686:public static com.espian.showcaseview.ShowcaseView insertShowcaseView(android.view.View,android.app.Activity)
+    703:714:public static com.espian.showcaseview.ShowcaseView insertShowcaseViewWithType(int,int,android.app.Activity,java.lang.String,java.lang.String,com.espian.showcaseview.ShowcaseView$ConfigOptions)
+    731:742:public static com.espian.showcaseview.ShowcaseView insertShowcaseViewWithType(int,int,android.app.Activity,int,int,com.espian.showcaseview.ShowcaseView$ConfigOptions)
+    746:746:public static com.espian.showcaseview.ShowcaseView insertShowcaseView(float,float,android.app.Activity)
+    320:320:static synthetic void access$2(com.espian.showcaseview.ShowcaseView,android.view.ViewParent,java.lang.Class)
+    336:336:static synthetic void access$3(com.espian.showcaseview.ShowcaseView,android.view.ViewParent,java.lang.Class)
+    267:267:static synthetic void access$4(com.espian.showcaseview.ShowcaseView,android.view.ViewParent,java.lang.Class,int,int)
+com.espian.showcaseview.ShowcaseView$2
+com.espian.showcaseview.ShowcaseView$5
+com.espian.showcaseview.ShowcaseView$OnShowcaseEventListener:
+    public abstract void onShowcaseViewShow(com.espian.showcaseview.ShowcaseView)
+com.espian.showcaseview.ShowcaseViewBuilder
+com.espian.showcaseview.ShowcaseViews
+com.espian.showcaseview.ShowcaseViews$1
+com.espian.showcaseview.ShowcaseViews$2
+com.espian.showcaseview.ShowcaseViews$2$1
+com.espian.showcaseview.ShowcaseViews$ItemViewProperties
+com.espian.showcaseview.ShowcaseViews$OnShowcaseAcknowledged
+com.espian.showcaseview.anim.AnimationUtils:
+    public static final int DEFAULT_DURATION
+    private static final java.lang.String ALPHA
+    private static final float INVISIBLE
+    private static final float VISIBLE
+    private static final java.lang.String COORD_X
+    private static final java.lang.String COORD_Y
+    private static final int INSTANT
+    11:11:public AnimationUtils()
+    31:31:public static float getX(android.view.View)
+    35:35:public static float getY(android.view.View)
+    43:43:public static com.nineoldandroids.animation.ObjectAnimator createFadeInAnimation(java.lang.Object,com.espian.showcaseview.anim.AnimationUtils$AnimationStartListener)
+    47:66:public static com.nineoldandroids.animation.ObjectAnimator createFadeInAnimation(java.lang.Object,int,com.espian.showcaseview.anim.AnimationUtils$AnimationStartListener)
+    70:70:public static com.nineoldandroids.animation.ObjectAnimator createFadeOutAnimation(java.lang.Object,com.espian.showcaseview.anim.AnimationUtils$AnimationEndListener)
+    131:138:public static com.nineoldandroids.animation.AnimatorSet createMovementAnimation(android.view.View,float,float)
+com.espian.showcaseview.anim.AnimationUtils$1
+com.espian.showcaseview.anim.AnimationUtils$AnimationStartListener
+com.espian.showcaseview.drawing.ClingDrawer:
+    public abstract int getShowcaseWidth()
+    public abstract int getShowcaseHeight()
+com.github.espiandev.showcaseview.R:
+    9:9:public R()
+com.github.espiandev.showcaseview.R$attr:
+    10:10:public R$attr()
+com.github.espiandev.showcaseview.R$drawable:
+    22:22:public R$drawable()
+com.github.espiandev.showcaseview.R$id
+com.github.espiandev.showcaseview.R$layout:
+    35:35:public R$layout()
+com.github.espiandev.showcaseview.R$string:
+    39:39:public R$string()
+com.github.espiandev.showcaseview.R$style:
+    42:42:public R$style()
+com.github.espiandev.showcaseview.R$styleable:
+    51:51:public R$styleable()
+com.nineoldandroids.animation.Animator:
+    72:72:public void end()
+    public abstract long getStartDelay()
+    public abstract void setStartDelay(long)
+    public abstract com.nineoldandroids.animation.Animator setDuration(long)
+    public abstract long getDuration()
+    public abstract void setInterpolator(android.view.animation.Interpolator)
+    183:187:public void removeAllListeners()
+    217:217:public void setupStartValues()
+    229:229:public void setupEndValues()
+    240:240:public void setTarget(java.lang.Object)
+com.nineoldandroids.animation.AnimatorInflater
+com.nineoldandroids.animation.AnimatorSet:
+    125:132:public varargs void playTogether(com.nineoldandroids.animation.Animator[])
+    140:151:public void playTogether(java.util.Collection)
+    160:170:public varargs void playSequentially(com.nineoldandroids.animation.Animator[])
+    179:189:public void playSequentially(java.util.List)
+    200:204:public java.util.ArrayList getChildAnimations()
+    216:224:public void setTarget(java.lang.Object)
+    234:237:public void setInterpolator(android.view.animation.Interpolator)
+    319:348:public void end()
+    378:378:public long getStartDelay()
+    389:390:public void setStartDelay(long)
+    402:402:public long getDuration()
+    415:424:public com.nineoldandroids.animation.AnimatorSet setDuration(long)
+    429:432:public void setupStartValues()
+    436:439:public void setupEndValues()
+    45:45:public bridge synthetic com.nineoldandroids.animation.Animator setDuration(long)
+com.nineoldandroids.animation.AnimatorSet$Builder:
+    1084:1092:public com.nineoldandroids.animation.AnimatorSet$Builder after(com.nineoldandroids.animation.Animator)
+    1105:1108:public com.nineoldandroids.animation.AnimatorSet$Builder after(long)
+com.nineoldandroids.animation.AnimatorSet$Dependency:
+    static final int WITH
+    static final int AFTER
+com.nineoldandroids.animation.ArgbEvaluator
+com.nineoldandroids.animation.Keyframe:
+    140:140:public static com.nineoldandroids.animation.Keyframe ofObject(float,java.lang.Object)
+    156:156:public static com.nineoldandroids.animation.Keyframe ofObject(float)
+    201:202:public void setFraction(float)
+    232:232:public java.lang.Class getType()
+com.nineoldandroids.animation.Keyframe$ObjectKeyframe
+com.nineoldandroids.animation.KeyframeSet:
+    85:111:public static varargs com.nineoldandroids.animation.KeyframeSet ofKeyframe(com.nineoldandroids.animation.Keyframe[])
+    116:127:public static varargs com.nineoldandroids.animation.KeyframeSet ofObject(java.lang.Object[])
+com.nineoldandroids.animation.ObjectAnimator:
+    private static final boolean DBG
+    142:142:public java.lang.String getPropertyName()
+    173:176:private ObjectAnimator(java.lang.Object,com.nineoldandroids.util.Property)
+    193:195:public static varargs com.nineoldandroids.animation.ObjectAnimator ofInt(java.lang.Object,java.lang.String,int[])
+    211:213:public static varargs com.nineoldandroids.animation.ObjectAnimator ofInt(java.lang.Object,com.nineoldandroids.util.Property,int[])
+    250:252:public static varargs com.nineoldandroids.animation.ObjectAnimator ofFloat(java.lang.Object,com.nineoldandroids.util.Property,float[])
+    274:277:public static varargs com.nineoldandroids.animation.ObjectAnimator ofObject(java.lang.Object,java.lang.String,com.nineoldandroids.animation.TypeEvaluator,java.lang.Object[])
+    297:300:public static varargs com.nineoldandroids.animation.ObjectAnimator ofObject(java.lang.Object,com.nineoldandroids.util.Property,com.nineoldandroids.animation.TypeEvaluator,java.lang.Object[])
+    322:325:public static varargs com.nineoldandroids.animation.ObjectAnimator ofPropertyValuesHolder(java.lang.Object,com.nineoldandroids.animation.PropertyValuesHolder[])
+    360:371:public varargs void setObjectValues(java.lang.Object[])
+    438:438:public java.lang.Object getTarget()
+    448:457:public void setTarget(java.lang.Object)
+    461:466:public void setupStartValues()
+    470:475:public void setupEndValues()
+    39:39:public bridge synthetic com.nineoldandroids.animation.Animator setDuration(long)
+com.nineoldandroids.animation.PreHoneycombCompat:
+    167:167:private PreHoneycombCompat()
+com.nineoldandroids.animation.PropertyValuesHolder:
+    204:207:public static varargs com.nineoldandroids.animation.PropertyValuesHolder ofObject(java.lang.String,com.nineoldandroids.animation.TypeEvaluator,java.lang.Object[])
+    224:227:public static varargs com.nineoldandroids.animation.PropertyValuesHolder ofObject(com.nineoldandroids.util.Property,com.nineoldandroids.animation.TypeEvaluator,java.lang.Object[])
+    250:260:public static varargs com.nineoldandroids.animation.PropertyValuesHolder ofKeyframe(java.lang.String,com.nineoldandroids.animation.Keyframe[])
+    281:291:public static varargs com.nineoldandroids.animation.PropertyValuesHolder ofKeyframe(com.nineoldandroids.util.Property,com.nineoldandroids.animation.Keyframe[])
+    337:344:public varargs void setKeyframes(com.nineoldandroids.animation.Keyframe[])
+    360:362:public varargs void setObjectValues(java.lang.Object[])
+    551:565:private void setupValue(java.lang.Object,com.nineoldandroids.animation.Keyframe)
+    576:577:void setupStartValue(java.lang.Object)
+    588:589:void setupEndValue(java.lang.Object)
+    659:661:public void setEvaluator(com.nineoldandroids.animation.TypeEvaluator)
+com.nineoldandroids.animation.PropertyValuesHolder$FloatPropertyValuesHolder:
+    901:905:public PropertyValuesHolder$FloatPropertyValuesHolder(java.lang.String,com.nineoldandroids.animation.FloatKeyframeSet)
+    908:915:public PropertyValuesHolder$FloatPropertyValuesHolder(com.nineoldandroids.util.Property,com.nineoldandroids.animation.FloatKeyframeSet)
+com.nineoldandroids.animation.PropertyValuesHolder$IntPropertyValuesHolder:
+    765:769:public PropertyValuesHolder$IntPropertyValuesHolder(java.lang.String,com.nineoldandroids.animation.IntKeyframeSet)
+    772:779:public PropertyValuesHolder$IntPropertyValuesHolder(com.nineoldandroids.util.Property,com.nineoldandroids.animation.IntKeyframeSet)
+com.nineoldandroids.animation.TimeAnimator
+com.nineoldandroids.animation.TimeAnimator$TimeListener
+com.nineoldandroids.animation.ValueAnimator:
+    private static final long DEFAULT_FRAME_DELAY
+    static final int ANIMATION_START
+    static final int ANIMATION_FRAME
+    static final int STOPPED
+    static final int RUNNING
+    static final int SEEKED
+    public static final int RESTART
+    public static final int REVERSE
+    public static final int INFINITE
+    329:331:public static varargs com.nineoldandroids.animation.ValueAnimator ofPropertyValuesHolder(com.nineoldandroids.animation.PropertyValuesHolder[])
+    352:355:public static varargs com.nineoldandroids.animation.ValueAnimator ofObject(com.nineoldandroids.animation.TypeEvaluator,java.lang.Object[])
+    433:445:public varargs void setObjectValues(java.lang.Object[])
+    476:476:public com.nineoldandroids.animation.PropertyValuesHolder[] getValues()
+    524:524:public long getDuration()
+    692:692:public long getStartDelay()
+    715:715:public static long getFrameDelay()
+    728:729:public static void setFrameDelay(long)
+    762:767:public java.lang.Object getAnimatedValue(java.lang.String)
+    780:781:public void setRepeatCount(int)
+    789:789:public int getRepeatCount()
+    800:801:public void setRepeatMode(int)
+    809:809:public int getRepeatMode()
+    830:835:public void removeAllUpdateListeners()
+    844:851:public void removeUpdateListener(com.nineoldandroids.animation.ValueAnimator$AnimatorUpdateListener)
+    878:878:public android.view.animation.Interpolator getInterpolator()
+    898:901:public void setEvaluator(com.nineoldandroids.animation.TypeEvaluator)
+    974:989:public void end()
+    1009:1018:public void reverse()
+    1239:1239:public static int getCurrentAnimationsCount()
+    1249:1252:public static void clearAllAnimations()
+    43:43:public bridge synthetic com.nineoldandroids.animation.Animator setDuration(long)
+com.nineoldandroids.util.NoSuchPropertyException
+com.nineoldandroids.util.Property:
+    55:55:public static com.nineoldandroids.util.Property of(java.lang.Class,java.lang.Class,java.lang.String)
+    76:76:public boolean isReadOnly()
+    104:104:public java.lang.Class getType()
+com.nineoldandroids.util.ReflectiveProperty
+com.nineoldandroids.view.ViewHelper:
+    9:9:private ViewHelper()
+    12:12:public static float getAlpha(android.view.View)
+    24:24:public static float getPivotX(android.view.View)
+    28:33:public static void setPivotX(android.view.View,float)
+    36:36:public static float getPivotY(android.view.View)
+    40:45:public static void setPivotY(android.view.View,float)
+    48:48:public static float getRotation(android.view.View)
+    52:57:public static void setRotation(android.view.View,float)
+    60:60:public static float getRotationX(android.view.View)
+    64:69:public static void setRotationX(android.view.View,float)
+    72:72:public static float getRotationY(android.view.View)
+    76:81:public static void setRotationY(android.view.View,float)
+    84:84:public static float getScaleX(android.view.View)
+    88:93:public static void setScaleX(android.view.View,float)
+    96:96:public static float getScaleY(android.view.View)
+    100:105:public static void setScaleY(android.view.View,float)
+    108:108:public static float getScrollX(android.view.View)
+    112:117:public static void setScrollX(android.view.View,int)
+    120:120:public static float getScrollY(android.view.View)
+    124:129:public static void setScrollY(android.view.View,int)
+    132:132:public static float getTranslationX(android.view.View)
+    144:144:public static float getTranslationY(android.view.View)
+    148:153:public static void setTranslationY(android.view.View,float)
+    160:165:public static void setX(android.view.View,float)
+    168:168:public static float getY(android.view.View)
+    172:177:public static void setY(android.view.View,float)
+com.nineoldandroids.view.ViewHelper$Honeycomb:
+    179:179:private ViewHelper$Honeycomb()
+    181:181:static float getAlpha(android.view.View)
+    189:189:static float getPivotX(android.view.View)
+    193:194:static void setPivotX(android.view.View,float)
+    197:197:static float getPivotY(android.view.View)
+    201:202:static void setPivotY(android.view.View,float)
+    205:205:static float getRotation(android.view.View)
+    209:210:static void setRotation(android.view.View,float)
+    213:213:static float getRotationX(android.view.View)
+    217:218:static void setRotationX(android.view.View,float)
+    221:221:static float getRotationY(android.view.View)
+    225:226:static void setRotationY(android.view.View,float)
+    229:229:static float getScaleX(android.view.View)
+    233:234:static void setScaleX(android.view.View,float)
+    237:237:static float getScaleY(android.view.View)
+    241:242:static void setScaleY(android.view.View,float)
+    245:245:static float getScrollX(android.view.View)
+    249:250:static void setScrollX(android.view.View,int)
+    253:253:static float getScrollY(android.view.View)
+    257:258:static void setScrollY(android.view.View,int)
+    261:261:static float getTranslationX(android.view.View)
+    269:269:static float getTranslationY(android.view.View)
+    273:274:static void setTranslationY(android.view.View,float)
+    281:282:static void setX(android.view.View,float)
+    285:285:static float getY(android.view.View)
+    289:290:static void setY(android.view.View,float)
+com.nineoldandroids.view.ViewPropertyAnimator:
+    public abstract long getDuration()
+    public abstract long getStartDelay()
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator setStartDelay(long)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator setInterpolator(android.view.animation.Interpolator)
+    public abstract void start()
+    public abstract void cancel()
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator x(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator xBy(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator y(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator yBy(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator rotation(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator rotationBy(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator rotationX(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator rotationXBy(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator rotationY(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator rotationYBy(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator translationXBy(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator translationY(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator translationYBy(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator scaleX(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator scaleXBy(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator scaleY(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator scaleYBy(float)
+    public abstract com.nineoldandroids.view.ViewPropertyAnimator alphaBy(float)
+com.nineoldandroids.view.ViewPropertyAnimatorHC:
+    private static final int NONE
+    private static final int TRANSLATION_X
+    private static final int TRANSLATION_Y
+    private static final int SCALE_X
+    private static final int SCALE_Y
+    private static final int ROTATION
+    private static final int ROTATION_X
+    private static final int ROTATION_Y
+    private static final int X
+    private static final int Y
+    private static final int ALPHA
+    private static final int TRANSFORM_MASK
+    237:242:public long getDuration()
+    248:253:public long getStartDelay()
+    259:265:public com.nineoldandroids.view.ViewPropertyAnimator setStartDelay(long)
+    270:272:public com.nineoldandroids.view.ViewPropertyAnimator setInterpolator(android.view.animation.Interpolator)
+    283:284:public void start()
+    288:301:public void cancel()
+    305:306:public com.nineoldandroids.view.ViewPropertyAnimator x(float)
+    311:312:public com.nineoldandroids.view.ViewPropertyAnimator xBy(float)
+    317:318:public com.nineoldandroids.view.ViewPropertyAnimator y(float)
+    323:324:public com.nineoldandroids.view.ViewPropertyAnimator yBy(float)
+    329:330:public com.nineoldandroids.view.ViewPropertyAnimator rotation(float)
+    335:336:public com.nineoldandroids.view.ViewPropertyAnimator rotationBy(float)
+    341:342:public com.nineoldandroids.view.ViewPropertyAnimator rotationX(float)
+    347:348:public com.nineoldandroids.view.ViewPropertyAnimator rotationXBy(float)
+    353:354:public com.nineoldandroids.view.ViewPropertyAnimator rotationY(float)
+    359:360:public com.nineoldandroids.view.ViewPropertyAnimator rotationYBy(float)
+    371:372:public com.nineoldandroids.view.ViewPropertyAnimator translationXBy(float)
+    377:378:public com.nineoldandroids.view.ViewPropertyAnimator translationY(float)
+    383:384:public com.nineoldandroids.view.ViewPropertyAnimator translationYBy(float)
+    389:390:public com.nineoldandroids.view.ViewPropertyAnimator scaleX(float)
+    395:396:public com.nineoldandroids.view.ViewPropertyAnimator scaleXBy(float)
+    401:402:public com.nineoldandroids.view.ViewPropertyAnimator scaleY(float)
+    407:408:public com.nineoldandroids.view.ViewPropertyAnimator scaleYBy(float)
+    419:420:public com.nineoldandroids.view.ViewPropertyAnimator alphaBy(float)
+    481:483:private void animatePropertyBy(int,float)
+com.nineoldandroids.view.ViewPropertyAnimatorICS:
+    private static final long RETURN_WHEN_NULL
+    36:40:public long getDuration()
+    45:49:public com.nineoldandroids.view.ViewPropertyAnimator setStartDelay(long)
+    54:58:public long getStartDelay()
+    63:67:public com.nineoldandroids.view.ViewPropertyAnimator setInterpolator(android.view.animation.Interpolator)
+    105:109:public void start()
+    113:117:public void cancel()
+    121:125:public com.nineoldandroids.view.ViewPropertyAnimator x(float)
+    130:134:public com.nineoldandroids.view.ViewPropertyAnimator xBy(float)
+    139:143:public com.nineoldandroids.view.ViewPropertyAnimator y(float)
+    148:152:public com.nineoldandroids.view.ViewPropertyAnimator yBy(float)
+    157:161:public com.nineoldandroids.view.ViewPropertyAnimator rotation(float)
+    166:170:public com.nineoldandroids.view.ViewPropertyAnimator rotationBy(float)
+    175:179:public com.nineoldandroids.view.ViewPropertyAnimator rotationX(float)
+    184:188:public com.nineoldandroids.view.ViewPropertyAnimator rotationXBy(float)
+    193:197:public com.nineoldandroids.view.ViewPropertyAnimator rotationY(float)
+    202:206:public com.nineoldandroids.view.ViewPropertyAnimator rotationYBy(float)
+    220:224:public com.nineoldandroids.view.ViewPropertyAnimator translationXBy(float)
+    229:233:public com.nineoldandroids.view.ViewPropertyAnimator translationY(float)
+    238:242:public com.nineoldandroids.view.ViewPropertyAnimator translationYBy(float)
+    247:251:public com.nineoldandroids.view.ViewPropertyAnimator scaleX(float)
+    256:260:public com.nineoldandroids.view.ViewPropertyAnimator scaleXBy(float)
+    265:269:public com.nineoldandroids.view.ViewPropertyAnimator scaleY(float)
+    274:278:public com.nineoldandroids.view.ViewPropertyAnimator scaleYBy(float)
+    292:296:public com.nineoldandroids.view.ViewPropertyAnimator alphaBy(float)
+com.nineoldandroids.view.ViewPropertyAnimatorPreHC:
+    private static final int NONE
+    private static final int TRANSLATION_X
+    private static final int TRANSLATION_Y
+    private static final int SCALE_X
+    private static final int SCALE_Y
+    private static final int ROTATION
+    private static final int ROTATION_X
+    private static final int ROTATION_Y
+    private static final int X
+    private static final int Y
+    private static final int ALPHA
+    private static final int TRANSFORM_MASK
+    244:249:public long getDuration()
+    255:260:public long getStartDelay()
+    266:272:public com.nineoldandroids.view.ViewPropertyAnimator setStartDelay(long)
+    277:279:public com.nineoldandroids.view.ViewPropertyAnimator setInterpolator(android.view.animation.Interpolator)
+    290:291:public void start()
+    295:308:public void cancel()
+    312:313:public com.nineoldandroids.view.ViewPropertyAnimator x(float)
+    318:319:public com.nineoldandroids.view.ViewPropertyAnimator xBy(float)
+    324:325:public com.nineoldandroids.view.ViewPropertyAnimator y(float)
+    330:331:public com.nineoldandroids.view.ViewPropertyAnimator yBy(float)
+    336:337:public com.nineoldandroids.view.ViewPropertyAnimator rotation(float)
+    342:343:public com.nineoldandroids.view.ViewPropertyAnimator rotationBy(float)
+    348:349:public com.nineoldandroids.view.ViewPropertyAnimator rotationX(float)
+    354:355:public com.nineoldandroids.view.ViewPropertyAnimator rotationXBy(float)
+    360:361:public com.nineoldandroids.view.ViewPropertyAnimator rotationY(float)
+    366:367:public com.nineoldandroids.view.ViewPropertyAnimator rotationYBy(float)
+    378:379:public com.nineoldandroids.view.ViewPropertyAnimator translationXBy(float)
+    384:385:public com.nineoldandroids.view.ViewPropertyAnimator translationY(float)
+    390:391:public com.nineoldandroids.view.ViewPropertyAnimator translationYBy(float)
+    396:397:public com.nineoldandroids.view.ViewPropertyAnimator scaleX(float)
+    402:403:public com.nineoldandroids.view.ViewPropertyAnimator scaleXBy(float)
+    408:409:public com.nineoldandroids.view.ViewPropertyAnimator scaleY(float)
+    414:415:public com.nineoldandroids.view.ViewPropertyAnimator scaleYBy(float)
+    426:427:public com.nineoldandroids.view.ViewPropertyAnimator alphaBy(float)
+    488:490:private void animatePropertyBy(int,float)
+org.acra.ACRA:
+    public static final boolean DEV_LOGGING
+    public static final java.lang.String PREF_DISABLE_ACRA
+    public static final java.lang.String PREF_ENABLE_ACRA
+    public static final java.lang.String PREF_ENABLE_SYSTEM_LOGS
+    public static final java.lang.String PREF_ENABLE_DEVICE_ID
+    public static final java.lang.String PREF_USER_EMAIL_ADDRESS
+    public static final java.lang.String PREF_ALWAYS_ACCEPT
+    public static final java.lang.String PREF_LAST_VERSION_NR
+    281:282:public static void setConfig(org.acra.ACRAConfiguration)
+    317:318:public static void setLog(org.acra.log.ACRALog)
+org.acra.ACRAConfiguration:
+    115:116:public void setHttpHeaders(java.util.Map)
+    134:135:public void setAdditionalDropboxTags(java.lang.String[])
+    142:143:public void setAdditionalSharedPreferences(java.lang.String[])
+    150:151:public void setConnectionTimeout(java.lang.Integer)
+    158:159:public void setCustomReportContent(org.acra.ReportField[])
+    166:167:public void setDeleteUnapprovedReportsOnApplicationStart(java.lang.Boolean)
+    173:174:public void setDeleteOldUnsentReportsOnApplicationStart(java.lang.Boolean)
+    181:182:public void setDropboxCollectionMinutes(java.lang.Integer)
+    189:190:public void setForceCloseDialogAfterToast(java.lang.Boolean)
+    202:203:public void setFormKey(java.lang.String)
+    215:216:public void setFormUri(java.lang.String)
+    223:224:public void setFormUriBasicAuthLogin(java.lang.String)
+    231:232:public void setFormUriBasicAuthPassword(java.lang.String)
+    239:240:public void setIncludeDropboxSystemTags(java.lang.Boolean)
+    247:248:public void setLogcatArguments(java.lang.String[])
+    260:261:public void setMailTo(java.lang.String)
+    268:269:public void setMaxNumberOfRequestRetries(java.lang.Integer)
+    281:283:public void setMode(org.acra.ReportingInteractionMode)
+    295:296:public void setResDialogCommentPrompt(int)
+    308:309:public void setResDialogEmailPrompt(int)
+    320:321:public void setResDialogIcon(int)
+    332:333:public void setResDialogOkToast(int)
+    344:345:public void setResDialogText(int)
+    356:357:public void setResDialogTitle(int)
+    368:369:public void setResNotifIcon(int)
+    380:381:public void setResNotifText(int)
+    393:394:public void setResNotifTickerText(int)
+    405:406:public void setResNotifTitle(int)
+    417:418:public void setResToastText(int)
+    425:426:public void setSharedPreferenceMode(java.lang.Integer)
+    433:434:public void setSharedPreferenceName(java.lang.String)
+    441:442:public void setSocketTimeout(java.lang.Integer)
+    451:452:public void setLogcatFilterByPid(java.lang.Boolean)
+    461:462:public void setSendReportsInDevMode(java.lang.Boolean)
+    472:473:public void setExcludeMatchingSharedPreferencesKeys(java.lang.String[])
+    483:484:public void setExcludeMatchingSettingsKeys(java.lang.String[])
+    493:494:public void setApplicationLogFile(java.lang.String)
+    504:505:public void setApplicationLogFileLines(int)
+    514:515:public void setDisableSSLCertValidation(boolean)
+    523:524:public void setHttpMethod(org.acra.sender.HttpSender$Method)
+    533:534:public void setReportType(org.acra.sender.HttpSender$Type)
+org.acra.ACRAConfigurationException:
+    private static final long serialVersionUID
+org.acra.ACRAConstants:
+    public static final java.lang.String REPORTFILE_EXTENSION
+    static final java.lang.String APPROVED_SUFFIX
+    static final int MAX_SEND_REPORTS
+    protected static final java.lang.String EXTRA_REPORT_FILE_NAME
+    protected static final java.lang.String EXTRA_FORCE_CANCEL
+    static final int NOTIF_CRASH_ID
+    static final int TOAST_WAIT_DURATION
+    public static final java.lang.String NULL_VALUE
+    public static final boolean DEFAULT_FORCE_CLOSE_DIALOG_AFTER_TOAST
+    public static final int DEFAULT_MAX_NUMBER_OF_REQUEST_RETRIES
+    public static final int DEFAULT_SOCKET_TIMEOUT
+    public static final int DEFAULT_CONNECTION_TIMEOUT
+    public static final boolean DEFAULT_DELETE_UNAPPROVED_REPORTS_ON_APPLICATION_START
+    public static final boolean DEFAULT_DELETE_OLD_UNSENT_REPORTS_ON_APPLICATION_START
+    public static final int DEFAULT_DROPBOX_COLLECTION_MINUTES
+    public static final boolean DEFAULT_INCLUDE_DROPBOX_SYSTEM_TAGS
+    public static final int DEFAULT_SHARED_PREFERENCES_MODE
+    public static final int DEFAULT_NOTIFICATION_ICON
+    public static final int DEFAULT_DIALOG_ICON
+    public static final int DEFAULT_RES_VALUE
+    public static final java.lang.String DEFAULT_STRING_VALUE
+    public static final int DEFAULT_LOGCAT_LINES
+    public static final int DEFAULT_BUFFER_SIZE_IN_BYTES
+    public static final boolean DEFAULT_LOGCAT_FILTER_BY_PID
+    public static final boolean DEFAULT_SEND_REPORTS_IN_DEV_MODE
+    public static final java.lang.String DEFAULT_APPLICATION_LOGFILE
+    public static final int DEFAULT_APPLICATION_LOGFILE_LINES
+    public static final java.lang.String DEFAULT_GOOGLE_FORM_URL_FORMAT
+    public static final boolean DEFAULT_DISABLE_SSL_CERT_VALIDATION
+    58:58:public ACRAConstants()
+org.acra.CrashReportDialog:
+    private static final java.lang.String STATE_EMAIL
+    private static final java.lang.String STATE_COMMENT
+org.acra.CrashReportPersister:
+    private static final int NONE
+    private static final int SLASH
+    private static final int UNICODE
+    private static final int CONTINUE
+    private static final int KEY_DONE
+    private static final int IGNORE
+    private static final java.lang.String LINE_SEPARATOR
+org.acra.ErrorReporter:
+    216:216:public static org.acra.ErrorReporter getInstance()
+    229:230:public void addCustomData(java.lang.String,java.lang.String)
+    254:254:public java.lang.String putCustomData(java.lang.String,java.lang.String)
+    267:267:public java.lang.String removeCustomData(java.lang.String)
+    280:280:public java.lang.String getCustomData(java.lang.String)
+    301:302:public void removeReportSender(org.acra.sender.ReportSender)
+    311:318:public void removeReportSenders(java.lang.Class)
+    426:433:public void handleSilentException(java.lang.Throwable)
+    570:571:public void handleException(java.lang.Throwable,boolean)
+    583:584:public void handleException(java.lang.Throwable)
+org.acra.collector.Compatibility:
+    29:29:public Compatibility()
+org.acra.collector.ConfigurationCollector:
+    private static final java.lang.String SUFFIX_MASK
+    private static final java.lang.String FIELD_SCREENLAYOUT
+    private static final java.lang.String FIELD_UIMODE
+    private static final java.lang.String FIELD_MNC
+    private static final java.lang.String FIELD_MCC
+    private static final java.lang.String PREFIX_UI_MODE
+    private static final java.lang.String PREFIX_TOUCHSCREEN
+    private static final java.lang.String PREFIX_SCREENLAYOUT
+    private static final java.lang.String PREFIX_ORIENTATION
+    private static final java.lang.String PREFIX_NAVIGATIONHIDDEN
+    private static final java.lang.String PREFIX_NAVIGATION
+    private static final java.lang.String PREFIX_KEYBOARDHIDDEN
+    private static final java.lang.String PREFIX_KEYBOARD
+    private static final java.lang.String PREFIX_HARDKEYBOARDHIDDEN
+    42:42:public ConfigurationCollector()
+org.acra.collector.CrashReportData:
+    private static final long serialVersionUID
+org.acra.collector.CrashReportDataFactory:
+    127:127:public java.lang.String putCustomData(java.lang.String,java.lang.String)
+    138:138:public java.lang.String removeCustomData(java.lang.String)
+    149:149:public java.lang.String getCustomData(java.lang.String)
+org.acra.collector.DeviceFeaturesCollector:
+    32:32:DeviceFeaturesCollector()
+org.acra.collector.DisplayManagerCollector:
+    18:18:DisplayManagerCollector()
+org.acra.collector.DropBoxCollector:
+    private static final java.lang.String NO_RESULT
+    40:40:DropBoxCollector()
+org.acra.collector.DumpSysCollector:
+    34:34:DumpSysCollector()
+org.acra.collector.LogCatCollector:
+    private static final int DEFAULT_TAIL_COUNT
+    41:41:LogCatCollector()
+org.acra.collector.LogFileCollector:
+    41:42:private LogFileCollector()
+org.acra.collector.MediaCodecListCollector:
+    private static final java.lang.String COLOR_FORMAT_PREFIX
+    34:35:public MediaCodecListCollector()
+org.acra.collector.ReflectionCollector:
+    32:32:ReflectionCollector()
+org.acra.collector.SettingsCollector:
+    39:39:SettingsCollector()
+org.acra.collector.SharedPreferencesCollector:
+    33:33:SharedPreferencesCollector()
+org.acra.collector.ThreadCollector:
+    25:25:public ThreadCollector()
+org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksAdapter
+org.acra.jraf.android.util.activitylifecyclecallbackscompat.ApplicationHelper:
+    38:38:public ApplicationHelper()
+    80:85:public void unregisterActivityLifecycleCallbacks(android.app.Application,org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat)
+    88:89:private static void preIcsUnregisterActivityLifecycleCallbacks(org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat)
+    93:94:private static void postIcsUnregisterActivityLifecycleCallbacks(android.app.Application,org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat)
+org.acra.jraf.android.util.activitylifecyclecallbackscompat.MainLifecycleDispatcher:
+    58:61:void unregisterActivityLifecycleCallbacks(org.acra.jraf.android.util.activitylifecyclecallbackscompat.ActivityLifecycleCallbacksCompat)
+org.acra.log.ACRALog:
+    public abstract int v(java.lang.String,java.lang.String)
+    public abstract int v(java.lang.String,java.lang.String,java.lang.Throwable)
+    public abstract int d(java.lang.String,java.lang.String,java.lang.Throwable)
+    public abstract int i(java.lang.String,java.lang.String)
+    public abstract int i(java.lang.String,java.lang.String,java.lang.Throwable)
+    public abstract int w(java.lang.String,java.lang.Throwable)
+    public abstract java.lang.String getStackTraceString(java.lang.Throwable)
+org.acra.log.AndroidLogDelegate:
+    14:14:public int v(java.lang.String,java.lang.String)
+    17:17:public int v(java.lang.String,java.lang.String,java.lang.Throwable)
+    23:23:public int d(java.lang.String,java.lang.String,java.lang.Throwable)
+    26:26:public int i(java.lang.String,java.lang.String)
+    29:29:public int i(java.lang.String,java.lang.String,java.lang.Throwable)
+    39:39:public int w(java.lang.String,java.lang.Throwable)
+    48:48:public java.lang.String getStackTraceString(java.lang.Throwable)
+org.acra.sender.GoogleFormSender:
+    65:67:public GoogleFormSender(java.lang.String)
+org.acra.sender.HttpSender:
+    173:178:public HttpSender(org.acra.sender.HttpSender$Method,org.acra.sender.HttpSender$Type,java.lang.String,java.util.Map)
+org.acra.sender.ReportSenderException:
+    49:50:public ReportSenderException(java.lang.String)
+org.acra.util.Installation:
+    private static final java.lang.String INSTALLATION
+    29:29:public Installation()
+org.acra.util.JSONReportBuilder:
+    17:17:public JSONReportBuilder()
+org.acra.util.JSONReportBuilder$JSONReportException:
+    private static final long serialVersionUID
+org.acra.util.ReportUtils:
+    24:24:public ReportUtils()
+    86:105:public static java.lang.String sparseArrayToString(android.util.SparseArray)
+org.acra.util.ToastSender:
+    15:15:public ToastSender()
+yuku.ambilwarna.AmbilWarnaDialog:
+    196:196:public android.app.AlertDialog getDialog()
+yuku.ambilwarna.R:
+    9:9:public R()
+yuku.ambilwarna.R$dimen
+yuku.ambilwarna.R$drawable
+yuku.ambilwarna.R$id:
+    23:23:public R$id()
+yuku.ambilwarna.R$layout:
+    35:35:public R$layout()
+yuku.ambilwarna.widget.AmbilWarnaPreference:
+    48:51:public void forceSetValue(int)

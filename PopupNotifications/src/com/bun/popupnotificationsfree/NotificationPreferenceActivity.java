@@ -66,6 +66,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setTransparentBackgroundPreference();
 		
 		setLockScreenOnlyPreference();
+		
+		setFullScreenPreference();
 
 		//setFontColorListener();
 
@@ -361,6 +363,25 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 	private void setWakeUpPreference(){
 
 		final Preference customPref = (Preference) findPreference("wake_up");
+
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				HelperUtils.upgradeNowDialogue(ctx);
+
+				
+				return false;
+			}
+
+		});
+	}
+	
+	private void setFullScreenPreference(){
+
+		final Preference customPref = (Preference) findPreference("full_screen_notification");
 
 		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 

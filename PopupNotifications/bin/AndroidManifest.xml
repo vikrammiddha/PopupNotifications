@@ -56,7 +56,7 @@
         </activity>
         <activity android:name="com.bun.popupnotificationsfree.NotificationPreferenceActivity"
             android:excludeFromRecents="true"
-            android:noHistory="true" >
+             >
         </activity>
 
         <service

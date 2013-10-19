@@ -91,7 +91,7 @@
     <string name="show_expanded_notifications">Show Expanded Notifications</string>
     <string name="expanded_not_summary">Expanded Notifications displays each notifications separately.</string>
     <string name="show_fullscreen_not">Show FullScreen Notifications</string>
-    <string name="show_fullscreen_summary">Notifications will be shown on full screen instead of a small window.</string>
+    <string name="show_fullscreen_summary">Notifications will be shown on full screen instead of a small window.\nAvailable in Paid version</string>
     <string name="not_text_color">Notification text color</string>
     <string name="not_back_color">Notification background color</string>
     <string name="set_transparent_background">Set transparent background</string>

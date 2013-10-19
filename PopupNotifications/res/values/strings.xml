@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Popup Notifications</string>
+    <string name="app_name">Popup Noti Free</string>
     
     <string name="hello_world">Hello world!</string>
-    <string name="package_name">com.bun.popupnotifications</string>
-    <string name="crash_toast_text">Ooooops ! Popup Notification Crashed. Collecting Data !</string>
-    <string name="crash_dialog_title">Popup Notification has crashed</string>
+    <string name="package_name">com.bun.popupnotificationsfree</string>
+    <string name="crash_toast_text">Ooooops ! Popup Notify FreeCrashed. Collecting Data !</string>
+    <string name="crash_dialog_title">Popup Notify free has crashed</string>
     <string name="crash_dialog_text">An unexpected error occurred forcing the
     application to stop. Please help us fix this by sending us error data,
     all you have to do is click OK.</string>
@@ -16,7 +16,7 @@
     <string name="talkback_fix">Talkback Fix</string>
     <string name="click_disable">Click Disable</string>
     <string name="reset_completed">Reset Completed</string>
-    <string name="service_warning">Popup Notifications service is not running currently. This service should be running for you to get notifications.</string>    
+    <string name="service_warning">Popup Noti Free service is not running currently. This service should be running for you to get notifications.</string>    
     <string name="tts_warning">Due to a bug in Samsungs\'s Software, you can experience the phone to read aloud some of your actions.\n \nTo prevent this, you will need to disable Samsung TTS and Google TTS. This will not affect any app using TTS features.</string>
     
     <string name="menu_settings">Settings</string>
@@ -52,12 +52,13 @@
     <string name="start_time">Start Time</string>
     <string name="end_time">End Time</string>
     
-    <string name="market_url">market://details?id=com.bun.popupnotifications</string>
+    <string name="market_url">market://details?id=com.bun.popupnotificationsfree</string>
+    <string name="market_url_paid">market://details?id=com.bun.popupnotifications</string>
     <string name="follow_on_facebook">Follow on facebook</string>
     <string name="facebook_url">https://www.facebook.com/bunnydecoder</string>
     
     
-    <string name="popup_not_service">Popup Notification Service</string>
+    <string name="popup_not_service">Popup Noti Free Service</string>
     <string name="activate">Activate</string>
     <string name="later">Later</string>
     <string name="search">Search</string>
@@ -71,10 +72,11 @@
     <string name="service_inactive">Service Inactive</string>
     <string name="warning">Warning</string>
     <string name="close">Close</string>
+    <string name="upgrade">Upgrade</string>
     <string name="yes">Yes</string>
     <string name="all_apps_muted_till">All Apps Muted till: </string>
     <string name="all_apps_muted">All Apps Muted</string>
-    <string name="broadcast_receiver_string">com.bun.popupnotification.NOTIFICATION_CHANGED</string>
+    <string name="broadcast_receiver_string">com.bun.popupnotificationfree.NOTIFICATION_CHANGED</string>
     <string name="muted_till">Muted till: </string>
     <string name="muted">Muted </string>
     <string name="mins_15"> for 15 minutes</string>
@@ -84,7 +86,7 @@
     <string name="hour_8"> for 8 hours</string>
     <string name="forever"> for ever</string>
     <string name="search_applications">Search Application</string>
-    <string name="mute_selected_apps">Mute Selected Apps</string>
+    <string name="mute_selected_apps">Mute Selected Apps</string> 
     <string name="dismiss_all">Dismiss All</string>
     <string name="show_expanded_notifications">Show Expanded Notifications</string>
     <string name="expanded_not_summary">Expanded Notifications displays each notifications separately.</string>
@@ -95,9 +97,12 @@
     <string name="set_transparent_background">Set transparent background</string>
     <string name="wake_on_not">Wake on Notification</string>
     <string name="lock_screen_only">Lock Screen Only</string>
-    <string name="lock_screen_only_summary">Display Notifications only when screen is locked.</string>
+    <string name="lock_screen_only_summary">Display Notifications only when screen is locked.\nAvailable in Paid Version</string>
     <string name="lock_screen_only">Lock Screen Only</string>
     <string name="lock_screen_only">Lock Screen Only</string>
+    <string name="pref_upgrade_message">Available in Paid version</string>
+    <string name="display_contact">Display Contact images</string>
+    <string name="upgrade_to_paid">Upgrade to Paid Version</string>
     
     
     <string name="left_swipe">Left Swipe on notification to dismiss the notification.</string>
@@ -106,6 +111,8 @@
     <string name="start_tutorial">Start Tutorial</string>
     <string name="start_tutorial_click">Click on Start Tutorial button to start the tutorial.</string>
     <string name="dismiss_all_tutorial">Dismiss All closes the notification screen.</string>
+    <string name="upgrade_now_message">Upgrade to Paid version to unlock below features :\n1)Display contact pics\n2)Mute one or more apps\n3)Enable sleep hours\n4)
+        			Enable Blocked apps\n5)Disable waking up the screen on new Notification\n6)Transparent Background\nMany more</string>
     
     
     

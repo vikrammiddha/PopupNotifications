@@ -28,7 +28,7 @@
             android:paddingBottom="10.0dip"
             android:paddingTop="10.0dip" >
 
-            <com.bun.popupnotifications.SwipeListView
+            <com.bun.popupnotificationsfree.SwipeListView
                 xmlns:swipe="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/notificationsListViewId"
                 android:layout_width="fill_parent"

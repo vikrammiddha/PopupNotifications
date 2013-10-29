@@ -128,6 +128,8 @@ ShowcaseView.OnShowcaseEventListener{
 		adapter = new NotificationsAdapter(this);
 		layout = (SwipeListView ) findViewById(R.id.notificationsListViewId);	
 		layout.setScrollingCacheEnabled(false);
+		
+		//this.overridePendingTransition(R.anim.slidein_top, R.anim.slidein_bottom);
 
 		populateAdapter(true);
 		setLayoutBackground();
@@ -227,8 +229,12 @@ ShowcaseView.OnShowcaseEventListener{
 				}
 				for (int position : reverseSortedPositions) {
 					Log.d("swipe", "onDismiss----------" + position);
-					adapter.removeNotification(position);
-					Utils.getNotList().remove(position);
+					try{
+						adapter.removeNotification(position);
+						Utils.getNotList().remove(position);
+					}catch(Exception e){
+						
+					}
 				}
 				
 				setBackgroundHeight(true);
@@ -404,9 +410,7 @@ ShowcaseView.OnShowcaseEventListener{
 	private void populateAdapter(Boolean clearData){
 		if(clearData){
 			adapter.clearNotifications();
-		}
-
-		HashSet<String> alreadyEnteredValues = new HashSet<String>();
+		}	
 
 		if(HelperUtils.isExpandedNotifications(ctx)){
 
@@ -432,6 +436,9 @@ ShowcaseView.OnShowcaseEventListener{
 			for(NotificationBean nb : lhm.values()){
 				adapter.addNotification(nb);
 			}
+		}
+		if(adapter.getCount() == 0){
+			finish();
 		}
 		adapter.notifyDataSetChanged();
 		layout.setAdapter(adapter);
@@ -534,6 +541,8 @@ ShowcaseView.OnShowcaseEventListener{
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+		
+		
 
 		unregisterReceiver(mReceiver);
 

@@ -60,7 +60,7 @@ public class HelperUtils {
 		Date date = new Date();
 		String tempCurrentDate = dateFormat.format(date);	
 		tempCurrentDate = tempCurrentDate.split(" ")[1];
-		
+
 		Date currentDateTime = null;
 
 		Date startDateTime = null;
@@ -69,41 +69,41 @@ public class HelperUtils {
 			startDateTime = formatter.parse(startTime);
 			endDateTime = formatter.parse(endTime);
 			currentDateTime = formatter.parse(tempCurrentDate);
-			
+
 			if(startDateTime.after(endDateTime)){
-				
+
 				Date now = new Date();
-				
+
 				startDateTime.setYear(now.getYear());
 				startDateTime.setMonth(now.getMonth());
 				startDateTime.setDate(now.getDay());
-				
+
 				endDateTime.setYear(now.getYear());
 				endDateTime.setMonth(now.getMonth());
 				endDateTime.setDate(now.getDay());
-				
+
 				Calendar cal = Calendar.getInstance();
-		        cal.setTime(endDateTime);
-		        cal.add(Calendar.DATE, 1);
-		        
-		        endDateTime = cal.getTime();
-				
-		        currentDateTime.setYear(now.getYear());
-		        currentDateTime.setMonth(now.getMonth());
-		        currentDateTime.setDate(now.getDay());
-		        
-		        Calendar cal1 = Calendar.getInstance();
-		        cal1.setTime(currentDateTime);
-		        cal1.add(Calendar.DATE, 1);
-		        
-		        currentDateTime = cal1.getTime();
-				
+				cal.setTime(endDateTime);
+				cal.add(Calendar.DATE, 1);
+
+				endDateTime = cal.getTime();
+
+				currentDateTime.setYear(now.getYear());
+				currentDateTime.setMonth(now.getMonth());
+				currentDateTime.setDate(now.getDay());
+
+				Calendar cal1 = Calendar.getInstance();
+				cal1.setTime(currentDateTime);
+				//cal1.add(Calendar.DATE, 1);
+
+				currentDateTime = cal1.getTime();
+
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		if(currentDateTime.after(startDateTime) && currentDateTime.before(endDateTime)){
 			return true;
 		}
@@ -120,8 +120,12 @@ public class HelperUtils {
 	}
 
 	public static Boolean isExpandedNotifications(Context ctx){
-		if((Boolean)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "expanded_notification" ,"Boolean")){
-			return true;
+		try{
+			if((Boolean)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "expanded_notification" ,"Boolean")){
+				return true;
+			}
+		}catch(Exception e){
+			return false;
 		}
 
 		return false;
@@ -206,23 +210,23 @@ public class HelperUtils {
 		return false;
 
 	}
-	
+
 	public static Boolean isBlockedApp(Context ctx, String packageName){
 		try{
 			ActivityManager am = (ActivityManager) ctx.getSystemService("activity");
-	    	// The first in the list of RunningTasks is always the foreground task.
-	    	RunningTaskInfo foregroundTaskInfo = am.getRunningTasks(1).get(0);
-	    	
-	    	packageName = foregroundTaskInfo.topActivity.getPackageName();
-	    	
+			// The first in the list of RunningTasks is always the foreground task.
+			RunningTaskInfo foregroundTaskInfo = am.getRunningTasks(1).get(0);
+
+			packageName = foregroundTaskInfo.topActivity.getPackageName();
+
 			if((Boolean)SharedPreferenceUtils.isBlockedApp(ctx, packageName)){
 				return true;
 			}
-			
+
 		}catch(Exception e){
 			return false;
 		}
-		
+
 		return false;
 	}
 

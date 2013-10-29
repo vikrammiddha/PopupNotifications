@@ -26,6 +26,8 @@ import android.widget.TextView;
 @SuppressLint("NewApi")
 public class NotificationsAdapter extends BaseAdapter{
 
+	public Integer textViewSize;
+
 	static class ViewHolder {
 		public TextView text;
 		public ImageView image;
@@ -42,7 +44,7 @@ public class NotificationsAdapter extends BaseAdapter{
 		this.context = context;
 
 	}
-	
+
 	public void removeAllNotifications(){
 		nList.clear();
 	}
@@ -93,30 +95,30 @@ public class NotificationsAdapter extends BaseAdapter{
 	public View getView(final int position, View view, ViewGroup parent) {		
 
 		NotificationBean n = nList.get(position);
-		if(view == null || view.getTag() == null){
-			LayoutInflater inflater =
-					(LayoutInflater) context
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			view = inflater.inflate(
-					R.layout.notification_row, parent, false);
+		//if(view == null || view.getTag() == null){
+		LayoutInflater inflater =
+				(LayoutInflater) context
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		view = inflater.inflate(
+				R.layout.notification_row, parent, false);
 
-			ViewHolder viewHolder = new ViewHolder();
-			viewHolder.text = (TextView) view.findViewById(R.id.notMessageTextId);
-			// viewHolder.text.setMovementMethod(new ScrollingMovementMethod());
-			// viewHolder.text.setSelected(true);
-			viewHolder.image = (ImageView)view.findViewById(R.id.appImageViewId);
-			viewHolder.smallImage = (ImageView)view.findViewById(R.id.appImageSmallId);
-			viewHolder.timeText = (TextView) view.findViewById(R.id.notTimeTextId);
-			viewHolder.badge = (TextView) view.findViewById(R.id.unreadCountTextId);
-			view.setTag(viewHolder);
+		ViewHolder viewHolder = new ViewHolder();
+		viewHolder.text = (TextView) view.findViewById(R.id.notMessageTextId);
+		// viewHolder.text.setMovementMethod(new ScrollingMovementMethod());
+		// viewHolder.text.setSelected(true);
+		viewHolder.image = (ImageView)view.findViewById(R.id.appImageViewId);
+		viewHolder.smallImage = (ImageView)view.findViewById(R.id.appImageSmallId);
+		viewHolder.timeText = (TextView) view.findViewById(R.id.notTimeTextId);
+		viewHolder.badge = (TextView) view.findViewById(R.id.unreadCountTextId);
+		view.setTag(viewHolder);
 
-		}
-		
-		
+		//}
+
+
 
 		ViewHolder holder = (ViewHolder) view.getTag();
-		
-		
+
+
 		holder.image.setImageDrawable(n.getIcon());
 		holder.smallImage.setImageDrawable(n.getNotIcon());
 
@@ -139,11 +141,15 @@ public class NotificationsAdapter extends BaseAdapter{
 			holder.text.setTextColor(fontColor);
 		}
 
+		if(textViewSize != null){
+			holder.text.setMaxLines(2);
+		}
+
 
 
 		//holder.text.setMaxLines(HelperUtils.getTextSize(context));
 
-		if(n.getNotCount() > 0){
+		if(n.getNotCount() > 1){
 			holder.badge.setText(String.valueOf(n.getNotCount()));
 
 			Resources r = context.getResources();
@@ -158,16 +164,25 @@ public class NotificationsAdapter extends BaseAdapter{
 				holder.badge.setBackground(drawable);
 			}else{
 				holder.badge.setBackgroundDrawable(drawable);
-				
+
 			}
-			
+
 		}else{
 			holder.badge.setVisibility(View.GONE);
 		}
 
-		holder.timeText.setText(n.getNotTime());	
-		holder.timeText.setTextColor(HelperUtils.getFontColor(context));
-				
+		if(Utils.isScreenLocked(context)){
+			holder.timeText.setText(n.getNotTime());	
+			if(fontColor == 0){
+				holder.timeText.setTextColor(Color.WHITE);
+			}else{
+				holder.timeText.setTextColor(fontColor);
+			}
+		}else{
+			holder.timeText.setVisibility(View.GONE);
+		}
+
+
 		return view;
 	}
 

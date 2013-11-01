@@ -231,7 +231,7 @@ public class NotificationService extends AccessibilityService {
 
 			if(Utils.isServiceRunning || Utils.isForgroundApp(this, getString(R.string.package_name))){
 				Utils.getNotList().add(0,bean);
-				//Log.d("Notification Service", "Broadcast---");
+				Log.d("Notification Service", "Broadcast---");
 				this.sendBroadcast(new Intent(NotificationReceiver.ACTION_NOTIFICATION_CHANGED));
 
 			}else{
@@ -251,9 +251,11 @@ public class NotificationService extends AccessibilityService {
 					dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					getApplication().startActivity(dialogIntent);
 				}else{
+					Log.d("Notification Service", "Starting new service.");
 					//dialogIntent = new Intent(getBaseContext(), BannerActivity.class);
 					Utils.isServiceRunning = true;
-					startService(new Intent(ctx.getApplicationContext(), BannerService.class));
+					stopService(new Intent(ctx, BannerService.class));
+					startService(new Intent(ctx, BannerService.class));
 					
 				}				
 				
@@ -639,6 +641,7 @@ public class NotificationService extends AccessibilityService {
 		public void onReceive(Context context, Intent intent) {
 			if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
 				isScreenOn = false;
+				Utils.isScreenOn = false;
 				if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
 					Utils.reenableKeyguard(ctx, true);					
 				}
@@ -646,7 +649,7 @@ public class NotificationService extends AccessibilityService {
 				Utils.isServiceRunning = false;
 			} else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
 				isScreenOn = true;
-				
+				Utils.isScreenOn = true;
 			}
 		}
 

@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 
 import android.annotation.SuppressLint;
+import android.app.PendingIntent;
 import android.app.PendingIntent.CanceledException;
 import android.app.Service;
 import android.content.Context;
@@ -12,7 +13,9 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.GradientDrawable;
+import android.os.AsyncTask;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.Gravity;
@@ -41,6 +44,7 @@ public class BannerService extends Service{
 	private WindowManager windowManager;
 	int rowPos = -1;
 	CountDownTimer cTimer;
+	Handler mHandler=new Handler();
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -54,6 +58,8 @@ public class BannerService extends Service{
 		super.onCreate();
 
 		adapter = new NotificationsAdapter(this);
+
+		adapter.textViewSize = 2;
 
 		ctx = this;
 
@@ -71,8 +77,8 @@ public class BannerService extends Service{
 		//newView.setsw
 
 		layout.addView(sListView);
-		
-		
+
+
 
 		Animation animation   =    AnimationUtils.loadAnimation(this, R.anim.slidein_top);
 		sListView.setAnimation(animation);
@@ -88,11 +94,12 @@ public class BannerService extends Service{
 				WindowManager.LayoutParams.MATCH_PARENT,
 				WindowManager.LayoutParams.WRAP_CONTENT,
 				WindowManager.LayoutParams.TYPE_PHONE,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN |
 				WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,	        
 				PixelFormat.TRANSLUCENT);
-		
-		
-		
+
+
+
 		//params.verticalMargin = ;
 		params.gravity = Gravity.TOP | Gravity.LEFT;
 		params.x = 0;
@@ -181,6 +188,8 @@ public class BannerService extends Service{
 						Utils.intentMap.clear();
 						adapter.removeAllNotifications();
 						adapter.notifyDataSetChanged();
+
+						sListView.setPadding(0,0,0,0);
 						stopSelf();
 						return;
 						//Utils.notList.clear();
@@ -211,7 +220,7 @@ public class BannerService extends Service{
 					LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 					sListView.setLayoutParams(params);
 				}
-				
+
 				sListView.setPadding(0, 0, 0, 0);
 
 				stopSelf();
@@ -223,6 +232,7 @@ public class BannerService extends Service{
 
 		windowManager.addView(layout, params);
 
+
 		createTimer();
 		cTimer.start();
 
@@ -233,14 +243,18 @@ public class BannerService extends Service{
 
 			@Override
 			public void onTick(long millisUntilFinished) {
-				if(!Utils.isServiceRunning){
+				/*if(!Utils.isServiceRunning){
+
 					Utils.getNotList().clear();
 					Utils.intentMap.clear();
 					adapter.removeAllNotifications();
 					adapter.notifyDataSetChanged();
 					sListView.setPadding(0, 0, 0, 0);
-					stopSelf();
-				}
+					cTimer.cancel();
+
+				}*/
+
+
 				// TODO Auto-generated method stub
 
 			}
@@ -248,34 +262,17 @@ public class BannerService extends Service{
 			@Override
 			public void onFinish() {
 
+				//Utils.isServiceRunning = false;
+
+
 				// TODO Auto-generated method stub
 
-				
-				Animation animation   =    AnimationUtils.loadAnimation(ctx, R.anim.slidein_bottom);
-				animation.setAnimationListener(new AnimationListener() {
 
-					@Override
-					public void onAnimationStart(Animation animation) {
-					}
 
-					@Override
-					public void onAnimationRepeat(Animation animation) {
-					}
-
-					@Override
-					public void onAnimationEnd(Animation animation) {
-						Utils.getNotList().clear();
-						Utils.intentMap.clear();
-						adapter.removeAllNotifications();
-						adapter.notifyDataSetChanged();
-						sListView.setPadding(0, 0, 0, 0);
-						stopSelf();
-					}
-				});
-				sListView.startAnimation(animation);
+				stopSelf();
 				//stopForeground(false);
 
-				
+
 			}
 		};
 	}
@@ -302,7 +299,7 @@ public class BannerService extends Service{
 			adapter.addNotification(nb);
 		}
 		/*
-		
+
 		for(NotificationBean n : Utils.getNotList()){
 			if(n.getIsOddRow())
 				continue;
@@ -310,11 +307,11 @@ public class BannerService extends Service{
 
 		}
 
-		*/
+		 */
 		adapter.notifyDataSetChanged();
-		
+
 		sListView.setAdapter(adapter);
-		
+
 		sListView.setPadding(10, 10, 10, 10);
 
 		if(adapter.getCount() > 3){
@@ -323,8 +320,8 @@ public class BannerService extends Service{
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, (int) (3.5 * item.getMeasuredHeight()));			
 			sListView.setLayoutParams(params);
 		}
-		
-		
+
+
 
 		//LinearLayout ll = (LinearLayout) findViewById(R.id.expandingLayoutId);			
 
@@ -389,10 +386,54 @@ public class BannerService extends Service{
 		super.onDestroy();
 
 		unregisterReceiver(mReceiver);
-		
-		
 
-		Utils.isServiceRunning = false;		
+
+
+		try{
+			Animation animation   =    AnimationUtils.loadAnimation(ctx, R.anim.slidein_bottom);
+			//animation.setDuration(5000);
+			animation.setAnimationListener(new AnimationListener() {
+
+				@Override
+				public void onAnimationStart(Animation animation) {
+					Log.d("test", "Animation start=========");
+					new Handler().postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							Utils.getNotList().clear();
+							Utils.intentMap.clear();					
+							adapter.removeAllNotifications();
+							adapter.notifyDataSetChanged();
+							sListView.setPadding(0, 0, 0, 0);
+							cTimer.cancel();
+							Utils.isServiceRunning = false;		
+							layout.removeAllViews();
+						}
+					}, 500);
+				}
+
+				@Override
+				public void onAnimationRepeat(Animation animation) {
+					Log.d("test", "Animation repeat=========");
+				}
+
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					Log.d("test", "Animation ending=========");
+					sListView.clearAnimation();
+
+
+				}
+			});
+			sListView.startAnimation(animation);
+		}catch(Exception e){
+
+		}		
+
+
+		//cTimer.cancel();
+
+		Log.d("test", "Destrouy=======");
 
 	}
 

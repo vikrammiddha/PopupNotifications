@@ -163,6 +163,17 @@ public class SharedPreferenceUtils {
 		sharedPrefs.edit().putBoolean("FirstTimeRun", bool).commit();
 	}
 	
+	public static void setNotType(Context ctx, String notType){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("notification_type_preference", notType).commit();
+		
+	}
+	
+	public static String getNotType(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getString("notification_type_preference", "");
+	}
+	
 	public static Boolean getFirstTimeRun(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getBoolean("FirstTimeRun", false);
@@ -206,7 +217,9 @@ public class SharedPreferenceUtils {
 		sp.edit().putString("end_sleep_time", "07:00").commit();
 		sp.edit().putInt("font_color", Color.WHITE);
 		sp.edit().putInt("background_color_not", Color.BLACK);
+		sp.edit().putString("notification_type_preference", "both");
 
 	}
+	
 
 }

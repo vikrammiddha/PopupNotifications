@@ -45,14 +45,8 @@
             android:name="com.bun.popupnotifications.TimePreference"
            
              >
-        </activity>
-        
-        <activity
-            android:name="com.bun.popupnotifications.BannerActivity"
-           	android:theme="@style/Transparent"
-           	android:excludeFromRecents="true"
-             >
-        </activity>
+        </activity>    
+       
         
         <activity
             android:name="AppSelectionActivity"

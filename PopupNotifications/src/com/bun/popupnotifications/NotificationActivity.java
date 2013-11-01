@@ -523,7 +523,8 @@ ShowcaseView.OnShowcaseEventListener{
 			if(ll1.getHeight() >= (int)(screenHeight * 0.5) && !isDismissed){
 				params.height = (int)(screenHeight * 0.5);
 			}else{
-				if(isDismissed && ll1.getHeight() >= (int)(screenHeight * 0.5)){
+				//if(isDismissed && ll1.getHeight() >= (int)(screenHeight * 0.5)){
+				if(isDismissed && layout.getHeight() >= ll1.getHeight() ){
 					params.height = (int)(screenHeight * 0.5);
 				}else{
 					params.height = LinearLayout.LayoutParams.WRAP_CONTENT;

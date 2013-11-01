@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 
+import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -125,13 +126,13 @@ public class NotificationsAdapter extends BaseAdapter{
 		String message = "";
 
 		if(n.getSender() != null && !n.getSender().trim().equals("")){ 
-			message = n.getSender() + " : ";
+			message = "<b>" + n.getSender() + " : " + "</b>";
 		}
 
 		message += n.getMessage();		
 
 
-		holder.text.setText(message);	
+		holder.text.setText(Html.fromHtml(message));	
 
 		int fontColor = HelperUtils.getFontColor(context);
 
@@ -142,7 +143,7 @@ public class NotificationsAdapter extends BaseAdapter{
 		}
 
 		if(textViewSize != null){
-			holder.text.setMaxLines(2);
+			holder.text.setMaxLines(textViewSize);
 		}
 
 

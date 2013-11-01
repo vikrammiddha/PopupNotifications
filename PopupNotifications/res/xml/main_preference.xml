@@ -29,11 +29,14 @@
         <CheckBoxPreference
             android:key="wake_up"
             android:summary=""
-            android:title="@string/wake_on_not" />
-        <CheckBoxPreference
-            android:key="lockscreen_only"
-            android:summary="@string/lock_screen_only_summary"
-            android:title="@string/lock_screen_only" />
+            android:title="@string/wake_on_not" />        
+
+        <ListPreference
+            android:entries="@array/notTypes"
+            android:entryValues="@array/notTypeValues"
+            android:key="notification_type_preference"
+            android:summary="@string/both"
+            android:title="@string/not_type_desc" />
     </PreferenceScreen>
     <PreferenceScreen
         android:key="mute_settings"
@@ -92,14 +95,10 @@
             android:title="@string/reset_settings" >
         </PreferenceScreen>
     </PreferenceScreen>
-    
-     <PreferenceScreen
+    <PreferenceScreen
         android:key="blocked_apps"
-        android:title="@string/blocked_apps"
         android:summary="@string/blocked_apps_summary"
-         />
-        
-    
+        android:title="@string/blocked_apps" />
 
     <PreferenceCategory
         android:key="service"

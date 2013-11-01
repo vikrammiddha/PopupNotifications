@@ -107,6 +107,11 @@
     <string name="start_tutorial_click">Click on Start Tutorial button to start the tutorial.</string>
     <string name="dismiss_all_tutorial">Dismiss All closes the notification screen.</string>
     
+    <string name="lockscreen_only">Lockscreen Only</string>
+    <string name="banners_only">Banners Only</string>
+    <string name="both">Both</string>
+    <string name="not_type_desc">Notification Type</string>
+    
     
     
     

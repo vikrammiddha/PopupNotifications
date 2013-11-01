@@ -12,6 +12,10 @@ public final class R {
         public static final int slidein_bottom=0x7f040000;
         public static final int slidein_top=0x7f040001;
     }
+    public static final class array {
+        public static final int notTypeValues=0x7f0a0001;
+        public static final int notTypes=0x7f0a0000;
+    }
     public static final class attr {
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -287,15 +291,17 @@ containing a value of this type.
         public static final int tutorial_layout=0x7f030010;
     }
     public static final class menu {
-        public static final int notification=0x7f0a0000;
+        public static final int notification=0x7f0b0000;
     }
     public static final class string {
         public static final int activate=0x7f07002f;
         public static final int all_apps_muted=0x7f07003e;
         public static final int all_apps_muted_till=0x7f07003d;
         public static final int app_name=0x7f070001;
+        public static final int banners_only=0x7f07005c;
         public static final int blocked_apps=0x7f07001f;
         public static final int blocked_apps_summary=0x7f070020;
+        public static final int both=0x7f07005d;
         public static final int broadcast_receiver_string=0x7f07003f;
         public static final int cancel=0x7f070037;
         public static final int click_disable=0x7f07000b;
@@ -326,6 +332,7 @@ containing a value of this type.
         public static final int loading=0x7f070032;
         public static final int lock_screen_only=0x7f070053;
         public static final int lock_screen_only_summary=0x7f070054;
+        public static final int lockscreen_only=0x7f07005b;
         public static final int long_press=0x7f070057;
         public static final int market_url=0x7f07002b;
         public static final int menu_rateus=0x7f070011;
@@ -347,6 +354,7 @@ containing a value of this type.
         public static final int muted_till=0x7f070040;
         public static final int not_back_color=0x7f070050;
         public static final int not_text_color=0x7f07004f;
+        public static final int not_type_desc=0x7f07005e;
         public static final int ok=0x7f070000;
         public static final int package_name=0x7f070003;
         public static final int popup_not_service=0x7f07002e;

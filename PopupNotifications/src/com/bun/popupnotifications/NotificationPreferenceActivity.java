@@ -16,6 +16,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
@@ -50,7 +51,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setMuteAllAppsPreferenceData();
 
 		setSelectedAppListListener();
-		
+
 		setBlockedAppListener();
 
 		setTimerPreference();	
@@ -78,8 +79,10 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setTalkBackFix();
 
 		setResetSettingsListener();
+
+		setNotTypePreferenceData();
 	}
-	
+
 	private void setBlockedAppListener(){
 		Preference pref = findPreference("blocked_apps");
 		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
@@ -215,7 +218,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 			public void onClick(DialogInterface dialog, int which) {
 
 				SharedPreferenceUtils.resetAllPreferenceSettings(ctx);
-				
+
 				Toast.makeText(getApplicationContext(),R.string.reset_completed, 
 						Toast.LENGTH_SHORT).show();
 
@@ -357,6 +360,40 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		});
 	}
 
+	private void setNotTypePreferenceData(){
+
+
+		final Preference customPref = (Preference) findPreference("notification_type_preference");
+
+		String notTypePref = SharedPreferenceUtils.getNotType(this);
+
+		if("".equals(notTypePref)){
+			ListPreference lp = (ListPreference)customPref;
+			lp.setValue("both");
+			customPref.setSummary(getString(R.string.both));
+		}
+
+
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				if("lockscreen".equals(newValue.toString())){
+					customPref.setSummary(getString(R.string.lock_screen_only));
+				}else if("banner".equals(newValue.toString())){
+					customPref.setSummary(getString(R.string.banners_only));
+				}else{
+					customPref.setSummary(getString(R.string.both));
+				}
+				
+				return true;
+			}
+
+		});
+	}
+
 	RadioGroup radioGroup1;
 
 	RadioGroup radioGroup2;
@@ -376,6 +413,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		// Setting Dialog Message
 		alertDialog2.setView(layout);
+
 
 		// Setting Icon to Dialog
 		//alertDialog2.setIcon(R.drawable.delete);
@@ -420,6 +458,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		alertDialog2.show();
 	}
+
+
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sp, String key) {

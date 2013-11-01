@@ -38,6 +38,7 @@ public class Utils {
 	public static HashMap<String, PendingIntent> intentMap = new HashMap<String, PendingIntent>();
 	public static KeyguardManager.KeyguardLock keyguardLock;
 	public static Boolean isServiceRunning = false; 
+	public static Boolean isScreenOn = false;
 
 
 	public static ArrayList<NotificationBean> getNotList(){

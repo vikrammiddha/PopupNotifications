@@ -49,7 +49,7 @@ import android.widget.TextView;
 @SuppressLint("NewApi")
 public class NotificationService extends AccessibilityService { 
 
-		
+
 	private Context ctx;
 	public Utils utils;
 	BroadcastReceiver mScreenReceiver = new ScreenReceiver();
@@ -133,7 +133,7 @@ public class NotificationService extends AccessibilityService {
 					}else{
 						rv = nnn.contentView;
 					}
-					
+
 				}catch(Exception e){
 					rv = nnn.contentView;
 				}
@@ -207,9 +207,9 @@ public class NotificationService extends AccessibilityService {
 			bean.setNotTime(formattedDate);
 
 			bean.setWhen(nnn.when);
-						
+
 			bean.setUniqueValue(bean.getPackageName() + bean.getSender() + bean.getMessage());
-			
+
 			if(Utils.checkForDuplicates(bean)){
 				//return;
 			}
@@ -226,7 +226,7 @@ public class NotificationService extends AccessibilityService {
 			Log.d("Notification Service", "Sender-----" + bean.getSender());
 			Log.d("Notification Service", "Sender-----" + bean.getUniqueValue());
 
-			if(Utils.isForgroundApp(this, getString(R.string.package_name))){
+			if(Utils.isServiceRunning || Utils.isForgroundApp(this, getString(R.string.package_name))){
 				Utils.getNotList().add(0,bean);
 				//Log.d("Notification Service", "Broadcast---");
 				this.sendBroadcast(new Intent(NotificationReceiver.ACTION_NOTIFICATION_CHANGED));
@@ -235,16 +235,25 @@ public class NotificationService extends AccessibilityService {
 				if(Utils.notList != null){
 					for(NotificationBean n : Utils.notList){
 						n = null;
-					}		
+					}                
 
 					Utils.notList.clear();
 					Utils.notList = null;
 				}
 				Utils.getNotList().add(0,bean);
 				Log.d("Notification Service", "New Intent----");
-				Intent dialogIntent = new Intent(getBaseContext(), NotificationActivity.class);				
-				dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				getApplication().startActivity(dialogIntent);
+				Intent dialogIntent;
+				if(Utils.isScreenLocked(ctx)){
+					dialogIntent = new Intent(getBaseContext(), NotificationActivity.class);
+					dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					getApplication().startActivity(dialogIntent);
+				}else{
+					//dialogIntent = new Intent(getBaseContext(), BannerActivity.class);
+					Utils.isServiceRunning = true;
+					stopService(new Intent(ctx, BannerService.class));
+					startService(new Intent(ctx, BannerService.class));
+
+				}           
 			}
 
 			if(HelperUtils.wakeOnNotification(ctx)){
@@ -546,7 +555,7 @@ public class NotificationService extends AccessibilityService {
 		n.bigContentView.reapply(getApplicationContext(), localView);
 		recursiveDetectNotificationsIds(localView);
 	}
-	
+
 	SensorManager sensorManager = null;
 	Sensor proximitySensor = null;
 	SensorEventListener sensorListener = null;
@@ -573,7 +582,7 @@ public class NotificationService extends AccessibilityService {
 		}
 
 	}
-	
+
 	private void registerProximitySensor(){
 		sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
 		proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
@@ -606,7 +615,7 @@ public class NotificationService extends AccessibilityService {
 		};
 		startProximityMontior();
 	}
-	
+
 	public void startProximityMontior()
 	{	
 		if (proximitySensor != null)
@@ -614,10 +623,10 @@ public class NotificationService extends AccessibilityService {
 			sensorManager.registerListener(sensorListener, proximitySensor, SensorManager.SENSOR_DELAY_UI);
 		}
 		else registerProximitySensor();
-			
+
 	}
-	
-	
+
+
 
 	public class ScreenReceiver extends BroadcastReceiver {
 
@@ -627,18 +636,22 @@ public class NotificationService extends AccessibilityService {
 		public void onReceive(Context context, Intent intent) {
 			if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
 				isScreenOn = false;
+				Utils.isScreenOn = false;
 				if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
 					Utils.reenableKeyguard(ctx, true);					
 				}
+				stopService(new Intent(ctx, BannerService.class));
+                Utils.isServiceRunning = false;
 			} else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
 				isScreenOn = true;
-				
+				Utils.isScreenOn = true;
+
 			}
 		}
 
 	}
-	
-	
+
+
 
 
 }

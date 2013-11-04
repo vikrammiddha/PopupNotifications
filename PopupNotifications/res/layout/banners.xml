@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    android:padding="5.0dip"
+    android:paddingBottom="10.0dip"
+    android:paddingTop="10.0dip" >
+
+    <com.bun.popupnotificationsfree.SwipeListView
+        xmlns:swipe="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bannerListViewId"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:listSelector="#00000000"
+        swipe:swipeActionLeft="dismiss"
+        swipe:swipeActionRight="dismiss"
+        swipe:swipeBackView="@+id/back"
+        swipe:swipeFrontView="@+id/front"
+        swipe:swipeMode="both" />
+
+</LinearLayout>

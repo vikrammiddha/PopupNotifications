@@ -134,7 +134,7 @@ ShowcaseView.OnShowcaseEventListener{
 		adapter = new NotificationsAdapter(this);
 		layout = (SwipeListView ) findViewById(R.id.notificationsListViewId);	
 		layout.setScrollingCacheEnabled(false);
-		
+
 		populateAdapter(true);
 		setLayoutBackground();
 
@@ -226,7 +226,7 @@ ShowcaseView.OnShowcaseEventListener{
 						adapter.removeAllNotifications();
 						adapter.notifyDataSetChanged();
 						finish();
-						
+
 						return;
 						//Utils.notList.clear();
 					} catch (Exception e) {
@@ -236,10 +236,14 @@ ShowcaseView.OnShowcaseEventListener{
 				}
 				for (int position : reverseSortedPositions) {
 					Log.d("swipe", "onDismiss----------" + position);
-					adapter.removeNotification(position);
-					Utils.getNotList().remove(position);
+					try{
+						adapter.removeNotification(position);
+						Utils.getNotList().remove(position);
+					}catch(Exception e){
+
+					}
 				}
-				
+
 				setBackgroundHeight(true);
 
 				if(adapter.getAdapterSize() == 0){
@@ -392,7 +396,6 @@ ShowcaseView.OnShowcaseEventListener{
 			adapter.clearNotifications();
 		}
 
-		HashSet<String> alreadyEnteredValues = new HashSet<String>();
 
 		if(HelperUtils.isExpandedNotifications(ctx)){
 
@@ -418,6 +421,10 @@ ShowcaseView.OnShowcaseEventListener{
 			for(NotificationBean nb : lhm.values()){
 				adapter.addNotification(nb);
 			}
+		}
+
+		if(adapter.getCount() == 0){
+			finish();
 		}
 		adapter.notifyDataSetChanged();
 		layout.setAdapter(adapter);
@@ -469,7 +476,7 @@ ShowcaseView.OnShowcaseEventListener{
 			gd1.setCornerRadius(roundRadius1);
 			gd1.setStroke(strokeWidth1, strokeColor1);	
 			dismissButton.setBackgroundDrawable(gd1);
-			
+
 			if(HelperUtils.isTransparentBackround(ctx)){
 				ll1.getBackground().setAlpha(200);
 				dismissButton.getBackground().setAlpha(200);
@@ -478,15 +485,15 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 		dismissButton.setTextColor(fontColor);
-		
+
 	}
-	
+
 	int notBackHeight = 0;
 
 	private void setBackgroundHeight(Boolean isDismissed){
 		LinearLayout ll1 = (LinearLayout) findViewById(R.id.expandingLayoutId1);
-		
-		
+
+
 		LayoutParams params = ll1.getLayoutParams();
 
 		// Changes the height and width to the specified *pixels*
@@ -503,7 +510,7 @@ ShowcaseView.OnShowcaseEventListener{
 			if(ll1.getHeight() >= (int)(screenHeight * 0.5) && !isDismissed){
 				params.height = (int)(screenHeight * 0.5);
 			}else{
-				if(isDismissed && ll1.getHeight() >= (int)(screenHeight * 0.5)){
+				if(isDismissed && layout.getHeight() >= ll1.getHeight() ){
 					params.height = (int)(screenHeight * 0.5);
 				}else{
 					params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -516,7 +523,7 @@ ShowcaseView.OnShowcaseEventListener{
 		ll1.setLayoutParams(params);
 	}
 
-	
+
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
@@ -547,8 +554,8 @@ ShowcaseView.OnShowcaseEventListener{
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		
-		
+
+
 		IntentFilter intentFilter = new IntentFilter(NotificationReceiver.ACTION_NOTIFICATION_CHANGED);
 		registerReceiver(mReceiver, intentFilter);
 
@@ -561,8 +568,8 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 	}
-	
-	
+
+
 
 	@Override
 	public void onShowcaseViewHide(ShowcaseView ssv) {
@@ -607,6 +614,6 @@ ShowcaseView.OnShowcaseEventListener{
 	public void onClick(View view) {
 		Log.d("not", "onClick ==============");
 	}
-	
-	
+
+
 }

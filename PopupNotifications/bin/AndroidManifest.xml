@@ -13,54 +13,47 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.FLAG_SHOW_WHEN_LOCKED" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name="com.bun.popupnotificationsfree.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-         >
+        android:theme="@style/AppTheme" >
+        <service android:name="BannerService" />
+
         <activity
             android:name="com.bun.popupnotificationsfree.NotificationActivity"
             android:excludeFromRecents="true"
-            
             android:theme="@style/SampleTheme" >
         </activity>
         <activity
             android:name="com.bun.popupnotificationsfree.MuteSelectedAppActivity"
-            android:label="Muted Apps List"
-             >
+            android:label="Muted Apps List" >
         </activity>
-         <activity
-            android:name="com.bun.popupnotificationsfree.BlockedAppsActivity"
-            android:label="Blocked Apps"
-             >
-        </activity>
-        
         <activity
-            android:name="com.bun.popupnotificationsfree.TimePreference"
-           
-             >
+            android:name="com.bun.popupnotificationsfree.BlockedAppsActivity"
+            android:label="Blocked Apps" >
         </activity>
-        
+        <activity android:name="com.bun.popupnotificationsfree.TimePreference" >
+        </activity>
         <activity
             android:name="AppSelectionActivity"
-            android:label="@string/app_name"
-             >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.bun.popupnotificationsfree.NotificationPreferenceActivity"
-            android:excludeFromRecents="true"
-             >
+        <activity
+            android:name="com.bun.popupnotificationsfree.NotificationPreferenceActivity"
+            android:excludeFromRecents="true" >
         </activity>
 
         <service
-            android:name="com.bun.popupnotificationsfree.NotificationService" 
+            android:name="com.bun.popupnotificationsfree.NotificationService"
             android:enabled="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
             <intent-filter>

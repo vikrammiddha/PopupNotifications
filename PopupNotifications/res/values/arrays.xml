@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="notTypes">
+        <item name="1">@string/lockscreen_only</item>
+        <item name="7">@string/banners_only</item>
+        <item name="3">@string/both</item>
+        
+    </string-array>
+    <string-array name="notTypeValues">
+        <item name="1">lockscreen</item>
+        <item name="7">banner</item>
+        <item name="30">both</item>
+        
+    </string-array>
+     
+</resources>

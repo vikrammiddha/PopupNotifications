@@ -6,23 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.bun.popupnotificationsfree.R;
-
 import android.app.ActivityManager;
-import android.app.AlertDialog;
 import android.app.ActivityManager.RunningTaskInfo;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Toast;
 
 public class HelperUtils {
 
@@ -33,8 +25,8 @@ public class HelperUtils {
 		}
 		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(System.currentTimeMillis());		
-		long dateNow = calendar.getTimeInMillis();		
+		calendar.setTimeInMillis(System.currentTimeMillis());                
+		long dateNow = calendar.getTimeInMillis();                
 
 
 		Date date = null;
@@ -70,7 +62,7 @@ public class HelperUtils {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		//get current date time with Date()
 		Date date = new Date();
-		String tempCurrentDate = dateFormat.format(date);	
+		String tempCurrentDate = dateFormat.format(date);        
 		tempCurrentDate = tempCurrentDate.split(" ")[1];
 
 		Date currentDateTime = null;
@@ -104,11 +96,13 @@ public class HelperUtils {
 				currentDateTime.setMonth(now.getMonth());
 				currentDateTime.setDate(now.getDay());
 
-				Calendar cal1 = Calendar.getInstance();
-				cal1.setTime(currentDateTime);
-				cal1.add(Calendar.DATE, 1);
-
-				currentDateTime = cal1.getTime();
+				if(!currentDateTime.after(startDateTime)){
+					Calendar cal1 = Calendar.getInstance();
+					cal1.setTime(currentDateTime);                                
+					cal1.add(Calendar.DATE, 1);
+					currentDateTime = cal1.getTime();
+				}
+				
 
 			}
 		} catch (ParseException e) {
@@ -121,19 +115,23 @@ public class HelperUtils {
 		}
 
 		/*long startInt = startDateTime.getTime();
-		long endInt = endDateTime.getTime();
-		long currentInt = currentDateTime.getTime();
+                long endInt = endDateTime.getTime();
+                long currentInt = currentDateTime.getTime();
 
-		if(currentInt > startInt && currentInt < endInt){
-			return true;
-		}*/
+                if(currentInt > startInt && currentInt < endInt){
+                        return true;
+                }*/
 
-		return false;
+                return false;
 	}
 
 	public static Boolean isExpandedNotifications(Context ctx){
-		if((Boolean)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "expanded_notification" ,"Boolean")){
-			return true;
+		try{
+			if((Boolean)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "expanded_notification" ,"Boolean")){
+				return true;
+			}
+		}catch(Exception e){
+			return false;
 		}
 
 		return false;
@@ -198,7 +196,7 @@ public class HelperUtils {
 			}
 		}catch(Exception e){
 			return false;
-		}		
+		}                
 
 		return false;
 
@@ -213,7 +211,7 @@ public class HelperUtils {
 			}
 		}catch(Exception e){
 			return false;
-		}		
+		}                
 
 		return false;
 
@@ -265,7 +263,7 @@ public class HelperUtils {
 		// Setting Negative "NO" Btn
 		alertDialog2.setNegativeButton(ctx.getString(R.string.cancel),
 				new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {				
+			public void onClick(DialogInterface dialog, int which) {                                
 				dialog.cancel();
 			}
 		});

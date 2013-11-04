@@ -18,6 +18,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
@@ -60,18 +61,17 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setSleepPreference();
 
 		//setDisplayContactPreference();
-		
+
 		setWakeUpPreference();
-		
+
 		setTransparentBackgroundPreference();
-		
-		setLockScreenOnlyPreference();
+
 		
 		setFullScreenPreference();
 
 		//setFontColorListener();
 
-
+		setNotTypePreferenceData();
 
 		Preference pref = findPreference("start_sleep_time");
 		pref.setSummary(prefs.getString("start_sleep_time", "23:00"));
@@ -210,6 +210,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 	}
 
+
+
 	private void alertForResetSettings(){
 		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
 				NotificationPreferenceActivity.this);
@@ -302,6 +304,39 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 	}
 
 
+	private void setNotTypePreferenceData(){
+
+
+		final Preference customPref = (Preference) findPreference("notification_type_preference");
+
+		String notTypePref = SharedPreferenceUtils.getNotType(this);
+
+		if("".equals(notTypePref)){
+			ListPreference lp = (ListPreference)customPref;
+			lp.setValue("both");
+			customPref.setSummary(getString(R.string.both));
+		}
+
+
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				if("lockscreen".equals(newValue.toString())){
+					customPref.setSummary(getString(R.string.lock_screen_only));
+				}else if("banner".equals(newValue.toString())){
+					customPref.setSummary(getString(R.string.banners_only));
+				}else{
+					customPref.setSummary(getString(R.string.both));
+				}
+
+				return true;
+			}
+
+		});
+	}
 
 	private void setSelectedAppListListener(){
 		Preference pref = findPreference("mute_selected_screen");
@@ -353,13 +388,13 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 				HelperUtils.upgradeNowDialogue(ctx);
 
-				
+
 				return false;
 			}
 
 		});
 	}
-	
+
 	private void setWakeUpPreference(){
 
 		final Preference customPref = (Preference) findPreference("wake_up");
@@ -372,13 +407,13 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 				HelperUtils.upgradeNowDialogue(ctx);
 
-				
+
 				return false;
 			}
 
 		});
 	}
-	
+
 	private void setFullScreenPreference(){
 
 		final Preference customPref = (Preference) findPreference("full_screen_notification");
@@ -391,7 +426,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 				HelperUtils.upgradeNowDialogue(ctx);
 
-				
+
 				return false;
 			}
 
@@ -399,26 +434,9 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 	}
 
 
-	
-	private void setLockScreenOnlyPreference(){
 
-		final Preference customPref = (Preference) findPreference("lockscreen_only");
 
-		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
-			@Override
-			public boolean onPreferenceChange(Preference preference,
-					Object newValue) {
-
-				HelperUtils.upgradeNowDialogue(ctx);
-
-				
-				return false;
-			}
-
-		});
-	}
-	
 	private void setTransparentBackgroundPreference(){
 
 		final Preference customPref = (Preference) findPreference("transparent_background");
@@ -431,7 +449,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 				HelperUtils.upgradeNowDialogue(ctx);
 
-				
+
 				return false;
 			}
 

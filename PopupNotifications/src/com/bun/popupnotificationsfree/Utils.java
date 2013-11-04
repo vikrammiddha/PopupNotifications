@@ -39,7 +39,8 @@ public class Utils {
 	public static ArrayList<NotificationBean> notList = new ArrayList<NotificationBean>();
 	public static HashMap<String, PendingIntent> intentMap = new HashMap<String, PendingIntent>();
 	public static KeyguardManager.KeyguardLock keyguardLock;
-	
+	public static Boolean isServiceRunning = false; 
+	public static Boolean isScreenOn = false;
 
 
 	public static ArrayList<NotificationBean> getNotList(){
@@ -301,6 +302,15 @@ public class Utils {
 		return retString.split("\n")[0];
 	}
 
+	public static Boolean isScreenLocked(Context ctx){
+		KeyguardManager myKM = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE);
+		if(!myKM.inKeyguardRestrictedInputMode()) {
+			return false;
+		}else{
+			return true;
+		}
+	}
+
 
 	public Boolean performValidation(AccessibilityEvent event){
 
@@ -316,7 +326,6 @@ public class Utils {
 			if(!myKM.inKeyguardRestrictedInputMode()) {
 				return false;
 			}
-			//return false;
 		}
 
 		String appMuteDate = SharedPreferenceUtils.getAppData(ctx, event.getPackageName().toString());
@@ -349,7 +358,7 @@ public class Utils {
 				return false;
 			}
 		}
-				
+
 
 		if(appMuteDate == null || "".equals(appMuteDate)){
 			return true;
@@ -358,30 +367,30 @@ public class Utils {
 		}
 
 		// Below code is to prevent duplicate messages. Specially for Whatsapp.
-		
-		
+
+
 		return true;
 
 	}
-	
+
 	public static Boolean checkForDuplicates(NotificationBean n){
-		
+
 		int count = 0;
-		
+
 		for(NotificationBean bn : getNotList()){
 			if(bn.getUniqueValue().equals(n.getUniqueValue())){
 				count++;
 			}
 		}
-		
+
 		if(count%2 != 0){
 			n.setIsOddRow(true);
 		}else{
 			n.setIsOddRow(false);
 		}		
-		
+
 		return false;
-		
+
 
 	}
 

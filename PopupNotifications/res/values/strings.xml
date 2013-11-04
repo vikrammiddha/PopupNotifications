@@ -116,7 +116,10 @@
     
     
     
-    
+    <string name="lockscreen_only">Lockscreen Only</string>
+    <string name="banners_only">Banners Only</string>
+    <string name="both">Both</string>
+    <string name="not_type_desc">Notification Type</string>
     
 
 </resources>

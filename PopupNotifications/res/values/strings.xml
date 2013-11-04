@@ -96,8 +96,7 @@
     <string name="wake_on_not">Wake on Notification</string>
     <string name="lock_screen_only">Lock Screen Only</string>
     <string name="lock_screen_only_summary">Display Notifications only when screen is locked.</string>
-    <string name="lock_screen_only">Lock Screen Only</string>
-    <string name="lock_screen_only">Lock Screen Only</string>
+    
     
     
     <string name="left_swipe">Left Swipe on notification to dismiss the notification.</string>

@@ -17,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -179,7 +180,8 @@ public class BannerService extends Service{
 				Log.d("swipe", "onDismiss----------" + rowPos); 
 				if(rowPos >= 0){
 					try {
-
+						Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+						v.vibrate(250);
 						//Log.d("not activity", "intent----------" + Utils.notList.get(position).getPackageName());
 						//Utils.intentMap.get(Utils.getNotList().get(rowPos).getPackageName()).send();
 						Utils.intentMap.get(adapter.getItem(rowPos).getPackageName()).send();
@@ -198,6 +200,8 @@ public class BannerService extends Service{
 						e.printStackTrace();
 					}
 				}
+				Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+				v.vibrate(250);
 				for (int position : reverseSortedPositions) {
 					Log.d("swipe", "onDismiss----------" + position);
 					try{

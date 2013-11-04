@@ -371,7 +371,15 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 			ListPreference lp = (ListPreference)customPref;
 			lp.setValue("both");
 			customPref.setSummary(getString(R.string.both));
-		}
+		}else{
+            if("both".equals(notTypePref)){
+                customPref.setSummary(getString(R.string.both));
+        }else if("lockscreen".equals(notTypePref)){
+                customPref.setSummary(getString(R.string.lockscreen_only));
+        }else if("banner".equals(notTypePref)){
+                customPref.setSummary(getString(R.string.banners_only));
+        }
+}
 
 
 		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
@@ -381,7 +389,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 					Object newValue) {
 
 				if("lockscreen".equals(newValue.toString())){
-					customPref.setSummary(getString(R.string.lock_screen_only));
+					customPref.setSummary(getString(R.string.lockscreen_only));
 				}else if("banner".equals(newValue.toString())){
 					customPref.setSummary(getString(R.string.banners_only));
 				}else{

@@ -91,12 +91,13 @@ public class HelperUtils {
 				currentDateTime.setYear(now.getYear());
 				currentDateTime.setMonth(now.getMonth());
 				currentDateTime.setDate(now.getDay());
-
-				Calendar cal1 = Calendar.getInstance();
-				cal1.setTime(currentDateTime);
-				//cal1.add(Calendar.DATE, 1);
-
-				currentDateTime = cal1.getTime();
+				
+				if(!currentDateTime.after(startDateTime)){
+					Calendar cal1 = Calendar.getInstance();
+					cal1.setTime(currentDateTime);				
+					cal1.add(Calendar.DATE, 1);
+					currentDateTime = cal1.getTime();
+				}
 
 			}
 		} catch (ParseException e) {

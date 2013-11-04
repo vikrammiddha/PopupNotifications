@@ -200,8 +200,12 @@ public class BannerService extends Service{
 				}
 				for (int position : reverseSortedPositions) {
 					Log.d("swipe", "onDismiss----------" + position);
-					adapter.removeNotification(position);
-					Utils.getNotList().remove(position);
+					try{
+						adapter.removeNotification(position);
+						Utils.getNotList().remove(position);
+					}catch(Exception e){
+
+					}
 				}
 
 
@@ -387,8 +391,6 @@ public class BannerService extends Service{
 
 		unregisterReceiver(mReceiver);
 
-
-
 		try{
 			Animation animation   =    AnimationUtils.loadAnimation(ctx, R.anim.slidein_bottom);
 			//animation.setDuration(5000);
@@ -397,19 +399,7 @@ public class BannerService extends Service{
 				@Override
 				public void onAnimationStart(Animation animation) {
 					Log.d("test", "Animation start=========");
-					new Handler().postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							Utils.getNotList().clear();
-							Utils.intentMap.clear();					
-							adapter.removeAllNotifications();
-							adapter.notifyDataSetChanged();
-							sListView.setPadding(0, 0, 0, 0);
-							cTimer.cancel();
-							Utils.isServiceRunning = false;		
-							layout.removeAllViews();
-						}
-					}, 500);
+
 				}
 
 				@Override
@@ -426,6 +416,19 @@ public class BannerService extends Service{
 				}
 			});
 			sListView.startAnimation(animation);
+			new Handler().postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					Utils.getNotList().clear();
+					Utils.intentMap.clear();					
+					adapter.removeAllNotifications();
+					adapter.notifyDataSetChanged();
+					sListView.setPadding(0, 0, 0, 0);
+					cTimer.cancel();
+					Utils.isServiceRunning = false;		
+					layout.removeAllViews();
+				}
+			}, 500);
 		}catch(Exception e){
 
 		}		

@@ -352,11 +352,8 @@ public class Utils {
 			return false;
 		}
 
-		if(HelperUtils.isLockscreenOnly(ctx)){
-			KeyguardManager myKM = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE);
-			if( !myKM.inKeyguardRestrictedInputMode()) {
-				return false;
-			}
+		if(!HelperUtils.isLockscreenOnly(ctx)){
+			return false;
 		}
 
 

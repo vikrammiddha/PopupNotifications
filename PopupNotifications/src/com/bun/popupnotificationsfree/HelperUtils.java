@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.app.ActivityManager;
+import android.app.KeyguardManager;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -206,8 +207,25 @@ public class HelperUtils {
 
 		try{
 
-			if((Boolean)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "lockscreen_only", "Boolean")){
+			String notType = (String)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "notification_type_preference", "STRING");
+			KeyguardManager myKM = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE);
+			
+			if(notType.equals("both")){
 				return true;
+				
+			}else if(notType.equals("lockscreen")){
+				
+				if( myKM.inKeyguardRestrictedInputMode()) {
+					return true;
+				}
+				
+			}else if(notType.equals("banner")){
+				if( !myKM.inKeyguardRestrictedInputMode()) {
+					return true;
+				}
+				
+			} else{
+				return false;
 			}
 		}catch(Exception e){
 			return false;

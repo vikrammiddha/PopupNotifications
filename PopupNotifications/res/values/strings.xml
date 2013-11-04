@@ -98,8 +98,7 @@
     <string name="wake_on_not">Wake on Notification</string>
     <string name="lock_screen_only">Lock Screen Only</string>
     <string name="lock_screen_only_summary">Display Notifications only when screen is locked.\nAvailable in Paid Version</string>
-    <string name="lock_screen_only">Lock Screen Only</string>
-    <string name="lock_screen_only">Lock Screen Only</string>
+    <string name="lock_screen_only">Lock Screen Only</string>    
     <string name="pref_upgrade_message">Available in Paid version</string>
     <string name="display_contact">Display Contact images</string>
     <string name="upgrade_to_paid">Upgrade to Paid Version</string>

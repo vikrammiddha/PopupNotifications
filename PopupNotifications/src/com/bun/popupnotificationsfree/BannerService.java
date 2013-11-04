@@ -17,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -152,6 +153,7 @@ public class BannerService extends Service{
 
 			@Override
 			public void onClickFrontView(int position) {
+				
 				try {
 					Utils.intentMap.get(adapter.getItem(position).getPackageName()).send();
 				} catch (CanceledException e) {
@@ -164,6 +166,9 @@ public class BannerService extends Service{
 				adapter.removeAllNotifications();
 				adapter.notifyDataSetChanged();
 				sListView.setPadding(0,0,0,0);
+				
+				// Vibrate for 500 milliseconds
+				
 				stopSelf();
 				Log.d("swipe", "onClickFrontView----------");                                
 			}
@@ -179,7 +184,8 @@ public class BannerService extends Service{
 				Log.d("swipe", "onDismiss----------" + rowPos); 
 				if(rowPos >= 0){
 					try {
-
+						Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+						v.vibrate(250);
 						//Log.d("not activity", "intent----------" + Utils.notList.get(position).getPackageName());
 						//Utils.intentMap.get(Utils.getNotList().get(rowPos).getPackageName()).send();
 						Utils.intentMap.get(adapter.getItem(rowPos).getPackageName()).send();
@@ -198,6 +204,8 @@ public class BannerService extends Service{
 						e.printStackTrace();
 					}
 				}
+				Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+				v.vibrate(250);
 				for (int position : reverseSortedPositions) {
 					Log.d("swipe", "onDismiss----------" + position);
 					try{

@@ -39,6 +39,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -208,6 +209,8 @@ ShowcaseView.OnShowcaseEventListener{
 				PendingIntent p = null;
 				if(rowPos >= 0){
 					try {
+						Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+						v.vibrate(250);
 						if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
 							getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 						}else{
@@ -234,6 +237,8 @@ ShowcaseView.OnShowcaseEventListener{
 						e.printStackTrace();
 					}
 				}
+				Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+				v.vibrate(250);
 				for (int position : reverseSortedPositions) {
 					Log.d("swipe", "onDismiss----------" + position);
 					try{

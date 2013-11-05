@@ -110,8 +110,8 @@
     <string name="start_tutorial">Start Tutorial</string>
     <string name="start_tutorial_click">Click on Start Tutorial button to start the tutorial.</string>
     <string name="dismiss_all_tutorial">Dismiss All closes the notification screen.</string>
-    <string name="upgrade_now_message">Upgrade to Paid version to unlock below features :\n1)Display contact pics\n2)Mute one or more apps\n3)Enable sleep hours\n4)
-        			Enable Blocked apps\n5)Disable waking up the screen on new Notification\n6)Transparent Background\nMany more</string>
+    <string name="upgrade_now_message">Upgrade to Paid version to unlock below features :\n1)Mute one or more apps\n2)Enable sleep hours\n3)
+        			Enable Blocked apps\n4)Disable waking up the screen on new Notification\n5)Transparent Background\nMany more</string>
     
     
     

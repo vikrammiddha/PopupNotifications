@@ -66,7 +66,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		setTransparentBackgroundPreference();
 
-		
+
 		setFullScreenPreference();
 
 		//setFontColorListener();
@@ -332,15 +332,10 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 			public boolean onPreferenceChange(Preference preference,
 					Object newValue) {
 
-				if("lockscreen".equals(newValue.toString())){
-					customPref.setSummary(getString(R.string.lockscreen_only));
-				}else if("banner".equals(newValue.toString())){
-					customPref.setSummary(getString(R.string.banners_only));
-				}else{
-					customPref.setSummary(getString(R.string.both));
-				}
+				HelperUtils.upgradeNowDialogue(ctx);
 
-				return true;
+
+				return false;
 			}
 
 		});

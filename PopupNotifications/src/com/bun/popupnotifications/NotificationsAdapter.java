@@ -47,7 +47,14 @@ public class NotificationsAdapter extends BaseAdapter{
 	}
 
 	public void removeAllNotifications(){
+		if(nList == null){
+			return;
+		}
+		for(NotificationBean n : nList){
+			n = null;
+		}
 		nList.clear();
+		nList = null;
 	}
 
 	public void addNotification(NotificationBean notf){ 
@@ -77,6 +84,9 @@ public class NotificationsAdapter extends BaseAdapter{
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
+		if(nList == null)
+			return 0;
+		
 		return nList.size();
 	}
 

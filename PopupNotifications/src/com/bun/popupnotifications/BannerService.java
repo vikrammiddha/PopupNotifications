@@ -46,6 +46,7 @@ public class BannerService extends Service{
 	int rowPos = -1;
 	CountDownTimer cTimer;
 	Handler mHandler=new Handler();
+	BaseSwipeListViewListener listener;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -107,8 +108,8 @@ public class BannerService extends Service{
 		params.y = 0;
 
 		populateAdapter(true);
-
-		sListView.setSwipeListViewListener(new BaseSwipeListViewListener() {
+		
+		listener = new BaseSwipeListViewListener() {
 
 			@Override
 			public void onOpened(int position, boolean toRight) {
@@ -164,7 +165,7 @@ public class BannerService extends Service{
 				Utils.intentMap.clear();
 				adapter.removeAllNotifications();
 				adapter.notifyDataSetChanged();
-				sListView.setPadding(0,0,0,0);
+				sListView.setPadding(0,0,0,0);				
 				stopSelf();
 				Log.d("swipe", "onClickFrontView----------");				
 			}
@@ -191,7 +192,7 @@ public class BannerService extends Service{
 						adapter.removeAllNotifications();
 						adapter.notifyDataSetChanged();
 
-						sListView.setPadding(0,0,0,0);
+						sListView.setPadding(0,0,0,0);						
 						stopSelf();
 						return;
 						//Utils.notList.clear();
@@ -230,11 +231,13 @@ public class BannerService extends Service{
 				}
 
 				sListView.setPadding(0, 0, 0, 0);
-
+				cTimer.cancel();
 				stopSelf();
 			}
 
-		});	
+		};
+
+		sListView.setSwipeListViewListener(listener);	
 
 
 
@@ -414,7 +417,7 @@ public class BannerService extends Service{
 				@Override
 				public void onAnimationEnd(Animation animation) {
 					Log.d("test", "Animation ending=========");
-					sListView.clearAnimation();
+					//sListView.clearAnimation();
 
 
 				}
@@ -423,16 +426,11 @@ public class BannerService extends Service{
 			new Handler().postDelayed(new Runnable() {
 				@Override
 				public void run() {
-					Utils.getNotList().clear();
-					Utils.intentMap.clear();					
-					adapter.removeAllNotifications();
-					adapter.notifyDataSetChanged();
-					sListView.setPadding(0, 0, 0, 0);
-					cTimer.cancel();
-					Utils.isServiceRunning = false;		
-					layout.removeAllViews();
+					cleanMemory();
+					
 				}
 			}, 500);
+			
 		}catch(Exception e){
 
 		}		
@@ -440,8 +438,33 @@ public class BannerService extends Service{
 
 		//cTimer.cancel();
 
-		Log.d("test", "Destrouy=======");
+		
 
+	}
+	
+	private void cleanMemory(){
+		Log.d("Banner Service", "Clearing memory=======");
+		listener = null;
+		Utils.getNotList().clear();
+		Utils.intentMap.clear();					
+		adapter.removeAllNotifications();
+		adapter.notifyDataSetChanged();
+		sListView.setPadding(0, 0, 0, 0);
+		cTimer.cancel();
+		Utils.isServiceRunning = false;		
+		layout.removeAllViews();	
+		
+		sListView.setAdapter(null);
+		sListView.setSwipeListViewListener(null);
+		sListView.clearAnimation();
+		
+		sListView = null;
+		ctx = null;
+		
+		adapter = null;
+		layout.removeAllViews();
+		layout = null;
+		
 	}
 
 

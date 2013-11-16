@@ -528,8 +528,9 @@ ShowcaseView.OnShowcaseEventListener{
 			if(ll1.getHeight() >= (int)(screenHeight * 0.5) && !isDismissed){
 				params.height = (int)(screenHeight * 0.5);
 			}else{
-				//if(isDismissed && ll1.getHeight() >= (int)(screenHeight * 0.5)){
-				if(isDismissed && layout.getHeight() >= ll1.getHeight() ){
+				//if(isDismissed && ll1.getHeight() >= (int)(screenHeight * 0.5)){				
+				Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
+				if(isDismissed && (layout.getHeight() + dismissButton.getHeight()) >= (int)(screenHeight * 0.5) ){
 					params.height = (int)(screenHeight * 0.5);
 				}else{
 					params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -568,6 +569,8 @@ ShowcaseView.OnShowcaseEventListener{
 
 			keyguardLock = null;
 		}
+		
+		layout.setAdapter(null);
 
 	}
 

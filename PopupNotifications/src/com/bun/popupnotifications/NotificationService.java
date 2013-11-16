@@ -225,7 +225,8 @@ public class NotificationService extends AccessibilityService {
 			Log.d("Notification Service", "package-----" + bean.getPackageName());
 			Log.d("Notification Service", "Message-----" + bean.getMessage());
 			Log.d("Notification Service", "Sender-----" + bean.getSender());
-			Log.d("Notification Service", "Sender-----" + bean.getUniqueValue());
+			Log.d("Notification Service", "uniqueValue-----" + bean.getUniqueValue());
+			Log.d("Notification Service", "tickertext-----" + event.getText().toString());
 			
 			
 
@@ -266,6 +267,8 @@ public class NotificationService extends AccessibilityService {
 			}
 
 		}
+		
+		event = null;
 
 	}
 
@@ -579,7 +582,7 @@ public class NotificationService extends AccessibilityService {
 			detectNotificationIds();
 			if (Build.MODEL.toLowerCase().contains("NEXUS") && SharedPreferenceUtils.getFirstTimeRun(ctx))
 			{
-				registerProximitySensor();
+				//registerProximitySensor();
 			}
 
 		}catch(Exception e){

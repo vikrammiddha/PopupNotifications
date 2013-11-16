@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Popup Benachrichtigungen</string>
+    
+    <string name="hello_world">Hello world!</string>
+    <string name="package_name">com.bun.popupnotifications</string>
+    <string name="crash_toast_text">Ooooops! Popup Benachrichtigung Crashed. Sammeln von Daten !</string>
+    <string name="crash_dialog_title">Popup Benachrichtigung abgestürzt</string>
+    <string name="crash_dialog_text">Ein unerwarteter Fehler ist aufgetreten zwingt die
+     Anwendung zu stoppen. Bitte helfen Sie uns dieses Problem beheben, indem Sie uns Fehler-Daten,
+     alles, was Sie tun müssen, ist klicken Sie auf OK.</string>
+    <string name="crash_dialog_comment_prompt">Sie können Ihre Kommentare über das Problem unten hinzufügen:</string>
+    <string name="crash_dialog_ok_toast">Danke !</string>
+    <string name="listViewPosition">1</string>
+    <string name="talkback_fix">Talkback Fix</string>
+    <string name="click_disable">Klicken Sie auf Deaktivieren</string>
+    <string name="reset_completed">zurücksetzen abgeschlossen</string>
+    <string name="service_warning">Popup Notifications service is not running currently. This service should be running for you to get notifications.</string>    
+    <string name="tts_warning">Aufgrund eines Fehlers in Samsungs\'s Software, erleben Sie das Telefon vorlesen einige Ihrer Aktionen.\n\n Wenn dies zu verhindern, müssen Sie Samsung und Google TTS TTS deaktivieren. Dies wirkt sich nicht jede App mit TTS-Funktionen.</string>
+    
+    <string name="menu_settings">Einstellungen</string>
+    <string name="menu_tutorial">Tutorial</string>
+    <string name="menu_rateus">bewerten Sie uns</string>
+    
+    <string name="pref_notification_category">Benachrichtigung Einstellungen</string>
+    <string name="pref_mute_category">Mute-Einstellungen</string>
+    <string name="pref_advanced_category">Erweiterte Einstellungen</string>
+    <string name="pref_others_category">Sonstiges</string>
+    <string name="pref_mute_selected">Mute Ausgewählte Apps</string>
+    <string name="pref_sleep_hours">Schlaf Stunden</string>
+    <string name="font_color">Wählen Benachrichtigung Textfarbe.</string>
+    <string name="pref_category_accessibility">Behindertengerechte Einrichtungen</string>
+    <string name="pref_settings_service_inactive">Dienst inaktiv</string>
+    <string name="samsung_tts">Deaktivieren Samsung TTS</string>
+    <string name="google_tts">Deaktivieren Google TTS</string>
+    <string name="reset_settings">Zurücksetzen aller Einstellungen</string>
+    <string name="reset_message">Klicken Sie auf Ja, um alle Einstellungen zurückzusetzen.</string>
+    <string name="blocked_apps">Blockierte Apps</string>
+    <string name="blocked_apps_summary">Benachrichtigungen werden nicht angezeigt, wenn diese Anwendungen im Einsatz sind.</string>
+    
+    
+    
+    <string name="mute_all_apps">Stummschaltung aller Anwendungen</string>
+    <string name="mute_this_app">Stumm diese Anwendungen</string>
+    <string name="mute_15_mins">Stummschaltung für 15 Minuten</string>
+    <string name="mute_30_mins">Stummschaltung für 30 Minuten</string>
+    <string name="mute_1_hour">Stummschaltung für 1 Stunde</string>
+    <string name="mute_4_hours">Stumm für 4 Stunden</string>
+    <string name="mute_8_hours">Mute für 8 Stunden</string>
+    <string name="mute_foreever">Mute For Ever</string>
+    <string name="start_time">Startzeit</string>
+    <string name="end_time">Endzeit</string>
+    
+    <string name="market_url">market://details?id=com.bun.popupnotifications</string>
+    <string name="follow_on_facebook">Folgen Sie auf Facebook</string>
+    <string name="facebook_url">https://www.facebook.com/bunnydecoder</string>
+    
+    
+    <string name="popup_not_service">Popup Notification Service</string>
+    <string name="activate">aktivieren</string>
+    <string name="later">Später</string>
+    <string name="search">Suchen</string>
+    <string name="loading">Verladung....</string>
+    <string name="com">com.</string>
+    <string name="for_ever">FOR EVER</string>
+    <string name="mute_app">MUTE Anwendung</string>
+    <string name="save">Speichern</string>
+    <string name="cancel">stornieren</string>
+    <string name="service_active">Dienst tätig</string>
+    <string name="service_inactive">Dienst untätig</string>
+    <string name="warning">Warnung</string>
+    <string name="close">schließen</string>
+    <string name="yes">Ja</string>
+    <string name="all_apps_muted_till">Alle Apps Gedämpfte bis: </string>
+    <string name="all_apps_muted">Alle Apps Stumm</string>
+    <string name="broadcast_receiver_string">com.bun.popupnotification.NOTIFICATION_CHANGED</string>
+    <string name="muted_till">Muted till: </string>
+    <string name="muted">Gedämpfte </string>
+    <string name="mins_15"> für 15 Minuten</string>
+    <string name="mins_30"> für 30 Minuten</string>
+    <string name="hour_1"> 1 Stunde</string>
+    <string name="hour_4"> 4 Stunden</string>
+    <string name="hour_8"> 8 Stunden</string>
+    <string name="forever"> für immer</string>
+    <string name="search_applications">Suche Bewerbung</string>
+    <string name="mute_selected_apps">Mute Ausgewählte Apps</string>
+    <string name="dismiss_all">Alle schließen</string>
+    <string name="show_expanded_notifications">Zeigen Expanded Benachrichtigungen</string>
+    <string name="expanded_not_summary">Expanded Benachrichtigungen zeigt jeweils separat Meldungen.</string>
+    <string name="show_fullscreen_not">Vollbild-Anzeige Benachrichtigungen</string>
+    <string name="show_fullscreen_summary">Benachrichtigungen werden auf dem ganzen Bildschirm statt einem kleinen Fenster angezeigt werden.</string>
+    <string name="not_text_color">Benachrichtigung Textfarbe</string>
+    <string name="not_back_color">Benachrichtigung Hintergrundfarbe</string>
+    <string name="set_transparent_background">Set transparentem Hintergrund</string>
+    <string name="wake_on_not">Wake-on-Benachrichtigung</string>
+    <string name="lock_screen_only">Bildschirm sperren Nur</string>
+    <string name="lock_screen_only_summary">Anzeige Benachrichtigungen nur, wenn der Bildschirm gesperrt ist.</string>
+    
+    
+    
+    <string name="left_swipe">links Streichen über die Meldung zu entlassen die Benachrichtigung.</string>
+    <string name="right_swipe">Rechts Streichen auf Benachrichtigung, um die App zu öffnen.</string>
+    <string name="long_press">Langes Drücken auf Anmeldung, um die Benachrichtigungen Mute.</string>
+    <string name="start_tutorial">starten Tutorial</string>
+    <string name="start_tutorial_click">Klicken Sie auf Start Tutorial-Taste, um das Tutorial zu starten.</string>
+    <string name="dismiss_all_tutorial">Alle schließen, schließt die Mitteilung Bildschirm.</string>
+    
+    <string name="lockscreen_only">Nur lockscreen</string>
+    <string name="banners_only">Nur banners</string>
+    <string name="both">beide</string>
+    <string name="not_type_desc">Meldungsart Art</string>
+    
+    
+    
+    
+    
+
+</resources>

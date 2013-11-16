@@ -299,7 +299,7 @@ public class Utils {
 
 		return retString.split("\n")[0];
 	}
-	
+
 	public static Boolean isScreenLocked(Context ctx){
 		KeyguardManager myKM = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE);
 		if(!myKM.inKeyguardRestrictedInputMode()) {
@@ -378,11 +378,19 @@ public class Utils {
 			}
 		}
 
-		if(count%2 != 0){
-			n.setIsOddRow(true);
+		if(n.getPackageName().equals("com.whatsapp")){
+			if(count%2 != 0){
+				n.setIsOddRow(true);
+			}else{
+				n.setIsOddRow(false);
+			}		
 		}else{
-			n.setIsOddRow(false);
-		}		
+			if(count > 1){
+				n.setIsOddRow(true);
+			}else{
+				n.setIsOddRow(false);
+			}
+		}
 
 		return false;
 

@@ -157,23 +157,23 @@ public class SharedPreferenceUtils {
 		loadDefaultSettings(ctx);
 
 	}
-	
+
 	public static void setFirstTimeRun(Context ctx, Boolean bool){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		sharedPrefs.edit().putBoolean("FirstTimeRun", bool).commit();
 	}
-	
+
 	public static void setNotType(Context ctx, String notType){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		sharedPrefs.edit().putString("notification_type_preference", notType).commit();
-		
+
 	}
-	
+
 	public static String getNotType(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getString("notification_type_preference", "");
 	}
-	
+
 	public static Boolean getFirstTimeRun(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getBoolean("FirstTimeRun", false);
@@ -191,35 +191,41 @@ public class SharedPreferenceUtils {
 	}
 
 	public static void loadDefaultSettings(Context ctx){
-		setAllowedApps(ctx,"com.google.android.gsf", "");
-		setAllowedApps(ctx,"com.whatsapp", "");
-		setAllowedApps(ctx,"com.android.email", "");
-		setAllowedApps(ctx,"com.google.android.gm", "");
-		setAllowedApps(ctx,"com.android.mms", "");
-		setAllowedApps(ctx,"com.android.phone", "");
-		setAllowedApps(ctx,"com.facebook.katana", "");
-		setAllowedApps(ctx,"com.tencent.mm", "");
-		setAllowedApps(ctx,"com.linkedin.android", "");
-		setAllowedApps(ctx,"com.google.android.talk", "");		
-		setAllowedApps(ctx,"com.sonyericsson.conversations", "");
 
-		setBlockedApps(ctx,"com.google.android.youtube", "");
-		setBlockedApps(ctx,"com.google.android.videos", "");
+		if(!getFirstTimeRun(ctx)){
+			setAllowedApps(ctx,"com.google.android.gsf", "");
+			setAllowedApps(ctx,"com.whatsapp", "");
+			setAllowedApps(ctx,"com.android.email", "");
+			setAllowedApps(ctx,"com.google.android.gm", "");
+			setAllowedApps(ctx,"com.android.mms", "");
+			setAllowedApps(ctx,"com.android.phone", "");
+			setAllowedApps(ctx,"com.facebook.katana", "");
+			setAllowedApps(ctx,"com.tencent.mm", "");
+			setAllowedApps(ctx,"com.linkedin.android", "");
+			setAllowedApps(ctx,"com.google.android.talk", "");		
+			setAllowedApps(ctx,"com.sonyericsson.conversations", "");
 
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
-		sp.edit().putBoolean("expanded_notification", true).commit();
-		sp.edit().putBoolean("full_screen_notification", false).commit();
-		sp.edit().putBoolean("transparent_background", true).commit();
-		sp.edit().putBoolean("wake_up", true).commit();
-		sp.edit().putBoolean("mute_sleep_hours", true).commit();
+			setBlockedApps(ctx,"com.google.android.youtube", "");
+			setBlockedApps(ctx,"com.google.android.videos", "");
 
-		sp.edit().putString("start_sleep_time", "23:00").commit();
-		sp.edit().putString("end_sleep_time", "07:00").commit();
-		sp.edit().putInt("font_color", Color.WHITE);
-		sp.edit().putInt("background_color_not", Color.BLACK);
-		sp.edit().putString("notification_type_preference", "both");
+
+
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
+			sp.edit().putBoolean("expanded_notification", true).commit();
+			sp.edit().putBoolean("full_screen_notification", false).commit();
+			sp.edit().putBoolean("transparent_background", true).commit();
+			sp.edit().putBoolean("wake_up", true).commit();
+			sp.edit().putBoolean("mute_sleep_hours", true).commit();
+
+			sp.edit().putString("start_sleep_time", "23:00").commit();
+			sp.edit().putString("end_sleep_time", "07:00").commit();
+			sp.edit().putInt("font_color", Color.WHITE).commit();
+			sp.edit().putInt("background_color_not", Color.BLACK).commit();
+			sp.edit().putString("notification_type_preference", "both").commit();
+
+		}
 
 	}
-	
+
 
 }

@@ -107,12 +107,21 @@
     <string name="dismiss_all_tutorial">Dismiss All closes the notification screen.</string>
     
     <string name="lockscreen_only">Lockscreen Only</string>
+    <string name="lockscreen_and_popup">Lockscreen and Popup</string>
+    <string name="lockscreen_and_banners">Lockscreen and Banners</string>
     <string name="banners_only">Banners Only</string>
-    <string name="both">Both</string>
+    <string name="popup_only">Popup Only</string>    
+    
+    <string name="lockscreen_only_summary">Notifications will be shown as popup only when the screen is locked.</string>
+    <string name="lockscreen_and_popup_summary">Notifications will be shown as popup when screen is locked as well as when phone is in use.</string>
+    <string name="lockscreen_and_banners_summary">Notifications will be shown as popup when screen is locked and banners when phone is in use.</string>
+    <string name="banners_only_summary">Show only banners when phone is in use.</string>
+    <string name="popup_only_summary">Show only popups when phone is in use.</string>   
+    
     <string name="not_type_desc">Notification Type</string>
     
     
-    
+    <string name="vibrate_summary">Vibrate on swipe</string>
     
     
 

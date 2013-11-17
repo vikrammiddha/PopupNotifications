@@ -191,6 +191,8 @@ public class SharedPreferenceUtils {
 	}
 
 	public static void loadDefaultSettings(Context ctx){
+		
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
 
 		if(!getFirstTimeRun(ctx)){
 			setAllowedApps(ctx,"com.google.android.gsf", "");
@@ -210,7 +212,7 @@ public class SharedPreferenceUtils {
 
 
 
-			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
+			
 			sp.edit().putBoolean("expanded_notification", true).commit();
 			sp.edit().putBoolean("full_screen_notification", false).commit();
 			sp.edit().putBoolean("transparent_background", true).commit();
@@ -221,9 +223,19 @@ public class SharedPreferenceUtils {
 			sp.edit().putString("end_sleep_time", "07:00").commit();
 			sp.edit().putInt("font_color", Color.WHITE).commit();
 			sp.edit().putInt("background_color_not", Color.BLACK).commit();
-			sp.edit().putString("notification_type_preference", "both").commit();
+			sp.edit().putString("notification_type_preference", "lockscreen_banners").commit();
+			sp.edit().putBoolean("vibrate", true).commit();
 
 		}
+		
+		String notTypeValue = sp.getString("notification_type_preference", "");
+		
+		if(notTypeValue.equals("") || (!notTypeValue.equals("lockscreen") && !notTypeValue.equals("lockscreen_popup") 
+						&& !notTypeValue.equals("lockscreen_banners") && !notTypeValue.equals("popup") && !notTypeValue.equals("banners"))){
+			sp.edit().putString("notification_type_preference", "lockscreen_banners").commit();
+		}
+		
+		
 
 	}
 

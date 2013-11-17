@@ -298,10 +298,10 @@ containing a value of this type.
         public static final int all_apps_muted=0x7f07003e;
         public static final int all_apps_muted_till=0x7f07003d;
         public static final int app_name=0x7f070001;
-        public static final int banners_only=0x7f07005c;
+        public static final int banners_only=0x7f07005e;
+        public static final int banners_only_summary=0x7f070063;
         public static final int blocked_apps=0x7f07001f;
         public static final int blocked_apps_summary=0x7f070020;
-        public static final int both=0x7f07005d;
         public static final int broadcast_receiver_string=0x7f07003f;
         public static final int cancel=0x7f070037;
         public static final int click_disable=0x7f07000b;
@@ -332,7 +332,12 @@ containing a value of this type.
         public static final int loading=0x7f070032;
         public static final int lock_screen_only=0x7f070053;
         public static final int lock_screen_only_summary=0x7f070054;
+        public static final int lockscreen_and_banners=0x7f07005d;
+        public static final int lockscreen_and_banners_summary=0x7f070062;
+        public static final int lockscreen_and_popup=0x7f07005c;
+        public static final int lockscreen_and_popup_summary=0x7f070061;
         public static final int lockscreen_only=0x7f07005b;
+        public static final int lockscreen_only_summary=0x7f070060;
         public static final int long_press=0x7f070057;
         public static final int market_url=0x7f07002b;
         public static final int menu_rateus=0x7f070011;
@@ -354,10 +359,12 @@ containing a value of this type.
         public static final int muted_till=0x7f070040;
         public static final int not_back_color=0x7f070050;
         public static final int not_text_color=0x7f07004f;
-        public static final int not_type_desc=0x7f07005e;
+        public static final int not_type_desc=0x7f070065;
         public static final int ok=0x7f070000;
         public static final int package_name=0x7f070003;
         public static final int popup_not_service=0x7f07002e;
+        public static final int popup_only=0x7f07005f;
+        public static final int popup_only_summary=0x7f070064;
         public static final int pref_advanced_category=0x7f070014;
         public static final int pref_category_accessibility=0x7f070019;
         public static final int pref_mute_category=0x7f070013;
@@ -386,6 +393,7 @@ containing a value of this type.
         public static final int start_tutorial_click=0x7f070059;
         public static final int talkback_fix=0x7f07000a;
         public static final int tts_warning=0x7f07000e;
+        public static final int vibrate_summary=0x7f070066;
         public static final int wake_on_not=0x7f070052;
         public static final int warning=0x7f07003a;
         public static final int yes=0x7f07003c;

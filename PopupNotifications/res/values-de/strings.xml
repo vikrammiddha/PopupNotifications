@@ -107,8 +107,17 @@
     <string name="dismiss_all_tutorial">Alle schließen, schließt die Mitteilung Bildschirm.</string>
     
     <string name="lockscreen_only">Nur lockscreen</string>
+    <string name="lockscreen_and_popup">Lockscreen und Popup</string>
+    <string name="lockscreen_and_banners">Lockscreen und Banner</string>
     <string name="banners_only">Nur banners</string>
-    <string name="both">beide</string>
+    <string name="popup_only">Nur Popup</string>    
+    
+    <string name="lockscreen_only_summary">Benachrichtigungen werden als Pop-up nur, wenn der Bildschirm gesperrt ist angezeigt.</string>
+    <string name="lockscreen_and_popup_summary">Benachrichtigungen werden als Popup angezeigt, wenn der Bildschirm wird sowie wenn das Telefon in Betrieb ist gesperrt.</string>
+    <string name="lockscreen_and_banners_summary">Benachrichtigungen werden als Pop-up, wenn der Bildschirm gesperrt ist und Banner angezeigt werden, wenn das Telefon in Betrieb ist.</string>
+    <string name="banners_only_summary">Nur Banner, wenn das Telefon in Betrieb ist.</string>
+    <string name="popup_only_summary">Nur Popups, wenn das Telefon in Betrieb ist.</string>   
+    
     <string name="not_type_desc">Meldungsart Art</string>
     
     

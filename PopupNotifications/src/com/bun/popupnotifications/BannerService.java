@@ -108,7 +108,7 @@ public class BannerService extends Service{
 		params.y = 0;
 
 		populateAdapter(true);
-		
+
 		listener = new BaseSwipeListViewListener() {
 
 			@Override
@@ -181,8 +181,11 @@ public class BannerService extends Service{
 				Log.d("swipe", "onDismiss----------" + rowPos); 
 				if(rowPos >= 0){
 					try {
-						Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-						v.vibrate(250);
+
+						if(HelperUtils.isVibrate(ctx)){
+							Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+							v.vibrate(250);
+						}
 						//Log.d("not activity", "intent----------" + Utils.notList.get(position).getPackageName());
 						//Utils.intentMap.get(Utils.getNotList().get(rowPos).getPackageName()).send();
 						Utils.intentMap.get(adapter.getItem(rowPos).getPackageName()).send();
@@ -201,8 +204,10 @@ public class BannerService extends Service{
 						e.printStackTrace();
 					}
 				}
-				Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-				v.vibrate(250);
+				if(HelperUtils.isVibrate(ctx)){
+					Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+					v.vibrate(250);
+				}
 				for (int position : reverseSortedPositions) {
 					Log.d("swipe", "onDismiss----------" + position);
 					try{
@@ -427,10 +432,10 @@ public class BannerService extends Service{
 				@Override
 				public void run() {
 					cleanMemory();
-					
+
 				}
 			}, 500);
-			
+
 		}catch(Exception e){
 
 		}		
@@ -438,10 +443,10 @@ public class BannerService extends Service{
 
 		//cTimer.cancel();
 
-		
+
 
 	}
-	
+
 	private void cleanMemory(){
 		Log.d("Banner Service", "Clearing memory=======");
 		listener = null;
@@ -453,18 +458,18 @@ public class BannerService extends Service{
 		cTimer.cancel();
 		Utils.isServiceRunning = false;		
 		layout.removeAllViews();	
-		
+
 		sListView.setAdapter(null);
 		sListView.setSwipeListViewListener(null);
 		sListView.clearAnimation();
-		
+
 		sListView = null;
 		ctx = null;
-		
+
 		adapter = null;
 		layout.removeAllViews();
 		layout = null;
-		
+
 	}
 
 

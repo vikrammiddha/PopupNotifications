@@ -369,17 +369,21 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		if("".equals(notTypePref)){
 			ListPreference lp = (ListPreference)customPref;
-			lp.setValue("both");
-			customPref.setSummary(getString(R.string.both));
+			lp.setValue("lockscreen_banners");
+			customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
 		}else{
-            if("both".equals(notTypePref)){
-                customPref.setSummary(getString(R.string.both));
-        }else if("lockscreen".equals(notTypePref)){
-                customPref.setSummary(getString(R.string.lockscreen_only));
-        }else if("banner".equals(notTypePref)){
-                customPref.setSummary(getString(R.string.banners_only));
-        }
-}
+			if("lockscreen".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.lock_screen_only_summary));
+			}else if("lockscreen_popup".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.lockscreen_and_popup_summary));
+			}else if("lockscreen_banners".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
+			}else if("popup".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.popup_only_summary));
+			}else if("banners".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.banners_only_summary));
+			}
+		}
 
 
 		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
@@ -389,13 +393,17 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 					Object newValue) {
 
 				if("lockscreen".equals(newValue.toString())){
-					customPref.setSummary(getString(R.string.lockscreen_only));
-				}else if("banner".equals(newValue.toString())){
-					customPref.setSummary(getString(R.string.banners_only));
-				}else{
-					customPref.setSummary(getString(R.string.both));
+					customPref.setSummary(getString(R.string.lock_screen_only_summary));
+				}else if("lockscreen_popup".equals(newValue.toString())){
+					customPref.setSummary(getString(R.string.lockscreen_and_popup_summary));
+				}else if("lockscreen_banners".equals(newValue.toString())){
+					customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
+				}else if("popup".equals(newValue.toString())){
+					customPref.setSummary(getString(R.string.popup_only_summary));
+				}else if("banners".equals(newValue.toString())){
+					customPref.setSummary(getString(R.string.banners_only_summary));
 				}
-				
+
 				return true;
 			}
 

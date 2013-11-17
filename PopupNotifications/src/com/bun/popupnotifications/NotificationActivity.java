@@ -129,7 +129,7 @@ ShowcaseView.OnShowcaseEventListener{
 		adapter = new NotificationsAdapter(this);
 		layout = (SwipeListView ) findViewById(R.id.notificationsListViewId);	
 		layout.setScrollingCacheEnabled(false);
-		
+
 		//this.overridePendingTransition(R.anim.slidein_top, R.anim.slidein_bottom);
 
 		populateAdapter(true);
@@ -204,8 +204,10 @@ ShowcaseView.OnShowcaseEventListener{
 				Log.d("swipe", "onDismiss----------" + rowPos); 
 				if(rowPos >= 0){
 					try {
-						Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-						v.vibrate(250);
+						if(HelperUtils.isVibrate(ctx)){
+							Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+							v.vibrate(250);
+						}
 						if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
 							getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 						}else{
@@ -230,18 +232,20 @@ ShowcaseView.OnShowcaseEventListener{
 						e.printStackTrace();
 					}
 				}
-				Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-				v.vibrate(250);
+				if(HelperUtils.isVibrate(ctx)){
+					Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+					v.vibrate(250);
+				}
 				for (int position : reverseSortedPositions) {
 					Log.d("swipe", "onDismiss----------" + position);
 					try{
 						adapter.removeNotification(position);
 						Utils.getNotList().remove(position);
 					}catch(Exception e){
-						
+
 					}
 				}
-				
+
 				setBackgroundHeight(true);
 
 				if(adapter.getAdapterSize() == 0){
@@ -253,6 +257,8 @@ ShowcaseView.OnShowcaseEventListener{
 			}
 
 		});
+
+		setLayoutBackground();
 
 		if(!SharedPreferenceUtils.getFirstTimeRun(ctx)){
 			co.hideOnClickOutside = false;
@@ -505,13 +511,13 @@ ShowcaseView.OnShowcaseEventListener{
 
 		dismissButton.setTextColor(fontColor);
 	}
-	
+
 	int notBackHeight = 0;
 
 	private void setBackgroundHeight(Boolean isDismissed){
 		LinearLayout ll1 = (LinearLayout) findViewById(R.id.expandingLayoutId1);
-		
-		
+
+
 		LayoutParams params = ll1.getLayoutParams();
 
 		// Changes the height and width to the specified *pixels*
@@ -543,13 +549,13 @@ ShowcaseView.OnShowcaseEventListener{
 		ll1.setLayoutParams(params);
 	}
 
-	
+
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		
-		
+
+
 
 		unregisterReceiver(mReceiver);
 
@@ -569,7 +575,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 			keyguardLock = null;
 		}
-		
+
 		layout.setAdapter(null);
 
 	}

@@ -385,7 +385,7 @@ public class Utils {
 				n.setIsOddRow(false);
 			}		
 		}else{
-			if(count > 1){
+			if(count > 0){
 				n.setIsOddRow(true);
 			}else{
 				n.setIsOddRow(false);

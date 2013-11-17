@@ -107,8 +107,17 @@
     <string name="dismiss_all_tutorial">Licenziare tutti chiude la schermata di notifica.</string>
     
     <string name="lockscreen_only">Lockscreen Solo</string>
+    <string name="lockscreen_and_popup">Lockscreen e Popup</string>
+    <string name="lockscreen_and_banners">Lockscreen e Banners</string>
     <string name="banners_only">Solo banners</string>
-    <string name="both">entrambi</string>
+    <string name="popup_only">popup Solo</string>    
+    
+    <string name="lockscreen_only_summary">Le notifiche sono visualizzate come popup solo quando lo schermo è bloccato.</string>
+    <string name="lockscreen_and_popup_summary">Le notifiche sono visualizzate come popup quando lo schermo è bloccato, così come quando il telefono è in uso.</string>
+    <string name="lockscreen_and_banners_summary">Le notifiche sono visualizzate come popup quando lo schermo è bloccato e striscioni quando il telefono è in uso.</string>
+    <string name="banners_only_summary">Mostra solo i banner quando il telefono è in uso.</string>
+    <string name="popup_only_summary">Mostra solo i popup quando il telefono è in uso.</string>   
+    
     <string name="not_type_desc">Tipo di notifica</string>
     
     

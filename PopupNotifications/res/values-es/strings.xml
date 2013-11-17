@@ -108,8 +108,16 @@
     <string name="dismiss_all_tutorial">Descartar Todo cierra la pantalla de notificación.</string>
     
     <string name="lockscreen_only">Sólo Lockscreen</string>
+    <string name="lockscreen_and_popup">Lockscreen y emergente</string>
+    <string name="lockscreen_and_banners">Lockscreen y banners</string>
     <string name="banners_only">Banners Sólo</string>
-    <string name="both">ambos</string>
+    <string name="popup_only">Sólo emergente</string>    
+    
+    <string name="lockscreen_only_summary">Las notificaciones se muestran como popup sólo cuando la pantalla está bloqueada.</string>
+    <string name="lockscreen_and_popup_summary">Las notificaciones se muestran como emergente cuando la pantalla está bloqueada, así como cuando el teléfono está en uso.</string>
+    <string name="lockscreen_and_banners_summary">Las notificaciones se muestran como emergente cuando la pantalla está bloqueada y banners cuando el teléfono está en uso.</string>
+    <string name="banners_only_summary">Mostrar solamente las banderas cuando el teléfono está en uso.</string>
+    <string name="popup_only_summary">Mostrar sólo popups cuando el teléfono está en uso.</string>   
     <string name="not_type_desc">Tipo de notificación</string>
     
     

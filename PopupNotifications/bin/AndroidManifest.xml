@@ -26,10 +26,16 @@
          <service android:name="BannerService"/>
         <activity
             android:name="com.bun.popupnotifications.NotificationActivity"
-            android:excludeFromRecents="true"
-            
+            android:excludeFromRecents="true"                       
             android:theme="@style/SampleTheme" >
         </activity>
+        
+         <activity
+            android:name="com.bun.popupnotifications.PopupActivity"
+            android:excludeFromRecents="true"            
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        
         <activity
             android:name="com.bun.popupnotifications.MuteSelectedAppActivity"
             android:label="Muted Apps List"
@@ -60,6 +66,7 @@
         </activity>
         <activity android:name="com.bun.popupnotifications.NotificationPreferenceActivity"
             android:excludeFromRecents="true"
+            android:noHistory="true" 
             >
         </activity>
 

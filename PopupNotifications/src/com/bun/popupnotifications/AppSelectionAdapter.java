@@ -53,7 +53,10 @@ public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 	}
 
 	public void clearNotifications(){
-		nList.clear();
+		for(ApplicationBean ab : nList){
+			ab = null;
+		}
+		
 		nList = null;
 	}
 	@Override
@@ -99,7 +102,9 @@ public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 
 		final ViewHolder holder = (ViewHolder) view.getTag();
 
-		holder.appIcon.setImageDrawable(n.getAppIcon());
+		//holder.appIcon.setImageDrawable(n.getAppIcon());
+		
+		holder.appIcon.setImageDrawable(HelperUtils.getAppIcon(n.getPackageName(), context));
 		
 		holder.appNameText.setText(n.getAppName());
 		

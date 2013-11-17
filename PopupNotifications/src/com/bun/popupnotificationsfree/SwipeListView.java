@@ -274,6 +274,13 @@ public class SwipeListView extends ListView {
     public void setAdapter(ListAdapter adapter) {
         super.setAdapter(adapter);
         touchListener.resetItems();
+        if(adapter == null){
+                touchListener.closeOpenedItems();
+                touchListener = null;
+                setOnTouchListener(null);
+                setOnScrollListener(null);
+                return;
+        }
         adapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {

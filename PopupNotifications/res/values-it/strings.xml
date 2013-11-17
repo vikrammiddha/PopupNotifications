@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Popup Noti Free</string>
+    
+    <string name="hello_world">Hello world!</string>
+    <string name="package_name">com.bun.popupnotificationsfree</string>
+    <string name="crash_toast_text">Ooooops! Notifica Popup Crashed. Raccolta dati!</string>
+    <string name="crash_dialog_title">Notifica Popup è andato in crash</string>
+    <string name="crash_dialog_text">Si è verificato un errore imprevisto costringe il
+     applicazione di fermarsi. Aiutaci a risolvere questo inviandoci i dati di errore,
+     tutto ciò che dovete fare è fare clic su OK.</string>
+    <string name="crash_dialog_comment_prompt">Si potrebbe aggiungere i propri commenti in merito al problema di seguito:</string>
+    <string name="crash_dialog_ok_toast">Grazie!</string>
+    <string name="listViewPosition">1</string>
+    <string name="talkback_fix">Talkback Fix</string>
+    <string name="click_disable">Fare clic su Disattiva</string>
+    <string name="reset_completed">Ripristino Completato</string>
+    <string name="service_warning">Servizio di notifiche pop-up non è in esecuzione al momento. Questo servizio deve essere in esecuzione per voi per ottenere le notifiche.</string>    
+    <string name="tts_warning">A causa di un bug nel software Samsungs \'s, si può sperimentare il telefono per leggere ad alta voce alcune delle vostre azioni. \ N \ nPer evitare questo, è necessario disattivare Samsung TTS e Google TTS. Ciò non influirà qualsiasi applicazione utilizzando TTS funzionalità.</string>
+    
+    <string name="menu_settings">impostazioni</string>
+    <string name="menu_tutorial">Tutorial</string>
+    <string name="menu_rateus">Vota Us</string>
+    
+    <string name="pref_notification_category">Impostazioni di notifica</string>
+    <string name="pref_mute_category">Impostazioni mute</string>
+    <string name="pref_advanced_category">Impostazioni avanzate</string>
+    <string name="pref_others_category">Varie</string>
+    <string name="pref_mute_selected">Mute App selezionatos</string>
+    <string name="pref_sleep_hours">ore di sonno</string>
+    <string name="font_color">Scegli notifica colore del testo.</string>
+    <string name="pref_category_accessibility">Accessibilità Servizio</string>
+    <string name="pref_settings_service_inactive">servizio attivo</string>
+    <string name="samsung_tts">Disabilitare Samsung TTS</string>
+    <string name="google_tts">Disattiva Google TTS</string>
+    <string name="reset_settings">Ripristinare tutte le impostazioni</string>
+    <string name="reset_message">Fare clic su Sì per ripristinare tutte le impostazioni.</string>
+    <string name="blocked_apps">applicazioni bloccate</string>
+    <string name="blocked_apps_summary">Notifiche non appaiono quando queste applicazioni sono in uso.</string>
+    
+    
+    
+    <string name="mute_all_apps">Mute Tutti Apps</string>
+    <string name="mute_this_app">Disattivare questa applicazione</string>
+    <string name="mute_15_mins">Mute per 15 minuti</string>
+    <string name="mute_30_mins">Mute per 30 minuti</string>
+    <string name="mute_1_hour">Mute per 1 ora</string>
+    <string name="mute_4_hours">Mute per 4 ore</string>
+    <string name="mute_8_hours">Mute per 8 ore</string>
+    <string name="mute_foreever">Mute For Ever</string>
+    <string name="start_time">Ora di inizio</string>
+    <string name="end_time">Ora fine</string>
+    
+    <string name="market_url">market://details?id=com.bun.popupnotificationsfree</string>
+    <string name="market_url_paid">market://details?id=com.bun.popupnotifications</string>
+    <string name="follow_on_facebook">Segui su facebook</string>
+    <string name="facebook_url">https://www.facebook.com/bunnydecoder</string>
+    
+    
+    <string name="popup_not_service">Popup Noti Free Service</string>
+    <string name="activate">Attiva</string>
+    <string name="later">Più tardi</string>
+    <string name="search">Cerca</string>
+    <string name="loading">caricamento....</string>
+    <string name="com">com.</string>
+    <string name="for_ever">FOR EVER</string>
+    <string name="mute_app">App Mute</string>
+    <string name="save">Salva</string>
+    <string name="cancel">annullare</string>
+    <string name="service_active">servizio attivo</string>
+    <string name="service_inactive">servizio inattivo</string>
+    <string name="warning">Attenzione</string>
+    <string name="close">chiudere</string>
+    <string name="upgrade">Aggiornamento</string>
+    <string name="yes">Sì</string>
+    <string name="all_apps_muted_till">Tutte le applicazioni sordina fino: </string>
+    <string name="all_apps_muted">Tutte le applicazioni sordina</string>
+    <string name="broadcast_receiver_string">com.bun.popupnotificationfree.NOTIFICATION_CHANGED</string>
+    <string name="muted_till">sordina fino: </string>
+    <string name="muted">silenziato </string>
+    <string name="mins_15"> per 15 minuti</string>
+    <string name="mins_30"> per 30 minuti</string>
+    <string name="hour_1"> per 1 ora</string>
+    <string name="hour_4"> per 4 ore</string>
+    <string name="hour_8"> per 8 ore</string>
+    <string name="forever"> per sempre</string>
+    <string name="search_applications">ricerca Applicazione</string>
+    <string name="mute_selected_apps">Mute Apps selezionati</string>
+    <string name="dismiss_all">licenziare tutti</string>
+    <string name="show_expanded_notifications">Mostra notifiche Expanded</string>
+    <string name="expanded_not_summary">Notifiche estese Consente di visualizzare separatamente ciascuno notifiche.</string>
+    <string name="show_fullscreen_not">Mostra notifiche FullScreen</string>
+    <string name="show_fullscreen_summary">Notifiche verranno mostrati a schermo intero invece di una piccola finestra.</string>
+    <string name="not_text_color">Notifica colore del testo</string>
+    <string name="not_back_color">Notifica colore di sfondo</string>
+    <string name="set_transparent_background">Impostare sfondo trasparente</string>
+    <string name="wake_on_not">Wake sulla notifica</string>
+    <string name="lock_screen_only">Blocca schermo solo</string>
+    <string name="lock_screen_only_summary">Visualizza notifiche solo quando lo schermo è bloccato.</string>
+    <string name="pref_upgrade_message">Disponibile nella versione a pagamento</string>
+    <string name="display_contact">Visualizzare le immagini Contatto</string>
+    <string name="upgrade_to_paid">Aggiornamento alla versione a pagamento</string>
+    
+    
+    <string name="left_swipe">Swipe sinistra sulla notifica per chiudere la notifica.</string>
+    <string name="right_swipe">Swipe a destra sulla notifica per aprire l\'App.</string>
+    <string name="long_press">Premere a lungo sulla notifica per disattivare l\'notifiche.</string>
+    <string name="start_tutorial">avviare Tutorial</string>
+    <string name="start_tutorial_click">Fare clic sul pulsante Start Tutorial per iniziare il tutorial.</string>
+    <string name="dismiss_all_tutorial">Licenziare tutti chiude la schermata di notifica.</string>
+    <string name="upgrade_now_message">Aggiornamento alla versione a pagamento per sbloccare sotto le caratteristiche: \ n1) Mute una o più apps \ n2) Attiva ore di sonno \ n3)
+         Abilita Bloccato apps \ n4) Disabilita svegliarsi la schermata a nuova notifica \ n5) Sfondo trasparente \ nMany più</string>
+    
+    
+    
+    <string name="lockscreen_only">Lockscreen Solo</string>
+    <string name="lockscreen_and_popup">Lockscreen e Popup</string>
+    <string name="lockscreen_and_banners">Lockscreen e Banners</string>
+    <string name="banners_only">Solo banners</string>
+    <string name="popup_only">popup Solo</string>    
+    
+    <string name="lockscreen_only_summary">Le notifiche sono visualizzate come popup solo quando lo schermo è bloccato.</string>
+    <string name="lockscreen_and_popup_summary">Le notifiche sono visualizzate come popup quando lo schermo è bloccato, così come quando il telefono è in uso.</string>
+    <string name="lockscreen_and_banners_summary">Le notifiche sono visualizzate come popup quando lo schermo è bloccato e striscioni quando il telefono è in uso.</string>
+    <string name="banners_only_summary">Mostra solo i banner quando il telefono è in uso.</string>
+    <string name="popup_only_summary">Mostra solo i popup quando il telefono è in uso.</string>   
+    
+    <string name="not_type_desc">Tipo di notifica</string>
+    
+
+</resources>

@@ -380,11 +380,19 @@ public class Utils {
 			}
 		}
 
-		if(count%2 != 0){
-			n.setIsOddRow(true);
+		if(n.getPackageName().equals("com.whatsapp")){
+			if(count%2 != 0){
+				n.setIsOddRow(true);
+			}else{
+				n.setIsOddRow(false);
+			}                
 		}else{
-			n.setIsOddRow(false);
-		}		
+			if(count > 0){
+				n.setIsOddRow(true);
+			}else{
+				n.setIsOddRow(false);
+			}
+		}
 
 		return false;
 

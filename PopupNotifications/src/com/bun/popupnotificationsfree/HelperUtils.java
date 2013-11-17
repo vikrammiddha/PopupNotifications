@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
 
@@ -103,7 +104,7 @@ public class HelperUtils {
 					cal1.add(Calendar.DATE, 1);
 					currentDateTime = cal1.getTime();
 				}
-				
+
 
 			}
 		} catch (ParseException e) {
@@ -123,7 +124,7 @@ public class HelperUtils {
                         return true;
                 }*/
 
-                return false;
+		return false;
 	}
 
 	public static Boolean isExpandedNotifications(Context ctx){
@@ -209,30 +210,47 @@ public class HelperUtils {
 
 			String notType = (String)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "notification_type_preference", "STRING");
 			KeyguardManager myKM = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE);
-			
-			if(notType.equals("both")){
-				return true;
-				
-			}else if(notType.equals("lockscreen")){
-				
-				if( myKM.inKeyguardRestrictedInputMode()) {
+
+			if(myKM.inKeyguardRestrictedInputMode()){
+				if(notType.equals("lockscreen") || notType.equals("lockscreen_popup") || notType.equals("lockscreen_banners")){
 					return true;
 				}
-				
-			}else if(notType.equals("banner")){
-				if( !myKM.inKeyguardRestrictedInputMode()) {
+			}else{
+				if(!notType.equals("lockscreen")){
 					return true;
 				}
-				
-			} else{
-				return false;
 			}
+
 		}catch(Exception e){
 			return false;
 		}                
 
 		return false;
 
+	}
+
+	public static Integer getNotType(Context ctx){
+		try{
+			String notType = (String)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "notification_type_preference", "STRING");
+
+			if(notType.equals("lockscreen")){
+				return Constants.NOT_LOCKSCREEN;
+			}else if(notType.equals("lockscreen_popup")){
+				return Constants.LOCKSCREEN_POPUP;
+			}else if(notType.equals("lockscreen_banners")){
+				return Constants.LOCKSCREEN_BANNER;
+			}else if(notType.equals("popup")){
+				return Constants.NOT_POPUP;
+			}else if(notType.equals("banners")){
+				return Constants.NOT_BANNERS;
+			}
+
+
+		}catch(Exception e){
+			return -1;
+		}
+
+		return -1;
 	}
 
 	public static Boolean isBlockedApp(Context ctx, String packageName){
@@ -253,6 +271,31 @@ public class HelperUtils {
 
 		return false;
 	}
+
+	public static Drawable getAppIcon(String packageName, Context ctx){
+
+
+		Drawable icon = null;
+		try{
+			icon = ctx.getPackageManager().getApplicationIcon(packageName);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		if(icon == null){
+			icon = ctx.getResources().getDrawable( R.drawable.ic_launcher );
+		}
+
+		return icon;
+	}
+
+	public static Boolean isVibrate(Context ctx){
+
+		Boolean val = (Boolean) SharedPreferenceUtils.getGenericPreferenceValue(ctx, "vibrate", "BOOLEAN");
+
+		return val;
+	}
+
 
 	public static void upgradeNowDialogue(final Context ctx){
 

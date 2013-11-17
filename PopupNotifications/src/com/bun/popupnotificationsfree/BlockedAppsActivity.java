@@ -237,6 +237,9 @@ public class BlockedAppsActivity extends SherlockActivity{
 	}
 
 	private Drawable getAppIcon(String packageName){
+		
+		return null;
+		/*
 		Drawable icon = null;
 		try{
 			icon = getApplicationContext().getPackageManager().getApplicationIcon(packageName);
@@ -249,6 +252,7 @@ public class BlockedAppsActivity extends SherlockActivity{
 		}
 
 		return icon;
+		*/
 	}
 
 	@Override

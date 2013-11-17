@@ -243,17 +243,25 @@ public class NotificationService extends AccessibilityService {
 				Utils.getNotList().add(0,bean);
 				Log.d("Notification Service", "New Intent----");
 				Intent dialogIntent;
-				if(Utils.isScreenLocked(ctx)){
+				if((Utils.isScreenLocked(ctx) && (HelperUtils.getNotType(ctx) == Constants.NOT_LOCKSCREEN 
+						|| HelperUtils.getNotType(ctx) == Constants.LOCKSCREEN_POPUP || HelperUtils.getNotType(ctx) == Constants.LOCKSCREEN_BANNER)) 
+						){
 					dialogIntent = new Intent(getBaseContext(), NotificationActivity.class);
 					dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					getApplication().startActivity(dialogIntent);
-				}else{
+				}else if(!Utils.isScreenLocked(ctx) && (HelperUtils.getNotType(ctx) == Constants.NOT_POPUP  || HelperUtils.getNotType(ctx) == Constants.LOCKSCREEN_POPUP ) ){
+					dialogIntent = new Intent(getBaseContext(), PopupActivity.class);
+					dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					getApplication().startActivity(dialogIntent);
+				}
+				else if(HelperUtils.getNotType(ctx) == Constants.NOT_BANNERS || HelperUtils.getNotType(ctx) == Constants.LOCKSCREEN_BANNER){
+					Log.d("Notification Service", "Starting new service.");
 					//dialogIntent = new Intent(getBaseContext(), BannerActivity.class);
 					Utils.isServiceRunning = true;
 					stopService(new Intent(ctx, BannerService.class));
 					startService(new Intent(ctx, BannerService.class));
 
-				}           
+				}        
 			}
 
 			if(HelperUtils.wakeOnNotification(ctx)){
@@ -261,6 +269,8 @@ public class NotificationService extends AccessibilityService {
 			}
 
 		}
+
+		event = null;
 
 	}
 
@@ -574,7 +584,7 @@ public class NotificationService extends AccessibilityService {
 			detectNotificationIds();
 			if (Build.MODEL.toLowerCase().contains("NEXUS") && SharedPreferenceUtils.getFirstTimeRun(ctx))
 			{
-				registerProximitySensor();
+				//registerProximitySensor();
 			}
 
 		}catch(Exception e){
@@ -641,7 +651,7 @@ public class NotificationService extends AccessibilityService {
 					Utils.reenableKeyguard(ctx, true);					
 				}
 				stopService(new Intent(ctx, BannerService.class));
-                Utils.isServiceRunning = false;
+				Utils.isServiceRunning = false;
 			} else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
 				isScreenOn = true;
 				Utils.isScreenOn = true;

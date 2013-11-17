@@ -92,6 +92,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setTalkBackFix();
 
 		setResetSettingsListener();
+		
+		setVibratePreference();
 	}
 
 	private void setBlockedAppListener(){
@@ -313,17 +315,23 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		if("".equals(notTypePref)){
 			ListPreference lp = (ListPreference)customPref;
-			lp.setValue("both");
-			customPref.setSummary(getString(R.string.both));
+			lp.setValue("lockscreen_banners");
+			customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
 		}else{
-			if("both".equals(notTypePref)){
-				customPref.setSummary(getString(R.string.both));
-			}else if("lockscreen".equals(notTypePref)){
-				customPref.setSummary(getString(R.string.lockscreen_only));
-			}else if("banner".equals(notTypePref)){
-				customPref.setSummary(getString(R.string.banners_only));
+			String summary = getString(R.string.lockscreen_and_banners_summary);
+			if("lockscreen".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.lock_screen_only_summary));
+			}else if("lockscreen_popup".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.lockscreen_and_popup_summary));
+			}else if("lockscreen_banners".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
+			}else if("popup".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.popup_only_summary));
+			}else if("banners".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.banners_only_summary));
 			}
 		}
+
 
 
 		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
@@ -401,6 +409,25 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 	private void setWakeUpPreference(){
 
 		final Preference customPref = (Preference) findPreference("wake_up");
+
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				HelperUtils.upgradeNowDialogue(ctx);
+
+
+				return false;
+			}
+
+		});
+	}
+	
+	private void setVibratePreference(){
+
+		final Preference customPref = (Preference) findPreference("vibrate");
 
 		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 

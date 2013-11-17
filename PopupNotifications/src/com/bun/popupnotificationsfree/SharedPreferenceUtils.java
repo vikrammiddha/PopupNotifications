@@ -191,32 +191,48 @@ public class SharedPreferenceUtils {
 	}
 
 	public static void loadDefaultSettings(Context ctx){
-		setAllowedApps(ctx,"com.google.android.gsf", "");
-		setAllowedApps(ctx,"com.whatsapp", "");
-		setAllowedApps(ctx,"com.android.email", "");
-		setAllowedApps(ctx,"com.google.android.gm", "");
-		setAllowedApps(ctx,"com.android.mms", "");
-		setAllowedApps(ctx,"com.android.phone", "");
-		setAllowedApps(ctx,"com.facebook.katana", "");
-		setAllowedApps(ctx,"com.tencent.mm", "");
-		setAllowedApps(ctx,"com.linkedin.android", "");
-		setAllowedApps(ctx,"com.google.android.talk", "");		
-		setAllowedApps(ctx,"com.sonyericsson.conversations", "");
-
-		//setBlockedApps(ctx,"com.google.android.youtube", "");
-		//setBlockedApps(ctx,"com.google.android.videos", "");
-
+		
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
-		sp.edit().putBoolean("expanded_notification", true).commit();
-		sp.edit().putBoolean("full_screen_notification", false).commit();
-		//sp.edit().putBoolean("transparent_background", true).commit();
-		sp.edit().putBoolean("wake_up", true).commit();
-		//sp.edit().putBoolean("mute_sleep_hours", true).commit();
 
-		sp.edit().putString("start_sleep_time", "23:00").commit();
-		sp.edit().putString("end_sleep_time", "07:00").commit();
-		sp.edit().putInt("font_color", Color.WHITE);
-		sp.edit().putInt("background_color_not", Color.BLACK);
+		if(!getFirstTimeRun(ctx)){
+			setAllowedApps(ctx,"com.google.android.gsf", "");
+			setAllowedApps(ctx,"com.whatsapp", "");
+			setAllowedApps(ctx,"com.android.email", "");
+			setAllowedApps(ctx,"com.google.android.gm", "");
+			setAllowedApps(ctx,"com.android.mms", "");
+			setAllowedApps(ctx,"com.android.phone", "");
+			setAllowedApps(ctx,"com.facebook.katana", "");
+			setAllowedApps(ctx,"com.tencent.mm", "");
+			setAllowedApps(ctx,"com.linkedin.android", "");
+			setAllowedApps(ctx,"com.google.android.talk", "");		
+			setAllowedApps(ctx,"com.sonyericsson.conversations", "");
+
+			//setBlockedApps(ctx,"com.google.android.youtube", "");
+			//setBlockedApps(ctx,"com.google.android.videos", "");
+
+			
+			sp.edit().putBoolean("expanded_notification", true).commit();
+			sp.edit().putBoolean("full_screen_notification", false).commit();
+			//sp.edit().putBoolean("transparent_background", true).commit();
+			sp.edit().putBoolean("wake_up", true).commit();
+			//sp.edit().putBoolean("mute_sleep_hours", true).commit();
+
+			sp.edit().putString("start_sleep_time", "23:00").commit();
+			sp.edit().putString("end_sleep_time", "07:00").commit();
+			sp.edit().putInt("font_color", Color.WHITE);
+			sp.edit().putInt("background_color_not", Color.BLACK);
+			sp.edit().putString("notification_type_preference", "lockscreen_banners").commit();
+			
+		}
+		
+		sp.edit().putBoolean("vibrate", false).commit();
+		
+		String notTypeValue = sp.getString("notification_type_preference", "");
+        
+        if(notTypeValue.equals("") || (!notTypeValue.equals("lockscreen") && !notTypeValue.equals("lockscreen_popup") 
+                                        && !notTypeValue.equals("lockscreen_banners") && !notTypeValue.equals("popup") && !notTypeValue.equals("banners"))){
+                sp.edit().putString("notification_type_preference", "lockscreen_banners").commit();
+        }
 
 	}
 

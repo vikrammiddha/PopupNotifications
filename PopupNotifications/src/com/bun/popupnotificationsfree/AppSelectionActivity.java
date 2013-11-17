@@ -318,7 +318,9 @@ public class AppSelectionActivity extends SherlockActivity{
 	}
 
 	private Drawable getAppIcon(String packageName){
-		Drawable icon = null;
+		
+		return null;
+		/*Drawable icon = null;
 		try{
 			icon = getApplicationContext().getPackageManager().getApplicationIcon(packageName);
 		}catch(Exception e){
@@ -329,7 +331,7 @@ public class AppSelectionActivity extends SherlockActivity{
 			icon = this.getResources().getDrawable( R.drawable.ic_launcher );
 		}
 
-		return icon;
+		return icon;*/
 	}
 
 	@Override

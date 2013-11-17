@@ -35,9 +35,13 @@
         <ListPreference
             android:entries="@array/notTypes"
             android:entryValues="@array/notTypeValues"
-            android:key="notification_type_preference"
-            android:summary="@string/both"
+            android:key="notification_type_preference"            
             android:title="@string/not_type_desc" />
+        
+        <CheckBoxPreference
+            android:key="vibrate"
+            android:summary=""
+            android:title="@string/vibrate_summary" />   
         
     </PreferenceScreen>
     <PreferenceScreen

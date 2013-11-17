@@ -46,6 +46,7 @@ public class BannerService extends Service{
 	int rowPos = -1;
 	CountDownTimer cTimer;
 	Handler mHandler=new Handler();
+	BaseSwipeListViewListener listener;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -96,7 +97,7 @@ public class BannerService extends Service{
 				WindowManager.LayoutParams.WRAP_CONTENT,
 				WindowManager.LayoutParams.TYPE_PHONE,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN |
-				WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,                
+				WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,	        
 				PixelFormat.TRANSLUCENT);
 
 
@@ -108,7 +109,7 @@ public class BannerService extends Service{
 
 		populateAdapter(true);
 
-		sListView.setSwipeListViewListener(new BaseSwipeListViewListener() {
+		listener = new BaseSwipeListViewListener() {
 
 			@Override
 			public void onOpened(int position, boolean toRight) {
@@ -153,7 +154,6 @@ public class BannerService extends Service{
 
 			@Override
 			public void onClickFrontView(int position) {
-				
 				try {
 					Utils.intentMap.get(adapter.getItem(position).getPackageName()).send();
 				} catch (CanceledException e) {
@@ -165,12 +165,9 @@ public class BannerService extends Service{
 				Utils.intentMap.clear();
 				adapter.removeAllNotifications();
 				adapter.notifyDataSetChanged();
-				sListView.setPadding(0,0,0,0);
-				
-				// Vibrate for 500 milliseconds
-				
+				sListView.setPadding(0,0,0,0);				
 				stopSelf();
-				Log.d("swipe", "onClickFrontView----------");                                
+				Log.d("swipe", "onClickFrontView----------");				
 			}
 
 			@Override
@@ -180,12 +177,15 @@ public class BannerService extends Service{
 			}
 
 			@Override
-			public void onDismiss(int[] reverseSortedPositions) {        
+			public void onDismiss(int[] reverseSortedPositions) {	
 				Log.d("swipe", "onDismiss----------" + rowPos); 
 				if(rowPos >= 0){
 					try {
-						Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-						v.vibrate(250);
+
+						if(HelperUtils.isVibrate(ctx)){
+							Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+							v.vibrate(250);
+						}
 						//Log.d("not activity", "intent----------" + Utils.notList.get(position).getPackageName());
 						//Utils.intentMap.get(Utils.getNotList().get(rowPos).getPackageName()).send();
 						Utils.intentMap.get(adapter.getItem(rowPos).getPackageName()).send();
@@ -195,7 +195,7 @@ public class BannerService extends Service{
 						adapter.removeAllNotifications();
 						adapter.notifyDataSetChanged();
 
-						sListView.setPadding(0,0,0,0);
+						sListView.setPadding(0,0,0,0);						
 						stopSelf();
 						return;
 						//Utils.notList.clear();
@@ -204,8 +204,10 @@ public class BannerService extends Service{
 						e.printStackTrace();
 					}
 				}
-				Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-				v.vibrate(250);
+				if(HelperUtils.isVibrate(ctx)){
+					Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+					v.vibrate(250);
+				}
 				for (int position : reverseSortedPositions) {
 					Log.d("swipe", "onDismiss----------" + position);
 					try{
@@ -221,7 +223,7 @@ public class BannerService extends Service{
 				if(adapter.getAdapterSize() == 0){
 
 					Utils.getNotList().clear();
-					Utils.intentMap.clear();        
+					Utils.intentMap.clear();	
 				}
 				adapter.notifyDataSetChanged();
 
@@ -234,11 +236,13 @@ public class BannerService extends Service{
 				}
 
 				sListView.setPadding(0, 0, 0, 0);
-
+				cTimer.cancel();
 				stopSelf();
 			}
 
-		});        
+		};
+
+		sListView.setSwipeListViewListener(listener);	
 
 
 
@@ -257,14 +261,14 @@ public class BannerService extends Service{
 			public void onTick(long millisUntilFinished) {
 				/*if(!Utils.isServiceRunning){
 
-                                        Utils.getNotList().clear();
-                                        Utils.intentMap.clear();
-                                        adapter.removeAllNotifications();
-                                        adapter.notifyDataSetChanged();
-                                        sListView.setPadding(0, 0, 0, 0);
-                                        cTimer.cancel();
+					Utils.getNotList().clear();
+					Utils.intentMap.clear();
+					adapter.removeAllNotifications();
+					adapter.notifyDataSetChanged();
+					sListView.setPadding(0, 0, 0, 0);
+					cTimer.cancel();
 
-                                }*/
+				}*/
 
 
 				// TODO Auto-generated method stub
@@ -312,75 +316,75 @@ public class BannerService extends Service{
 		}
 		/*
 
-                for(NotificationBean n : Utils.getNotList()){
-                        if(n.getIsOddRow())
-                                continue;
-                        adapter.addNotification(n);
+		for(NotificationBean n : Utils.getNotList()){
+			if(n.getIsOddRow())
+				continue;
+			adapter.addNotification(n);
 
-                }
+		}
 
 		 */
-		 adapter.notifyDataSetChanged();
+		adapter.notifyDataSetChanged();
 
-		 sListView.setAdapter(adapter);
+		sListView.setAdapter(adapter);
 
-		 sListView.setPadding(10, 10, 10, 10);
+		sListView.setPadding(10, 10, 10, 10);
 
-		 if(adapter.getCount() > 3){
-			 View item = adapter.getView(0, null, sListView);
-			 item.measure(0, 0);         
-			 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, (int) (3.5 * item.getMeasuredHeight()));                        
-			 sListView.setLayoutParams(params);
-		 }
-
-
-
-		 //LinearLayout ll = (LinearLayout) findViewById(R.id.expandingLayoutId);                        
-
-		 //setBackgroundHeight(false);
-
-		 //SwipeListView ll1 = (SwipeListView) findViewById(R.id.bannerListViewId);                
+		if(adapter.getCount() > 3){
+			View item = adapter.getView(0, null, sListView);
+			item.measure(0, 0);         
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, (int) (3.5 * item.getMeasuredHeight()));			
+			sListView.setLayoutParams(params);
+		}
 
 
-		 int fontColor = HelperUtils.getFontColor(ctx);
-		 if(fontColor == 0){
-			 fontColor = Color.WHITE;
-		 }
 
-		 int bgColor = HelperUtils.getBackgroundColor(ctx);
-		 if(bgColor == 0){
-			 bgColor = Color.BLACK;
-		 }
+		//LinearLayout ll = (LinearLayout) findViewById(R.id.expandingLayoutId);			
 
-		 if(HelperUtils.getBackgroundColor(ctx) != null ){
-			 int strokeWidth = 3; // 3dp
-			 int roundRadius = 10; // 8dp
-			 int strokeColor = Color.parseColor("#B1BCBE");
-			 int fillColor = bgColor;
+		//setBackgroundHeight(false);
 
-			 GradientDrawable gd = new GradientDrawable();
-			 gd.setColor(fillColor);
-			 //gd.setCornerRadius(roundRadius);
-			 //gd.setStroke(strokeWidth, strokeColor);        
-
-			 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-				 sListView.setBackground(gd);
-			 }else{
-				 sListView.setBackgroundDrawable(gd);
-			 }
+		//SwipeListView ll1 = (SwipeListView) findViewById(R.id.bannerListViewId);		
 
 
-			 if(HelperUtils.isTransparentBackround(ctx)){
-				 sListView.getBackground().setAlpha(500);
+		int fontColor = HelperUtils.getFontColor(ctx);
+		if(fontColor == 0){
+			fontColor = Color.WHITE;
+		}
 
-			 }
-		 }
+		int bgColor = HelperUtils.getBackgroundColor(ctx);
+		if(bgColor == 0){
+			bgColor = Color.BLACK;
+		}
 
-		 if(cTimer != null){
-			 cTimer.cancel();
-			 createTimer();
-			 cTimer.start();
-		 }
+		if(HelperUtils.getBackgroundColor(ctx) != null ){
+			int strokeWidth = 3; // 3dp
+			int roundRadius = 10; // 8dp
+			int strokeColor = Color.parseColor("#B1BCBE");
+			int fillColor = bgColor;
+
+			GradientDrawable gd = new GradientDrawable();
+			gd.setColor(fillColor);
+			//gd.setCornerRadius(roundRadius);
+			//gd.setStroke(strokeWidth, strokeColor);	
+
+			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+				sListView.setBackground(gd);
+			}else{
+				sListView.setBackgroundDrawable(gd);
+			}
+
+
+			if(HelperUtils.isTransparentBackround(ctx)){
+				sListView.getBackground().setAlpha(500);
+
+			}
+		}
+
+		if(cTimer != null){
+			cTimer.cancel();
+			createTimer();
+			cTimer.start();
+		}
 
 	}
 
@@ -418,7 +422,7 @@ public class BannerService extends Service{
 				@Override
 				public void onAnimationEnd(Animation animation) {
 					Log.d("test", "Animation ending=========");
-					sListView.clearAnimation();
+					//sListView.clearAnimation();
 
 
 				}
@@ -427,24 +431,44 @@ public class BannerService extends Service{
 			new Handler().postDelayed(new Runnable() {
 				@Override
 				public void run() {
-					Utils.getNotList().clear();
-					Utils.intentMap.clear();                                        
-					adapter.removeAllNotifications();
-					adapter.notifyDataSetChanged();
-					sListView.setPadding(0, 0, 0, 0);
-					cTimer.cancel();
-					Utils.isServiceRunning = false;                
-					layout.removeAllViews();
+					cleanMemory();
+
 				}
 			}, 500);
+
 		}catch(Exception e){
 
-		}                
+		}		
 
 
 		//cTimer.cancel();
 
-		Log.d("test", "Destrouy=======");
+
+
+	}
+
+	private void cleanMemory(){
+		Log.d("Banner Service", "Clearing memory=======");
+		listener = null;
+		Utils.getNotList().clear();
+		Utils.intentMap.clear();					
+		adapter.removeAllNotifications();
+		adapter.notifyDataSetChanged();
+		sListView.setPadding(0, 0, 0, 0);
+		cTimer.cancel();
+		Utils.isServiceRunning = false;		
+		layout.removeAllViews();	
+
+		sListView.setAdapter(null);
+		sListView.setSwipeListViewListener(null);
+		sListView.clearAnimation();
+
+		sListView = null;
+		ctx = null;
+
+		adapter = null;
+		layout.removeAllViews();
+		layout = null;
 
 	}
 

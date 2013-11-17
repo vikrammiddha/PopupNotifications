@@ -209,8 +209,10 @@ ShowcaseView.OnShowcaseEventListener{
 				PendingIntent p = null;
 				if(rowPos >= 0){
 					try {
-						Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-						v.vibrate(250);
+						if(HelperUtils.isVibrate(ctx)){
+							Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+							v.vibrate(250);
+						}
 						if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
 							getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 						}else{
@@ -237,8 +239,10 @@ ShowcaseView.OnShowcaseEventListener{
 						e.printStackTrace();
 					}
 				}
-				Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-				v.vibrate(250);
+				if(HelperUtils.isVibrate(ctx)){
+					Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+					v.vibrate(250);
+				}
 				for (int position : reverseSortedPositions) {
 					Log.d("swipe", "onDismiss----------" + position);
 					try{
@@ -515,7 +519,9 @@ ShowcaseView.OnShowcaseEventListener{
 			if(ll1.getHeight() >= (int)(screenHeight * 0.5) && !isDismissed){
 				params.height = (int)(screenHeight * 0.5);
 			}else{
-				if(isDismissed && layout.getHeight() >= ll1.getHeight() ){
+				//if(isDismissed && ll1.getHeight() >= (int)(screenHeight * 0.5)){                                
+				Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
+				if(isDismissed && (layout.getHeight() + dismissButton.getHeight()) >= (int)(screenHeight * 0.5) ){
 					params.height = (int)(screenHeight * 0.5);
 				}else{
 					params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -552,6 +558,8 @@ ShowcaseView.OnShowcaseEventListener{
 
 			keyguardLock = null;
 		}
+		
+		layout.setAdapter(null);
 
 	}
 

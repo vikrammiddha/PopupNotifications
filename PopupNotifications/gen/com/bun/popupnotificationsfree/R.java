@@ -304,6 +304,11 @@ containing a value of this type.
         public static final int all_apps_muted=0x7f070040;
         public static final int all_apps_muted_till=0x7f07003f;
         public static final int app_name=0x7f070001;
+        public static final int array_1=0x7f07006c;
+        public static final int array_2=0x7f07006d;
+        public static final int array_3=0x7f07006e;
+        public static final int array_4=0x7f07006f;
+        public static final int array_5=0x7f070070;
         public static final int banners_only=0x7f070064;
         public static final int banners_only_summary=0x7f07006a;
         public static final int blocked_apps=0x7f07001f;
@@ -405,7 +410,7 @@ containing a value of this type.
         public static final int upgrade=0x7f07003d;
         public static final int upgrade_now_message=0x7f070060;
         public static final int upgrade_to_paid=0x7f070059;
-        public static final int vibrate_summary=0x7f07006c;
+        public static final int vibrate_summary=0x7f070071;
         public static final int wake_on_not=0x7f070054;
         public static final int warning=0x7f07003b;
         public static final int yes=0x7f07003e;

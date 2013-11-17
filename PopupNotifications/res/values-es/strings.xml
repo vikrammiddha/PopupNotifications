@@ -128,5 +128,14 @@
     <string name="popup_only_summary">Mostrar sólo popups cuando el teléfono está en uso.</string>   
     <string name="not_type_desc">Tipo de notificación</string>
     
+    <string name="array_1">lockscreen</string>
+    <string name="array_2">lockscreen_popup</string>
+    <string name="array_3">lockscreen_banners</string>
+    <string name="array_4">popup</string>
+    <string name="array_5">banners</string>
+    <string name="ok">OK</string>
+    
+    <string name="vibrate_summary">Vibrar al golpe</string>
+    
 
 </resources>

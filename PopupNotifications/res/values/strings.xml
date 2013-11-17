@@ -129,8 +129,14 @@
     
     <string name="not_type_desc">Notification Type</string>
     
+    <string name="array_1">lockscreen</string>
+    <string name="array_2">lockscreen_popup</string>
+    <string name="array_3">lockscreen_banners</string>
+    <string name="array_4">popup</string>
+    <string name="array_5">banners</string>
     
-    <string name="vibrate_summary">Vibrate on swipe</string>
+    
+    <string name="vibrate_summary">Vibrate on swipe</string> 
     
 
 </resources>

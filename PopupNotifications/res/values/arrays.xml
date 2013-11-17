@@ -9,11 +9,11 @@
         
     </string-array>
     <string-array name="notTypeValues">
-        <item name="1">lockscreen</item>
-        <item name="2">lockscreen_popup</item>
-        <item name="3">lockscreen_banners</item>
-        <item name="4">popup</item>
-        <item name="5">banners</item>
+        <item name="1">@string/array_1</item>
+        <item name="2">@string/array_2</item>
+        <item name="3">@string/array_3</item>
+        <item name="4">@string/array_4</item>
+        <item name="5">@string/array_5</item>
         
     </string-array>
      

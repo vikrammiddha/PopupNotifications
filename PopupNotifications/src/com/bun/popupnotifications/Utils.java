@@ -310,23 +310,23 @@ public class Utils {
 	}
 
 
-	public Boolean performValidation(AccessibilityEvent event){
+	public Boolean performValidation(Notification n, String packageName){
 
-		Notification n = (Notification) event.getParcelableData();
+		 //= 
 
 		if(n == null || ((n.flags & Notification.FLAG_NO_CLEAR) == Notification.FLAG_NO_CLEAR) ||
 				((n.flags & Notification.FLAG_ONGOING_EVENT) == Notification.FLAG_ONGOING_EVENT)){
 			return false;
 		}
 
-		if(isForgroundApp(ctx, event.getPackageName().toString())){
+		if(isForgroundApp(ctx, packageName)){
 			KeyguardManager myKM = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE);
 			if(!myKM.inKeyguardRestrictedInputMode()) {
 				return false;
 			}
 		}
 
-		String appMuteDate = SharedPreferenceUtils.getAppData(ctx, event.getPackageName().toString());
+		String appMuteDate = SharedPreferenceUtils.getAppData(ctx, packageName);
 
 		String allAppMuteDate = SharedPreferenceUtils.getAppData(ctx, "com.AA");
 
@@ -336,7 +336,7 @@ public class Utils {
 			}
 		}
 
-		if(HelperUtils.isBlockedApp(ctx,event.getPackageName().toString())){
+		if(HelperUtils.isBlockedApp(ctx,packageName)){
 			return false;
 		}
 
@@ -357,7 +357,7 @@ public class Utils {
 
 		if(appMuteDate == null || "".equals(appMuteDate)){
 			return true;
-		}else if(HelperUtils.isBlockedTime(appMuteDate, ctx, event.getPackageName().toString())){
+		}else if(HelperUtils.isBlockedTime(appMuteDate, ctx, packageName)){
 			return false;
 		}
 
@@ -529,7 +529,15 @@ public class Utils {
 
 	private static String accServiceId = "com.bun.popupnotifications/com.bun.popupnotifications.NotificationService";
 
-	public static boolean isAccessibilityEnabled(Context context) {	  
+	public static boolean isAccessibilityEnabled(Context context) {
+		
+		if(context.getResources().getBoolean(R.bool.is_new_service_enabled)){
+			if(NewNotificationService.getInstance() != null){
+				return true;
+			}else{
+				return false;
+			}
+		}
 
 		int accessibilityEnabled = 0;
 		final String LIGHTFLOW_ACCESSIBILITY_SERVICE = "com.example.test/com.example.text.ccessibilityService";

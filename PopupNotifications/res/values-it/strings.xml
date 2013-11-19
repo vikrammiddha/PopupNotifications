@@ -120,9 +120,39 @@
     
     <string name="not_type_desc">Tipo di notifica</string>
     
+    <string name="array_1">lockscreen</string>
+    <string name="array_2">lockscreen_popup</string>
+    <string name="array_3">lockscreen_banners</string>
+    <string name="array_4">popup</string>
+    <string name="array_5">banners</string>
+    <string name="ok">OK</string>
+    
+    <string name="vibrate_summary">Vibra il colpo</string>
+    
+    <string name="sync_desc">Sincronizza con la barra di stato</string>
+    <string name="array_s_1">none</string>
+    <string name="array_s_2">one_way</string>
+    <string name="array_s_3">two_way</string>    
+    <string name="none_s_1">Nessuno</string>
+    <string name="one_way">Un modo Sync</string>
+    <string name="two_way">Modo sincronizzare due</string>
+    <string name="none_s_1_summary">No Sync tra barra di stato e notifiche di questa applicazione (4.3 e superiori).</string>
+    <string name="one_way_summary">Rimuove le notifiche dalla barra di stato respinto da questa applicazione (4.3 e superiori).</string>
+    <string name="two_way_summary">Entrambi i modi di sincronizzazione tra barra di stato e questa applicazione (4.3 e superiori).</string>
+    
+    <string name="close_all">chiudere</string>
+    
+    <string name="dismiss_all_left_desc">Ignora tutto il swip sinistrae</string>
+    <string name="dismiss_no_all_left_summary">Respingere specifica comunicazione della app su scorrere a sinistra sulla lockscreen.</string>
+    <string name="dismiss_all_left_summary">Respingere tutte le notificazioni della stessa App su scorrere a sinistra sulla lockscreen.</string>
     
     
+    <string name="dismiss_all_tutorial">Licenziare tutti chiude la schermata di notifica e cancella le notifiche dalla barra di stato.</string>
+    <string name="close_all_tutorial">Pulsante Chiudi chiude la schermata di notifica solo e non cancella le notifiche di stato da bar.</string>
     
+    <string name="banner_time_desc">Impostare spettacolo tempo Banner (Secondi)</string>
+    <string name="banner_time_summary">Striscione sarà visibile per : </string>
+    <string name="seconds">secondi </string>
     
 
 </resources>

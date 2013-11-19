@@ -1,6 +1,9 @@
 package com.bun.popupnotifications;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 
 import android.annotation.SuppressLint;
@@ -88,6 +91,19 @@ public class NotificationsAdapter extends BaseAdapter{
 			return 0;
 		
 		return nList.size();
+	}
+	
+	public void clearAppNotifications(Set<String> packageSet){
+		Iterator<NotificationBean> iter = nList.iterator();
+		
+		while(iter.hasNext()){
+			
+			NotificationBean nb = iter.next();
+			
+			if(packageSet.contains(nb.getPackageName())){							
+				iter.remove();
+			}
+		}
 	}
 
 	@Override

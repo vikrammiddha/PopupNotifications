@@ -15,6 +15,8 @@ public final class R {
     public static final class array {
         public static final int notTypeValues=0x7f0a0001;
         public static final int notTypes=0x7f0a0000;
+        public static final int syncTypeValues=0x7f0a0003;
+        public static final int syncTypes=0x7f0a0002;
     }
     public static final class attr {
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -168,6 +170,10 @@ containing a value of this type.
          */
         public static final int swipeOpenOnLongPress=0x7f01000a;
     }
+    public static final class bool {
+        public static final int is_new_service_enabled=0x7f0b0001;
+        public static final int is_service_enabled=0x7f0b0000;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -208,7 +214,8 @@ containing a value of this type.
         public static final int touch=0x7f020016;
     }
     public static final class id {
-        public static final int CloseWindowId=0x7f060032;
+        public static final int CloseWindowId=0x7f060033;
+        public static final int CloseWindowId1=0x7f060032;
         public static final int ambilwarna_cursor=0x7f06000e;
         public static final int ambilwarna_dialogView=0x7f06000a;
         public static final int ambilwarna_pref_widget_kotak=0x7f060013;
@@ -219,8 +226,8 @@ containing a value of this type.
         public static final int ambilwarna_viewSatBri=0x7f06000c;
         public static final int ambilwarna_warnaBaru=0x7f060012;
         public static final int ambilwarna_warnaLama=0x7f060011;
-        public static final int appImageSmallId=0x7f060037;
-        public static final int appImageViewId=0x7f060033;
+        public static final int appImageSmallId=0x7f060038;
+        public static final int appImageViewId=0x7f060034;
         public static final int appSelectionCheckBoxId=0x7f060017;
         public static final int appSelectionIconId=0x7f060015;
         public static final int appSelectionMainListViewId=0x7f060014;
@@ -231,13 +238,13 @@ containing a value of this type.
         public static final int choice=0x7f060009;
         public static final int cpRoot=0x7f06001c;
         public static final int dismiss=0x7f060008;
-        public static final int endId=0x7f06003b;
+        public static final int endId=0x7f06003c;
         public static final int expandingLayoutId=0x7f06002f;
         public static final int expandingLayoutId1=0x7f060030;
         public static final int front=0x7f06001a;
         public static final int left=0x7f060006;
         public static final int mainLayoutId=0x7f06002e;
-        public static final int menu_settings=0x7f06003c;
+        public static final int menu_settings=0x7f06003d;
         public static final int mute15min=0x7f060021;
         public static final int mute1hour=0x7f060023;
         public static final int mute30min=0x7f060022;
@@ -256,20 +263,20 @@ containing a value of this type.
         public static final int muteSpecificApp=0x7f06001e;
         public static final int muteforeever=0x7f060026;
         public static final int none=0x7f060003;
-        public static final int notMessageTextId=0x7f060036;
-        public static final int notTimeTextId=0x7f060035;
+        public static final int notMessageTextId=0x7f060037;
+        public static final int notTimeTextId=0x7f060036;
         public static final int notificationsListViewId=0x7f060031;
-        public static final int prefTimePicker=0x7f060039;
+        public static final int prefTimePicker=0x7f06003a;
         public static final int reveal=0x7f060007;
         public static final int right=0x7f060005;
-        public static final int scvId=0x7f060038;
+        public static final int scvId=0x7f060039;
         public static final int searchBoxId=0x7f06001b;
         public static final int showcase_button=0x7f060000;
         public static final int showcase_sub_text=0x7f060002;
         public static final int showcase_title_text=0x7f060001;
-        public static final int startId=0x7f06003a;
-        public static final int tutorial=0x7f06003d;
-        public static final int unreadCountTextId=0x7f060034;
+        public static final int startId=0x7f06003b;
+        public static final int tutorial=0x7f06003e;
+        public static final int unreadCountTextId=0x7f060035;
     }
     public static final class layout {
         public static final int ambilwarna_dialog=0x7f030000;
@@ -291,21 +298,33 @@ containing a value of this type.
         public static final int tutorial_layout=0x7f030010;
     }
     public static final class menu {
-        public static final int notification=0x7f0b0000;
+        public static final int notification=0x7f0c0000;
     }
     public static final class string {
         public static final int activate=0x7f07002f;
         public static final int all_apps_muted=0x7f07003e;
         public static final int all_apps_muted_till=0x7f07003d;
         public static final int app_name=0x7f070001;
-        public static final int banners_only=0x7f07005e;
-        public static final int banners_only_summary=0x7f070063;
+        public static final int array_1=0x7f070065;
+        public static final int array_2=0x7f070066;
+        public static final int array_3=0x7f070067;
+        public static final int array_4=0x7f070068;
+        public static final int array_5=0x7f070069;
+        public static final int array_s_1=0x7f07006c;
+        public static final int array_s_2=0x7f07006d;
+        public static final int array_s_3=0x7f07006e;
+        public static final int banner_time_desc=0x7f07007b;
+        public static final int banner_time_summary=0x7f07007c;
+        public static final int banners_only=0x7f07005d;
+        public static final int banners_only_summary=0x7f070062;
         public static final int blocked_apps=0x7f07001f;
         public static final int blocked_apps_summary=0x7f070020;
         public static final int broadcast_receiver_string=0x7f07003f;
         public static final int cancel=0x7f070037;
         public static final int click_disable=0x7f07000b;
         public static final int close=0x7f07003b;
+        public static final int close_all=0x7f070075;
+        public static final int close_all_tutorial=0x7f07007a;
         public static final int com=0x7f070033;
         public static final int crash_dialog_comment_prompt=0x7f070007;
         public static final int crash_dialog_ok_toast=0x7f070008;
@@ -313,7 +332,10 @@ containing a value of this type.
         public static final int crash_dialog_title=0x7f070005;
         public static final int crash_toast_text=0x7f070004;
         public static final int dismiss_all=0x7f07004a;
-        public static final int dismiss_all_tutorial=0x7f07005a;
+        public static final int dismiss_all_left_desc=0x7f070076;
+        public static final int dismiss_all_left_summary=0x7f070078;
+        public static final int dismiss_all_tutorial=0x7f070079;
+        public static final int dismiss_no_all_left_summary=0x7f070077;
         public static final int end_time=0x7f07002a;
         public static final int expanded_not_summary=0x7f07004c;
         public static final int facebook_url=0x7f07002d;
@@ -332,12 +354,12 @@ containing a value of this type.
         public static final int loading=0x7f070032;
         public static final int lock_screen_only=0x7f070053;
         public static final int lock_screen_only_summary=0x7f070054;
-        public static final int lockscreen_and_banners=0x7f07005d;
-        public static final int lockscreen_and_banners_summary=0x7f070062;
-        public static final int lockscreen_and_popup=0x7f07005c;
-        public static final int lockscreen_and_popup_summary=0x7f070061;
-        public static final int lockscreen_only=0x7f07005b;
-        public static final int lockscreen_only_summary=0x7f070060;
+        public static final int lockscreen_and_banners=0x7f07005c;
+        public static final int lockscreen_and_banners_summary=0x7f070061;
+        public static final int lockscreen_and_popup=0x7f07005b;
+        public static final int lockscreen_and_popup_summary=0x7f070060;
+        public static final int lockscreen_only=0x7f07005a;
+        public static final int lockscreen_only_summary=0x7f07005f;
         public static final int long_press=0x7f070057;
         public static final int market_url=0x7f07002b;
         public static final int menu_rateus=0x7f070011;
@@ -357,14 +379,18 @@ containing a value of this type.
         public static final int mute_this_app=0x7f070022;
         public static final int muted=0x7f070041;
         public static final int muted_till=0x7f070040;
+        public static final int none_s_1=0x7f07006f;
+        public static final int none_s_1_summary=0x7f070072;
         public static final int not_back_color=0x7f070050;
         public static final int not_text_color=0x7f07004f;
-        public static final int not_type_desc=0x7f070065;
+        public static final int not_type_desc=0x7f070064;
         public static final int ok=0x7f070000;
+        public static final int one_way=0x7f070070;
+        public static final int one_way_summary=0x7f070073;
         public static final int package_name=0x7f070003;
         public static final int popup_not_service=0x7f07002e;
-        public static final int popup_only=0x7f07005f;
-        public static final int popup_only_summary=0x7f070064;
+        public static final int popup_only=0x7f07005e;
+        public static final int popup_only_summary=0x7f070063;
         public static final int pref_advanced_category=0x7f070014;
         public static final int pref_category_accessibility=0x7f070019;
         public static final int pref_mute_category=0x7f070013;
@@ -381,6 +407,7 @@ containing a value of this type.
         public static final int save=0x7f070036;
         public static final int search=0x7f070031;
         public static final int search_applications=0x7f070048;
+        public static final int seconds=0x7f07007d;
         public static final int service_active=0x7f070038;
         public static final int service_inactive=0x7f070039;
         public static final int service_warning=0x7f07000d;
@@ -391,9 +418,12 @@ containing a value of this type.
         public static final int start_time=0x7f070029;
         public static final int start_tutorial=0x7f070058;
         public static final int start_tutorial_click=0x7f070059;
+        public static final int sync_desc=0x7f07006b;
         public static final int talkback_fix=0x7f07000a;
         public static final int tts_warning=0x7f07000e;
-        public static final int vibrate_summary=0x7f070066;
+        public static final int two_way=0x7f070071;
+        public static final int two_way_summary=0x7f070074;
+        public static final int vibrate_summary=0x7f07006a;
         public static final int wake_on_not=0x7f070052;
         public static final int warning=0x7f07003a;
         public static final int yes=0x7f07003c;
@@ -403,13 +433,11 @@ containing a value of this type.
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
-
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
-
 
         
 

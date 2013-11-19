@@ -1,8 +1,11 @@
 package com.bun.popupnotifications;
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 
 import com.espian.showcaseview.ShowcaseView;
@@ -39,6 +42,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -93,8 +97,11 @@ ShowcaseView.OnShowcaseEventListener{
 	ShowcaseView sv2;
 	ShowcaseView sv3;
 	ShowcaseView sv4;
+	ShowcaseView sv5;
 
 	ShowcaseView.ConfigOptions co = new ShowcaseView.ConfigOptions();
+
+	NewNotificationService nns;
 
 
 	@Override
@@ -143,6 +150,8 @@ ShowcaseView.OnShowcaseEventListener{
 
 			} 
 		});
+
+		//nns = new NewNotificationService();
 
 		layout.setSwipeListViewListener(new BaseSwipeListViewListener() {
 
@@ -201,6 +210,10 @@ ShowcaseView.OnShowcaseEventListener{
 
 			@Override
 			public void onDismiss(int[] reverseSortedPositions) {	
+
+				if(nns == null)
+					nns = NewNotificationService.getInstance();
+
 				Log.d("swipe", "onDismiss----------" + rowPos); 
 				if(rowPos >= 0){
 					try {
@@ -224,6 +237,10 @@ ShowcaseView.OnShowcaseEventListener{
 						Utils.intentMap.clear();
 						adapter.removeAllNotifications();
 						adapter.notifyDataSetChanged();
+						if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) 
+								&& (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))){
+							nns.cancelNotification(adapter.getItem(rowPos).getPackageName(), adapter.getItem(rowPos).getTagId(), adapter.getItem(rowPos).getId());
+						}
 						finish();
 						return;
 						//Utils.notList.clear();
@@ -236,14 +253,42 @@ ShowcaseView.OnShowcaseEventListener{
 					Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 					v.vibrate(250);
 				}
+
+				Set<String> packageSet = new HashSet<String>();
+
 				for (int position : reverseSortedPositions) {
 					Log.d("swipe", "onDismiss----------" + position);
 					try{
+						packageSet.add(adapter.getItem(position).getPackageName());
+						Log.d("NotActivity", "Removing app ===========+" + adapter.getItem(position).getPackageName());
+						if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))
+								&& HelperUtils.dismissAllNotifications(adapter.getItem(position).getPackageName(), ctx)){
+							nns.cancelNotification(adapter.getItem(position).getPackageName(), adapter.getItem(position).getTagId(), adapter.getItem(position).getId());
+						}
 						adapter.removeNotification(position);
-						Utils.getNotList().remove(position);
+						if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled)){
+							Utils.getNotList().remove(position);
+						}
 					}catch(Exception e){
-
+						e.printStackTrace();
 					}
+				}
+				
+				if(ctx.getResources().getBoolean(R.bool.is_service_enabled) && SharedPreferenceUtils.getDismissAll(ctx)){
+					
+					Iterator<NotificationBean> iter = Utils.getNotList().iterator();
+					
+					while(iter.hasNext()){
+						
+						NotificationBean nb = iter.next();
+						
+						if(packageSet.contains(nb.getPackageName())){							
+							iter.remove();
+						}
+					}
+					
+					adapter.clearAppNotifications(packageSet);
+					
 				}
 
 				setBackgroundHeight(true);
@@ -253,6 +298,7 @@ ShowcaseView.OnShowcaseEventListener{
 					Utils.getNotList().clear();
 					Utils.intentMap.clear();	
 				}
+
 				adapter.notifyDataSetChanged();
 			}
 
@@ -282,22 +328,47 @@ ShowcaseView.OnShowcaseEventListener{
 	};
 
 	public void clearNotifications(View view){	
-		clearData();	
+		clearData(true);	
 
 	}
 
+	public void closeNotifications(View view){
+		clearData(false);
+	}
 
-	private void clearData(){
-		for(NotificationBean n : Utils.getNotList()){
-			n = null;
-		}		
 
+	private void clearData(Boolean dismiss){
+
+		if(dismiss){
+
+			if(nns == null)
+				nns = NewNotificationService.getInstance();
+
+			ArrayList<NotificationBean> clonedList = (ArrayList<NotificationBean>)Utils.getNotList().clone();
+
+			for(NotificationBean n : clonedList){
+
+				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))){
+					nns.cancelNotification(n.getPackageName(), n.getTagId(), n.getId());
+				}
+				//n = null;
+			}	
+			
+			clonedList.clear();
+
+		}
+
+		
 		Utils.getNotList().clear();
+		
 		Utils.notList = null;
 
 		Utils.intentMap.clear();
 
 		adapter.clearNotifications();
+
+
+
 		//Utils.tf = null;
 		finish();
 	}
@@ -419,13 +490,18 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 	private void populateAdapter(Boolean clearData){
+		
+		Log.d("NotActivity","Entered Receiver=========" + Utils.getNotList().size());
+		
 		if(clearData){
 			adapter.clearNotifications();
 		}	
+		
 
 		if(HelperUtils.isExpandedNotifications(ctx)){
 
 			for(NotificationBean n : Utils.getNotList()){
+				Log.d("NotActivity","Adapter Not=======" + n.getPackageName());
 				if(n.getIsOddRow())
 					continue;
 				adapter.addNotification(n);
@@ -461,6 +537,8 @@ ShowcaseView.OnShowcaseEventListener{
 		LinearLayout ll1 = (LinearLayout) findViewById(R.id.expandingLayoutId1);
 
 		Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
+		Button dismissButton1 = (Button) findViewById(R.id.CloseWindowId1);
+
 		int fontColor = HelperUtils.getFontColor(ctx);
 		if(fontColor == 0){
 			fontColor = Color.WHITE;
@@ -500,6 +578,7 @@ ShowcaseView.OnShowcaseEventListener{
 			gd1.setCornerRadius(roundRadius1);
 			gd1.setStroke(strokeWidth1, strokeColor1);	
 			dismissButton.setBackgroundDrawable(gd1);
+			dismissButton1.setBackgroundDrawable(gd1);
 
 			if(HelperUtils.isTransparentBackround(ctx)){
 				ll1.getBackground().setAlpha(200);
@@ -510,6 +589,10 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 		dismissButton.setTextColor(fontColor);
+		dismissButton1.setTextColor(fontColor);
+		
+		if(ctx.getResources().getBoolean(R.bool.is_service_enabled))
+			dismissButton.setVisibility(View.GONE);
 	}
 
 	int notBackHeight = 0;
@@ -620,13 +703,23 @@ ShowcaseView.OnShowcaseEventListener{
 			sv3.animateGesture((float) (sv2.getRight()/2),(float) (sv2.getBottom()/2) ,(float) (sv2.getRight()/2), (float) (sv2.getBottom()/2));
 		}else if(ssv == sv3){		
 			View button = findViewById(R.id.expandingLayoutId);
-			sv4 = ShowcaseView.insertShowcaseView(R.id.CloseWindowId, this, "Tutorial", getString(R.string.dismiss_all_tutorial), co);
+			sv4 = ShowcaseView.insertShowcaseView(R.id.CloseWindowId1, this, "Tutorial", getString(R.string.dismiss_all_tutorial), co);
 			sv4.setOnShowcaseEventListener(this);
-
-			sv4.animateGesture((float) (button.getRight()/2),(float) (button.getBottom()) ,(float) (button.getRight()/2), (float) (button.getBottom()));
+			if(ctx.getResources().getBoolean(R.bool.is_service_enabled)){
+				sv4.animateGesture((float) (button.getRight()/2),(float) (button.getBottom()) ,(float) (button.getRight()/2), (float) (button.getBottom()));
+			}else{
+				sv4.animateGesture((float) (button.getRight()/4),(float) (button.getBottom()) ,(float) (button.getRight()/4), (float) (button.getBottom()));
+			}
+			
 
 		}else if(ssv == sv4){
-
+			if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled)){
+				View button = findViewById(R.id.expandingLayoutId);
+				sv5 = ShowcaseView.insertShowcaseView(R.id.CloseWindowId, this, "Tutorial", getString(R.string.close_all_tutorial), co);
+				sv5.setOnShowcaseEventListener(this);
+				sv5.animateGesture((float) (button.getRight()*.75),(float) (button.getBottom()) ,(float) (button.getRight()*.75), (float) (button.getBottom()));
+			}
+			
 		}
 	}
 
@@ -637,6 +730,13 @@ ShowcaseView.OnShowcaseEventListener{
 		Log.d("not", "onShowcaseViewShow ==============" + arg0);
 
 	}
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		//super.onBackPressed();
+	}
+
 
 	@Override
 	public void onClick(View view) {

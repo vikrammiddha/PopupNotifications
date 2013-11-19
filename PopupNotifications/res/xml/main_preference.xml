@@ -29,19 +29,35 @@
         <CheckBoxPreference
             android:key="wake_up"
             android:summary=""
-            android:title="@string/wake_on_not" />        
+            android:title="@string/wake_on_not" />
+
+        <ListPreference
+            android:entries="@array/syncTypes"
+            android:entryValues="@array/syncTypeValues"
+            android:key="sync_preference"
+            android:title="@string/sync_desc" />
+
+        <CheckBoxPreference
+            android:key="dismiss_all_left"
+            android:summary="@string/dismiss_all_left_summary"
+            android:title="@string/dismiss_all_left_desc" />
 
         <ListPreference
             android:entries="@array/notTypes"
             android:entryValues="@array/notTypeValues"
-            android:key="notification_type_preference"            
+            android:key="notification_type_preference"
             android:title="@string/not_type_desc" />
-        
+
+        <EditTextPreference
+            android:key="banner_time_pref"
+            android:summary="@string/banner_time_summary"
+            android:title="@string/banner_time_desc"
+            android:inputType="number"  />
+
         <CheckBoxPreference
             android:key="vibrate"
             android:summary=""
-            android:title="@string/vibrate_summary" />   
-            
+            android:title="@string/vibrate_summary" />
     </PreferenceScreen>
     <PreferenceScreen
         android:key="mute_settings"

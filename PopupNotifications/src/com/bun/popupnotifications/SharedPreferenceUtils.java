@@ -173,6 +173,21 @@ public class SharedPreferenceUtils {
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getString("notification_type_preference", "");
 	}
+	
+	public static String getBannerTime(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getString("banner_time_pref", "5");
+	}
+	
+	public static String getSyncType(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getString("sync_preference", "");
+	}
+	
+	public static Boolean getDismissAll(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getBoolean("dismiss_all_left", false);
+	}
 
 	public static Boolean getFirstTimeRun(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
@@ -224,7 +239,9 @@ public class SharedPreferenceUtils {
 			sp.edit().putInt("font_color", Color.WHITE).commit();
 			sp.edit().putInt("background_color_not", Color.BLACK).commit();
 			sp.edit().putString("notification_type_preference", "lockscreen_banners").commit();
+			sp.edit().putString("sync_preference", "two_way").commit();
 			sp.edit().putBoolean("vibrate", true).commit();
+			sp.edit().putBoolean("dismiss_all_left", false).commit();
 
 		}
 		
@@ -235,7 +252,12 @@ public class SharedPreferenceUtils {
 			sp.edit().putString("notification_type_preference", "lockscreen_banners").commit();
 		}
 		
+		String syncTypeValue = sp.getString("sync_preference", "");
 		
+		if(notTypeValue.equals("") || (!notTypeValue.equals("none") && !notTypeValue.equals("one_way") 
+						&& !notTypeValue.equals("two_way"))){
+			sp.edit().putString("sync_preference", "two_way").commit();
+		}
 
 	}
 

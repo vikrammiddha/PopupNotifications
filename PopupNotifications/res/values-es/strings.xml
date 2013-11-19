@@ -121,7 +121,39 @@
     <string name="not_type_desc">Tipo de notificación</string>
     
     
+    <string name="array_1">lockscreen</string>
+    <string name="array_2">lockscreen_popup</string>
+    <string name="array_3">lockscreen_banners</string>
+    <string name="array_4">popup</string>
+    <string name="array_5">banners</string>
+    <string name="ok">OK</string>
     
+    <string name="vibrate_summary">Vibrar al golpe</string>
+    
+    <string name="sync_desc">Sincronización con la barra de estado</string>
+    <string name="array_s_1">none</string>
+    <string name="array_s_2">one_way</string>
+    <string name="array_s_3">two_way</string>    
+    <string name="none_s_1">ninguno</string>
+    <string name="one_way">Una forma Sync</string>
+    <string name="two_way">Dos vías de sincronización</string>
+    <string name="none_s_1_summary">Sin sincronización entre la barra de estado y notificaciones de esta aplicación (4.3 y superior).</string>
+    <string name="one_way_summary">Elimina notificaciones de la barra de estado cuando se despidió de esta aplicación (4.3 y superior).</string>
+    <string name="two_way_summary">Ambas formas de sincronización entre la barra de estado y esta aplicación (4.3 y superior).</string>
+    
+    <string name="close_all">cerrar</string>
+    
+    <string name="dismiss_all_left_desc">Descartar todo el pase a la izquierda</string>
+    <string name="dismiss_no_all_left_summary">Descartar notificación específica de la aplicación en deslizar hacia la izquierda en la pantalla de bloqueo.</string>
+    <string name="dismiss_all_left_summary">Rechazar todas las notificaciones de la misma aplicación en el pase a la izquierda en la pantalla de bloqueo.</string>
+    
+    
+    <string name="dismiss_all_tutorial">Descartar todo cierra la pantalla de notificación, así como borra las notificaciones de la barra de estado.</string>
+    <string name="close_all_tutorial">Botón Cerrar cierra la pantalla de notificación solamente y no borra las notificaciones de la barra de estado.</string>
+    
+    <string name="banner_time_desc">Establecer el tiempo de espectáculo Banner (segundos)</string>
+    <string name="banner_time_summary">Banner será visible para : </string>
+    <string name="seconds">segundo </string>
     
     
 

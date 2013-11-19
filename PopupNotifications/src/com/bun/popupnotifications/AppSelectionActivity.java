@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.TreeSet;
 
 import com.actionbarsherlock.app.SherlockActivity;
- 
+
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -40,7 +40,8 @@ public class AppSelectionActivity extends SherlockActivity{
 	ListView layout;
 	AppSelectionAdapter adapter;
 	EditText searchBox;
-	
+	Context ctx;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +61,12 @@ public class AppSelectionActivity extends SherlockActivity{
 		if(serviceStatus == false){
 			showServiceAlert();
 		}
+		
+		ctx = this;
 
 	}
 
-	
+
 
 	private void showServiceAlert(){
 		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
@@ -82,8 +85,13 @@ public class AppSelectionActivity extends SherlockActivity{
 		alertDialog2.setPositiveButton(getString(R.string.activate),
 				new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS); 
-				startActivityForResult(intent, 0);
+				if(ctx.getResources().getBoolean(R.bool.is_service_enabled)){
+					Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS); 
+					startActivityForResult(intent, 0);
+				}else{
+					Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"); 
+					startActivityForResult(intent, 0);
+				}
 			}
 		});
 		// Setting Negative "NO" Btn
@@ -99,7 +107,7 @@ public class AppSelectionActivity extends SherlockActivity{
 		try{
 			alertDialog2.show();
 		}catch(Exception e){
-			
+
 		}
 	}
 
@@ -138,12 +146,12 @@ public class AppSelectionActivity extends SherlockActivity{
 			Intent i = new Intent(this, NotificationPreferenceActivity.class);
 			startActivityForResult(i, 0);
 			break;
-			
+
 		case 3:
 			Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(getString(R.string.market_url)));
-        	startActivity(intent);
+			startActivity(intent);
 			break;
-			
+
 		case 4:
 			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.facebook_url)));
 			startActivity(browserIntent);
@@ -171,9 +179,9 @@ public class AppSelectionActivity extends SherlockActivity{
 		menu.add(Menu.NONE,1,1,getString(R.string.menu_settings)); 
 
 		//menu.add(Menu.NONE,2,2,getString(R.string.menu_tutorial)); 
-		
+
 		menu.add(Menu.NONE,3,3,getString(R.string.menu_rateus));
-		
+
 		menu.add(Menu.NONE,4,4,getString(R.string.follow_on_facebook));
 
 		return super.onCreateOptionsMenu(menu);
@@ -261,14 +269,14 @@ public class AppSelectionActivity extends SherlockActivity{
 					return a1.getAppName().compareToIgnoreCase(a2.getAppName());
 				}
 			});
-			
+
 			if(adapter == null){
 				adapter = new AppSelectionAdapter(this);
 			}
-			
+
 			//Log.d("adapter", "adapter=======" + adapter);
 			//Log.d("adapter", "aList=======" + aList);
-			
+
 			if(aList != null)
 				adapter.addAppList(aList);
 
@@ -293,7 +301,7 @@ public class AppSelectionActivity extends SherlockActivity{
 					return a1.getAppName().compareToIgnoreCase(a2.getAppName());
 				}
 			});
-			
+
 			if(adapter == null){
 				adapter = new AppSelectionAdapter(this);
 			}
@@ -311,7 +319,7 @@ public class AppSelectionActivity extends SherlockActivity{
 	}
 
 	private Drawable getAppIcon(String packageName){
-		
+
 		return null;
 		/*Drawable icon = null;
 		try{
@@ -338,6 +346,8 @@ public class AppSelectionActivity extends SherlockActivity{
 		}catch(Exception e){
 
 		}
+		
+		ctx = null;
 		finish();
 	}
 
@@ -347,7 +357,7 @@ public class AppSelectionActivity extends SherlockActivity{
 		super.onPause();
 		//adapter = null;
 		progDailog.dismiss();
-		finish();
+		//finish();
 	}
 
 }

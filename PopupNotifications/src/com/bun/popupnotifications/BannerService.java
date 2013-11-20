@@ -181,7 +181,7 @@ public class BannerService extends Service{
 			public void onDismiss(int[] reverseSortedPositions) {	
 				Log.d("swipe", "onDismiss----------" + rowPos); 
 				
-				if(nns == null)
+				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && nns == null)
 					nns = NewNotificationService.getInstance();
 				
 				if(rowPos >= 0){

@@ -211,7 +211,7 @@ ShowcaseView.OnShowcaseEventListener{
 			@Override
 			public void onDismiss(int[] reverseSortedPositions) {	
 
-				if(nns == null)
+				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && nns == null)
 					nns = NewNotificationService.getInstance();
 
 				Log.d("swipe", "onDismiss----------" + rowPos); 
@@ -338,6 +338,10 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 	private void clearData(Boolean dismiss){
+		
+		if(ctx.getResources().getBoolean(R.bool.is_service_enabled)){
+			dismiss = false;
+		}
 
 		if(dismiss){
 
@@ -719,6 +723,8 @@ ShowcaseView.OnShowcaseEventListener{
 				sv5.setOnShowcaseEventListener(this);
 				sv5.animateGesture((float) (button.getRight()*.75),(float) (button.getBottom()) ,(float) (button.getRight()*.75), (float) (button.getBottom()));
 			}
+			
+		}else if(ssv == sv5){
 			
 		}
 	}

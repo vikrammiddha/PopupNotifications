@@ -273,22 +273,22 @@ ShowcaseView.OnShowcaseEventListener{
 						e.printStackTrace();
 					}
 				}
-				
+
 				if(ctx.getResources().getBoolean(R.bool.is_service_enabled) && SharedPreferenceUtils.getDismissAll(ctx)){
-					
+
 					Iterator<NotificationBean> iter = Utils.getNotList().iterator();
-					
+
 					while(iter.hasNext()){
-						
+
 						NotificationBean nb = iter.next();
-						
+
 						if(packageSet.contains(nb.getPackageName())){							
 							iter.remove();
 						}
 					}
-					
+
 					adapter.clearAppNotifications(packageSet);
-					
+
 				}
 
 				setBackgroundHeight(true);
@@ -338,7 +338,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 	private void clearData(Boolean dismiss){
-		
+
 		if(ctx.getResources().getBoolean(R.bool.is_service_enabled)){
 			dismiss = false;
 		}
@@ -357,14 +357,14 @@ ShowcaseView.OnShowcaseEventListener{
 				}
 				//n = null;
 			}	
-			
+
 			clonedList.clear();
 
 		}
 
-		
+
 		Utils.getNotList().clear();
-		
+
 		Utils.notList = null;
 
 		Utils.intentMap.clear();
@@ -494,13 +494,13 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 	private void populateAdapter(Boolean clearData){
-		
+
 		Log.d("NotActivity","Entered Receiver=========" + Utils.getNotList().size());
-		
+
 		if(clearData){
 			adapter.clearNotifications();
 		}	
-		
+
 
 		if(HelperUtils.isExpandedNotifications(ctx)){
 
@@ -586,7 +586,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 			if(HelperUtils.isTransparentBackround(ctx)){
 				ll1.getBackground().setAlpha(200);
-
+				dismissButton1.getBackground().setAlpha(200);
 				dismissButton.getBackground().setAlpha(200);
 			}
 		}
@@ -594,7 +594,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 		dismissButton.setTextColor(fontColor);
 		dismissButton1.setTextColor(fontColor);
-		
+
 		if(ctx.getResources().getBoolean(R.bool.is_service_enabled))
 			dismissButton.setVisibility(View.GONE);
 	}
@@ -616,14 +616,24 @@ ShowcaseView.OnShowcaseEventListener{
 			params.width = (int)(screenWidth * 0.95);			
 			ll1.setLayoutParams(params);
 		}else
-		{
+		{                        
+			int totalHeight = 0;
+			for (int size = 0; size < adapter.getCount(); size++) {
+				View listItem = adapter.getView(size, null, layout);
+				if (listItem != null) {
+					listItem.measure(0, 0);
+					totalHeight += listItem.getMeasuredHeight();
+				}
+			}
+
+			int a1 = (int)(screenHeight * 0.5);
+			Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
 			//Log.d("not_Activity", "ll height===" + getLayoutHeight() + "==" + (int)(screenHeight * 0.5));
-			if(ll1.getHeight() >= (int)(screenHeight * 0.5) && !isDismissed){
+			if((ll1.getHeight() >= (int)(screenHeight * 0.5) || totalHeight >= (int)(screenHeight * 0.5)) && !isDismissed){                    
 				params.height = (int)(screenHeight * 0.5);
 			}else{
-				//if(isDismissed && ll1.getHeight() >= (int)(screenHeight * 0.5)){				
-				Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
-				if(isDismissed && (layout.getHeight() + dismissButton.getHeight()) >= (int)(screenHeight * 0.5) ){
+
+				if(isDismissed && ((layout.getHeight() + dismissButton.getHeight()) >= (int)(screenHeight * 0.5) ||  (totalHeight + dismissButton.getHeight()) >= (int)(screenHeight * 0.5))){                                
 					params.height = (int)(screenHeight * 0.5);
 				}else{
 					params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -714,7 +724,7 @@ ShowcaseView.OnShowcaseEventListener{
 			}else{
 				sv4.animateGesture((float) (button.getRight()/4),(float) (button.getBottom()) ,(float) (button.getRight()/4), (float) (button.getBottom()));
 			}
-			
+
 
 		}else if(ssv == sv4){
 			if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled)){
@@ -723,9 +733,9 @@ ShowcaseView.OnShowcaseEventListener{
 				sv5.setOnShowcaseEventListener(this);
 				sv5.animateGesture((float) (button.getRight()*.75),(float) (button.getBottom()) ,(float) (button.getRight()*.75), (float) (button.getBottom()));
 			}
-			
+
 		}else if(ssv == sv5){
-			
+
 		}
 	}
 

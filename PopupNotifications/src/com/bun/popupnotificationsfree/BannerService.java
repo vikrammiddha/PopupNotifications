@@ -47,6 +47,7 @@ public class BannerService extends Service{
 	CountDownTimer cTimer;
 	Handler mHandler=new Handler();
 	BaseSwipeListViewListener listener;
+	NewNotificationService nns;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -177,8 +178,12 @@ public class BannerService extends Service{
 			}
 
 			@Override
-			public void onDismiss(int[] reverseSortedPositions) {	
+			public void onDismiss(int[] reverseSortedPositions) {        
 				Log.d("swipe", "onDismiss----------" + rowPos); 
+
+				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && nns == null)
+					nns = NewNotificationService.getInstance();
+
 				if(rowPos >= 0){
 					try {
 
@@ -195,7 +200,7 @@ public class BannerService extends Service{
 						adapter.removeAllNotifications();
 						adapter.notifyDataSetChanged();
 
-						sListView.setPadding(0,0,0,0);						
+						sListView.setPadding(0,0,0,0);                                                
 						stopSelf();
 						return;
 						//Utils.notList.clear();
@@ -211,6 +216,9 @@ public class BannerService extends Service{
 				for (int position : reverseSortedPositions) {
 					Log.d("swipe", "onDismiss----------" + position);
 					try{
+						if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))){
+							nns.cancelNotification(adapter.getItem(position).getPackageName(), adapter.getItem(position).getTagId(), adapter.getItem(position).getId());
+						}
 						adapter.removeNotification(position);
 						Utils.getNotList().remove(position);
 					}catch(Exception e){
@@ -223,7 +231,7 @@ public class BannerService extends Service{
 				if(adapter.getAdapterSize() == 0){
 
 					Utils.getNotList().clear();
-					Utils.intentMap.clear();	
+					Utils.intentMap.clear();        
 				}
 				adapter.notifyDataSetChanged();
 
@@ -255,7 +263,7 @@ public class BannerService extends Service{
 	}
 
 	private void createTimer(){
-		cTimer = new CountDownTimer(5000, 1000) {
+		cTimer = new CountDownTimer(Integer.valueOf(SharedPreferenceUtils.getBannerTime(ctx)) * 1000, 1000){
 
 			@Override
 			public void onTick(long millisUntilFinished) {

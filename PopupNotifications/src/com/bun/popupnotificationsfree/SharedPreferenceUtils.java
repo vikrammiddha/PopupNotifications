@@ -167,6 +167,16 @@ public class SharedPreferenceUtils {
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getBoolean("FirstTimeRun", false);
 	}
+	
+	public static void setShowTutorial(Context ctx, Boolean bool){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putBoolean("showTutorial", bool).commit();
+	}
+
+	public static Boolean getShowTutorial(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getBoolean("showTutorial", false);
+	}
 
 	public static void setNotType(Context ctx, String notType){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
@@ -177,6 +187,21 @@ public class SharedPreferenceUtils {
 	public static String getNotType(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getString("notification_type_preference", "");
+	}
+
+	public static String getBannerTime(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getString("banner_time_pref", "5");
+	}
+
+	public static String getSyncType(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getString("sync_preference", "");
+	}
+
+	public static Boolean getDismissAll(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getBoolean("dismiss_all_left", false);
 	}
 
 	public static Boolean isBlockedApp(Context ctx, String packageName){
@@ -191,7 +216,7 @@ public class SharedPreferenceUtils {
 	}
 
 	public static void loadDefaultSettings(Context ctx){
-		
+
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
 
 		if(!getFirstTimeRun(ctx)){
@@ -210,7 +235,7 @@ public class SharedPreferenceUtils {
 			//setBlockedApps(ctx,"com.google.android.youtube", "");
 			//setBlockedApps(ctx,"com.google.android.videos", "");
 
-			
+
 			sp.edit().putBoolean("expanded_notification", true).commit();
 			sp.edit().putBoolean("full_screen_notification", false).commit();
 			//sp.edit().putBoolean("transparent_background", true).commit();
@@ -222,16 +247,25 @@ public class SharedPreferenceUtils {
 			sp.edit().putInt("font_color", Color.WHITE);
 			sp.edit().putInt("background_color_not", Color.BLACK);
 			sp.edit().putString("notification_type_preference", "lockscreen_banners").commit();
-			
+			sp.edit().putString("sync_preference", "two_way").commit();
+            sp.edit().putBoolean("vibrate", true).commit();
+            sp.edit().putBoolean("dismiss_all_left", false).commit();
+		}
+
+		sp.edit().putBoolean("vibrate", false).commit();
+
+		String notTypeValue = sp.getString("notification_type_preference", "");
+
+		if(notTypeValue.equals("") || (!notTypeValue.equals("lockscreen") && !notTypeValue.equals("lockscreen_popup") 
+				&& !notTypeValue.equals("lockscreen_banners") && !notTypeValue.equals("popup") && !notTypeValue.equals("banners"))){
+			sp.edit().putString("notification_type_preference", "lockscreen_banners").commit();
 		}
 		
-		sp.edit().putBoolean("vibrate", false).commit();
-		
-		String notTypeValue = sp.getString("notification_type_preference", "");
+		String syncTypeValue = sp.getString("sync_preference", "");
         
-        if(notTypeValue.equals("") || (!notTypeValue.equals("lockscreen") && !notTypeValue.equals("lockscreen_popup") 
-                                        && !notTypeValue.equals("lockscreen_banners") && !notTypeValue.equals("popup") && !notTypeValue.equals("banners"))){
-                sp.edit().putString("notification_type_preference", "lockscreen_banners").commit();
+        if(notTypeValue.equals("") || (!notTypeValue.equals("none") && !notTypeValue.equals("one_way") 
+                                        && !notTypeValue.equals("two_way"))){
+                sp.edit().putString("sync_preference", "two_way").commit();
         }
 
 	}

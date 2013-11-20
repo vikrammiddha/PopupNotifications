@@ -1,8 +1,11 @@
 package com.bun.popupnotificationsfree;
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 
 import com.bun.popupnotificationsfree.R;
@@ -100,8 +103,11 @@ ShowcaseView.OnShowcaseEventListener{
 	ShowcaseView sv2;
 	ShowcaseView sv3;
 	ShowcaseView sv4;
+	ShowcaseView sv5;
 
 	ShowcaseView.ConfigOptions co = new ShowcaseView.ConfigOptions();
+
+	NewNotificationService nns;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -204,9 +210,12 @@ ShowcaseView.OnShowcaseEventListener{
 			}
 
 			@Override
-			public void onDismiss(int[] reverseSortedPositions) {	
+			public void onDismiss(int[] reverseSortedPositions) {        
+
+				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && nns == null)
+					nns = NewNotificationService.getInstance();
+
 				Log.d("swipe", "onDismiss----------" + rowPos); 
-				PendingIntent p = null;
 				if(rowPos >= 0){
 					try {
 						if(HelperUtils.isVibrate(ctx)){
@@ -217,21 +226,23 @@ ShowcaseView.OnShowcaseEventListener{
 							getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 						}else{
 							if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-								Utils.reenableKeyguard(ctx, false);					
+								Utils.reenableKeyguard(ctx, false);                                        
 							}
 						}
 
 						//Log.d("not activity", "intent----------" + Utils.notList.get(position).getPackageName());
 						//Utils.intentMap.get(Utils.getNotList().get(rowPos).getPackageName()).send();
-						p=Utils.intentMap.get(adapter.getItem(rowPos).getPackageName());
-						p.send();
+						Utils.intentMap.get(adapter.getItem(rowPos).getPackageName()).send();
 						unlockLockScreen=true;
 						Utils.getNotList().clear();
 						Utils.intentMap.clear();
 						adapter.removeAllNotifications();
 						adapter.notifyDataSetChanged();
+						if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) 
+								&& (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))){
+							nns.cancelNotification(adapter.getItem(rowPos).getPackageName(), adapter.getItem(rowPos).getTagId(), adapter.getItem(rowPos).getId());
+						}
 						finish();
-
 						return;
 						//Utils.notList.clear();
 					} catch (Exception e) {
@@ -243,14 +254,42 @@ ShowcaseView.OnShowcaseEventListener{
 					Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 					v.vibrate(250);
 				}
+
+				Set<String> packageSet = new HashSet<String>();
+
 				for (int position : reverseSortedPositions) {
 					Log.d("swipe", "onDismiss----------" + position);
 					try{
+						packageSet.add(adapter.getItem(position).getPackageName());
+						Log.d("NotActivity", "Removing app ===========+" + adapter.getItem(position).getPackageName());
+						if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))
+								&& HelperUtils.dismissAllNotifications(adapter.getItem(position).getPackageName(), ctx)){
+							nns.cancelNotification(adapter.getItem(position).getPackageName(), adapter.getItem(position).getTagId(), adapter.getItem(position).getId());
+						}
 						adapter.removeNotification(position);
-						Utils.getNotList().remove(position);
+						if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled)){
+							Utils.getNotList().remove(position);
+						}
 					}catch(Exception e){
-
+						e.printStackTrace();
 					}
+				}
+
+				if(ctx.getResources().getBoolean(R.bool.is_service_enabled) && SharedPreferenceUtils.getDismissAll(ctx)){
+
+					Iterator<NotificationBean> iter = Utils.getNotList().iterator();
+
+					while(iter.hasNext()){
+
+						NotificationBean nb = iter.next();
+
+						if(packageSet.contains(nb.getPackageName())){                                                        
+							iter.remove();
+						}
+					}
+
+					adapter.clearAppNotifications(packageSet);
+
 				}
 
 				setBackgroundHeight(true);
@@ -258,20 +297,22 @@ ShowcaseView.OnShowcaseEventListener{
 				if(adapter.getAdapterSize() == 0){
 					finish();
 					Utils.getNotList().clear();
-					Utils.intentMap.clear();	
+					Utils.intentMap.clear();        
 				}
+
 				adapter.notifyDataSetChanged();
 			}
 
 		});
 
-		if(!SharedPreferenceUtils.getFirstTimeRun(ctx)){
+		if(!SharedPreferenceUtils.getFirstTimeRun(ctx) || SharedPreferenceUtils.getShowTutorial(ctx)){
 			co.hideOnClickOutside = false;
 			co.shotType = ShowcaseView.TYPE_ONE_SHOT;
 			//co.shotType = ShowcaseView.TYPE_ONE_SHOT;
 			sv = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", "Click on Next button to start Tutorial.", co);
 			sv.setShowcaseIndicatorScale(1.5f);
 			sv.setOnShowcaseEventListener(this);
+			SharedPreferenceUtils.setShowTutorial(ctx, false);
 		}	
 
 	}
@@ -286,8 +327,53 @@ ShowcaseView.OnShowcaseEventListener{
 	};
 
 	public void clearNotifications(View view){	
-		clearData();	
+		clearData(true);	
 
+	}
+
+	public void closeNotifications(View view){
+		clearData(false);
+	}
+
+
+	private void clearData(Boolean dismiss){
+
+		if(ctx.getResources().getBoolean(R.bool.is_service_enabled)){
+			dismiss = false;
+		}
+
+		if(dismiss){
+
+			if(nns == null)
+				nns = NewNotificationService.getInstance();
+
+			ArrayList<NotificationBean> clonedList = (ArrayList<NotificationBean>)Utils.getNotList().clone();
+
+			for(NotificationBean n : clonedList){
+
+				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))){
+					nns.cancelNotification(n.getPackageName(), n.getTagId(), n.getId());
+				}
+				//n = null;
+			}        
+
+			clonedList.clear();
+
+		}
+
+
+		Utils.getNotList().clear();
+
+		Utils.notList = null;
+
+		Utils.intentMap.clear();
+
+		adapter.clearNotifications();
+
+
+
+		//Utils.tf = null;
+		finish();
 	}
 
 
@@ -443,7 +529,8 @@ ShowcaseView.OnShowcaseEventListener{
 		setBackgroundHeight(false);
 
 		LinearLayout ll1 = (LinearLayout) findViewById(R.id.expandingLayoutId1);
-		Button dismissButton = (Button)findViewById(R.id.CloseWindowId);
+		Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
+		Button dismissButton1 = (Button) findViewById(R.id.CloseWindowId1);
 
 		//Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
 		int fontColor = HelperUtils.getFontColor(ctx);
@@ -485,15 +572,21 @@ ShowcaseView.OnShowcaseEventListener{
 			gd1.setCornerRadius(roundRadius1);
 			gd1.setStroke(strokeWidth1, strokeColor1);	
 			dismissButton.setBackgroundDrawable(gd1);
+			dismissButton1.setBackgroundDrawable(gd1);
 
 			if(HelperUtils.isTransparentBackround(ctx)){
 				ll1.getBackground().setAlpha(200);
 				dismissButton.getBackground().setAlpha(200);
+				dismissButton1.getBackground().setAlpha(200);
 			}
 		}
 
 
 		dismissButton.setTextColor(fontColor);
+		dismissButton1.setTextColor(fontColor);
+
+		if(ctx.getResources().getBoolean(R.bool.is_service_enabled))
+			dismissButton.setVisibility(View.GONE);
 
 	}
 
@@ -514,14 +607,24 @@ ShowcaseView.OnShowcaseEventListener{
 			params.width = (int)(screenWidth * 0.95);			
 			ll1.setLayoutParams(params);
 		}else
-		{
+		{			
+			int totalHeight = 0;
+		    for (int size = 0; size < adapter.getCount(); size++) {
+		        View listItem = adapter.getView(size, null, layout);
+		        if (listItem != null) {
+		            listItem.measure(0, 0);
+		            totalHeight += listItem.getMeasuredHeight();
+		        }
+		    }
+		    
+		    int a1 = (int)(screenHeight * 0.5);
+		    Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
 			//Log.d("not_Activity", "ll height===" + getLayoutHeight() + "==" + (int)(screenHeight * 0.5));
-			if(ll1.getHeight() >= (int)(screenHeight * 0.5) && !isDismissed){
+			if((ll1.getHeight() >= (int)(screenHeight * 0.5) || totalHeight >= (int)(screenHeight * 0.5)) && !isDismissed){		    
 				params.height = (int)(screenHeight * 0.5);
 			}else{
-				//if(isDismissed && ll1.getHeight() >= (int)(screenHeight * 0.5)){                                
-				Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
-				if(isDismissed && (layout.getHeight() + dismissButton.getHeight()) >= (int)(screenHeight * 0.5) ){
+								
+				if(isDismissed && ((layout.getHeight() + dismissButton.getHeight()) >= (int)(screenHeight * 0.5) ||  (totalHeight + dismissButton.getHeight()) >= (int)(screenHeight * 0.5))){				
 					params.height = (int)(screenHeight * 0.5);
 				}else{
 					params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -558,7 +661,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 			keyguardLock = null;
 		}
-		
+
 		layout.setAdapter(null);
 
 	}
@@ -601,19 +704,32 @@ ShowcaseView.OnShowcaseEventListener{
 		}else if(ssv == sv2){
 			sv3 = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", getString(R.string.long_press), co);
 			sv3.setShowcaseIndicatorScale(1.5f);
-			sv3.setOnShowcaseEventListener(this);			
+			sv3.setOnShowcaseEventListener(this);                        
 			sv3.animateGesture((float) (sv2.getRight()/2),(float) (sv2.getBottom()/2) ,(float) (sv2.getRight()/2), (float) (sv2.getBottom()/2));
-		}else if(ssv == sv3){		
+		}else if(ssv == sv3){                
 			View button = findViewById(R.id.expandingLayoutId);
-			sv4 = ShowcaseView.insertShowcaseView(R.id.CloseWindowId, this, "Tutorial", getString(R.string.dismiss_all_tutorial), co);
+			sv4 = ShowcaseView.insertShowcaseView(R.id.CloseWindowId1, this, "Tutorial", getString(R.string.dismiss_all_tutorial), co);
 			sv4.setOnShowcaseEventListener(this);
+			if(ctx.getResources().getBoolean(R.bool.is_service_enabled)){
+				sv4.animateGesture((float) (button.getRight()/2),(float) (button.getBottom()) ,(float) (button.getRight()/2), (float) (button.getBottom()));
+			}else{
+				sv4.animateGesture((float) (button.getRight()/4),(float) (button.getBottom()) ,(float) (button.getRight()/4), (float) (button.getBottom()));
+			}
 
-			sv4.animateGesture((float) (button.getRight()/2),(float) (button.getBottom()) ,(float) (button.getRight()/2), (float) (button.getBottom()));
 
 		}else if(ssv == sv4){
+			if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled)){
+				View button = findViewById(R.id.expandingLayoutId);
+				sv5 = ShowcaseView.insertShowcaseView(R.id.CloseWindowId, this, "Tutorial", getString(R.string.close_all_tutorial), co);
+				sv5.setOnShowcaseEventListener(this);
+				sv5.animateGesture((float) (button.getRight()*.75),(float) (button.getBottom()) ,(float) (button.getRight()*.75), (float) (button.getBottom()));
+			}
+
+		}else if(ssv == sv5){
 
 		}
 	}
+
 
 
 	@Override
@@ -621,6 +737,12 @@ ShowcaseView.OnShowcaseEventListener{
 		// TODO Auto-generated method stub
 		Log.d("not", "onShowcaseViewShow ==============" + arg0);
 
+	}
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		//super.onBackPressed();
 	}
 
 	@Override

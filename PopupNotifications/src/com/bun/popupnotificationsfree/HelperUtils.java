@@ -333,4 +333,27 @@ public class HelperUtils {
 
 	}
 
+	public static Boolean dismissAllNotifications(String packageName, Context ctx){
+
+		if(SharedPreferenceUtils.getDismissAll(ctx))
+		{
+			return true;
+		}
+
+		int count = 0;
+
+		for(NotificationBean n : Utils.getNotList()){
+			if(n.getPackageName().equals(packageName)){
+				count++;
+			}
+		}
+
+		if(count == 1){
+			return true;
+		}
+
+		return false;
+	}
+
+
 }

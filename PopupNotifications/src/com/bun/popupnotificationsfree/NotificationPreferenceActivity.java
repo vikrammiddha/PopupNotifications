@@ -24,6 +24,7 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -92,8 +93,14 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setTalkBackFix();
 
 		setResetSettingsListener();
-		
+
 		setVibratePreference();
+
+		setSyncPreferenceData();
+
+		setDismissAllPreferenceData();
+
+		setBannerTimePreferenceData();
 	}
 
 	private void setBlockedAppListener(){
@@ -292,8 +299,13 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 
-				Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS); 
-				startActivityForResult(intent, 0);
+				if(ctx.getResources().getBoolean(R.bool.is_service_enabled)){
+					Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS); 
+					startActivityForResult(intent, 0);
+				}else{
+					Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"); 
+					startActivityForResult(intent, 0);
+				}
 
 				return true;
 			}
@@ -310,6 +322,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 
 		final Preference customPref = (Preference) findPreference("notification_type_preference");
+		((Preference) findPreference("banner_time_pref")).setEnabled(false);
 
 		String notTypePref = SharedPreferenceUtils.getNotType(this);
 
@@ -317,18 +330,20 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 			ListPreference lp = (ListPreference)customPref;
 			lp.setValue("lockscreen_banners");
 			customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
+			((Preference) findPreference("banner_time_pref")).setEnabled(true);
 		}else{
-			String summary = getString(R.string.lockscreen_and_banners_summary);
 			if("lockscreen".equals(notTypePref)){
 				customPref.setSummary(getString(R.string.lock_screen_only_summary));
 			}else if("lockscreen_popup".equals(notTypePref)){
 				customPref.setSummary(getString(R.string.lockscreen_and_popup_summary));
 			}else if("lockscreen_banners".equals(notTypePref)){
 				customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
+				((Preference) findPreference("banner_time_pref")).setEnabled(true);
 			}else if("popup".equals(notTypePref)){
 				customPref.setSummary(getString(R.string.popup_only_summary));
 			}else if("banners".equals(notTypePref)){
 				customPref.setSummary(getString(R.string.banners_only_summary));
+				((Preference) findPreference("banner_time_pref")).setEnabled(true);
 			}
 		}
 
@@ -348,6 +363,126 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		});
 	}
+
+	private void setBannerTimePreferenceData(){
+
+
+		final Preference customPref = (Preference) findPreference("banner_time_pref");
+
+		String bannerTimePref = SharedPreferenceUtils.getBannerTime(this);
+
+		customPref.setSummary(getString(R.string.banner_time_summary) + " " + bannerTimePref + " " + getString(R.string.seconds));
+
+
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				String time = (String)newValue;
+
+				if("".equals(time.trim())){
+					time = "5"; 
+
+				}else if(Integer.valueOf(time) > 60){
+					time = "5";
+				}
+
+				customPref.setSummary(getString(R.string.banner_time_summary) + " " + time + " " + getString(R.string.seconds));
+
+				return true;
+			}
+
+		});
+	}
+
+
+
+	private void setDismissAllPreferenceData(){
+
+
+		final Preference customPref = (Preference) findPreference("dismiss_all_left");
+
+		Boolean dismissAllPref = SharedPreferenceUtils.getDismissAll(this);
+
+		if(dismissAllPref == null){
+			CheckBoxPreference cbp = (CheckBoxPreference)customPref;
+			cbp.setChecked(false);
+			customPref.setSummary(getString(R.string.dismiss_no_all_left_summary));
+		}else{
+			if(dismissAllPref){
+				customPref.setSummary(getString(R.string.dismiss_all_left_summary));
+			}else {
+				customPref.setSummary(getString(R.string.dismiss_no_all_left_summary));
+			}                
+		}
+
+
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				if((Boolean)newValue){
+					customPref.setSummary(getString(R.string.dismiss_all_left_summary));
+				}else {
+					customPref.setSummary(getString(R.string.dismiss_no_all_left_summary));
+				}
+				return true;
+			}
+
+		});
+	}
+
+	private void setSyncPreferenceData(){
+		PreferenceScreen screen = getPreferenceScreen();                
+
+		final Preference customPref = (Preference) findPreference("sync_preference");
+
+		if(ctx.getResources().getBoolean(R.bool.is_service_enabled)){
+			customPref.setEnabled(false);
+		}
+
+
+		String notTypePref = SharedPreferenceUtils.getSyncType(this);
+
+		if("".equals(notTypePref)){
+			ListPreference lp = (ListPreference)customPref;
+			lp.setValue("two_way");
+			customPref.setSummary(getString(R.string.two_way_summary));
+		}else{
+			if("none".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.none_s_1_summary));
+			}else if("one_way".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.one_way_summary));
+			}else if("two_way".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.two_way_summary));
+			}
+		}
+
+
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				if("none".equals(newValue.toString())){
+					customPref.setSummary(getString(R.string.none_s_1_summary));
+				}else if("one_way".equals(newValue.toString())){
+					customPref.setSummary(getString(R.string.one_way_summary));
+				}else if("two_way".equals(newValue.toString())){
+					customPref.setSummary(getString(R.string.two_way_summary));
+				}
+
+				return true;
+			}
+
+		});
+	}
+
 
 	private void setSelectedAppListListener(){
 		Preference pref = findPreference("mute_selected_screen");
@@ -424,7 +559,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		});
 	}
-	
+
 	private void setVibratePreference(){
 
 		final Preference customPref = (Preference) findPreference("vibrate");

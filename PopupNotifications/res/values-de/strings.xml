@@ -109,8 +109,7 @@
     <string name="start_tutorial">starten Tutorial</string>
     <string name="start_tutorial_click">Klicken Sie auf Start Tutorial-Taste, um das Tutorial zu starten.</string>
     <string name="dismiss_all_tutorial">Alle schließen, schließt die Mitteilung Bildschirm.</string>
-    <string name="upgrade_now_message">Upgrade auf Paid-Version unter Funktionen freizuschalten: \ n1) Mute ein oder mehrere apps \ n2) Aktivieren Schlaf Stunden \ n3)
-         Aktivieren Blockierte apps \ n4) Deaktivieren Aufwachen den Bildschirm auf neue Mitteilung \ n5) Transparenter Hintergrund \ nMany mehr</string>
+    <string name="upgrade_now_message">Upgrade auf Paid-Version unter Funktionen freizuschalten: \n1) Mute ein oder mehrere apps \n2) Aktivieren Schlaf Stunden \n3)Aktivieren Blockierte apps \n4) Deaktivieren Aufwachen den Bildschirm auf neue Mitteilung \n5) Transparenter Hintergrund \nMany mehr</string>
     
     
     
@@ -136,5 +135,30 @@
     <string name="ok">OK</string>
     
     <string name="vibrate_summary">Vibrieren bei Swipe</string>
+    
+    <string name="sync_desc">Synchronisieren mit Statusleiste</string>
+    <string name="array_s_1">none</string>
+    <string name="array_s_2">one_way</string>
+    <string name="array_s_3">two_way</string>    
+    <string name="none_s_1">Keine</string>
+    <string name="one_way">Ein Weg Sync</string>
+    <string name="two_way">Zwei-Wege-Sync</string>
+    <string name="none_s_1_summary">Kein Sync zwischen Statusleiste und Benachrichtigungen dieser Anwendung (4.3 und höher).</string>
+    <string name="one_way_summary">Entfernt Benachrichtigungen von Statusleiste, wenn aus dieser Klage abgewiesen (4.3 und höher).</string>
+    <string name="two_way_summary">Beide Wege Sync zwischen Statusleiste und diese Anwendung (4.3 und höher).</string>
+    
+    <string name="close_all">schließen</string>
+    
+    <string name="dismiss_all_left_desc">Alle schließen, auf der linken Swipe</string>
+    <string name="dismiss_no_all_left_summary">Entlassen gesonderte Ankündigung der App auf der linken Swipe auf Lockscreen.</string>
+    <string name="dismiss_all_left_summary">Entlassen alle Meldungen von der gleichen App auf der linken Swipe auf Lockscreen.</string>
+    
+    
+    <string name="dismiss_all_tutorial">Alle schließen, schließt die Mitteilung Bildschirm sowie löscht die Benachrichtigungen von Statusleiste.</string>
+    <string name="close_all_tutorial">Schaltfläche Schließen wird die Benachrichtigung nur Bildschirm und löscht nicht die Meldungen aus Statusleiste.</string>
+    
+    <string name="banner_time_desc">Set Banner show time (Sekunden)</string>
+    <string name="banner_time_summary">Banner sichtbar sein wird für : </string>
+    <string name="seconds">Sekunden </string>
 
 </resources>

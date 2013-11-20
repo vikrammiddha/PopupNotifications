@@ -138,5 +138,29 @@
     
     <string name="vibrate_summary">Vibrate on swipe</string> 
     
+    <string name="sync_desc">Sync with Status bar</string>
+    <string name="array_s_1">none</string>
+    <string name="array_s_2">one_way</string>
+    <string name="array_s_3">two_way</string>    
+    <string name="none_s_1">None</string>
+    <string name="one_way">One way Sync</string>
+    <string name="two_way">Two way Sync</string>
+    <string name="none_s_1_summary">No Sync between status bar and Notifications of this application(4.3 and above).</string>
+    <string name="one_way_summary">Removes Notifications from status bar when dismissed from this application(4.3 and above).</string>
+    <string name="two_way_summary">Both ways sync between status bar and this application(4.3 and above).</string>
+    
+    <string name="close_all">Close</string>
+    
+    <string name="dismiss_all_left_desc">Dismiss all on left swipe</string>
+    <string name="dismiss_no_all_left_summary">Dismiss specific notification of the app on left swipe on lockscreen.</string>
+    <string name="dismiss_all_left_summary">Dismiss all notifications of the same App on left swipe on lockscreen.</string>
+    
+    
+    <string name="dismiss_all_tutorial">Dismiss All closes the notification screen as well as clears the Notifications from status bar.</string>
+    <string name="close_all_tutorial">Close button closes the notification screen only and does not clear the notifications from status bar.</string>
+    
+    <string name="banner_time_desc">Set Banner show time(Seconds)</string>
+    <string name="banner_time_summary">Banner will be visible for : </string>
+    <string name="seconds">seconds </string>
 
 </resources>

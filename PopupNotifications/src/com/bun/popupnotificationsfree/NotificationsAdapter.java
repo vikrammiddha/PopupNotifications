@@ -1,6 +1,8 @@
 package com.bun.popupnotificationsfree;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
 
 
 import android.annotation.SuppressLint;
@@ -64,6 +66,19 @@ public class NotificationsAdapter extends BaseAdapter{
 		nList.add(notf);
 	}
 
+	public void clearAppNotifications(Set<String> packageSet){
+		Iterator<NotificationBean> iter = nList.iterator();
+
+		while(iter.hasNext()){
+
+			NotificationBean nb = iter.next();
+
+			if(packageSet.contains(nb.getPackageName())){                                                        
+				iter.remove();
+			}
+		}
+	}
+
 	public  int getAdapterSize(){
 		if(nList == null){
 			return 0;
@@ -101,7 +116,7 @@ public class NotificationsAdapter extends BaseAdapter{
 		// TODO Auto-generated method stub
 		return position;
 	}
-	
+
 	@Override
 	public View getView(final int position, View view, ViewGroup parent) {                
 

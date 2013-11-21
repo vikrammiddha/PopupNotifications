@@ -265,11 +265,11 @@ ShowcaseView.OnShowcaseEventListener{
 						if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))
 								&& HelperUtils.dismissAllNotifications(adapter.getItem(position).getPackageName(), ctx)){
 							nns.cancelNotification(adapter.getItem(position).getPackageName(), adapter.getItem(position).getTagId(), adapter.getItem(position).getId());
-						}
-						adapter.removeNotification(position);
-						if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled)){
+						}else{
 							Utils.getNotList().remove(position);
 						}
+						adapter.removeNotification(position);
+						
 					}catch(Exception e){
 						e.printStackTrace();
 					}
@@ -490,6 +490,17 @@ ShowcaseView.OnShowcaseEventListener{
 		if(clearData){
 			adapter.clearNotifications();
 		}
+		
+		Iterator<NotificationBean> iter = Utils.getNotList().iterator();
+
+        while(iter.hasNext()){
+
+                NotificationBean nb = iter.next();
+
+                if(nb.getIsOddRow()){
+                        iter.remove();
+                }
+        }
 
 
 		if(HelperUtils.isExpandedNotifications(ctx)){
@@ -609,21 +620,21 @@ ShowcaseView.OnShowcaseEventListener{
 		}else
 		{			
 			int totalHeight = 0;
-		    for (int size = 0; size < adapter.getCount(); size++) {
-		        View listItem = adapter.getView(size, null, layout);
-		        if (listItem != null) {
-		            listItem.measure(0, 0);
-		            totalHeight += listItem.getMeasuredHeight();
-		        }
-		    }
-		    
-		    int a1 = (int)(screenHeight * 0.5);
-		    Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
+			for (int size = 0; size < adapter.getCount(); size++) {
+				View listItem = adapter.getView(size, null, layout);
+				if (listItem != null) {
+					listItem.measure(0, 0);
+					totalHeight += listItem.getMeasuredHeight();
+				}
+			}
+
+			int a1 = (int)(screenHeight * 0.5);
+			Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
 			//Log.d("not_Activity", "ll height===" + getLayoutHeight() + "==" + (int)(screenHeight * 0.5));
 			if((ll1.getHeight() >= (int)(screenHeight * 0.5) || totalHeight >= (int)(screenHeight * 0.5)) && !isDismissed){		    
 				params.height = (int)(screenHeight * 0.5);
 			}else{
-								
+
 				if(isDismissed && ((layout.getHeight() + dismissButton.getHeight()) >= (int)(screenHeight * 0.5) ||  (totalHeight + dismissButton.getHeight()) >= (int)(screenHeight * 0.5))){				
 					params.height = (int)(screenHeight * 0.5);
 				}else{

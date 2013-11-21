@@ -264,11 +264,11 @@ ShowcaseView.OnShowcaseEventListener{
 						if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))
 								&& HelperUtils.dismissAllNotifications(adapter.getItem(position).getPackageName(), ctx)){
 							nns.cancelNotification(adapter.getItem(position).getPackageName(), adapter.getItem(position).getTagId(), adapter.getItem(position).getId());
-						}
-						adapter.removeNotification(position);
-						if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled)){
+						}else{
 							Utils.getNotList().remove(position);
 						}
+						adapter.removeNotification(position);
+						
 					}catch(Exception e){
 						e.printStackTrace();
 					}
@@ -500,7 +500,17 @@ ShowcaseView.OnShowcaseEventListener{
 		if(clearData){
 			adapter.clearNotifications();
 		}	
+		
+		Iterator<NotificationBean> iter = Utils.getNotList().iterator();
 
+		while(iter.hasNext()){
+
+			NotificationBean nb = iter.next();
+
+			if(nb.getIsOddRow()){
+				iter.remove();
+			}
+		}
 
 		if(HelperUtils.isExpandedNotifications(ctx)){
 

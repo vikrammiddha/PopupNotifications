@@ -301,7 +301,7 @@ public class HelperUtils {
 		int count = 0;
 		
 		for(NotificationBean n : Utils.getNotList()){
-			if(n.getPackageName().equals(packageName)){
+			if(n.getPackageName().equals(packageName) && !n.getIsOddRow()){
 				count++;
 			}
 		}

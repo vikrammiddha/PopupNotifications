@@ -101,6 +101,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setDismissAllPreferenceData();
 
 		setBannerTimePreferenceData();
+		
+		setMaxLinesPreferenceData();
 	}
 
 	private void setBlockedAppListener(){
@@ -383,7 +385,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 				String time = (String)newValue;
 
 				if("".equals(time.trim())){
-					time = "5"; 
+					time = "5";					
 
 				}else if(Integer.valueOf(time) > 60){
 					time = "5";
@@ -512,6 +514,53 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 			public boolean onPreferenceChange(Preference preference,
 					Object newValue) {
 
+				HelperUtils.upgradeNowDialogue(ctx);
+
+				return false;
+			}
+
+		});
+	}
+	
+
+	private void setMaxLinesPreferenceData(){
+		
+		final Preference customPref = (Preference) findPreference("no_of_lines_pref");
+
+		Integer bannerTimePref = Integer.valueOf(SharedPreferenceUtils.getMaxLines(this));
+
+		customPref.setSummary(getString(R.string.no_of_lines_summary) + " " + bannerTimePref + " " + getString(R.string.lines));
+		
+		
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+				
+				/*String lines = (String)newValue;
+				
+				Boolean falseValue = false;
+
+				if("".equals(lines.trim())){
+					lines = "10"; 
+					falseValue = true;
+
+				}else if(Integer.valueOf(lines) > 10){
+					lines = "10";
+					falseValue = true;
+				}
+				
+				
+
+				//
+				
+				if(falseValue){
+					return false;
+				}else{
+					customPref.setSummary(getString(R.string.no_of_lines_summary) + " " + lines + " " + getString(R.string.lines));
+				}*/
+				
 				HelperUtils.upgradeNowDialogue(ctx);
 
 				return false;

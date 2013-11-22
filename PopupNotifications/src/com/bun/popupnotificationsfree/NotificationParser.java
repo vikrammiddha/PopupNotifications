@@ -547,8 +547,12 @@ public class NotificationParser {
 			Log.d("Notification Service", "uniqueValue-----" + bean.getUniqueValue());
 			//Log.d("Notification Service", "tickertext-----" + event.getText().toString());
 
-
-
+			if(HelperUtils.showFeedback(ctx, SharedPreferenceUtils.getNotCount(ctx) + 1) && Utils.isScreenLocked(ctx)){
+				
+			}else{
+				SharedPreferenceUtils.setNotCount(ctx, SharedPreferenceUtils.getNotCount(ctx) + 1);
+			}
+			
 			if(Utils.isServiceRunning || Utils.isForgroundApp(ctx, ctx.getString(R.string.package_name))){
 				Utils.getNotList().add(0,bean);
 				Log.d("Notification Service", "Broadcast---");
@@ -586,6 +590,12 @@ public class NotificationParser {
 
 				}				
 
+			}
+			
+			if(HelperUtils.showFeedback(ctx,-1) && !Utils.isScreenLocked(ctx)){
+				Intent dialogIntent = new Intent(baseContext, FeedbackActivity.class);
+				dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				app.startActivity(dialogIntent);
 			}
 
 			if(HelperUtils.wakeOnNotification(ctx)){

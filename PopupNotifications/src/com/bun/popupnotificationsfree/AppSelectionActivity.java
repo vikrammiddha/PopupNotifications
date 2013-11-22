@@ -148,8 +148,9 @@ public class AppSelectionActivity extends SherlockActivity{
 			break;
 
 		case 3:
-			Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(getString(R.string.market_url)));
-			startActivity(intent);
+			//Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(getString(R.string.market_url)));
+			//startActivity(intent);
+			Feedback.initiateFeedback(ctx, this);
 			break;
 
 		case 5:

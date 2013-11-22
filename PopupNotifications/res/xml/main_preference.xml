@@ -55,6 +55,13 @@
             android:title="@string/banner_time_desc"
             android:inputType="number"  />
         
+        <EditTextPreference
+            android:key="no_of_lines_pref"
+            android:summary="@string/no_of_lines_summary"
+            android:title="@string/no_of_lines_desc"
+            android:inputType="number"  />
+        
+        
         <CheckBoxPreference
             android:key="vibrate"
             android:summary=""

@@ -354,6 +354,20 @@ public class HelperUtils {
 
 		return false;
 	}
+	
+	public static Boolean showFeedback(Context ctx, Integer cnt){
+				
+		Integer count = SharedPreferenceUtils.getNotCount(ctx);
+		
+		if(cnt > 0)
+			count = cnt;
+		
+		if((count == 50 || count == 100 || count == 150 || (count > 150 && count%50 == 0)) && SharedPreferenceUtils.getShowFeedback(ctx)){
+			return true;
+		}
+		return false;
+		
+	}
 
 
 }

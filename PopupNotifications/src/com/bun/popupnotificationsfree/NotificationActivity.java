@@ -135,10 +135,10 @@ ShowcaseView.OnShowcaseEventListener{
 
 		ctx = this;
 
-		act = this;
-
-
+		act = this;	
+		
 		adapter = new NotificationsAdapter(this);
+		adapter.textViewSize = Integer.valueOf(SharedPreferenceUtils.getMaxLines(ctx));
 		layout = (SwipeListView ) findViewById(R.id.notificationsListViewId);	
 		layout.setScrollingCacheEnabled(false);
 
@@ -242,6 +242,8 @@ ShowcaseView.OnShowcaseEventListener{
 								&& (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))){
 							nns.cancelNotification(adapter.getItem(rowPos).getPackageName(), adapter.getItem(rowPos).getTagId(), adapter.getItem(rowPos).getId());
 						}
+						
+						//resetFeedbackCounter();
 						finish();
 						return;
 						//Utils.notList.clear();
@@ -295,6 +297,7 @@ ShowcaseView.OnShowcaseEventListener{
 				setBackgroundHeight(true);
 
 				if(adapter.getAdapterSize() == 0){
+					//resetFeedbackCounter();
 					finish();
 					Utils.getNotList().clear();
 					Utils.intentMap.clear();        
@@ -305,7 +308,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 		});
 
-		if(!SharedPreferenceUtils.getFirstTimeRun(ctx) || SharedPreferenceUtils.getShowTutorial(ctx)){
+		if(!SharedPreferenceUtils.getFirstTimeRun(ctx)){
 			co.hideOnClickOutside = false;
 			co.shotType = ShowcaseView.TYPE_ONE_SHOT;
 			//co.shotType = ShowcaseView.TYPE_ONE_SHOT;
@@ -313,11 +316,17 @@ ShowcaseView.OnShowcaseEventListener{
 			sv.setShowcaseIndicatorScale(1.5f);
 			sv.setOnShowcaseEventListener(this);
 			SharedPreferenceUtils.setShowTutorial(ctx, false);
-		}	
+		}
+		
+		//SharedPreferenceUtils.setNotCount(ctx, SharedPreferenceUtils.getNotCount(ctx) + 1);
+		
+		//if(HelperUtils.showFeedback(ctx)){
+			//Feedback.initiateFeedback(ctx, this);
+		//}		
 
 	}
 
-
+	
 
 	private NotificationReceiver mReceiver = new NotificationReceiver() {
 		public void onReceive(Context context, Intent intent) {
@@ -327,12 +336,17 @@ ShowcaseView.OnShowcaseEventListener{
 	};
 
 	public void clearNotifications(View view){	
-		clearData(true);	
+		clearData(true);
+		finish();
+		
 
 	}
 
 	public void closeNotifications(View view){
-		clearData(false);
+		clearData(false);		
+		finish();
+		
+		
 	}
 
 
@@ -373,7 +387,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 		//Utils.tf = null;
-		finish();
+		
 	}
 
 
@@ -655,6 +669,8 @@ ShowcaseView.OnShowcaseEventListener{
 		super.onPause();
 
 		unregisterReceiver(mReceiver);
+		
+		
 
 	}
 
@@ -674,6 +690,7 @@ ShowcaseView.OnShowcaseEventListener{
 		}
 
 		layout.setAdapter(null);
+		
 
 	}
 

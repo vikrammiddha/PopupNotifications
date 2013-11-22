@@ -31,6 +31,14 @@
         </activity>
         
         <activity
+            android:name="com.bun.popupnotificationsfree.FeedbackActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true" 
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+             >
+        </activity>
+        
+        <activity
             android:name="com.bun.popupnotifications.PopupActivity"
             android:excludeFromRecents="true"            
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >

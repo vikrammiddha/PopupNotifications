@@ -202,6 +202,42 @@ public class SharedPreferenceUtils {
 	public static Boolean getDismissAll(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getBoolean("dismiss_all_left", false);
+	}	
+	
+	
+	public static void setShowFeedback(Context ctx, Boolean bool){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putBoolean("show_feedback", bool).commit();
+	}
+
+	public static Boolean getShowFeedback(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getBoolean("show_feedback", true);
+	}
+
+
+	public static Integer getNotCount(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getInt("not_Count", 0);
+	}
+	
+	public static void setNotCount(Context ctx, Integer count){	
+		
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putInt("not_Count", count).commit();
+
+	}
+	
+	public static String getMaxLines(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());		
+		return sharedPrefs.getString("no_of_lines_pref", "10");
+	}
+	
+	public static void setMaxLines(Context ctx, String count){
+				
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("no_of_lines_pref", count).commit();
+
 	}
 
 	public static Boolean isBlockedApp(Context ctx, String packageName){

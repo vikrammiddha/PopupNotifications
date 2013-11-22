@@ -160,5 +160,19 @@
     <string name="banner_time_desc">Establecer el tiempo de espectáculo Banner (segundos)</string>
     <string name="banner_time_summary">Banner será visible para : </string>
     <string name="seconds">segundo </string>
+    
+    <string name="do_you_love_this_app">¿Amas a notificaciones emergentes ?</string>
+    <string name="no">no </string>
+    <string name="happy_to_know">Feliz de saber que te gusta nuestra aplicación. ¿Quieres que nos daría el Play Store ? </string>
+    <string name="sad_to_know"> Lamento saber que usted no está satisfecho con nuestra aplicación. Por favor envíe sus comentarios para ayudarnos a mejorar mejor.</string>
+    <string name="later">más tarde</string>
+    <string name="do_not_show">No se repite el mensaje.</string>
+    <string name="send">enviar</string>
+    <string name="fb_app_not_working">Aplicación no funciona en mi teléfono.</string>
+    <string name="fb_languate_translation">Traducción al lenguaje no es bueno para mi País.</string>    
+    <string name="fb_battery">Consume demasiado de la batería</string>
+    <string name="fb_ui_design">Diseño de interfaz de usuario no es bueno.</string>    
+    <string name="other">Otros Razón :</string>
+    <string name="email_subject"> Notificaciones emergentes Feedback libre</string>
 
 </resources>

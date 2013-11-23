@@ -174,5 +174,8 @@
     <string name="fb_ui_design">UI Design ist nicht gut.</string>    
     <string name="other">Andere Reason :</string>
     <string name="email_subject">Popup Benachrichtigungen Freie Meinung</string>
+    <string name="no_of_lines_desc">Maximale Linien für Benachrichtigungen</string>
+    <string name="no_of_lines_summary">Maximale Anzahl der Zeilen, die für jede Benachrichtigung angezeigt werden : </string>
+    <string name="lines">Linien</string>
 
 </resources>

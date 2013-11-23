@@ -174,5 +174,8 @@
     <string name="fb_ui_design">UI Design non è buona.</string>    
     <string name="other">altro Motivo :</string>
     <string name="email_subject">Notifiche popup Commenti libero</string>
+    <string name="no_of_lines_desc">Líneas máximas para Notificaciones</string>
+    <string name="no_of_lines_summary">Numero massimo di righe da visualizzare per ogni notifica : </string>
+    <string name="lines">Lines</string>
 
 </resources>

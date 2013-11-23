@@ -168,5 +168,8 @@
     <string name="fb_ui_design">Diseño de interfaz de usuario no es bueno.</string>    
     <string name="other">Otros Razón :</string>
     <string name="email_subject">Popup notificaciones Comentarios</string>
+    <string name="no_of_lines_desc">Linee massimi per Comunicazioni</string>
+    <string name="no_of_lines_summary">Número máximo de líneas que se mostrarán para cada notificación : </string>
+    <string name="lines">linea</string>
 
 </resources>

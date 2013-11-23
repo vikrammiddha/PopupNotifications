@@ -154,5 +154,22 @@
     <string name="banner_time_desc">Set Banner show time(Seconds)</string>
     <string name="banner_time_summary">Banner will be visible for : </string>
     <string name="seconds">seconds </string>
+    
+    <string name="do_you_love_this_app">Do you love Popup Notifications ?</string>
+    <string name="no">No </string>
+    <string name="happy_to_know">Happy to know that you like our app. Would you like to rate us on Play Store ? </string>
+    <string name="sad_to_know"> Sorry to know that you are not happy with our App. Please provide your feedback to help us improve it better.</string>
+    <string name="later">Later</string>
+    <string name="do_not_show">Do not show this again.</string>
+    <string name="send">Send</string>
+    <string name="fb_app_not_working">App is not working on my phone.</string>
+    <string name="fb_languate_translation">Language translation is not good for my Country.</string>    
+    <string name="fb_battery">Consumes too much of battery</string>
+    <string name="fb_ui_design">UI Design is not good.</string>    
+    <string name="other">Other Reason :</string>
+    <string name="email_subject">Popup Notifications Feedback</string>
+    <string name="no_of_lines_desc">Max Lines for Notifications</string>
+    <string name="no_of_lines_summary">Maximum number of lines to be displayed for each notification : </string>
+    <string name="lines">Lines</string>
 
 </resources>

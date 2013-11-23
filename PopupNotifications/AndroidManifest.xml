@@ -14,77 +14,71 @@
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.FLAG_SHOW_WHEN_LOCKED" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name="com.bun.popupnotifications.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-         >
-         <service android:name="BannerService"/>
+        android:theme="@style/AppTheme" >
+        <service android:name="BannerService" />
+
         <activity
             android:name="com.bun.popupnotifications.NotificationActivity"
-            android:excludeFromRecents="true"                       
+            android:excludeFromRecents="true"
             android:theme="@style/SampleTheme" >
         </activity>
-        
-         <activity
-            android:name="com.bun.popupnotifications.PopupActivity"
-            android:excludeFromRecents="true"            
+        <activity
+            android:name="com.bun.popupnotifications.FeedbackActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
-        
+        <activity
+            android:name="com.bun.popupnotifications.PopupActivity"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
         <activity
             android:name="com.bun.popupnotifications.MuteSelectedAppActivity"
-            android:label="Muted Apps List"
-             >
+            android:label="Muted Apps List" >
         </activity>
-         <activity
-            android:name="com.bun.popupnotifications.BlockedAppsActivity"
-            android:label="Blocked Apps"
-             >
-        </activity>
-        
         <activity
-            android:name="com.bun.popupnotifications.TimePreference"
-           
-             >
-        </activity>    
-       
-        
+            android:name="com.bun.popupnotifications.BlockedAppsActivity"
+            android:label="Blocked Apps" >
+        </activity>
+        <activity android:name="com.bun.popupnotifications.TimePreference" >
+        </activity>
         <activity
             android:name="AppSelectionActivity"
             android:label="@string/app_name"
-            android:noHistory="true" 
-             >
+            android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.bun.popupnotifications.NotificationPreferenceActivity"
+        <activity
+            android:name="com.bun.popupnotifications.NotificationPreferenceActivity"
             android:excludeFromRecents="true"
-            android:noHistory="true" 
-            >
+            android:noHistory="true" >
         </activity>
-        
-        <service android:name="com.bun.popupnotifications.NewNotificationService"
-                 android:label="@string/popup_not_service"
-                 android:enabled="@bool/is_new_service_enabled"
-                 android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+
+        <service
+            android:name="com.bun.popupnotifications.NewNotificationService"
+            android:enabled="@bool/is_new_service_enabled"
+            android:label="@string/popup_not_service"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
-
         <service
-            android:name=".NotificationService" 
+            android:name=".NotificationService"
             android:enabled="@bool/is_service_enabled"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
-             >
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
@@ -102,6 +96,7 @@
                 </action>
             </intent-filter>
         </receiver>
+       
     </application>
 
 </manifest>

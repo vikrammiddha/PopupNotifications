@@ -134,6 +134,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 		adapter = new NotificationsAdapter(this);
+		adapter.textViewSize = Integer.valueOf(SharedPreferenceUtils.getMaxLines(ctx));
 		layout = (SwipeListView ) findViewById(R.id.notificationsListViewId);	
 		layout.setScrollingCacheEnabled(false);
 

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <LinearLayout
+        android:id="@+id/noFBId"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dip" >
+
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="left"
+                android:layout_weight="80"
+                android:src="@drawable/sad" />
+
+            <TextView
+                android:id="@+id/unreadCountTextId"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="20"
+                android:gravity="center"
+                android:paddingLeft="3dip"
+                android:text="@string/sad_to_know"
+                android:textColor="#000000"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black"
+            android:paddingBottom="5dip" />
+
+        <CheckBox
+            android:id="@+id/fbCB1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fb_app_not_working"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:paddingBottom="5dip"
+            android:textColor="#000000" />
+
+        <CheckBox
+            android:id="@+id/fbCB2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fb_languate_translation"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:paddingBottom="5dip"
+            android:textColor="#000000" />
+
+        <CheckBox
+            android:id="@+id/fbCB3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fb_battery"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:paddingBottom="5dip"
+            android:textColor="#000000" />
+
+        <CheckBox
+            android:id="@+id/fbCB4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dip"
+            android:text="@string/fb_ui_design"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000000" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/other" 
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_weight="70"
+                android:textColor="#000000"/>
+
+            <EditText                
+                android:id="@+id/othersId"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"                
+                android:layout_weight="30" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/noDoNotShow"  
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/do_not_show"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+</ScrollView>

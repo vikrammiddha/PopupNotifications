@@ -223,11 +223,11 @@ public class HelperUtils {
 		return false;
 
 	}
-	
+
 	public static Integer getNotType(Context ctx){
 		try{
 			String notType = (String)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "notification_type_preference", "STRING");
-						
+
 			if(notType.equals("lockscreen")){
 				return Constants.NOT_LOCKSCREEN;
 			}else if(notType.equals("lockscreen_popup")){
@@ -239,12 +239,12 @@ public class HelperUtils {
 			}else if(notType.equals("banners")){
 				return Constants.NOT_BANNERS;
 			}
-			
-			
+
+
 		}catch(Exception e){
 			return -1;
 		}
-		
+
 		return -1;
 	}
 
@@ -266,10 +266,10 @@ public class HelperUtils {
 
 		return false;
 	}
-	
+
 	public static Drawable getAppIcon(String packageName, Context ctx){
-		
-		
+
+
 		Drawable icon = null;
 		try{
 			icon = ctx.getPackageManager().getApplicationIcon(packageName);
@@ -283,34 +283,48 @@ public class HelperUtils {
 
 		return icon;
 	}
-	
+
 	public static Boolean isVibrate(Context ctx){
-		
+
 		Boolean val = (Boolean) SharedPreferenceUtils.getGenericPreferenceValue(ctx, "vibrate", "BOOLEAN");
-		
+
 		return val;
 	}
-	
+
 	public static Boolean dismissAllNotifications(String packageName, Context ctx){
-		
+
 		if(SharedPreferenceUtils.getDismissAll(ctx))
 		{
 			return true;
 		}
-		
+
 		int count = 0;
-		
+
 		for(NotificationBean n : Utils.getNotList()){
 			if(n.getPackageName().equals(packageName) && !n.getIsOddRow()){
 				count++;
 			}
 		}
-		
+
 		if(count == 1){
 			return true;
 		}
-		
+
 		return false;
+	}
+
+	public static Boolean showFeedback(Context ctx, Integer cnt){
+
+		Integer count = SharedPreferenceUtils.getNotCount(ctx);
+
+		if(cnt > 0)
+			count = cnt;
+
+		if((count == 50 || count == 100 || count == 150 || (count > 150 && count%50 == 0)) && SharedPreferenceUtils.getShowFeedback(ctx)){
+			return true;
+		}
+		return false;
+
 	}
 
 }

@@ -173,17 +173,17 @@ public class SharedPreferenceUtils {
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getString("notification_type_preference", "");
 	}
-	
+
 	public static String getBannerTime(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getString("banner_time_pref", "5");
 	}
-	
+
 	public static String getSyncType(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getString("sync_preference", "");
 	}
-	
+
 	public static Boolean getDismissAll(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getBoolean("dismiss_all_left", false);
@@ -192,6 +192,41 @@ public class SharedPreferenceUtils {
 	public static Boolean getFirstTimeRun(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getBoolean("FirstTimeRun", false);
+	}
+
+	public static void setShowFeedback(Context ctx, Boolean bool){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putBoolean("show_feedback", bool).commit();
+	}
+
+	public static Boolean getShowFeedback(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getBoolean("show_feedback", true);
+	}
+
+
+	public static Integer getNotCount(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getInt("not_Count", 0);
+	}
+
+	public static void setNotCount(Context ctx, Integer count){        
+
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putInt("not_Count", count).commit();
+
+	}
+
+	public static String getMaxLines(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
+		return sharedPrefs.getString("no_of_lines_pref", "10");
+	}
+
+	public static void setMaxLines(Context ctx, String count){
+
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("no_of_lines_pref", count).commit();
+
 	}
 
 	public static Boolean isBlockedApp(Context ctx, String packageName){
@@ -206,7 +241,7 @@ public class SharedPreferenceUtils {
 	}
 
 	public static void loadDefaultSettings(Context ctx){
-		
+
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
 
 		if(!getFirstTimeRun(ctx)){
@@ -227,7 +262,7 @@ public class SharedPreferenceUtils {
 
 
 
-			
+
 			sp.edit().putBoolean("expanded_notification", true).commit();
 			sp.edit().putBoolean("full_screen_notification", false).commit();
 			sp.edit().putBoolean("transparent_background", true).commit();
@@ -244,18 +279,18 @@ public class SharedPreferenceUtils {
 			sp.edit().putBoolean("dismiss_all_left", false).commit();
 
 		}
-		
+
 		String notTypeValue = sp.getString("notification_type_preference", "");
-		
+
 		if(notTypeValue.equals("") || (!notTypeValue.equals("lockscreen") && !notTypeValue.equals("lockscreen_popup") 
-						&& !notTypeValue.equals("lockscreen_banners") && !notTypeValue.equals("popup") && !notTypeValue.equals("banners"))){
+				&& !notTypeValue.equals("lockscreen_banners") && !notTypeValue.equals("popup") && !notTypeValue.equals("banners"))){
 			sp.edit().putString("notification_type_preference", "lockscreen_banners").commit();
 		}
-		
+
 		String syncTypeValue = sp.getString("sync_preference", "");
-		
+
 		if(notTypeValue.equals("") || (!notTypeValue.equals("none") && !notTypeValue.equals("one_way") 
-						&& !notTypeValue.equals("two_way"))){
+				&& !notTypeValue.equals("two_way"))){
 			sp.edit().putString("sync_preference", "two_way").commit();
 		}
 

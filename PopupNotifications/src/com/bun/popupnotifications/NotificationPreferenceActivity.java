@@ -87,8 +87,10 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setSyncPreferenceData();
 
 		setDismissAllPreferenceData();
-		
+
 		setBannerTimePreferenceData();
+
+		setMaxLinesPreferenceData();
 	}
 
 	private void setBlockedAppListener(){
@@ -303,6 +305,52 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 	}
 
+	private void setMaxLinesPreferenceData(){
+
+		final Preference customPref = (Preference) findPreference("no_of_lines_pref");
+
+		Integer bannerTimePref = Integer.valueOf(SharedPreferenceUtils.getMaxLines(this));
+
+		customPref.setSummary(getString(R.string.no_of_lines_summary) + " " + bannerTimePref + " " + getString(R.string.lines));
+
+
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				String lines = (String)newValue;
+
+                        Boolean falseValue = false;
+
+                        if("".equals(lines.trim())){
+                                lines = "10"; 
+                                falseValue = true;
+
+                        }else if(Integer.valueOf(lines) > 10){
+                                lines = "10";
+                                falseValue = true;
+                        }
+
+
+
+                        //
+
+                        if(falseValue){
+                                return false;
+                        }else{
+                                customPref.setSummary(getString(R.string.no_of_lines_summary) + " " + lines + " " + getString(R.string.lines));
+                        }
+
+				
+
+				return true;
+			}
+
+		});
+	}
+
 
 
 	private void setSelectedAppListListener(){
@@ -431,7 +479,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		});
 	}
-	
+
 	private void setBannerTimePreferenceData(){
 
 
@@ -447,18 +495,18 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 			@Override
 			public boolean onPreferenceChange(Preference preference,
 					Object newValue) {
-				
+
 				String time = (String)newValue;
-				
+
 				if("".equals(time.trim())){
 					time = "5"; 
-						
+
 				}else if(Integer.valueOf(time) > 60){
 					time = "5";
 				}
 
 				customPref.setSummary(getString(R.string.banner_time_summary) + " " + time + " " + getString(R.string.seconds));
-				
+
 				return true;
 			}
 
@@ -506,13 +554,13 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 	private void setSyncPreferenceData(){
 		PreferenceScreen screen = getPreferenceScreen();		
-		
+
 		final Preference customPref = (Preference) findPreference("sync_preference");
 
 		if(ctx.getResources().getBoolean(R.bool.is_service_enabled)){
 			customPref.setEnabled(false);
 		}
-		
+
 
 		String notTypePref = SharedPreferenceUtils.getSyncType(this);
 

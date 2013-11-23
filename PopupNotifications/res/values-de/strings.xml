@@ -155,6 +155,20 @@
     <string name="banner_time_summary">Banner sichtbar sein wird für : </string>
     <string name="seconds">Sekunden </string>
     
+    <string name="do_you_love_this_app">Lieben Sie Popup Benachrichtigungen ?</string>
+    <string name="no">Keine </string>
+    <string name="happy_to_know">Glücklich zu wissen, dass Sie unsere App gefällt. Möchten Sie uns auf Play Store bewerten ? </string>
+    <string name="sad_to_know"> Es tut uns leid zu wissen, dass Sie nicht zufrieden sind mit unserer App. Bitte geben Sie mit Ihrem Feedback, uns zu verbessern es besser.</string>
+    <string name="later">Später</string>
+    <string name="do_not_show">Nicht mehr anzeigen wieder.</string>
+    <string name="send">senden</string>
+    <string name="fb_app_not_working">App funktioniert nicht auf meinem Handy.</string>
+    <string name="fb_languate_translation">Sprache ist die Übersetzung nicht für mein Land gut.</string>    
+    <string name="fb_battery">Verbraucht zu viel Batterie</string>
+    <string name="fb_ui_design">UI Design ist nicht gut.</string>    
+    <string name="other">Andere Reason :</string>
+    <string name="email_subject">Popup Benachrichtigungen Meinung</string>
+    
     
 
 </resources>

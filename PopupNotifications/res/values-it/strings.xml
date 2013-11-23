@@ -154,5 +154,19 @@
     <string name="banner_time_summary">Striscione sarà visibile per : </string>
     <string name="seconds">secondi </string>
     
+    <string name="do_you_love_this_app">Amate notifiche pop-up ?</string>
+    <string name="no">No </string>
+    <string name="happy_to_know">Felice di sapere che ti piace la nostra applicazione. Volete votare noi su Play Store ? </string>
+    <string name="sad_to_know"> Mi dispiace sapere che non siete felici con la nostra app. Si prega di fornire il vostro feedback per aiutarci a migliorare meglio.</string>
+    <string name="later">Più tardi</string>
+    <string name="do_not_show">Non mostrarlo più.</string>
+    <string name="send">Invia</string>
+    <string name="fb_app_not_working">App non funziona sul mio telefono.</string>
+    <string name="fb_languate_translation">Traduzione in lingua non è buono per il mio paese.</string>    
+    <string name="fb_battery">Consuma troppa batteria</string>
+    <string name="fb_ui_design">UI Design non è buona.</string>    
+    <string name="other">altro Motivo :</string>
+    <string name="email_subject">Popup Notifiche Commenti</string>
+    
 
 </resources>

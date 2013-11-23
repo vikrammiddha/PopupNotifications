@@ -492,8 +492,12 @@ public class NotificationParser {
 					bean.setSender(tempSender);
 				}
 			}catch(Exception e){
-				bean.setMessage(nnn.tickerText.toString());  
-				bean.setAppName(ctx.getPackageManager().getApplicationLabel(ai).toString());
+				try{
+					bean.setMessage(nnn.tickerText.toString());  
+					bean.setAppName(ctx.getPackageManager().getApplicationLabel(ai).toString());
+				}catch(Exception ex){
+					return;
+				}
 			}
 
 			if(id != null){

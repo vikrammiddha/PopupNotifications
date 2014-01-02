@@ -239,6 +239,8 @@ ShowcaseView.OnShowcaseEventListener{
 
 			@Override
 			public void onDismiss(int[] reverseSortedPositions) {	
+				
+				Utils.isAddedFirstItem = false;
 
 				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && nns == null)
 					nns = NewNotificationService.getInstance();

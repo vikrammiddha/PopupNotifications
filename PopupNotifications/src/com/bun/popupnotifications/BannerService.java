@@ -384,14 +384,14 @@ public class BannerService extends Service{
 			//gd.setStroke(strokeWidth, strokeColor);	
 
 			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-				sListView.setBackground(gd);
+				//sListView.setBackground(gd);
 			}else{
-				sListView.setBackgroundDrawable(gd);
+				//sListView.setBackgroundDrawable(gd);
 			}
 
 
 			if(HelperUtils.isTransparentBackround(ctx)){
-				sListView.getBackground().setAlpha(500);
+				//sListView.getBackground().setAlpha(500);
 
 			}
 		}

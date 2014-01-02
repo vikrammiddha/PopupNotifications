@@ -730,6 +730,8 @@ ShowcaseView.OnShowcaseEventListener{
 		super.onPause();
 
 		Utils.isAddedFirstItem = false;
+		
+		Utils.isScreenScrolling = false;
 
 		unregisterReceiver(mReceiver);
 

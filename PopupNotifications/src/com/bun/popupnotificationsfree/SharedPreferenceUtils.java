@@ -167,7 +167,7 @@ public class SharedPreferenceUtils {
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getBoolean("FirstTimeRun", false);
 	}
-	
+
 	public static void setShowTutorial(Context ctx, Boolean bool){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		sharedPrefs.edit().putBoolean("showTutorial", bool).commit();
@@ -189,6 +189,17 @@ public class SharedPreferenceUtils {
 		return sharedPrefs.getString("notification_type_preference", "");
 	}
 
+	public static void setBanLoc(Context ctx, String banLoc){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("banner_location_preference", banLoc).commit();
+
+	}
+
+	public static String getBanLoc(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getString("banner_location_preference", "");
+	}
+
 	public static String getBannerTime(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getString("banner_time_pref", "5");
@@ -203,8 +214,8 @@ public class SharedPreferenceUtils {
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getBoolean("dismiss_all_left", false);
 	}	
-	
-	
+
+
 	public static void setShowFeedback(Context ctx, Boolean bool){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		sharedPrefs.edit().putBoolean("show_feedback", bool).commit();
@@ -220,21 +231,21 @@ public class SharedPreferenceUtils {
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getInt("not_Count", 0);
 	}
-	
+
 	public static void setNotCount(Context ctx, Integer count){	
-		
+
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		sharedPrefs.edit().putInt("not_Count", count).commit();
 
 	}
-	
+
 	public static String getMaxLines(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());		
 		return sharedPrefs.getString("no_of_lines_pref", "10");
 	}
-	
+
 	public static void setMaxLines(Context ctx, String count){
-				
+
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		sharedPrefs.edit().putString("no_of_lines_pref", count).commit();
 
@@ -274,7 +285,7 @@ public class SharedPreferenceUtils {
 
 			sp.edit().putBoolean("expanded_notification", true).commit();
 			sp.edit().putBoolean("full_screen_notification", false).commit();
-			//sp.edit().putBoolean("transparent_background", true).commit();
+			sp.edit().putBoolean("transparent_background", true).commit();
 			sp.edit().putBoolean("wake_up", true).commit();
 			//sp.edit().putBoolean("mute_sleep_hours", true).commit();
 
@@ -284,8 +295,8 @@ public class SharedPreferenceUtils {
 			sp.edit().putInt("background_color_not", Color.BLACK);
 			sp.edit().putString("notification_type_preference", "lockscreen_banners").commit();
 			sp.edit().putString("sync_preference", "two_way").commit();
-            sp.edit().putBoolean("vibrate", true).commit();
-            sp.edit().putBoolean("dismiss_all_left", false).commit();
+			sp.edit().putBoolean("vibrate", true).commit();
+			sp.edit().putBoolean("dismiss_all_left", false).commit();
 		}
 
 		sp.edit().putBoolean("vibrate", false).commit();
@@ -296,13 +307,27 @@ public class SharedPreferenceUtils {
 				&& !notTypeValue.equals("lockscreen_banners") && !notTypeValue.equals("popup") && !notTypeValue.equals("banners"))){
 			sp.edit().putString("notification_type_preference", "lockscreen_banners").commit();
 		}
-		
+
 		String syncTypeValue = sp.getString("sync_preference", "");
-        
-        if(notTypeValue.equals("") || (!notTypeValue.equals("none") && !notTypeValue.equals("one_way") 
-                                        && !notTypeValue.equals("two_way"))){
-                sp.edit().putString("sync_preference", "two_way").commit();
-        }
+
+		if(syncTypeValue.equals("") || (!syncTypeValue.equals("none") && !syncTypeValue.equals("one_way") 
+				&& !syncTypeValue.equals("two_way"))){
+			sp.edit().putString("sync_preference", "two_way").commit();
+		}
+
+		String banLocValue = sp.getString("banner_location_preference", "");
+
+		if(banLocValue.equals("") || (!banLocValue.equals("top") && !banLocValue.equals("middle") 
+				&& !banLocValue.equals("bottom"))){
+			sp.edit().putString("banner_location_preference", ctx.getString(R.string.top)).commit();
+		}
+		
+		Boolean transparentPref = sp.getBoolean("transparent_background", false);
+		if(transparentPref == false){
+			sp.edit().putBoolean("transparent_background", true).commit();
+		}
+		
+		
 
 	}
 

@@ -9,10 +9,17 @@ package com.bun.popupnotificationsfree;
 
 public final class R {
     public static final class anim {
-        public static final int slidein_bottom=0x7f040000;
-        public static final int slidein_top=0x7f040001;
+        public static final int down_from_top=0x7f040000;
+        public static final int fade_in=0x7f040001;
+        public static final int push_left_out=0x7f040002;
+        public static final int push_right_out=0x7f040003;
+        public static final int slidein_bottom=0x7f040004;
+        public static final int slidein_top=0x7f040005;
+        public static final int up_from_bottom=0x7f040006;
     }
     public static final class array {
+        public static final int banLoc=0x7f0a0004;
+        public static final int banLocValues=0x7f0a0005;
         public static final int notTypeValues=0x7f0a0001;
         public static final int notTypes=0x7f0a0000;
         public static final int syncTypeValues=0x7f0a0003;
@@ -219,7 +226,8 @@ containing a value of this type.
         public static final int remove=0x7f02001b;
         public static final int rightarrow=0x7f02001c;
         public static final int sad=0x7f02001d;
-        public static final int touch=0x7f02001e;
+        public static final int scrollbar_vertical_thumb=0x7f02001e;
+        public static final int touch=0x7f02001f;
     }
     public static final class id {
         public static final int CloseWindowId=0x7f06003d;
@@ -234,8 +242,8 @@ containing a value of this type.
         public static final int ambilwarna_viewSatBri=0x7f06000c;
         public static final int ambilwarna_warnaBaru=0x7f060012;
         public static final int ambilwarna_warnaLama=0x7f060011;
-        public static final int appImageSmallId=0x7f060041;
-        public static final int appImageViewId=0x7f06003e;
+        public static final int appImageSmallId=0x7f060042;
+        public static final int appImageViewId=0x7f06003f;
         public static final int appSelectionCheckBoxId=0x7f060017;
         public static final int appSelectionIconId=0x7f060015;
         public static final int appSelectionMainListViewId=0x7f060014;
@@ -246,7 +254,7 @@ containing a value of this type.
         public static final int choice=0x7f060009;
         public static final int cpRoot=0x7f06001f;
         public static final int dismiss=0x7f060008;
-        public static final int endId=0x7f060047;
+        public static final int endId=0x7f060048;
         public static final int expandingLayoutId=0x7f060039;
         public static final int expandingLayoutId1=0x7f06003a;
         public static final int fbCB1=0x7f060032;
@@ -258,7 +266,8 @@ containing a value of this type.
         public static final int front=0x7f06001a;
         public static final int left=0x7f060006;
         public static final int mainLayoutId=0x7f060038;
-        public static final int menu_settings=0x7f060048;
+        public static final int mainRowId=0x7f06003e;
+        public static final int menu_settings=0x7f060049;
         public static final int mute15min=0x7f060024;
         public static final int mute1hour=0x7f060026;
         public static final int mute30min=0x7f060025;
@@ -279,23 +288,23 @@ containing a value of this type.
         public static final int noDoNotShow=0x7f060037;
         public static final int noFBId=0x7f060031;
         public static final int none=0x7f060003;
-        public static final int notMessageTextId=0x7f060040;
-        public static final int notTimeTextId=0x7f06003f;
+        public static final int notMessageTextId=0x7f060041;
+        public static final int notTimeTextId=0x7f060040;
         public static final int notificationsListViewId=0x7f06003b;
         public static final int othersId=0x7f060036;
-        public static final int prefTimePicker=0x7f060043;
+        public static final int prefTimePicker=0x7f060044;
         public static final int reveal=0x7f060007;
         public static final int right=0x7f060005;
-        public static final int scvId=0x7f060042;
+        public static final int scvId=0x7f060043;
         public static final int searchBoxId=0x7f06001b;
         public static final int showcase_button=0x7f060000;
         public static final int showcase_sub_text=0x7f060002;
         public static final int showcase_title_text=0x7f060001;
-        public static final int startId=0x7f060046;
-        public static final int tutorial=0x7f060049;
+        public static final int startId=0x7f060047;
+        public static final int tutorial=0x7f06004a;
         public static final int unreadCountTextId=0x7f06001e;
-        public static final int yesDoNotShow=0x7f060045;
-        public static final int yesFBId=0x7f060044;
+        public static final int yesDoNotShow=0x7f060046;
+        public static final int yesFBId=0x7f060045;
     }
     public static final class layout {
         public static final int ambilwarna_dialog=0x7f030000;
@@ -336,12 +345,14 @@ containing a value of this type.
         public static final int array_s_1=0x7f070073;
         public static final int array_s_2=0x7f070074;
         public static final int array_s_3=0x7f070075;
+        public static final int ban_loc_desc=0x7f070096;
         public static final int banner_time_desc=0x7f070081;
         public static final int banner_time_summary=0x7f070082;
         public static final int banners_only=0x7f070064;
         public static final int banners_only_summary=0x7f07006a;
         public static final int blocked_apps=0x7f07001f;
         public static final int blocked_apps_summary=0x7f070020;
+        public static final int bottom=0x7f070095;
         public static final int broadcast_receiver_string=0x7f070041;
         public static final int cancel=0x7f070038;
         public static final int click_disable=0x7f07000b;
@@ -399,6 +410,7 @@ containing a value of this type.
         public static final int menu_rateus=0x7f070011;
         public static final int menu_settings=0x7f07000f;
         public static final int menu_tutorial=0x7f070010;
+        public static final int middle=0x7f070094;
         public static final int mins_15=0x7f070044;
         public static final int mins_30=0x7f070045;
         public static final int mute_15_mins=0x7f070023;
@@ -461,6 +473,7 @@ containing a value of this type.
         public static final int start_tutorial_click=0x7f07005e;
         public static final int sync_desc=0x7f070072;
         public static final int talkback_fix=0x7f07000a;
+        public static final int top=0x7f070093;
         public static final int tts_warning=0x7f07000e;
         public static final int two_way=0x7f070078;
         public static final int two_way_summary=0x7f07007b;

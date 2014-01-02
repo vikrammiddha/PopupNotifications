@@ -180,5 +180,10 @@
     <string name="no_of_lines_summary">Maximum number of lines to be displayed for each notification : </string>
     <string name="lines">Lines</string>
     
+    <string name="top">Top</string>
+    <string name="middle">Middle</string>
+    <string name="bottom">Bottom</string>
+    <string name="ban_loc_desc">Banner Location</string>
+    
 
 </resources>

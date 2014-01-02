@@ -104,7 +104,14 @@ public class BannerService extends Service{
 
 
 		//params.verticalMargin = ;
-		params.gravity = Gravity.TOP | Gravity.LEFT;
+		String bannerLocation = SharedPreferenceUtils.getBanLoc(ctx);
+        if("Top".equals(bannerLocation)){
+                params.gravity = Gravity.TOP | Gravity.LEFT;
+        }else if("Middle".equals(bannerLocation)){
+                params.gravity = Gravity.CENTER | Gravity.LEFT;
+        }else if("Bottom".equals(bannerLocation)){
+                params.gravity = Gravity.BOTTOM | Gravity.LEFT;
+        } 
 		params.x = 0;
 		params.y = 0;
 
@@ -365,8 +372,8 @@ public class BannerService extends Service{
 		}
 
 		if(HelperUtils.getBackgroundColor(ctx) != null ){
-			int strokeWidth = 3; // 3dp
-			int roundRadius = 10; // 8dp
+			int strokeWidth = 1; // 3dp
+			int roundRadius = 0; // 8dp
 			int strokeColor = Color.parseColor("#B1BCBE");
 			int fillColor = bgColor;
 
@@ -376,14 +383,14 @@ public class BannerService extends Service{
 			//gd.setStroke(strokeWidth, strokeColor);	
 
 			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-				sListView.setBackground(gd);
+				//sListView.setBackground(gd);
 			}else{
-				sListView.setBackgroundDrawable(gd);
+				//sListView.setBackgroundDrawable(gd);
 			}
 
 
 			if(HelperUtils.isTransparentBackround(ctx)){
-				sListView.getBackground().setAlpha(500);
+				//sListView.getBackground().setAlpha(200);
 
 			}
 		}

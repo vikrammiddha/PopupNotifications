@@ -65,7 +65,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		setWakeUpPreference();
 
-		setTransparentBackgroundPreference();
+		//setTransparentBackgroundPreference();
 
 
 		setFullScreenPreference();
@@ -101,8 +101,10 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setDismissAllPreferenceData();
 
 		setBannerTimePreferenceData();
-		
+
 		setMaxLinesPreferenceData();
+
+		setBannerLocationPreference();
 	}
 
 	private void setBlockedAppListener(){
@@ -324,30 +326,35 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 
 		final Preference customPref = (Preference) findPreference("notification_type_preference");
-		((Preference) findPreference("banner_time_pref")).setEnabled(false);
+        ((Preference) findPreference("banner_time_pref")).setEnabled(false);
+        ((Preference) findPreference("banner_location_preference")).setEnabled(false);
 
-		String notTypePref = SharedPreferenceUtils.getNotType(this);
+        String notTypePref = SharedPreferenceUtils.getNotType(this);
 
-		if("".equals(notTypePref)){
-			ListPreference lp = (ListPreference)customPref;
-			lp.setValue("lockscreen_banners");
-			customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
-			((Preference) findPreference("banner_time_pref")).setEnabled(true);
-		}else{
-			if("lockscreen".equals(notTypePref)){
-				customPref.setSummary(getString(R.string.lock_screen_only_summary));
-			}else if("lockscreen_popup".equals(notTypePref)){
-				customPref.setSummary(getString(R.string.lockscreen_and_popup_summary));
-			}else if("lockscreen_banners".equals(notTypePref)){
-				customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
-				((Preference) findPreference("banner_time_pref")).setEnabled(true);
-			}else if("popup".equals(notTypePref)){
-				customPref.setSummary(getString(R.string.popup_only_summary));
-			}else if("banners".equals(notTypePref)){
-				customPref.setSummary(getString(R.string.banners_only_summary));
-				((Preference) findPreference("banner_time_pref")).setEnabled(true);
-			}
-		}
+        if("".equals(notTypePref)){
+                ListPreference lp = (ListPreference)customPref;
+                lp.setValue("lockscreen_banners");
+                customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
+                ((Preference) findPreference("banner_time_pref")).setEnabled(true);
+                ((Preference) findPreference("banner_location_preference")).setEnabled(true);
+        }else{
+                if("lockscreen".equals(notTypePref)){
+                        customPref.setSummary(getString(R.string.lock_screen_only_summary));
+                }else if("lockscreen_popup".equals(notTypePref)){
+                        customPref.setSummary(getString(R.string.lockscreen_and_popup_summary));
+                }else if("lockscreen_banners".equals(notTypePref)){
+                        customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
+                        ((Preference) findPreference("banner_time_pref")).setEnabled(true);
+                        ((Preference) findPreference("banner_location_preference")).setEnabled(true);
+                }else if("popup".equals(notTypePref)){
+                        customPref.setSummary(getString(R.string.popup_only_summary));
+                }else if("banners".equals(notTypePref)){
+                        customPref.setSummary(getString(R.string.banners_only_summary));
+                        ((Preference) findPreference("banner_time_pref")).setEnabled(true);
+                        ((Preference) findPreference("banner_location_preference")).setEnabled(true);
+                }
+        }
+
 
 
 
@@ -365,6 +372,44 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		});
 	}
+
+	private void setBannerLocationPreference(){
+
+
+		final Preference customPref = (Preference) findPreference("banner_location_preference");
+
+		String banLocPref = SharedPreferenceUtils.getBanLoc(ctx);        
+
+
+		if("".equals(banLocPref)){
+			ListPreference lp = (ListPreference)customPref;
+			lp.setValue("top");
+			SharedPreferenceUtils.setBanLoc(ctx, getString(R.string.top));
+			banLocPref = getString(R.string.top);                        
+		}else if("top".equals(banLocPref)){
+			banLocPref = getString(R.string.top);
+		}else if("middle".equals(banLocPref)){
+			banLocPref = getString(R.string.middle);
+		}else if("bottom".equals(banLocPref)){
+			banLocPref = getString(R.string.bottom);
+		}
+
+		customPref.setSummary(getString(R.string.ban_loc_desc) + " : " + banLocPref );
+
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				customPref.setSummary(getString(R.string.ban_loc_desc) + " : " + newValue.toString() );
+
+				return true;
+			}
+
+		});
+	}
+
 
 	private void setBannerTimePreferenceData(){
 
@@ -521,25 +566,25 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		});
 	}
-	
+
 
 	private void setMaxLinesPreferenceData(){
-		
+
 		final Preference customPref = (Preference) findPreference("no_of_lines_pref");
 
 		Integer bannerTimePref = Integer.valueOf(SharedPreferenceUtils.getMaxLines(this));
 
 		customPref.setSummary(getString(R.string.no_of_lines_summary) + " " + bannerTimePref + " " + getString(R.string.lines));
-		
-		
+
+
 		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 
 			@Override
 			public boolean onPreferenceChange(Preference preference,
 					Object newValue) {
-				
+
 				/*String lines = (String)newValue;
-				
+
 				Boolean falseValue = false;
 
 				if("".equals(lines.trim())){
@@ -550,17 +595,17 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 					lines = "10";
 					falseValue = true;
 				}
-				
-				
+
+
 
 				//
-				
+
 				if(falseValue){
 					return false;
 				}else{
 					customPref.setSummary(getString(R.string.no_of_lines_summary) + " " + lines + " " + getString(R.string.lines));
 				}*/
-				
+
 				HelperUtils.upgradeNowDialogue(ctx);
 
 				return false;

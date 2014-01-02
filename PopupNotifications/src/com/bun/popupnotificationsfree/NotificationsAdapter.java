@@ -1,6 +1,7 @@
 package com.bun.popupnotificationsfree;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 
@@ -20,6 +22,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -41,6 +45,8 @@ public class NotificationsAdapter extends BaseAdapter{
 
 	private ArrayList<NotificationBean> nList = new ArrayList<NotificationBean>();
 	private Context context;
+	private int lastPosition = -1;
+	public  Boolean showDismissAnimation = false;
 
 	public NotificationsAdapter(Context context) {
 		super();
@@ -64,19 +70,6 @@ public class NotificationsAdapter extends BaseAdapter{
 			nList = new ArrayList<NotificationBean>();
 		}
 		nList.add(notf);
-	}
-
-	public void clearAppNotifications(Set<String> packageSet){
-		Iterator<NotificationBean> iter = nList.iterator();
-
-		while(iter.hasNext()){
-
-			NotificationBean nb = iter.next();
-
-			if(packageSet.contains(nb.getPackageName())){                                                        
-				iter.remove();
-			}
-		}
 	}
 
 	public  int getAdapterSize(){
@@ -105,6 +98,19 @@ public class NotificationsAdapter extends BaseAdapter{
 		return nList.size();
 	}
 
+	public void clearAppNotifications(Set<String> packageSet){
+		Iterator<NotificationBean> iter = nList.iterator();
+
+		while(iter.hasNext()){
+
+			NotificationBean nb = iter.next();
+
+			if(packageSet.contains(nb.getPackageName())){							
+				iter.remove();
+			}
+		}
+	}
+
 	@Override
 	public NotificationBean getItem(int position) {
 		// TODO Auto-generated method stub
@@ -118,7 +124,7 @@ public class NotificationsAdapter extends BaseAdapter{
 	}
 
 	@Override
-	public View getView(final int position, View view, ViewGroup parent) {                
+	public View getView(final int position, View view, ViewGroup parent) {		
 
 		NotificationBean n = nList.get(position);
 		//if(view == null || view.getTag() == null){
@@ -154,10 +160,10 @@ public class NotificationsAdapter extends BaseAdapter{
 			message = "<b>" + n.getSender() + " : " + "</b>";
 		}
 
-		message += n.getMessage();                
+		message += n.getMessage();		
 
 
-		holder.text.setText(Html.fromHtml(message));         
+		holder.text.setText(Html.fromHtml(message));	
 
 		int fontColor = HelperUtils.getFontColor(context);
 
@@ -170,6 +176,8 @@ public class NotificationsAdapter extends BaseAdapter{
 		if(textViewSize != null){
 			holder.text.setMaxLines(textViewSize);
 		}
+
+		float fontSize = holder.text.getTextSize();
 
 
 
@@ -198,7 +206,7 @@ public class NotificationsAdapter extends BaseAdapter{
 		}
 
 		if(Utils.isScreenLocked(context)){
-			holder.timeText.setText(n.getNotTime());        
+			holder.timeText.setText(n.getNotTime());	
 			if(fontColor == 0){
 				holder.timeText.setTextColor(Color.WHITE);
 			}else{
@@ -208,6 +216,62 @@ public class NotificationsAdapter extends BaseAdapter{
 			holder.timeText.setVisibility(View.GONE);
 		}
 
+		int bgColor = HelperUtils.getBackgroundColor(context);
+		if(bgColor == 0){
+			bgColor = Color.BLACK;
+		}
+
+		if(HelperUtils.getBackgroundColor(context) != null ){
+			int strokeWidth = 1; // 3dp
+			int roundRadius = 0; // 8dp
+			int strokeColor = 0;//Color.BLACK;//Color.parseColor("#B1BCBE");
+			if(Utils.isScreenLocked(context)){
+				strokeColor = Color.parseColor("#B1BCBE");
+			}else{
+				strokeColor = Color.BLACK;
+				view.setPadding(0, 10, 10, 10);
+			}
+			int fillColor = bgColor;
+
+			GradientDrawable gd = new GradientDrawable();
+			gd.setColor(fillColor);
+			gd.setCornerRadius(roundRadius);
+			gd.setStroke(strokeWidth, strokeColor);	
+
+			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+				view.setBackground(gd);
+			}else{
+				view.setBackgroundDrawable(gd);
+			}
+		}
+
+		if(HelperUtils.isTransparentBackround(context)){
+			view.getBackground().setAlpha(200);
+
+		}
+
+		if(Utils.isScreenScrolling ){
+			Animation animation = AnimationUtils.loadAnimation(context, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+			view.startAnimation(animation);
+			lastPosition = position;
+			//Utils.isAddedFirstItem = false;
+		}
+		
+		if(showDismissAnimation){
+			if(position%2 == 0){
+				Animation animation = AnimationUtils.loadAnimation(context, R.anim.push_left_out);
+				view.startAnimation(animation);
+			}else{
+				Animation animation = AnimationUtils.loadAnimation(context, R.anim.push_right_out);
+				view.startAnimation(animation);
+			}
+			
+		}	
+		
+		if(Utils.isAddedFirstItem && position == 0 && !showDismissAnimation){
+			Animation animation = AnimationUtils.loadAnimation(context, R.anim.fade_in);
+			view.startAnimation(animation);
+		}
 
 		return view;
 	}

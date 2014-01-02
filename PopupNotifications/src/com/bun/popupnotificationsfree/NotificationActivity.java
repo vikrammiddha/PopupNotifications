@@ -42,6 +42,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.Log;
@@ -61,10 +62,13 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -136,7 +140,7 @@ ShowcaseView.OnShowcaseEventListener{
 		ctx = this;
 
 		act = this;	
-		
+
 		adapter = new NotificationsAdapter(this);
 		adapter.textViewSize = Integer.valueOf(SharedPreferenceUtils.getMaxLines(ctx));
 		layout = (SwipeListView ) findViewById(R.id.notificationsListViewId);	
@@ -152,6 +156,28 @@ ShowcaseView.OnShowcaseEventListener{
 				isItemClicked = true;
 
 			} 
+		});
+
+		layout.setOnScrollListener(new OnScrollListener() {
+
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				switch (scrollState) {
+				case OnScrollListener.SCROLL_STATE_IDLE:
+					Utils.isScreenScrolling = false;
+					break;
+				case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
+					Utils.isScreenScrolling = true;
+					break;
+				case OnScrollListener.SCROLL_STATE_FLING:
+					Utils.isScreenScrolling = true;
+					break;
+				}
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+			}
 		});
 
 		layout.setSwipeListViewListener(new BaseSwipeListViewListener() {
@@ -210,7 +236,9 @@ ShowcaseView.OnShowcaseEventListener{
 			}
 
 			@Override
-			public void onDismiss(int[] reverseSortedPositions) {        
+			public void onDismiss(int[] reverseSortedPositions) {   
+				
+				Utils.isAddedFirstItem = false;
 
 				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && nns == null)
 					nns = NewNotificationService.getInstance();
@@ -242,7 +270,7 @@ ShowcaseView.OnShowcaseEventListener{
 								&& (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))){
 							nns.cancelNotification(adapter.getItem(rowPos).getPackageName(), adapter.getItem(rowPos).getTagId(), adapter.getItem(rowPos).getId());
 						}
-						
+
 						//resetFeedbackCounter();
 						finish();
 						return;
@@ -271,7 +299,7 @@ ShowcaseView.OnShowcaseEventListener{
 							Utils.getNotList().remove(position);
 						}
 						adapter.removeNotification(position);
-						
+
 					}catch(Exception e){
 						e.printStackTrace();
 					}
@@ -303,7 +331,8 @@ ShowcaseView.OnShowcaseEventListener{
 					Utils.intentMap.clear();        
 				}
 
-				adapter.notifyDataSetChanged();
+				if(adapter != null)
+					adapter.notifyDataSetChanged();
 			}
 
 		});
@@ -317,16 +346,16 @@ ShowcaseView.OnShowcaseEventListener{
 			sv.setOnShowcaseEventListener(this);
 			SharedPreferenceUtils.setShowTutorial(ctx, false);
 		}
-		
+
 		//SharedPreferenceUtils.setNotCount(ctx, SharedPreferenceUtils.getNotCount(ctx) + 1);
-		
+
 		//if(HelperUtils.showFeedback(ctx)){
-			//Feedback.initiateFeedback(ctx, this);
+		//Feedback.initiateFeedback(ctx, this);
 		//}		
 
 	}
 
-	
+
 
 	private NotificationReceiver mReceiver = new NotificationReceiver() {
 		public void onReceive(Context context, Intent intent) {
@@ -337,59 +366,81 @@ ShowcaseView.OnShowcaseEventListener{
 
 	public void clearNotifications(View view){	
 		clearData(true);
-		finish();
-		
+		//finish();
+
 
 	}
 
 	public void closeNotifications(View view){
 		clearData(false);		
-		finish();
-		
-		
+		//finish();
+
+
+	}
+
+	private void showDismissAnimation(){
+		adapter.showDismissAnimation = true;                
+		adapter.notifyDataSetChanged();
+		//adapter.showDismissAnimation = false;
 	}
 
 
 	private void clearData(Boolean dismiss){
 
+		final Boolean tempDismiss;
+
 		if(ctx.getResources().getBoolean(R.bool.is_service_enabled)){
 			dismiss = false;
 		}
 
-		if(dismiss){
+		tempDismiss = dismiss;
 
-			if(nns == null)
-				nns = NewNotificationService.getInstance();
+		showDismissAnimation();
 
-			ArrayList<NotificationBean> clonedList = (ArrayList<NotificationBean>)Utils.getNotList().clone();
+		Handler handler = new Handler(); 
+		handler.postDelayed(new Runnable() { 
+			public void run() {                     
 
-			for(NotificationBean n : clonedList){
 
-				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))){
-					nns.cancelNotification(n.getPackageName(), n.getTagId(), n.getId());
+				if(tempDismiss){
+
+					if(nns == null)
+						nns = NewNotificationService.getInstance();
+
+					ArrayList<NotificationBean> clonedList = (ArrayList<NotificationBean>)Utils.getNotList().clone();
+
+					for(NotificationBean n : clonedList){
+
+						if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))){
+							nns.cancelNotification(n.getPackageName(), n.getTagId(), n.getId());
+						}
+						//n = null;
+					}        
+
+					clonedList.clear();
+
 				}
-				//n = null;
-			}        
-
-			clonedList.clear();
-
-		}
-
-
-		Utils.getNotList().clear();
-
-		Utils.notList = null;
-
-		Utils.intentMap.clear();
-
-		adapter.clearNotifications();
 
 
 
-		//Utils.tf = null;
-		
+				Utils.getNotList().clear();
+
+				Utils.notList = null;
+
+				Utils.intentMap.clear();
+
+				adapter.clearNotifications();
+
+
+
+				//Utils.tf = null;
+				finish();
+			} 
+		}, 300); 
+
+
+
 	}
-
 
 	private void clearData(){
 		for(NotificationBean n : Utils.getNotList()){
@@ -501,25 +552,32 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 	private void populateAdapter(Boolean clearData){
+
+		Log.d("NotActivity","Entered Receiver=========" + Utils.getNotList().size());
+
+		if(Utils.getNotList().size() != adapter.getCount()){
+			Utils.isScreenOnFromResume = true;
+		}
+
 		if(clearData){
 			adapter.clearNotifications();
-		}
-		
+		}        
+
 		Iterator<NotificationBean> iter = Utils.getNotList().iterator();
 
-        while(iter.hasNext()){
+		while(iter.hasNext()){
 
-                NotificationBean nb = iter.next();
+			NotificationBean nb = iter.next();
 
-                if(nb.getIsOddRow()){
-                        iter.remove();
-                }
-        }
-
+			if(nb.getIsOddRow()){
+				iter.remove();
+			}
+		}
 
 		if(HelperUtils.isExpandedNotifications(ctx)){
 
 			for(NotificationBean n : Utils.getNotList()){
+				Log.d("NotActivity","Adapter Not=======" + n.getPackageName());
 				if(n.getIsOddRow())
 					continue;
 				adapter.addNotification(n);
@@ -542,22 +600,25 @@ ShowcaseView.OnShowcaseEventListener{
 				adapter.addNotification(nb);
 			}
 		}
-
 		if(adapter.getCount() == 0){
 			finish();
+		}
+		if(Utils.isScreenOnFromResume){
+			Utils.isAddedFirstItem = true;
+			Utils.isScreenOnFromResume = false;
 		}
 		adapter.notifyDataSetChanged();
 		layout.setAdapter(adapter);
 
-		//LinearLayout ll = (LinearLayout) findViewById(R.id.expandingLayoutId);			
+		//LinearLayout ll = (LinearLayout) findViewById(R.id.expandingLayoutId);                        
 
 		setBackgroundHeight(false);
 
-		LinearLayout ll1 = (LinearLayout) findViewById(R.id.expandingLayoutId1);
+		FrameLayout ll1 = (FrameLayout) findViewById(R.id.mainRowId);
+
 		Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
 		Button dismissButton1 = (Button) findViewById(R.id.CloseWindowId1);
 
-		//Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
 		int fontColor = HelperUtils.getFontColor(ctx);
 		if(fontColor == 0){
 			fontColor = Color.WHITE;
@@ -569,40 +630,40 @@ ShowcaseView.OnShowcaseEventListener{
 		}
 
 		if(HelperUtils.getBackgroundColor(ctx) != null ){
-			int strokeWidth = 3; // 3dp
-			int roundRadius = 10; // 8dp
+			int strokeWidth = 1; // 3dp
+			int roundRadius = 0; // 8dp
 			int strokeColor = Color.parseColor("#B1BCBE");
 			int fillColor = bgColor;
 
 			GradientDrawable gd = new GradientDrawable();
 			gd.setColor(fillColor);
 			gd.setCornerRadius(roundRadius);
-			gd.setStroke(strokeWidth, strokeColor);	
+			gd.setStroke(strokeWidth, strokeColor);        
 
 			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-				ll1.setBackground(gd);
+				//layout.setBackground(gd);
 			}else{
-				ll1.setBackgroundDrawable(gd);
+				//layout.setBackgroundDrawable(gd);
 			}
 
 
 
-			int strokeWidth1 = 3; // 3dp
-			int roundRadius1 = 10; // 8dp
+			int strokeWidth1 = 1; // 3dp
+			int roundRadius1 = 0; // 8dp
 			int strokeColor1 = Color.parseColor("#B1BCBE");
 			int fillColor1 = bgColor;
 
 			GradientDrawable gd1 = new GradientDrawable();
 			gd1.setColor(fillColor1);
 			gd1.setCornerRadius(roundRadius1);
-			gd1.setStroke(strokeWidth1, strokeColor1);	
+			gd1.setStroke(strokeWidth1, strokeColor1);        
 			dismissButton.setBackgroundDrawable(gd1);
 			dismissButton1.setBackgroundDrawable(gd1);
 
 			if(HelperUtils.isTransparentBackround(ctx)){
-				ll1.getBackground().setAlpha(200);
-				dismissButton.getBackground().setAlpha(200);
+				//layout.getBackground().setAlpha(200);
 				dismissButton1.getBackground().setAlpha(200);
+				dismissButton.getBackground().setAlpha(200);
 			}
 		}
 
@@ -612,6 +673,9 @@ ShowcaseView.OnShowcaseEventListener{
 
 		if(ctx.getResources().getBoolean(R.bool.is_service_enabled))
 			dismissButton.setVisibility(View.GONE);
+
+		//Utils.isAddedFirstItem = false;
+
 
 	}
 
@@ -667,10 +731,14 @@ ShowcaseView.OnShowcaseEventListener{
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+		
+		Utils.isAddedFirstItem = false;
+		
+		Utils.isScreenScrolling = false;
 
 		unregisterReceiver(mReceiver);
-		
-		
+
+
 
 	}
 
@@ -690,7 +758,7 @@ ShowcaseView.OnShowcaseEventListener{
 		}
 
 		layout.setAdapter(null);
-		
+
 
 	}
 

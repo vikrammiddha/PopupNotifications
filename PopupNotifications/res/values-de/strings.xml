@@ -177,5 +177,10 @@
     <string name="no_of_lines_desc">Maximale Linien für Benachrichtigungen</string>
     <string name="no_of_lines_summary">Maximale Anzahl der Zeilen, die für jede Benachrichtigung angezeigt werden : </string>
     <string name="lines">Linien</string>
+    
+    <string name="top">Top</string>
+    <string name="middle">Mitte</string>
+    <string name="bottom">Boden</string>
+    <string name="ban_loc_desc">Banner Standort</string>
 
 </resources>

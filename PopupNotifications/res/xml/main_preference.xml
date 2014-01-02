@@ -24,8 +24,7 @@
             android:title="@string/not_back_color" />
 
         <CheckBoxPreference
-            android:key="transparent_background"
-            android:summary="@string/pref_upgrade_message"
+            android:key="transparent_background"            
             android:title="@string/set_transparent_background" />
         <CheckBoxPreference
             android:key="wake_up"
@@ -54,6 +53,12 @@
             android:summary="@string/banner_time_summary"
             android:title="@string/banner_time_desc"
             android:inputType="number"  />
+        
+         <ListPreference
+            android:entries="@array/banLoc"
+            android:entryValues="@array/banLocValues"
+            android:key="banner_location_preference"
+            android:title="@string/ban_loc_desc" />
         
         <EditTextPreference
             android:key="no_of_lines_pref"

@@ -177,5 +177,10 @@
     <string name="no_of_lines_desc">Linee massimi per Comunicazioni</string>
     <string name="no_of_lines_summary">Número máximo de líneas que se mostrarán para cada notificación : </string>
     <string name="lines">linea</string>
+    
+    <string name="top">más alto</string>
+    <string name="middle">medio</string>
+    <string name="bottom">pie</string>
+    <string name="ban_loc_desc">Banner Ubicación</string>
 
 </resources>

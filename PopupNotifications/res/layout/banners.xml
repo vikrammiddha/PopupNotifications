@@ -18,6 +18,8 @@
         swipe:swipeActionRight="dismiss"
         swipe:swipeBackView="@+id/back"
         swipe:swipeFrontView="@+id/front"
-        swipe:swipeMode="both" />
+        swipe:swipeMode="both"
+        
+         />
 
 </LinearLayout>

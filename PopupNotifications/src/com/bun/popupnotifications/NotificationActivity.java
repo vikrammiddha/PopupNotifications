@@ -37,6 +37,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.Log;
@@ -55,10 +56,13 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -151,6 +155,30 @@ ShowcaseView.OnShowcaseEventListener{
 
 			} 
 		});
+		
+		layout.setOnScrollListener(new OnScrollListener() {
+
+	        @Override
+	        public void onScrollStateChanged(AbsListView view, int scrollState) {
+	        	switch (scrollState) {
+	            case OnScrollListener.SCROLL_STATE_IDLE:
+	                Utils.isScreenScrolling = false;
+	                break;
+	            case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
+	            	Utils.isScreenScrolling = true;
+	                break;
+	            case OnScrollListener.SCROLL_STATE_FLING:
+	            	Utils.isScreenScrolling = true;
+	                break;
+	            }
+	        }
+
+	        @Override
+	        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+	        }
+	    });
+		
+		
 
 		//nns = new NewNotificationService();
 
@@ -299,8 +327,9 @@ ShowcaseView.OnShowcaseEventListener{
 					Utils.getNotList().clear();
 					Utils.intentMap.clear();	
 				}
-
-				adapter.notifyDataSetChanged();
+				
+				if(adapter != null)
+					adapter.notifyDataSetChanged();
 			}
 
 		});
@@ -328,54 +357,79 @@ ShowcaseView.OnShowcaseEventListener{
 
 	};
 
-	public void clearNotifications(View view){	
+	public void clearNotifications(View view){
+		//showDismissAnimation();
 		clearData(true);	
 
 	}
+	
+	private void showDismissAnimation(){
+		adapter.showDismissAnimation = true;		
+		adapter.notifyDataSetChanged();
+		//adapter.showDismissAnimation = false;
+	}
 
 	public void closeNotifications(View view){
+		//showDismissAnimation();
 		clearData(false);
 	}
 
 
 	private void clearData(Boolean dismiss){
-
+		
+		final Boolean tempDismiss;
+		
 		if(ctx.getResources().getBoolean(R.bool.is_service_enabled)){
 			dismiss = false;
 		}
+		
+		tempDismiss = dismiss;
+		
+		showDismissAnimation();
+		
+		Handler handler = new Handler(); 
+	    handler.postDelayed(new Runnable() { 
+	         public void run() {     		
+	    		
+	    		
+	    		if(tempDismiss){
 
-		if(dismiss){
+	    			if(nns == null)
+	    				nns = NewNotificationService.getInstance();
 
-			if(nns == null)
-				nns = NewNotificationService.getInstance();
+	    			ArrayList<NotificationBean> clonedList = (ArrayList<NotificationBean>)Utils.getNotList().clone();
 
-			ArrayList<NotificationBean> clonedList = (ArrayList<NotificationBean>)Utils.getNotList().clone();
+	    			for(NotificationBean n : clonedList){
 
-			for(NotificationBean n : clonedList){
+	    				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))){
+	    					nns.cancelNotification(n.getPackageName(), n.getTagId(), n.getId());
+	    				}
+	    				//n = null;
+	    			}	
 
-				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))){
-					nns.cancelNotification(n.getPackageName(), n.getTagId(), n.getId());
-				}
-				//n = null;
-			}	
+	    			clonedList.clear();
 
-			clonedList.clear();
+	    		}
 
-		}
+	    		
+	    		
+	    		Utils.getNotList().clear();
 
+	    		Utils.notList = null;
 
-		Utils.getNotList().clear();
+	    		Utils.intentMap.clear();
 
-		Utils.notList = null;
-
-		Utils.intentMap.clear();
-
-		adapter.clearNotifications();
-
+	    		adapter.clearNotifications();
 
 
-		//Utils.tf = null;
-		finish();
+
+	    		//Utils.tf = null;
+	    		finish();
+	         } 
+	    }, 300); 
+	    
+
+
 	}
 
 	@Override
@@ -497,6 +551,10 @@ ShowcaseView.OnShowcaseEventListener{
 	private void populateAdapter(Boolean clearData){
 
 		Log.d("NotActivity","Entered Receiver=========" + Utils.getNotList().size());
+		
+		if(Utils.getNotList().size() != adapter.getCount()){
+			Utils.isScreenOnFromResume = true;
+		}
 
 		if(clearData){
 			adapter.clearNotifications();
@@ -542,6 +600,10 @@ ShowcaseView.OnShowcaseEventListener{
 		if(adapter.getCount() == 0){
 			finish();
 		}
+		if(Utils.isScreenOnFromResume){
+			Utils.isAddedFirstItem = true;
+			Utils.isScreenOnFromResume = false;
+		}
 		adapter.notifyDataSetChanged();
 		layout.setAdapter(adapter);
 
@@ -549,7 +611,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 		setBackgroundHeight(false);
 
-		LinearLayout ll1 = (LinearLayout) findViewById(R.id.expandingLayoutId1);
+		FrameLayout ll1 = (FrameLayout) findViewById(R.id.mainRowId);
 
 		Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
 		Button dismissButton1 = (Button) findViewById(R.id.CloseWindowId1);
@@ -565,8 +627,8 @@ ShowcaseView.OnShowcaseEventListener{
 		}
 
 		if(HelperUtils.getBackgroundColor(ctx) != null ){
-			int strokeWidth = 3; // 3dp
-			int roundRadius = 10; // 8dp
+			int strokeWidth = 1; // 3dp
+			int roundRadius = 0; // 8dp
 			int strokeColor = Color.parseColor("#B1BCBE");
 			int fillColor = bgColor;
 
@@ -576,15 +638,15 @@ ShowcaseView.OnShowcaseEventListener{
 			gd.setStroke(strokeWidth, strokeColor);	
 
 			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-				ll1.setBackground(gd);
+				//layout.setBackground(gd);
 			}else{
-				ll1.setBackgroundDrawable(gd);
+				//layout.setBackgroundDrawable(gd);
 			}
 
 
 
-			int strokeWidth1 = 3; // 3dp
-			int roundRadius1 = 10; // 8dp
+			int strokeWidth1 = 1; // 3dp
+			int roundRadius1 = 0; // 8dp
 			int strokeColor1 = Color.parseColor("#B1BCBE");
 			int fillColor1 = bgColor;
 
@@ -596,7 +658,7 @@ ShowcaseView.OnShowcaseEventListener{
 			dismissButton1.setBackgroundDrawable(gd1);
 
 			if(HelperUtils.isTransparentBackround(ctx)){
-				ll1.getBackground().setAlpha(200);
+				//layout.getBackground().setAlpha(200);
 				dismissButton1.getBackground().setAlpha(200);
 				dismissButton.getBackground().setAlpha(200);
 			}
@@ -608,6 +670,10 @@ ShowcaseView.OnShowcaseEventListener{
 
 		if(ctx.getResources().getBoolean(R.bool.is_service_enabled))
 			dismissButton.setVisibility(View.GONE);
+		
+		//Utils.isAddedFirstItem = false;
+		
+		
 	}
 
 	int notBackHeight = 0;
@@ -663,7 +729,7 @@ ShowcaseView.OnShowcaseEventListener{
 		// TODO Auto-generated method stub
 		super.onPause();
 
-
+		Utils.isAddedFirstItem = false;
 
 		unregisterReceiver(mReceiver);
 
@@ -695,7 +761,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 		IntentFilter intentFilter = new IntentFilter(NotificationReceiver.ACTION_NOTIFICATION_CHANGED);
 		registerReceiver(mReceiver, intentFilter);
-
+		//Utils.isScreenOnFromResume = true;
 		populateAdapter(true);	
 		unlockLockScreen = false;
 
@@ -763,12 +829,15 @@ ShowcaseView.OnShowcaseEventListener{
 		// TODO Auto-generated method stub
 		//super.onBackPressed();
 	}
-
+	
+	
 
 	@Override
 	public void onClick(View view) {
 		Log.d("not", "onClick ==============");
 	}
+
+	
 
 
 

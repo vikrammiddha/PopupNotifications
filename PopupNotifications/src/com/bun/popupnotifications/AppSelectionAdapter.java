@@ -1,10 +1,12 @@
 package com.bun.popupnotifications;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 
 import android.view.LayoutInflater;
 
@@ -23,6 +25,7 @@ public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 	
 	public static ArrayList<Boolean> itemChecked1 = new ArrayList<Boolean>(); 
 	public ArrayList<ApplicationBean> mOriginalValues  ;
+	public static HashMap<String, Drawable> imageCache = new HashMap<String, Drawable>();
 
 	static class ViewHolder {
 		public TextView appNameText;
@@ -104,7 +107,17 @@ public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 
 		//holder.appIcon.setImageDrawable(n.getAppIcon());
 		
-		holder.appIcon.setImageDrawable(HelperUtils.getAppIcon(n.getPackageName(), context));
+		
+		if(imageCache.get(n.getPackageName()) == null){
+			Drawable d = HelperUtils.getAppIcon(n.getPackageName(), context);
+			holder.appIcon.setImageDrawable(d);
+			imageCache.put(n.getPackageName(),d );
+		}else{
+			holder.appIcon.setImageDrawable(imageCache.get(n.getPackageName()));
+		}
+		
+		
+		
 		
 		holder.appNameText.setText(n.getAppName());
 		

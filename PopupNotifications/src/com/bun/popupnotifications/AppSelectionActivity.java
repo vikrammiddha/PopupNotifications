@@ -341,6 +341,7 @@ public class AppSelectionActivity extends SherlockActivity{
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		adapter.clearNotifications();
+		adapter.imageCache.clear();
 		adapter = null;
 		try{
 			progDailog.dismiss();
@@ -349,6 +350,7 @@ public class AppSelectionActivity extends SherlockActivity{
 		}
 		
 		ctx = null;
+		
 		finish();
 	}
 

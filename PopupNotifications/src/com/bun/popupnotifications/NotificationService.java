@@ -178,9 +178,11 @@ public class NotificationService extends AccessibilityService {
 				}
 				stopService(new Intent(ctx, BannerService.class));
 				Utils.isServiceRunning = false;
+				Utils.isScreenOnFromResume = false;
 			} else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
 				isScreenOn = true;
 				Utils.isScreenOn = true;
+				Utils.isScreenOnFromResume = false;
 			}
 		}
 

@@ -39,7 +39,9 @@ public class Utils {
 	public static KeyguardManager.KeyguardLock keyguardLock;
 	public static Boolean isServiceRunning = false; 
 	public static Boolean isScreenOn = false;
-
+	public static Boolean isScreenScrolling = false;
+	public static Boolean isAddedFirstItem = false;
+	public static Boolean isScreenOnFromResume = false;
 
 	public static ArrayList<NotificationBean> getNotList(){
 		if(notList == null){

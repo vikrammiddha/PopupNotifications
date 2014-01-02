@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 
@@ -21,6 +22,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -42,6 +45,8 @@ public class NotificationsAdapter extends BaseAdapter{
 
 	private ArrayList<NotificationBean> nList = new ArrayList<NotificationBean>();
 	private Context context;
+	private int lastPosition = -1;
+	public  Boolean showDismissAnimation = false;
 
 	public NotificationsAdapter(Context context) {
 		super();
@@ -89,17 +94,17 @@ public class NotificationsAdapter extends BaseAdapter{
 		// TODO Auto-generated method stub
 		if(nList == null)
 			return 0;
-		
+
 		return nList.size();
 	}
-	
+
 	public void clearAppNotifications(Set<String> packageSet){
 		Iterator<NotificationBean> iter = nList.iterator();
-		
+
 		while(iter.hasNext()){
-			
+
 			NotificationBean nb = iter.next();
-			
+
 			if(packageSet.contains(nb.getPackageName())){							
 				iter.remove();
 			}
@@ -172,6 +177,8 @@ public class NotificationsAdapter extends BaseAdapter{
 			holder.text.setMaxLines(textViewSize);
 		}
 
+		float fontSize = holder.text.getTextSize();
+
 
 
 		//holder.text.setMaxLines(HelperUtils.getTextSize(context));
@@ -209,6 +216,62 @@ public class NotificationsAdapter extends BaseAdapter{
 			holder.timeText.setVisibility(View.GONE);
 		}
 
+		int bgColor = HelperUtils.getBackgroundColor(context);
+		if(bgColor == 0){
+			bgColor = Color.BLACK;
+		}
+
+		if(HelperUtils.getBackgroundColor(context) != null ){
+			int strokeWidth = 1; // 3dp
+			int roundRadius = 0; // 8dp
+			int strokeColor = 0;//Color.BLACK;//Color.parseColor("#B1BCBE");
+			if(Utils.isScreenLocked(context)){
+				strokeColor = Color.parseColor("#B1BCBE");
+			}else{
+				strokeColor = Color.BLACK;
+				view.setPadding(0, 10, 10, 10);
+			}
+			int fillColor = bgColor;
+
+			GradientDrawable gd = new GradientDrawable();
+			gd.setColor(fillColor);
+			gd.setCornerRadius(roundRadius);
+			gd.setStroke(strokeWidth, strokeColor);	
+
+			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+				view.setBackground(gd);
+			}else{
+				view.setBackgroundDrawable(gd);
+			}
+		}
+
+		if(HelperUtils.isTransparentBackround(context)){
+			view.getBackground().setAlpha(200);
+
+		}
+
+		if(Utils.isScreenScrolling ){
+			Animation animation = AnimationUtils.loadAnimation(context, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+			view.startAnimation(animation);
+			lastPosition = position;
+			//Utils.isAddedFirstItem = false;
+		}
+		
+		if(showDismissAnimation){
+			if(position%2 == 0){
+				Animation animation = AnimationUtils.loadAnimation(context, R.anim.push_left_out);
+				view.startAnimation(animation);
+			}else{
+				Animation animation = AnimationUtils.loadAnimation(context, R.anim.push_right_out);
+				view.startAnimation(animation);
+			}
+			
+		}	
+		
+		if(Utils.isAddedFirstItem && position == 0 && !showDismissAnimation){
+			Animation animation = AnimationUtils.loadAnimation(context, R.anim.fade_in);
+			view.startAnimation(animation);
+		}
 
 		return view;
 	}

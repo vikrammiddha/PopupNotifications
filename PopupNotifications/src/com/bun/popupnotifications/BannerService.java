@@ -104,7 +104,15 @@ public class BannerService extends Service{
 
 
 		//params.verticalMargin = ;
-		params.gravity = Gravity.TOP | Gravity.LEFT;
+		String bannerLocation = SharedPreferenceUtils.getBanLoc(ctx);
+		if("Top".equals(bannerLocation)){
+			params.gravity = Gravity.TOP | Gravity.LEFT;
+		}else if("Middle".equals(bannerLocation)){
+			params.gravity = Gravity.CENTER | Gravity.LEFT;
+		}else if("Bottom".equals(bannerLocation)){
+			params.gravity = Gravity.BOTTOM | Gravity.LEFT;
+		} 
+		
 		params.x = 0;
 		params.y = 0;
 

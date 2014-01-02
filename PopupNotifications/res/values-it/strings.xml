@@ -171,5 +171,10 @@
     <string name="no_of_lines_summary">Numero massimo di righe da visualizzare per ogni notifica : </string>
     <string name="lines">Lines</string>
     
+    <string name="top">primo</string>
+    <string name="middle">mezzo</string>
+    <string name="bottom">calce</string>
+    <string name="ban_loc_desc">Banner Posizione</string>
+    
 
 </resources>

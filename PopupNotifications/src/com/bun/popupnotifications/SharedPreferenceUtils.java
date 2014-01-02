@@ -173,6 +173,17 @@ public class SharedPreferenceUtils {
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getString("notification_type_preference", "");
 	}
+	
+	public static void setBanLoc(Context ctx, String banLoc){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("banner_location_preference", banLoc).commit();
+
+	}
+
+	public static String getBanLoc(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getString("banner_location_preference", "");
+	}
 
 	public static String getBannerTime(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
@@ -289,9 +300,16 @@ public class SharedPreferenceUtils {
 
 		String syncTypeValue = sp.getString("sync_preference", "");
 
-		if(notTypeValue.equals("") || (!notTypeValue.equals("none") && !notTypeValue.equals("one_way") 
-				&& !notTypeValue.equals("two_way"))){
+		if(syncTypeValue.equals("") || (!syncTypeValue.equals("none") && !syncTypeValue.equals("one_way") 
+				&& !syncTypeValue.equals("two_way"))){
 			sp.edit().putString("sync_preference", "two_way").commit();
+		}
+		
+		String banLocValue = sp.getString("banner_location_preference", "");
+
+		if(banLocValue.equals("") || (!banLocValue.equals("top") && !banLocValue.equals("middle") 
+				&& !banLocValue.equals("bottom"))){
+			sp.edit().putString("banner_location_preference", ctx.getString(R.string.top)).commit();
 		}
 
 	}

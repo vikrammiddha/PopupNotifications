@@ -511,10 +511,13 @@ public class NotificationParser {
 			/*Log.d("Notification Service", "title  -----" + bean.getSender());
 			Log.d("Notification Service", "text  -----" + bean.getMessage());
 			Log.d("Notification Service", "content  -----" + bean.getContent());*/
-
+			
+			
 
 
 			bean.setPackageName(packageName);
+			
+			Utils.parseLastMessage(bean);
 			//utils.populateBeanDetails(event, bean);
 
 			if(bean.getSender() != null &&bean.getSender().trim().equals("") && bean.getMessage().trim().equals("")){
@@ -549,7 +552,7 @@ public class NotificationParser {
 			Log.d("Notification Service", "Message-----" + bean.getMessage());
 			Log.d("Notification Service", "Sender-----" + bean.getSender());
 			Log.d("Notification Service", "uniqueValue-----" + bean.getUniqueValue());
-			//Log.d("Notification Service", "tickertext-----" + event.getText().toString());
+			
 
 			if(HelperUtils.showFeedback(ctx, SharedPreferenceUtils.getNotCount(ctx) + 1) && Utils.isScreenLocked(ctx)){
 

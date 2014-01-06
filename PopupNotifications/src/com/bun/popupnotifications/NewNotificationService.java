@@ -28,7 +28,7 @@ public class NewNotificationService extends NotificationListenerService {
 	public void onNotificationPosted(StatusBarNotification sbn) {
 		// TODO Auto-generated method stub
 		Log.d("NotificationListener", "Entered onNotificationPosted");
-		
+		Log.d("NotificationListener", "tickertext-----" + sbn.getNotification().tickerText.toString());
 		np.processNotification(sbn.getNotification(), sbn.getPackageName(), sbn.getId(), sbn.getTag());
 		
 	}

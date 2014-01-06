@@ -67,6 +67,8 @@ public class NotificationService extends AccessibilityService {
 
 		Log.d("Notification Service", "Entered the accessibility method==" + event.getPackageName().toString());
 		
+		
+		
 		Notification n = (Notification) event.getParcelableData();	
 		
 		np.processNotification(n, event.getPackageName().toString(), null, null);

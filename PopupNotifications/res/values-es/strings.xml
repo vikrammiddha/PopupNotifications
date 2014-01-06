@@ -176,5 +176,14 @@
     <string name="middle">medio</string>
     <string name="bottom">pie</string>
     <string name="ban_loc_desc">Banner Ubicación</string>
+    
+    <string name="animation_title">Desactivar animaciones</string>
+    <string name="cards">Tarjetas</string>
+    <string name="bubbles">Burbujas</string>
+    <string name="theme_title">tema</string>
+    <string name="selected_theme">Tema seleccionado</string>
+    <string name="unlock_summary">Desactivar desbloqueo de pantalla de bloqueo en LongPress de despedir a todos los botones / Cerrar.</string>
+    <string name="unlock_title">Desactivar desbloqueo</string>
+    <string name="not_border_color">color del borde</string>
 
 </resources>

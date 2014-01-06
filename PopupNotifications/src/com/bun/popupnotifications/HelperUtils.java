@@ -133,6 +133,30 @@ public class HelperUtils {
 
 		return false;
 	}
+	
+	public static Boolean isDisableAnimations(Context ctx){
+		try{
+			if((Boolean)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "disable_animations" ,"Boolean")){
+				return true;
+			}
+		}catch(Exception e){
+			return false;
+		}
+
+		return false;
+	}
+	
+	public static Boolean isDisableUnlock(Context ctx){
+		try{
+			if((Boolean)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "disable_unlock" ,"Boolean")){
+				return true;
+			}
+		}catch(Exception e){
+			return false;
+		}
+
+		return false;
+	}
 
 	public static Boolean isFullScreenNotifications(Context ctx){
 		if((Boolean)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "full_screen_notification", "Boolean")){
@@ -160,6 +184,17 @@ public class HelperUtils {
 		}catch(Exception e){
 			e.printStackTrace();
 			return Color.BLACK;
+		}
+
+	}
+	
+	public static int getBorderColor(Context ctx){
+
+		try{
+			return (Integer)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "border_color_not", "Integer");
+		}catch(Exception e){
+			e.printStackTrace();
+			return Color.WHITE;
 		}
 
 	}

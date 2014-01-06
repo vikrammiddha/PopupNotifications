@@ -239,6 +239,18 @@ public class SharedPreferenceUtils {
 		sharedPrefs.edit().putString("no_of_lines_pref", count).commit();
 
 	}
+	
+	public static String getTheme(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
+		return sharedPrefs.getString("theme", "");
+	}
+
+	public static void setTheme(Context ctx, String theme){
+
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("theme", theme).commit();
+
+	}
 
 	public static Boolean isBlockedApp(Context ctx, String packageName){
 		String retVal = null;
@@ -284,10 +296,14 @@ public class SharedPreferenceUtils {
 			sp.edit().putString("end_sleep_time", "07:00").commit();
 			sp.edit().putInt("font_color", Color.WHITE).commit();
 			sp.edit().putInt("background_color_not", Color.BLACK).commit();
+			sp.edit().putInt("border_color_not", Color.WHITE).commit();
 			sp.edit().putString("notification_type_preference", "lockscreen_banners").commit();
 			sp.edit().putString("sync_preference", "two_way").commit();
 			sp.edit().putBoolean("vibrate", true).commit();
 			sp.edit().putBoolean("dismiss_all_left", false).commit();
+			sp.edit().putBoolean("disable_animations", false).commit();
+			sp.edit().putBoolean("disable_unlock", false).commit();
+			sp.edit().putString("theme", ctx.getString(R.string.cards)).commit();
 
 		}
 
@@ -307,10 +323,22 @@ public class SharedPreferenceUtils {
 		
 		String banLocValue = sp.getString("banner_location_preference", "");
 
-		if(banLocValue.equals("") || (!banLocValue.equals("top") && !banLocValue.equals("middle") 
-				&& !banLocValue.equals("bottom"))){
+		if(banLocValue.equals("") || (!banLocValue.equals(ctx.getString(R.string.top)) && !banLocValue.equals(ctx.getString(R.string.middle)) 
+				&& !banLocValue.equals(ctx.getString(R.string.bottom)))){
 			sp.edit().putString("banner_location_preference", ctx.getString(R.string.top)).commit();
 		}
+		
+		String themeValue = sp.getString("theme", "");
+
+		if(themeValue.equals("") || (!themeValue.equals(ctx.getString(R.string.cards)) && !themeValue.equals(ctx.getString(R.string.ban_loc_desc)))){
+			sp.edit().putString("theme", ctx.getString(R.string.cards)).commit();
+		}
+		
+		int borderColor = sp.getInt("border_color_not", -1);
+		if(borderColor == -1){
+			sp.edit().putInt("border_color_not", Color.WHITE).commit();
+		}
+
 
 	}
 

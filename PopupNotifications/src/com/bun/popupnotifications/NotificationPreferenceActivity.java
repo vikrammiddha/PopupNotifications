@@ -93,6 +93,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setMaxLinesPreferenceData();
 		
 		setBannerLocationPreference();
+		
+		setThemePreference();
 	}
 
 	private void setBlockedAppListener(){
@@ -330,7 +332,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
                                 lines = "10"; 
                                 falseValue = true;
 
-                        }else if(Integer.valueOf(lines) > 10){
+                        }else if(Integer.valueOf(lines) > 20){
                                 lines = "10";
                                 falseValue = true;
                         }
@@ -501,15 +503,9 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		if("".equals(banLocPref)){
 			ListPreference lp = (ListPreference)customPref;
-			lp.setValue("top");
+			lp.setValue(getString(R.string.top));
 			SharedPreferenceUtils.setBanLoc(ctx, getString(R.string.top));
 			banLocPref = getString(R.string.top);			
-		}else if("top".equals(banLocPref)){
-			banLocPref = getString(R.string.top);
-		}else if("middle".equals(banLocPref)){
-			banLocPref = getString(R.string.middle);
-		}else if("bottom".equals(banLocPref)){
-			banLocPref = getString(R.string.bottom);
 		}
 		
 		customPref.setSummary(getString(R.string.ban_loc_desc) + " : " + banLocPref );
@@ -527,6 +523,42 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		});
 	}
+	
+	private void setThemePreference(){
+
+
+		final Preference customPref = (Preference) findPreference("theme");
+		
+		String themePref = SharedPreferenceUtils.getTheme(ctx);	
+		
+
+		if("".equals(themePref)){
+			ListPreference lp = (ListPreference)customPref;
+			lp.setValue("Cards");
+			SharedPreferenceUtils.setBanLoc(ctx, getString(R.string.cards));
+			themePref = getString(R.string.cards);			
+		}else if("Cards".equals(themePref)){
+			themePref = getString(R.string.cards);
+		}else if("Bubbles".equals(themePref)){
+			themePref = getString(R.string.bubbles);
+		}
+		
+		customPref.setSummary(getString(R.string.selected_theme) + " : " + themePref );
+
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				customPref.setSummary(getString(R.string.selected_theme) + " : " + newValue.toString() );
+
+				return true;
+			}
+
+		});
+	}
+
 
 
 	private void setBannerTimePreferenceData(){
@@ -546,15 +578,21 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 					Object newValue) {
 
 				String time = (String)newValue;
+				Boolean falseValue = false;
 
 				if("".equals(time.trim())){
 					time = "5"; 
 
-				}else if(Integer.valueOf(time) > 60){
+				}else if(Integer.valueOf(time) > 120){
 					time = "5";
+					falseValue = true;
 				}
-
-				customPref.setSummary(getString(R.string.banner_time_summary) + " " + time + " " + getString(R.string.seconds));
+				
+				if(falseValue){
+					return false;
+				}else{
+					customPref.setSummary(getString(R.string.banner_time_summary) + " " + time + " " + getString(R.string.seconds));
+				}
 
 				return true;
 			}

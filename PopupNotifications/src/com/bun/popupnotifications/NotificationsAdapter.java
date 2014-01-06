@@ -220,15 +220,25 @@ public class NotificationsAdapter extends BaseAdapter{
 		if(bgColor == 0){
 			bgColor = Color.BLACK;
 		}
+		
+		int borderColor = HelperUtils.getBorderColor(context);
 
 		if(HelperUtils.getBackgroundColor(context) != null ){
-			int strokeWidth = 1; // 3dp
+			
+			int strokeWidth = 5; // 3dp
 			int roundRadius = 0; // 8dp
+			
+			if(context.getString(R.string.bubbles).equals(SharedPreferenceUtils.getTheme(context))){
+				strokeWidth = 5;
+				roundRadius = 25;
+			}
+			
 			int strokeColor = 0;//Color.BLACK;//Color.parseColor("#B1BCBE");
+			strokeColor = borderColor;
 			if(Utils.isScreenLocked(context)){
-				strokeColor = Color.parseColor("#B1BCBE");
+				//strokeColor = Color.parseColor("#B1BCBE");
 			}else{
-				strokeColor = Color.BLACK;
+				//strokeColor = Color.BLACK;
 				view.setPadding(0, 10, 10, 10);
 			}
 			int fillColor = bgColor;
@@ -250,27 +260,31 @@ public class NotificationsAdapter extends BaseAdapter{
 
 		}
 
-		if(Utils.isScreenScrolling ){
-			Animation animation = AnimationUtils.loadAnimation(context, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
-			view.startAnimation(animation);
-			lastPosition = position;
-			//Utils.isAddedFirstItem = false;
-		}
-		
-		if(showDismissAnimation){
-			if(position%2 == 0){
-				Animation animation = AnimationUtils.loadAnimation(context, R.anim.push_left_out);
+		if(!HelperUtils.isDisableAnimations(context)){
+
+			if(Utils.isScreenScrolling ){
+				Animation animation = AnimationUtils.loadAnimation(context, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
 				view.startAnimation(animation);
-			}else{
-				Animation animation = AnimationUtils.loadAnimation(context, R.anim.push_right_out);
+				lastPosition = position;
+				//Utils.isAddedFirstItem = false;
+			}
+
+			if(showDismissAnimation){
+				if(position%2 == 0){
+					Animation animation = AnimationUtils.loadAnimation(context, R.anim.push_left_out);
+					view.startAnimation(animation);
+				}else{
+					Animation animation = AnimationUtils.loadAnimation(context, R.anim.push_right_out);
+					view.startAnimation(animation);
+				}
+
+			}	
+
+			if(Utils.isAddedFirstItem && position == 0 && !showDismissAnimation){
+				Animation animation = AnimationUtils.loadAnimation(context, R.anim.fade_in);
 				view.startAnimation(animation);
 			}
-			
-		}	
-		
-		if(Utils.isAddedFirstItem && position == 0 && !showDismissAnimation){
-			Animation animation = AnimationUtils.loadAnimation(context, R.anim.fade_in);
-			view.startAnimation(animation);
+
 		}
 
 		return view;

@@ -24,6 +24,8 @@ public final class R {
         public static final int notTypes=0x7f0a0000;
         public static final int syncTypeValues=0x7f0a0003;
         public static final int syncTypes=0x7f0a0002;
+        public static final int themeLoc=0x7f0a0006;
+        public static final int themeValues=0x7f0a0007;
     }
     public static final class attr {
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -182,14 +184,12 @@ containing a value of this type.
         public static final int is_service_enabled=0x7f0b0000;
     }
     public static final class dimen {
-        /**  Default screen margins, per the Android Design guidelines. 
-
+        /** 
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
         public static final int activity_horizontal_margin=0x7f090004;
-        public static final int activity_vertical_margin=0x7f090005;
         public static final int ambilwarna_hsvHeight=0x7f090000;
         public static final int ambilwarna_hsvWidth=0x7f090001;
         public static final int ambilwarna_hueWidth=0x7f090002;
@@ -222,6 +222,7 @@ containing a value of this type.
         public static final int sad=0x7f020017;
         public static final int scrollbar_vertical_thumb=0x7f020018;
         public static final int touch=0x7f020019;
+        public static final int unlock=0x7f02001a;
     }
     public static final class id {
         public static final int CloseWindowId=0x7f06003d;
@@ -330,6 +331,7 @@ containing a value of this type.
         public static final int activate=0x7f07002f;
         public static final int all_apps_muted=0x7f07003e;
         public static final int all_apps_muted_till=0x7f07003d;
+        public static final int animation_title=0x7f070091;
         public static final int app_name=0x7f070001;
         public static final int array_1=0x7f070065;
         public static final int array_2=0x7f070066;
@@ -348,7 +350,9 @@ containing a value of this type.
         public static final int blocked_apps_summary=0x7f070020;
         public static final int bottom=0x7f07008f;
         public static final int broadcast_receiver_string=0x7f07003f;
+        public static final int bubbles=0x7f070093;
         public static final int cancel=0x7f070037;
+        public static final int cards=0x7f070092;
         public static final int click_disable=0x7f07000b;
         public static final int close=0x7f07003b;
         public static final int close_all=0x7f070075;
@@ -423,6 +427,7 @@ containing a value of this type.
         public static final int none_s_1=0x7f07006f;
         public static final int none_s_1_summary=0x7f070072;
         public static final int not_back_color=0x7f070050;
+        public static final int not_border_color=0x7f070098;
         public static final int not_text_color=0x7f07004f;
         public static final int not_type_desc=0x7f070064;
         public static final int ok=0x7f070000;
@@ -451,6 +456,7 @@ containing a value of this type.
         public static final int search=0x7f070031;
         public static final int search_applications=0x7f070048;
         public static final int seconds=0x7f07007d;
+        public static final int selected_theme=0x7f070095;
         public static final int send=0x7f070083;
         public static final int service_active=0x7f070038;
         public static final int service_inactive=0x7f070039;
@@ -464,10 +470,13 @@ containing a value of this type.
         public static final int start_tutorial_click=0x7f070059;
         public static final int sync_desc=0x7f07006b;
         public static final int talkback_fix=0x7f07000a;
+        public static final int theme_title=0x7f070094;
         public static final int top=0x7f07008d;
         public static final int tts_warning=0x7f07000e;
         public static final int two_way=0x7f070071;
         public static final int two_way_summary=0x7f070074;
+        public static final int unlock_summary=0x7f070096;
+        public static final int unlock_title=0x7f070097;
         public static final int vibrate_summary=0x7f07006a;
         public static final int wake_on_not=0x7f070052;
         public static final int warning=0x7f07003a;

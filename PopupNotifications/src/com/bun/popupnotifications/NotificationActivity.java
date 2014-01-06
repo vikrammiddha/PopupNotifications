@@ -50,6 +50,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnTouchListener;
@@ -63,10 +64,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -142,7 +146,6 @@ ShowcaseView.OnShowcaseEventListener{
 		layout = (SwipeListView ) findViewById(R.id.notificationsListViewId);	
 		layout.setScrollingCacheEnabled(false);
 
-		//this.overridePendingTransition(R.anim.slidein_top, R.anim.slidein_bottom);
 
 		populateAdapter(true);
 		setLayoutBackground();
@@ -155,30 +158,75 @@ ShowcaseView.OnShowcaseEventListener{
 
 			} 
 		});
-		
+
 		layout.setOnScrollListener(new OnScrollListener() {
 
-	        @Override
-	        public void onScrollStateChanged(AbsListView view, int scrollState) {
-	        	switch (scrollState) {
-	            case OnScrollListener.SCROLL_STATE_IDLE:
-	                Utils.isScreenScrolling = false;
-	                break;
-	            case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
-	            	Utils.isScreenScrolling = true;
-	                break;
-	            case OnScrollListener.SCROLL_STATE_FLING:
-	            	Utils.isScreenScrolling = true;
-	                break;
-	            }
-	        }
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				switch (scrollState) {
+				case OnScrollListener.SCROLL_STATE_IDLE:
+					Utils.isScreenScrolling = false;
+					break;
+				case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
+					Utils.isScreenScrolling = true;
+					break;
+				case OnScrollListener.SCROLL_STATE_FLING:
+					Utils.isScreenScrolling = true;
+					break;
+				}
+			}
 
-	        @Override
-	        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-	        }
-	    });
-		
-		
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+			}
+		});
+
+		Button b1 = (Button) findViewById(R.id.CloseWindowId);
+		Button b2 = (Button) findViewById(R.id.CloseWindowId1);
+
+		final Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+
+		if(!HelperUtils.isDisableUnlock(ctx)){
+			b1.setOnLongClickListener(new OnLongClickListener() {
+
+				public boolean onLongClick(View v) {
+					vibrator.vibrate(550);
+
+					clearData(false);
+					if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+						getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+					}else{
+						if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+							Utils.reenableKeyguard(ctx, false);					
+						}
+					}
+
+					unlockLockScreen=true;
+					return true;
+				}
+			});
+
+			b2.setOnLongClickListener(new OnLongClickListener() {
+
+				public boolean onLongClick(View v) {
+					vibrator.vibrate(550);
+
+					clearData(true);
+					if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+						getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+					}else{
+						if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+							Utils.reenableKeyguard(ctx, false);					
+						}
+					}
+
+					unlockLockScreen=true;
+					return true;
+				}
+			});
+		}
+
+
 
 		//nns = new NewNotificationService();
 
@@ -239,7 +287,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 			@Override
 			public void onDismiss(int[] reverseSortedPositions) {	
-				
+
 				Utils.isAddedFirstItem = false;
 
 				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && nns == null)
@@ -299,7 +347,7 @@ ShowcaseView.OnShowcaseEventListener{
 							Utils.getNotList().remove(position);
 						}
 						adapter.removeNotification(position);
-						
+
 					}catch(Exception e){
 						e.printStackTrace();
 					}
@@ -329,7 +377,7 @@ ShowcaseView.OnShowcaseEventListener{
 					Utils.getNotList().clear();
 					Utils.intentMap.clear();	
 				}
-				
+
 				if(adapter != null)
 					adapter.notifyDataSetChanged();
 			}
@@ -350,6 +398,10 @@ ShowcaseView.OnShowcaseEventListener{
 
 	}
 
+	private void dismissAction(){
+
+	}
+
 
 
 	private NotificationReceiver mReceiver = new NotificationReceiver() {
@@ -364,7 +416,7 @@ ShowcaseView.OnShowcaseEventListener{
 		clearData(true);	
 
 	}
-	
+
 	private void showDismissAnimation(){
 		adapter.showDismissAnimation = true;		
 		adapter.notifyDataSetChanged();
@@ -378,58 +430,66 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 	private void clearData(Boolean dismiss){
-		
+
 		final Boolean tempDismiss;
-		
+
 		if(ctx.getResources().getBoolean(R.bool.is_service_enabled)){
 			dismiss = false;
 		}
-		
+
 		tempDismiss = dismiss;
-		
+
 		showDismissAnimation();
-		
+
 		Handler handler = new Handler(); 
-	    handler.postDelayed(new Runnable() { 
-	         public void run() {     		
-	    		
-	    		
-	    		if(tempDismiss){
 
-	    			if(nns == null)
-	    				nns = NewNotificationService.getInstance();
+		final int waitTime;
 
-	    			ArrayList<NotificationBean> clonedList = (ArrayList<NotificationBean>)Utils.getNotList().clone();
+		if(HelperUtils.isDisableAnimations(ctx)){
+			waitTime = 1;
+		}else{
+			waitTime = 300;
+		}
+		handler.postDelayed(new Runnable() { 
+			public void run() {     		
 
-	    			for(NotificationBean n : clonedList){
 
-	    				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))){
-	    					nns.cancelNotification(n.getPackageName(), n.getTagId(), n.getId());
-	    				}
-	    				//n = null;
-	    			}	
+				if(tempDismiss){
 
-	    			clonedList.clear();
+					if(nns == null)
+						nns = NewNotificationService.getInstance();
 
-	    		}
+					ArrayList<NotificationBean> clonedList = (ArrayList<NotificationBean>)Utils.getNotList().clone();
 
-	    		
-	    		
-	    		Utils.getNotList().clear();
+					for(NotificationBean n : clonedList){
 
-	    		Utils.notList = null;
+						if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && (!"none".equals(SharedPreferenceUtils.getSyncType(ctx)))){
+							nns.cancelNotification(n.getPackageName(), n.getTagId(), n.getId());
+						}
+						//n = null;
+					}	
 
-	    		Utils.intentMap.clear();
+					clonedList.clear();
 
-	    		adapter.clearNotifications();
+				}
 
 
 
-	    		//Utils.tf = null;
-	    		finish();
-	         } 
-	    }, 300); 
-	    
+				Utils.getNotList().clear();
+
+				Utils.notList = null;
+
+				Utils.intentMap.clear();
+
+				adapter.clearNotifications();
+
+
+
+				//Utils.tf = null;
+				finish();
+			} 
+		}, waitTime); 
+
 
 
 	}
@@ -553,7 +613,7 @@ ShowcaseView.OnShowcaseEventListener{
 	private void populateAdapter(Boolean clearData){
 
 		Log.d("NotActivity","Entered Receiver=========" + Utils.getNotList().size());
-		
+
 		if(Utils.getNotList().size() != adapter.getCount()){
 			Utils.isScreenOnFromResume = true;
 		}
@@ -561,7 +621,7 @@ ShowcaseView.OnShowcaseEventListener{
 		if(clearData){
 			adapter.clearNotifications();
 		}	
-		
+
 		Iterator<NotificationBean> iter = Utils.getNotList().iterator();
 
 		while(iter.hasNext()){
@@ -629,9 +689,9 @@ ShowcaseView.OnShowcaseEventListener{
 		}
 
 		if(HelperUtils.getBackgroundColor(ctx) != null ){
-			int strokeWidth = 1; // 3dp
-			int roundRadius = 0; // 8dp
-			int strokeColor = Color.parseColor("#B1BCBE");
+			int strokeWidth = 5; // 3dp
+			int roundRadius = 20; // 8dp
+			int strokeColor = HelperUtils.getBorderColor(this);
 			int fillColor = bgColor;
 
 			GradientDrawable gd = new GradientDrawable();
@@ -647,15 +707,23 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 
-			int strokeWidth1 = 1; // 3dp
+			int strokeWidth1 = 5; // 3dp
 			int roundRadius1 = 0; // 8dp
-			int strokeColor1 = Color.parseColor("#B1BCBE");
+
+			if(getString(R.string.bubbles).equals(SharedPreferenceUtils.getTheme(this))){
+				strokeWidth1 = 5;
+				roundRadius1 = 25;
+			}
+
+			int strokeColor1 = HelperUtils.getBorderColor(this);
 			int fillColor1 = bgColor;
 
 			GradientDrawable gd1 = new GradientDrawable();
 			gd1.setColor(fillColor1);
 			gd1.setCornerRadius(roundRadius1);
-			gd1.setStroke(strokeWidth1, strokeColor1);	
+			gd1.setStroke(strokeWidth1, strokeColor1);
+
+
 			dismissButton.setBackgroundDrawable(gd1);
 			dismissButton1.setBackgroundDrawable(gd1);
 
@@ -672,10 +740,10 @@ ShowcaseView.OnShowcaseEventListener{
 
 		if(ctx.getResources().getBoolean(R.bool.is_service_enabled))
 			dismissButton.setVisibility(View.GONE);
-		
+
 		//Utils.isAddedFirstItem = false;
-		
-		
+
+
 	}
 
 	int notBackHeight = 0;
@@ -732,7 +800,7 @@ ShowcaseView.OnShowcaseEventListener{
 		super.onPause();
 
 		Utils.isAddedFirstItem = false;
-		
+
 		Utils.isScreenScrolling = false;
 
 		unregisterReceiver(mReceiver);
@@ -833,15 +901,15 @@ ShowcaseView.OnShowcaseEventListener{
 		// TODO Auto-generated method stub
 		//super.onBackPressed();
 	}
-	
-	
+
+
 
 	@Override
 	public void onClick(View view) {
 		Log.d("not", "onClick ==============");
 	}
 
-	
+
 
 
 

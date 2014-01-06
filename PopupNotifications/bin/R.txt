@@ -11,6 +11,8 @@ int array notTypeValues 0x7f0a0001
 int array notTypes 0x7f0a0000
 int array syncTypeValues 0x7f0a0003
 int array syncTypes 0x7f0a0002
+int array themeLoc 0x7f0a0006
+int array themeValues 0x7f0a0007
 int attr showcaseViewStyle 0x7f010009
 int attr sv_backgroundColor 0x7f010000
 int attr sv_buttonBackgroundColor 0x7f010003
@@ -36,7 +38,6 @@ int attr swipeOpenOnLongPress 0x7f01000a
 int bool is_new_service_enabled 0x7f0b0001
 int bool is_service_enabled 0x7f0b0000
 int dimen activity_horizontal_margin 0x7f090004
-int dimen activity_vertical_margin 0x7f090005
 int dimen ambilwarna_hsvHeight 0x7f090000
 int dimen ambilwarna_hsvWidth 0x7f090001
 int dimen ambilwarna_hueWidth 0x7f090002
@@ -67,6 +68,7 @@ int drawable rightarrow 0x7f020016
 int drawable sad 0x7f020017
 int drawable scrollbar_vertical_thumb 0x7f020018
 int drawable touch 0x7f020019
+int drawable unlock 0x7f02001a
 int id CloseWindowId 0x7f06003d
 int id CloseWindowId1 0x7f06003c
 int id ambilwarna_cursor 0x7f06000e
@@ -167,6 +169,7 @@ int menu notification 0x7f0c0000
 int string activate 0x7f07002f
 int string all_apps_muted 0x7f07003e
 int string all_apps_muted_till 0x7f07003d
+int string animation_title 0x7f070091
 int string app_name 0x7f070001
 int string array_1 0x7f070065
 int string array_2 0x7f070066
@@ -185,7 +188,9 @@ int string blocked_apps 0x7f07001f
 int string blocked_apps_summary 0x7f070020
 int string bottom 0x7f07008f
 int string broadcast_receiver_string 0x7f07003f
+int string bubbles 0x7f070093
 int string cancel 0x7f070037
+int string cards 0x7f070092
 int string click_disable 0x7f07000b
 int string close 0x7f07003b
 int string close_all 0x7f070075
@@ -260,6 +265,7 @@ int string no_of_lines_summary 0x7f07008b
 int string none_s_1 0x7f07006f
 int string none_s_1_summary 0x7f070072
 int string not_back_color 0x7f070050
+int string not_border_color 0x7f070098
 int string not_text_color 0x7f07004f
 int string not_type_desc 0x7f070064
 int string ok 0x7f070000
@@ -288,6 +294,7 @@ int string save 0x7f070036
 int string search 0x7f070031
 int string search_applications 0x7f070048
 int string seconds 0x7f07007d
+int string selected_theme 0x7f070095
 int string send 0x7f070083
 int string service_active 0x7f070038
 int string service_inactive 0x7f070039
@@ -301,10 +308,13 @@ int string start_tutorial 0x7f070058
 int string start_tutorial_click 0x7f070059
 int string sync_desc 0x7f07006b
 int string talkback_fix 0x7f07000a
+int string theme_title 0x7f070094
 int string top 0x7f07008d
 int string tts_warning 0x7f07000e
 int string two_way 0x7f070071
 int string two_way_summary 0x7f070074
+int string unlock_summary 0x7f070096
+int string unlock_title 0x7f070097
 int string vibrate_summary 0x7f07006a
 int string wake_on_not 0x7f070052
 int string warning 0x7f07003a

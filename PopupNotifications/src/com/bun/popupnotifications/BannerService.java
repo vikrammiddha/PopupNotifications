@@ -105,13 +105,15 @@ public class BannerService extends Service{
 
 		//params.verticalMargin = ;
 		String bannerLocation = SharedPreferenceUtils.getBanLoc(ctx);
-		if("Top".equals(bannerLocation)){
+		if(ctx.getString(R.string.top).equals(bannerLocation)){
 			params.gravity = Gravity.TOP | Gravity.LEFT;
-		}else if("Middle".equals(bannerLocation)){
+		}else if(ctx.getString(R.string.middle).equals(bannerLocation)){
 			params.gravity = Gravity.CENTER | Gravity.LEFT;
-		}else if("Bottom".equals(bannerLocation)){
+		}else if(ctx.getString(R.string.bottom).equals(bannerLocation)){
 			params.gravity = Gravity.BOTTOM | Gravity.LEFT;
-		} 
+		}else {
+			params.gravity = Gravity.TOP | Gravity.LEFT;
+		}
 		
 		params.x = 0;
 		params.y = 0;
@@ -271,7 +273,11 @@ public class BannerService extends Service{
 	}
 
 	private void createTimer(){
-		cTimer = new CountDownTimer(Integer.valueOf(SharedPreferenceUtils.getBannerTime(ctx)) * 1000, 1000) {
+		String sTimer = SharedPreferenceUtils.getBannerTime(ctx);
+		if(null == sTimer || "".equals(sTimer)){
+			sTimer = "5";
+		}
+		cTimer = new CountDownTimer(Integer.valueOf(sTimer) * 1000, 1000) {
 
 			@Override
 			public void onTick(long millisUntilFinished) {

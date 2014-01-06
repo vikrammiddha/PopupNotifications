@@ -177,7 +177,14 @@
     <string name="bottom">Bottom</string>
     <string name="ban_loc_desc">Banner Location</string>
     
-    
+    <string name="animation_title">Disable Animations</string>
+    <string name="cards">Cards</string>
+    <string name="bubbles">Bubbles</string>
+    <string name="theme_title">Theme</string>
+    <string name="selected_theme">Selected Theme</string>
+    <string name="unlock_summary">Disable Unlocking of lockscreen on longpress of Dismiss All/Close buttons.</string>
+    <string name="unlock_title">Disable Unlocking</string>
+    <string name="not_border_color">Border Color</string>
     
     
 

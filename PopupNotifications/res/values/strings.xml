@@ -99,8 +99,7 @@
     <string name="lock_screen_only">Lock Screen Only</string>
     <string name="lock_screen_only_summary">Display Notifications only when screen is locked.\nAvailable in Paid Version</string>
     <string name="lock_screen_only">Lock Screen Only</string>    
-    <string name="pref_upgrade_message">Available in Paid version</string>
-    <string name="display_contact">Display Contact images</string>
+    <string name="pref_upgrade_message">Available in Paid version</string>    
     <string name="upgrade_to_paid">Upgrade to Paid Version</string>
     
     
@@ -115,7 +114,7 @@
     
     
     
-     <string name="lockscreen_only">Lockscreen Only</string>
+    <string name="lockscreen_only">Lockscreen Only</string>
     <string name="lockscreen_and_popup">Lockscreen and Popup</string>
     <string name="lockscreen_and_banners">Lockscreen and Banners</string>
     <string name="banners_only">Banners Only</string>
@@ -184,6 +183,17 @@
     <string name="middle">Middle</string>
     <string name="bottom">Bottom</string>
     <string name="ban_loc_desc">Banner Location</string>
+    
+    <string name="animation_title">Disable Animations</string>
+    <string name="cards">Cards</string>
+    <string name="bubbles">Bubbles</string>
+    <string name="theme_title">Theme</string>
+    <string name="selected_theme">Selected Theme</string>
+    <string name="unlock_summary">Disable Unlocking of lockscreen on longpress of Dismiss All/Close buttons.</string>
+    <string name="unlock_title">Disable Unlocking</string>
+    <string name="not_border_color">Border Color</string>
+    
+    
     
 
 </resources>

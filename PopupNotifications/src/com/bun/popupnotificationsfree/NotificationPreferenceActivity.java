@@ -105,6 +105,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setMaxLinesPreferenceData();
 
 		setBannerLocationPreference();
+		
+		setThemePreference();
 	}
 
 	private void setBlockedAppListener(){
@@ -326,34 +328,34 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 
 		final Preference customPref = (Preference) findPreference("notification_type_preference");
-        ((Preference) findPreference("banner_time_pref")).setEnabled(false);
-        ((Preference) findPreference("banner_location_preference")).setEnabled(false);
+		((Preference) findPreference("banner_time_pref")).setEnabled(false);
+		((Preference) findPreference("banner_location_preference")).setEnabled(false);
 
-        String notTypePref = SharedPreferenceUtils.getNotType(this);
+		String notTypePref = SharedPreferenceUtils.getNotType(this);
 
-        if("".equals(notTypePref)){
-                ListPreference lp = (ListPreference)customPref;
-                lp.setValue("lockscreen_banners");
-                customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
-                ((Preference) findPreference("banner_time_pref")).setEnabled(true);
-                ((Preference) findPreference("banner_location_preference")).setEnabled(true);
-        }else{
-                if("lockscreen".equals(notTypePref)){
-                        customPref.setSummary(getString(R.string.lock_screen_only_summary));
-                }else if("lockscreen_popup".equals(notTypePref)){
-                        customPref.setSummary(getString(R.string.lockscreen_and_popup_summary));
-                }else if("lockscreen_banners".equals(notTypePref)){
-                        customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
-                        ((Preference) findPreference("banner_time_pref")).setEnabled(true);
-                        ((Preference) findPreference("banner_location_preference")).setEnabled(true);
-                }else if("popup".equals(notTypePref)){
-                        customPref.setSummary(getString(R.string.popup_only_summary));
-                }else if("banners".equals(notTypePref)){
-                        customPref.setSummary(getString(R.string.banners_only_summary));
-                        ((Preference) findPreference("banner_time_pref")).setEnabled(true);
-                        ((Preference) findPreference("banner_location_preference")).setEnabled(true);
-                }
-        }
+		if("".equals(notTypePref)){
+			ListPreference lp = (ListPreference)customPref;
+			lp.setValue("lockscreen_banners");
+			customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
+			((Preference) findPreference("banner_time_pref")).setEnabled(true);
+			((Preference) findPreference("banner_location_preference")).setEnabled(true);
+		}else{
+			if("lockscreen".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.lock_screen_only_summary));
+			}else if("lockscreen_popup".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.lockscreen_and_popup_summary));
+			}else if("lockscreen_banners".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.lockscreen_and_banners_summary));
+				((Preference) findPreference("banner_time_pref")).setEnabled(true);
+				((Preference) findPreference("banner_location_preference")).setEnabled(true);
+			}else if("popup".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.popup_only_summary));
+			}else if("banners".equals(notTypePref)){
+				customPref.setSummary(getString(R.string.banners_only_summary));
+				((Preference) findPreference("banner_time_pref")).setEnabled(true);
+				((Preference) findPreference("banner_location_preference")).setEnabled(true);
+			}
+		}
 
 
 
@@ -383,17 +385,10 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		if("".equals(banLocPref)){
 			ListPreference lp = (ListPreference)customPref;
-			lp.setValue("top");
+			lp.setValue(getString(R.string.top));
 			SharedPreferenceUtils.setBanLoc(ctx, getString(R.string.top));
 			banLocPref = getString(R.string.top);                        
-		}else if("top".equals(banLocPref)){
-			banLocPref = getString(R.string.top);
-		}else if("middle".equals(banLocPref)){
-			banLocPref = getString(R.string.middle);
-		}else if("bottom".equals(banLocPref)){
-			banLocPref = getString(R.string.bottom);
 		}
-
 		customPref.setSummary(getString(R.string.ban_loc_desc) + " : " + banLocPref );
 
 		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
@@ -409,6 +404,39 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		});
 	}
+
+	private void setThemePreference(){
+
+
+		final Preference customPref = (Preference) findPreference("theme");
+
+		String themePref = SharedPreferenceUtils.getTheme(ctx);        
+
+
+		if("".equals(themePref)){
+			ListPreference lp = (ListPreference)customPref;
+			lp.setValue("Cards");
+			SharedPreferenceUtils.setTheme(ctx, getString(R.string.cards));
+			themePref = getString(R.string.cards);                        
+		}
+
+		customPref.setSummary(getString(R.string.selected_theme) + " : " + themePref );
+
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				//customPref.setSummary(getString(R.string.selected_theme) + " : " + newValue.toString() );
+				HelperUtils.upgradeNowDialogue(ctx);
+
+				return false;
+			}
+
+		});
+	}
+
 
 
 	private void setBannerTimePreferenceData(){
@@ -427,18 +455,24 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 			public boolean onPreferenceChange(Preference preference,
 					Object newValue) {
 
-				String time = (String)newValue;
+				 String time = (String)newValue;
+                 Boolean falseValue = false;
 
-				if("".equals(time.trim())){
-					time = "5";					
+                 if("".equals(time.trim())){
+                         time = "5"; 
 
-				}else if(Integer.valueOf(time) > 60){
-					time = "5";
-				}
+                 }else if(Integer.valueOf(time) > 120){
+                         time = "5";
+                         falseValue = true;
+                 }
+                 
+                 if(falseValue){
+                         return false;
+                 }else{
+                         customPref.setSummary(getString(R.string.banner_time_summary) + " " + time + " " + getString(R.string.seconds));
+                 }
 
-				customPref.setSummary(getString(R.string.banner_time_summary) + " " + time + " " + getString(R.string.seconds));
-
-				return true;
+                 return true;
 			}
 
 		});

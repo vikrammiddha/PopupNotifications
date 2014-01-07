@@ -105,13 +105,16 @@ public class BannerService extends Service{
 
 		//params.verticalMargin = ;
 		String bannerLocation = SharedPreferenceUtils.getBanLoc(ctx);
-        if("Top".equals(bannerLocation)){
-                params.gravity = Gravity.TOP | Gravity.LEFT;
-        }else if("Middle".equals(bannerLocation)){
-                params.gravity = Gravity.CENTER | Gravity.LEFT;
-        }else if("Bottom".equals(bannerLocation)){
-                params.gravity = Gravity.BOTTOM | Gravity.LEFT;
-        } 
+		if(ctx.getString(R.string.top).equals(bannerLocation)){
+			params.gravity = Gravity.TOP | Gravity.LEFT;
+		}else if(ctx.getString(R.string.middle).equals(bannerLocation)){
+			params.gravity = Gravity.CENTER | Gravity.LEFT;
+		}else if(ctx.getString(R.string.bottom).equals(bannerLocation)){
+			params.gravity = Gravity.BOTTOM | Gravity.LEFT;
+		}else {
+			params.gravity = Gravity.TOP | Gravity.LEFT;
+		}
+		
 		params.x = 0;
 		params.y = 0;
 
@@ -185,12 +188,12 @@ public class BannerService extends Service{
 			}
 
 			@Override
-			public void onDismiss(int[] reverseSortedPositions) {        
+			public void onDismiss(int[] reverseSortedPositions) {	
 				Log.d("swipe", "onDismiss----------" + rowPos); 
-
+				
 				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && nns == null)
 					nns = NewNotificationService.getInstance();
-
+				
 				if(rowPos >= 0){
 					try {
 
@@ -207,7 +210,7 @@ public class BannerService extends Service{
 						adapter.removeAllNotifications();
 						adapter.notifyDataSetChanged();
 
-						sListView.setPadding(0,0,0,0);                                                
+						sListView.setPadding(0,0,0,0);						
 						stopSelf();
 						return;
 						//Utils.notList.clear();
@@ -238,7 +241,7 @@ public class BannerService extends Service{
 				if(adapter.getAdapterSize() == 0){
 
 					Utils.getNotList().clear();
-					Utils.intentMap.clear();        
+					Utils.intentMap.clear();	
 				}
 				adapter.notifyDataSetChanged();
 
@@ -270,7 +273,11 @@ public class BannerService extends Service{
 	}
 
 	private void createTimer(){
-		cTimer = new CountDownTimer(Integer.valueOf(SharedPreferenceUtils.getBannerTime(ctx)) * 1000, 1000){
+		String sTimer = SharedPreferenceUtils.getBannerTime(ctx);
+		if(null == sTimer || "".equals(sTimer)){
+			sTimer = "5";
+		}
+		cTimer = new CountDownTimer(Integer.valueOf(sTimer) * 1000, 1000) {
 
 			@Override
 			public void onTick(long millisUntilFinished) {
@@ -372,8 +379,8 @@ public class BannerService extends Service{
 		}
 
 		if(HelperUtils.getBackgroundColor(ctx) != null ){
-			int strokeWidth = 1; // 3dp
-			int roundRadius = 0; // 8dp
+			int strokeWidth = 3; // 3dp
+			int roundRadius = 10; // 8dp
 			int strokeColor = Color.parseColor("#B1BCBE");
 			int fillColor = bgColor;
 
@@ -390,7 +397,7 @@ public class BannerService extends Service{
 
 
 			if(HelperUtils.isTransparentBackround(ctx)){
-				//sListView.getBackground().setAlpha(200);
+				//sListView.getBackground().setAlpha(500);
 
 			}
 		}

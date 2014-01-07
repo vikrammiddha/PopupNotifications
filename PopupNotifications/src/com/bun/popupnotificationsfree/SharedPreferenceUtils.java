@@ -251,6 +251,18 @@ public class SharedPreferenceUtils {
 
 	}
 
+	public static String getTheme(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
+		return sharedPrefs.getString("theme", "");
+	}
+
+	public static void setTheme(Context ctx, String theme){
+
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("theme", theme).commit();
+
+	}
+
 	public static Boolean isBlockedApp(Context ctx, String packageName){
 		String retVal = null;
 
@@ -297,6 +309,10 @@ public class SharedPreferenceUtils {
 			sp.edit().putString("sync_preference", "two_way").commit();
 			sp.edit().putBoolean("vibrate", true).commit();
 			sp.edit().putBoolean("dismiss_all_left", false).commit();
+			sp.edit().putInt("border_color_not", Color.WHITE).commit();
+			sp.edit().putBoolean("disable_animations", false).commit();
+			sp.edit().putBoolean("disable_unlock", false).commit();
+			sp.edit().putString("theme", ctx.getString(R.string.cards)).commit();
 		}
 
 		sp.edit().putBoolean("vibrate", false).commit();
@@ -315,19 +331,29 @@ public class SharedPreferenceUtils {
 			sp.edit().putString("sync_preference", "two_way").commit();
 		}
 
-		String banLocValue = sp.getString("banner_location_preference", "");
+		 String banLocValue = sp.getString("banner_location_preference", "");
 
-		if(banLocValue.equals("") || (!banLocValue.equals("top") && !banLocValue.equals("middle") 
-				&& !banLocValue.equals("bottom"))){
-			sp.edit().putString("banner_location_preference", ctx.getString(R.string.top)).commit();
-		}
-		
+         if(banLocValue.equals("") || (!banLocValue.equals(ctx.getString(R.string.top)) && !banLocValue.equals(ctx.getString(R.string.middle)) 
+                         && !banLocValue.equals(ctx.getString(R.string.bottom)))){
+                 sp.edit().putString("banner_location_preference", ctx.getString(R.string.top)).commit();
+         }
+         
+         String themeValue = sp.getString("theme", "");
+
+         if(themeValue.equals("") || (!themeValue.equals(ctx.getString(R.string.cards)) && !themeValue.equals(ctx.getString(R.string.bubbles)))){
+                 sp.edit().putString("theme", ctx.getString(R.string.cards)).commit();
+         }
+         
+         int borderColor = sp.getInt("border_color_not", -1);
+         if(borderColor == -1){
+                 sp.edit().putInt("border_color_not", Color.WHITE).commit();
+         }
 		Boolean transparentPref = sp.getBoolean("transparent_background", false);
 		if(transparentPref == false){
 			sp.edit().putBoolean("transparent_background", true).commit();
 		}
-		
-		
+
+
 
 	}
 

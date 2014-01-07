@@ -56,6 +56,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnTouchListener;
@@ -180,6 +181,51 @@ ShowcaseView.OnShowcaseEventListener{
 			}
 		});
 
+		Button b1 = (Button) findViewById(R.id.CloseWindowId);
+		Button b2 = (Button) findViewById(R.id.CloseWindowId1);
+
+		final Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+
+		if(!HelperUtils.isDisableUnlock(ctx)){
+			b1.setOnLongClickListener(new OnLongClickListener() {
+
+				public boolean onLongClick(View v) {
+					vibrator.vibrate(550);
+
+					clearData(false);
+					if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+						getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+					}else{
+						if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+							Utils.reenableKeyguard(ctx, false);                                        
+						}
+					}
+
+					unlockLockScreen=true;
+					return true;
+				}
+			});
+
+			b2.setOnLongClickListener(new OnLongClickListener() {
+
+				public boolean onLongClick(View v) {
+					vibrator.vibrate(550);
+
+					clearData(true);
+					if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+						getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+					}else{
+						if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+							Utils.reenableKeyguard(ctx, false);                                        
+						}
+					}
+
+					unlockLockScreen=true;
+					return true;
+				}
+			});
+		}
+
 		layout.setSwipeListViewListener(new BaseSwipeListViewListener() {
 
 			@Override
@@ -237,7 +283,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 			@Override
 			public void onDismiss(int[] reverseSortedPositions) {   
-				
+
 				Utils.isAddedFirstItem = false;
 
 				if(ctx.getResources().getBoolean(R.bool.is_new_service_enabled) && nns == null)
@@ -398,6 +444,14 @@ ShowcaseView.OnShowcaseEventListener{
 		showDismissAnimation();
 
 		Handler handler = new Handler(); 
+
+		final int waitTime;
+
+		if(HelperUtils.isDisableAnimations(ctx)){
+			waitTime = 1;
+		}else{
+			waitTime = 300;
+		}
 		handler.postDelayed(new Runnable() { 
 			public void run() {                     
 
@@ -436,7 +490,7 @@ ShowcaseView.OnShowcaseEventListener{
 				//Utils.tf = null;
 				finish();
 			} 
-		}, 300); 
+		}, waitTime); 
 
 
 
@@ -569,7 +623,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 			NotificationBean nb = iter.next();
 
-			if(nb.getIsOddRow()){
+			if(nb.getIsOddRow() && !"com.whatsapp".equals(nb.getPackageName())){
 				iter.remove();
 			}
 		}
@@ -612,67 +666,75 @@ ShowcaseView.OnShowcaseEventListener{
 
 		//LinearLayout ll = (LinearLayout) findViewById(R.id.expandingLayoutId);                        
 
-		setBackgroundHeight(false);
+		 setBackgroundHeight(false);
 
-		FrameLayout ll1 = (FrameLayout) findViewById(R.id.mainRowId);
+         FrameLayout ll1 = (FrameLayout) findViewById(R.id.mainRowId);
 
-		Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
-		Button dismissButton1 = (Button) findViewById(R.id.CloseWindowId1);
+         Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
+         Button dismissButton1 = (Button) findViewById(R.id.CloseWindowId1);
 
-		int fontColor = HelperUtils.getFontColor(ctx);
-		if(fontColor == 0){
-			fontColor = Color.WHITE;
-		}
+         int fontColor = HelperUtils.getFontColor(ctx);
+         if(fontColor == 0){
+                 fontColor = Color.WHITE;
+         }
 
-		int bgColor = HelperUtils.getBackgroundColor(ctx);
-		if(bgColor == 0){
-			bgColor = Color.BLACK;
-		}
+         int bgColor = HelperUtils.getBackgroundColor(ctx);
+         if(bgColor == 0){
+                 bgColor = Color.BLACK;
+         }
 
-		if(HelperUtils.getBackgroundColor(ctx) != null ){
-			int strokeWidth = 1; // 3dp
-			int roundRadius = 0; // 8dp
-			int strokeColor = Color.parseColor("#B1BCBE");
-			int fillColor = bgColor;
+         if(HelperUtils.getBackgroundColor(ctx) != null ){
+                 int strokeWidth = 5; // 3dp
+                 int roundRadius = 20; // 8dp
+                 int strokeColor = HelperUtils.getBorderColor(this);
+                 int fillColor = bgColor;
 
-			GradientDrawable gd = new GradientDrawable();
-			gd.setColor(fillColor);
-			gd.setCornerRadius(roundRadius);
-			gd.setStroke(strokeWidth, strokeColor);        
+                 GradientDrawable gd = new GradientDrawable();
+                 gd.setColor(fillColor);
+                 gd.setCornerRadius(roundRadius);
+                 gd.setStroke(strokeWidth, strokeColor);        
 
-			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-				//layout.setBackground(gd);
-			}else{
-				//layout.setBackgroundDrawable(gd);
-			}
-
-
-
-			int strokeWidth1 = 1; // 3dp
-			int roundRadius1 = 0; // 8dp
-			int strokeColor1 = Color.parseColor("#B1BCBE");
-			int fillColor1 = bgColor;
-
-			GradientDrawable gd1 = new GradientDrawable();
-			gd1.setColor(fillColor1);
-			gd1.setCornerRadius(roundRadius1);
-			gd1.setStroke(strokeWidth1, strokeColor1);        
-			dismissButton.setBackgroundDrawable(gd1);
-			dismissButton1.setBackgroundDrawable(gd1);
-
-			if(HelperUtils.isTransparentBackround(ctx)){
-				//layout.getBackground().setAlpha(200);
-				dismissButton1.getBackground().setAlpha(200);
-				dismissButton.getBackground().setAlpha(200);
-			}
-		}
+                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                         //layout.setBackground(gd);
+                 }else{
+                         //layout.setBackgroundDrawable(gd);
+                 }
 
 
-		dismissButton.setTextColor(fontColor);
-		dismissButton1.setTextColor(fontColor);
 
-		if(ctx.getResources().getBoolean(R.bool.is_service_enabled))
-			dismissButton.setVisibility(View.GONE);
+                 int strokeWidth1 = 5; // 3dp
+                 int roundRadius1 = 0; // 8dp
+
+                 if(getString(R.string.bubbles).equals(SharedPreferenceUtils.getTheme(this))){
+                         strokeWidth1 = 5;
+                         roundRadius1 = 25;
+                 }
+
+                 int strokeColor1 = HelperUtils.getBorderColor(this);
+                 int fillColor1 = bgColor;
+
+                 GradientDrawable gd1 = new GradientDrawable();
+                 gd1.setColor(fillColor1);
+                 gd1.setCornerRadius(roundRadius1);
+                 gd1.setStroke(strokeWidth1, strokeColor1);
+
+
+                 dismissButton.setBackgroundDrawable(gd1);
+                 dismissButton1.setBackgroundDrawable(gd1);
+
+                 if(HelperUtils.isTransparentBackround(ctx)){
+                         //layout.getBackground().setAlpha(200);
+                         dismissButton1.getBackground().setAlpha(200);
+                         dismissButton.getBackground().setAlpha(200);
+                 }
+         }
+
+
+         dismissButton.setTextColor(fontColor);
+         dismissButton1.setTextColor(fontColor);
+
+         if(ctx.getResources().getBoolean(R.bool.is_service_enabled))
+                 dismissButton.setVisibility(View.GONE);
 
 		//Utils.isAddedFirstItem = false;
 
@@ -731,9 +793,9 @@ ShowcaseView.OnShowcaseEventListener{
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		
+
 		Utils.isAddedFirstItem = false;
-		
+
 		Utils.isScreenScrolling = false;
 
 		unregisterReceiver(mReceiver);

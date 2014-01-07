@@ -603,5 +603,18 @@ public class Utils {
 		}
 	}
 
+	public static void parseLastMessage(NotificationBean bean){
+
+		//String packageName = bean.getPackageName();
+
+		if("com.google.android.talk".equals(bean.getPackageName()) || "com.android.mms".equals(bean.getPackageName()) || bean.getPackageName().contains(".sms")){
+			String[] mArr = bean.getMessage().split("\n");
+			String message = mArr[mArr.length - 1];
+			bean.setMessage(message);
+		}
+
+
+	}
+
 
 }

@@ -182,5 +182,14 @@
     <string name="middle">mezzo</string>
     <string name="bottom">calce</string>
     <string name="ban_loc_desc">Banner Posizione</string>
+    
+    <string name="animation_title">disattivare le animazioni</string>
+    <string name="cards">carte</string>
+    <string name="bubbles">Bubbles</string>
+    <string name="theme_title">tema</string>
+    <string name="selected_theme">Tema selezionato</string>
+    <string name="unlock_summary">Disattivare Sblocco di lockscreen su longpress di licenziare tutti /i pulsanti Chiudi .</string>
+    <string name="unlock_title">disattivare Sblocco</string>    
+    <string name="not_border_color">Colore del bordo</string>
 
 </resources>

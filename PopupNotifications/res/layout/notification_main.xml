@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainLayoutId"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -58,26 +59,28 @@
                 android:layout_width="fill_parent"
                 android:layout_height="45.0dip"
                 android:layout_gravity="center"
+                android:layout_marginRight="2dip"
                 android:layout_weight="50"
                 android:background="@drawable/layout_bg"
                 android:onClick="clearNotifications"
                 android:text="@string/dismiss_all"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:layout_marginRight="4dip" />
+                android:textStyle="bold" />
+
+          
 
             <Button
                 android:id="@+id/CloseWindowId"
                 android:layout_width="fill_parent"
                 android:layout_height="45.0dip"
                 android:layout_gravity="center"
+                android:layout_marginLeft="2dip"
                 android:layout_weight="50"
                 android:background="@drawable/layout_bg"
                 android:onClick="closeNotifications"
                 android:text="@string/close_all"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:layout_marginLeft="4dip" />
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 

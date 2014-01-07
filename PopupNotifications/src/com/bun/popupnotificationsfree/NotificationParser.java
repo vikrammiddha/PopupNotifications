@@ -515,6 +515,8 @@ public class NotificationParser {
 
 
 			bean.setPackageName(packageName);
+			
+			Utils.parseLastMessage(bean);
 			//utils.populateBeanDetails(event, bean);
 
 			if(bean.getSender() != null &&bean.getSender().trim().equals("") && bean.getMessage().trim().equals("")){

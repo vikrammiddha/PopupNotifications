@@ -225,11 +225,11 @@ public class NotificationsAdapter extends BaseAdapter{
 
 		if(HelperUtils.getBackgroundColor(context) != null ){
 			
-			int strokeWidth = 5; // 3dp
+			int strokeWidth = Integer.valueOf(SharedPreferenceUtils.getBorderSize(context)); // 3dp
 			int roundRadius = 0; // 8dp
 			
 			if(context.getString(R.string.bubbles).equals(SharedPreferenceUtils.getTheme(context))){
-				strokeWidth = 5;
+				
 				roundRadius = 25;
 			}
 			

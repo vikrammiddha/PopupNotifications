@@ -7,8 +7,8 @@
     <string name="package_name">com.bun.popupnotifications</string>
     <string name="crash_toast_text">Ooooops ! Popup Notification crashé. Collecting Data !</string>
     <string name="crash_dialog_title">Popup Notification has crashé</string>
-    <string name="crash_dialog_text">Une erreur inattendue s'est produite forçant l'
-     demande d'arrêter. S'il vous plaît aidez-nous à résoudre ce problème en nous envoyant des données d'erreur,
+    <string name="crash_dialog_text">Une erreur inattendue s\'est produite forçant l\'
+     demande d\'arrêter. S\'il vous plaît aidez-nous à résoudre ce problème en nous envoyant des données d\'erreur,
      tout ce que vous avez à faire est de cliquer sur OK.</string>
     <string name="crash_dialog_comment_prompt">Vous pouvez ajouter vos commentaires sur le problème ci-dessous:</string>
     <string name="crash_dialog_ok_toast">Merci!</string>
@@ -16,7 +16,7 @@
     <string name="talkback_fix">Talkback Fix</string>
     <string name="click_disable">Click Disable</string>
     <string name="reset_completed">Reset Completed</string>
-    <string name="service_warning">Popup Notifications Service gratuit n'est pas en cours d'exécution. Ce service doit être en cours d'exécution pour vous de recevoir des notifications.</string>    
+    <string name="service_warning">Popup Notifications Service gratuit n\'est pas en cours d\'exécution. Ce service doit être en cours d\'exécution pour vous de recevoir des notifications.</string>    
     <string name="tts_warning">Due to a bug in Samsungs\'s Software, you can experience the phone to read aloud some of your actions.\n \nTo prevent this, you will need to disable Samsung TTS and Google TTS. This will not affect any app using TTS features.</string>
     
     <string name="menu_settings">Réglages</string>
@@ -37,7 +37,7 @@
     <string name="reset_settings">Réinitialiser les réglages</string>
     <string name="reset_message">Cliquez sur Oui pour réinitialiser tous les paramètres.</string>
     <string name="blocked_apps">Applications bloquées</string>
-    <string name="blocked_apps_summary">Notifications n'apparaissent pas lorsque ces applications sont en cours d'utilisation.</string>
+    <string name="blocked_apps_summary">Notifications n\'apparaissent pas lorsque ces applications sont en cours d\'utilisation.</string>
     
     
     
@@ -72,10 +72,10 @@
     <string name="warning">Attention</string>
     <string name="close">Fermer</string>
     <string name="yes">Oui</string>
-    <string name="all_apps_muted_till">Toutes les applications Muet jusqu'à: </string>
+    <string name="all_apps_muted_till">Toutes les applications Muet jusqu\'à: </string>
     <string name="all_apps_muted">Toutes les applications muettes</string>
     <string name="broadcast_receiver_string">com.bun.popupnotification.NOTIFICATION_CHANGED</string>
-    <string name="muted_till">Muet jusqu'à: </string>
+    <string name="muted_till">Muet jusqu\'à: </string>
     <string name="muted">Muet </string>
     <string name="mins_15"> Pendant 15 minutes</string>
     <string name="mins_30"> Pendant 30 minutes</string>
@@ -83,24 +83,24 @@
     <string name="hour_4"> Pendant 4 heures</string>
     <string name="hour_8"> Pendant 8 heures</string>
     <string name="forever"> toujours</string>
-    <string name="search_applications">Recherche d'application</string>
+    <string name="search_applications">Recherche d\'application</string>
     <string name="mute_selected_apps">Applications sélectionnés Muet</string>
     <string name="dismiss_all">Rejeter</string>
     <string name="show_expanded_notifications">Afficher les notifications séparément</string>
     <string name="expanded_not_summary">affiche chaque notifications séparément.</string>
     <string name="show_fullscreen_not">Afficher plein écran les Notifications</string>
-    <string name="show_fullscreen_summary">Notifications seront affichés en plein écran à la place d'une petite fenêtre.</string>
+    <string name="show_fullscreen_summary">Notifications seront affichés en plein écran à la place d\'une petite fenêtre.</string>
     <string name="not_text_color">Couleur texte Notification</string>
     <string name="not_back_color">Couleur du fond des Notifications</string>
     <string name="set_transparent_background">Fond transparent</string>
-    <string name="wake_on_not">Allumer l'écran à chaque notification</string>
+    <string name="wake_on_not">Allumer l\'écran à chaque notification</string>
     <string name="lock_screen_only">Lock Screen seulement</string>
-    <string name="lock_screen_only_summary">Afficher Notifications seulement lorsque l'écran est verrouillé.</string>
+    <string name="lock_screen_only_summary">Afficher Notifications seulement lorsque l\'écran est verrouillé.</string>
     
     
     
     <string name="left_swipe">Glisser à gauche sur la notification pour rejeter la notification.</string>
-    <string name="right_swipe">Glisser à droite sur la notification pour ouvrir l'application.</string>
+    <string name="right_swipe">Glisser à droite sur la notification pour ouvrir l\'application.</string>
     <string name="long_press">Un appui long sur la notification Mute les notifications.</string>
     <string name="start_tutorial">Lancer Tutoriel</string>
     <string name="start_tutorial_click">Cliquez sur le bouton Tutoriel Démarrer pour démarrer le tutoriel.</string>
@@ -112,11 +112,11 @@
     <string name="banners_only">Bannieres seulement</string>
     <string name="popup_only">Popup seulement</string>    
     
-    <string name="lockscreen_only_summary">Les notifications seront présentés comme le popup que lorsque l'écran est verrouillé.</string>
-    <string name="lockscreen_and_popup_summary">Les notifications seront présentés comme le popup lorsque l'écran est verrouillé ainsi que lorsque le téléphone est en cours d'utilisation.</string>
-    <string name="lockscreen_and_banners_summary">Les notifications seront présentés comme le popup lorsque l'écran est verrouillé et bannières lorsque le téléphone est en cours d'utilisation.</string>
-    <string name="banners_only_summary">Afficher uniquement les fenêtres pop-up lorsque le téléphone est en cours d'utilisation.</string>
-    <string name="popup_only_summary">Afficher uniquement les bannières lorsque le téléphone est en cours d'utilisation.</string>   
+    <string name="lockscreen_only_summary">Les notifications seront présentés comme le popup que lorsque l\'écran est verrouillé.</string>
+    <string name="lockscreen_and_popup_summary">Les notifications seront présentés comme le popup lorsque l\'écran est verrouillé ainsi que lorsque le téléphone est en cours d\'utilisation.</string>
+    <string name="lockscreen_and_banners_summary">Les notifications seront présentés comme le popup lorsque l\'écran est verrouillé et bannières lorsque le téléphone est en cours d\'utilisation.</string>
+    <string name="banners_only_summary">Afficher uniquement les fenêtres pop-up lorsque le téléphone est en cours d\'utilisation.</string>
+    <string name="popup_only_summary">Afficher uniquement les bannières lorsque le téléphone est en cours d\'utilisation.</string>   
     
     <string name="not_type_desc">Notification Type</string>
     
@@ -130,16 +130,16 @@
     
     <string name="vibrate_summary">Vibre quand vous glissez</string>
     
-    <string name="sync_desc">Synchroniser avec la barre d'état</string>
+    <string name="sync_desc">Synchroniser avec la barre d\'état</string>
     <string name="array_s_1">none</string>
     <string name="array_s_2">one_way</string>
     <string name="array_s_3">two_way</string>    
     <string name="none_s_1">aucun</string>
     <string name="one_way">One way Sync</string>
     <string name="two_way">Two way Sync</string>
-    <string name="none_s_1_summary">Pas de synchronisation entre la barre d'état et les notifications de cette application (4.3 et plus).</string>
-    <string name="one_way_summary">Supprime Notifications de la barre d'état lorsque démis de cette application (4.3 et plus).</string>
-    <string name="two_way_summary">Les deux méthodes de synchronisation entre la barre d'état et la demande (4.3 et plus).</string>
+    <string name="none_s_1_summary">Pas de synchronisation entre la barre d\'état et les notifications de cette application (4.3 et plus).</string>
+    <string name="one_way_summary">Supprime Notifications de la barre d\'état lorsque démis de cette application (4.3 et plus).</string>
+    <string name="two_way_summary">Les deux méthodes de synchronisation entre la barre d\'état et la demande (4.3 et plus).</string>
     
     <string name="close_all">Fermer</string>
     
@@ -148,24 +148,24 @@
     <string name="dismiss_all_left_summary">Rejeter toutes les notifications de la même application en glissant à gauche sur lockscreen.</string>
     
     
-    <string name="dismiss_all_tutorial">Tout rejeter de fermer l'écran de notification ainsi que efface les Notifications de la barre d'état.</string>
-    <string name="close_all_tutorial">Le bouton de fermeture de l'écran de notification seulement et n'efface pas les notifications de la barre d'état.</string>
+    <string name="dismiss_all_tutorial">Tout rejeter de fermer l\'écran de notification ainsi que efface les Notifications de la barre d\'état.</string>
+    <string name="close_all_tutorial">Le bouton de fermeture de l\'écran de notification seulement et n\'efface pas les notifications de la barre d\'état.</string>
     
-    <string name="banner_time_desc">Réglez Bannière temps d'exposition (secondes)</string>
+    <string name="banner_time_desc">Réglez Bannière temps d\'exposition (secondes)</string>
     <string name="banner_time_summary">Bannière sera visible pour:</string>
     <string name="seconds">secondes </string>
     
     <string name="do_you_love_this_app">Aimez-vous Popup Notifications?</string>
     <string name="no">Non </string>
     <string name="happy_to_know">Heureux de savoir que vous aimez notre application. Voulez-vous nous donner une note sur Play Store? </string>
-    <string name="sad_to_know"> Désolé de savoir que vous n'êtes pas heureux avec notre application. S'il vous plaît envoyez vos commentaires pour nous aider à l'améliorer.</string>
+    <string name="sad_to_know"> Désolé de savoir que vous n\'êtes pas heureux avec notre application. S\'il vous plaît envoyez vos commentaires pour nous aider à l\'améliorer.</string>
     <string name="later">Plus tard</string>
     <string name="do_not_show">Ne plus afficher ce message.</string>
     <string name="send">Envoyer</string>
     <string name="fb_app_not_working">Cette application ne fonctionne pas sur mon téléphone.</string>
-    <string name="fb_languate_translation">Traduction de la langue n'est pas bon pour mon pays.</string>    
+    <string name="fb_languate_translation">Traduction de la langue n\'est pas bon pour mon pays.</string>    
     <string name="fb_battery">Consomme trop de batterie</string>
-    <string name="fb_ui_design">UI design n'est pas bon.</string>    
+    <string name="fb_ui_design">UI design n\'est pas bon.</string>    
     <string name="other">Autres raisons :</string>
     <string name="email_subject">Popup Notifications Feedback</string>
     <string name="no_of_lines_desc">Lignes maximum pour les notifications</string>
@@ -185,7 +185,9 @@
     <string name="unlock_summary">Désactiver Déverrouillage de lockscreen sur longpress de licencier tous les boutons Fermer /.</string>
     <string name="unlock_title">désactiver Déverrouillage</string>
     <string name="not_border_color">Couleur de la bordure</string>
-    
+    <string name="ok">OK</string>
+    <string name="border_size_desc">Définir la taille de la bordure</string>
+    <string name="border_size_summary">Taille de la bordure</string>
     
 
 </resources>

@@ -348,6 +348,8 @@ containing a value of this type.
         public static final int banners_only_summary=0x7f070062;
         public static final int blocked_apps=0x7f07001f;
         public static final int blocked_apps_summary=0x7f070020;
+        public static final int border_size_desc=0x7f070099;
+        public static final int border_size_summary=0x7f07009a;
         public static final int bottom=0x7f07008f;
         public static final int broadcast_receiver_string=0x7f07003f;
         public static final int bubbles=0x7f070093;

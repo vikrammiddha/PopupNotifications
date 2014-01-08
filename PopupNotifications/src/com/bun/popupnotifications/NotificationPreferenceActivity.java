@@ -95,6 +95,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setBannerLocationPreference();
 		
 		setThemePreference();
+		
+		setBorderSizePreference();
 	}
 
 	private void setBlockedAppListener(){
@@ -354,6 +356,52 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		});
 	}
+	
+	private void setBorderSizePreference(){
+
+		final Preference customPref = (Preference) findPreference("border_size_pref");
+
+		Integer borderSizePref = Integer.valueOf(SharedPreferenceUtils.getBorderSize(this));
+
+		customPref.setSummary(getString(R.string.border_size_summary) + " : " + borderSizePref) ;
+
+
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				String bSize = (String)newValue;
+
+                        Boolean falseValue = false;
+
+                        if("".equals(bSize.trim())){
+                        	bSize = "3"; 
+                                falseValue = true;
+
+                        }else if(Integer.valueOf(bSize) > 10){
+                        	bSize = "3";
+                                falseValue = true;
+                        }
+
+
+
+                        //
+
+                        if(falseValue){
+                                return false;
+                        }else{
+                        	customPref.setSummary(getString(R.string.border_size_summary) + " : " + bSize) ;
+                        }
+
+				
+
+				return true;
+			}
+
+		});
+	}
 
 
 
@@ -535,12 +583,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		if("".equals(themePref)){
 			ListPreference lp = (ListPreference)customPref;
 			lp.setValue("Cards");
-			SharedPreferenceUtils.setBanLoc(ctx, getString(R.string.cards));
+			SharedPreferenceUtils.setTheme(ctx, getString(R.string.cards));
 			themePref = getString(R.string.cards);			
-		}else if("Cards".equals(themePref)){
-			themePref = getString(R.string.cards);
-		}else if("Bubbles".equals(themePref)){
-			themePref = getString(R.string.bubbles);
 		}
 		
 		customPref.setSummary(getString(R.string.selected_theme) + " : " + themePref );

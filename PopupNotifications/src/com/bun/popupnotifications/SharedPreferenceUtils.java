@@ -240,6 +240,18 @@ public class SharedPreferenceUtils {
 
 	}
 	
+	public static String getBorderSize(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
+		return sharedPrefs.getString("border_size_pref", "3");
+	}
+
+	public static void setBorderSize(Context ctx, String count){
+
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("border_size_pref", count).commit();
+
+	}
+	
 	public static String getTheme(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
 		return sharedPrefs.getString("theme", "");
@@ -304,6 +316,7 @@ public class SharedPreferenceUtils {
 			sp.edit().putBoolean("disable_animations", false).commit();
 			sp.edit().putBoolean("disable_unlock", false).commit();
 			sp.edit().putString("theme", ctx.getString(R.string.cards)).commit();
+			sp.edit().putString("border_size_pref", "3").commit();
 
 		}
 
@@ -330,7 +343,7 @@ public class SharedPreferenceUtils {
 		
 		String themeValue = sp.getString("theme", "");
 
-		if(themeValue.equals("") || (!themeValue.equals(ctx.getString(R.string.cards)) && !themeValue.equals(ctx.getString(R.string.ban_loc_desc)))){
+		if(themeValue.equals("") || (!themeValue.equals(ctx.getString(R.string.cards)) && !themeValue.equals(ctx.getString(R.string.bubbles)))){
 			sp.edit().putString("theme", ctx.getString(R.string.cards)).commit();
 		}
 		
@@ -338,7 +351,12 @@ public class SharedPreferenceUtils {
 		if(borderColor == -1){
 			sp.edit().putInt("border_color_not", Color.WHITE).commit();
 		}
+		
+		String borderSize = sp.getString("border_size_pref", "");
 
+		if(borderSize.equals("")){
+			sp.edit().putString("border_size_pref", "3").commit();
+		}
 
 	}
 

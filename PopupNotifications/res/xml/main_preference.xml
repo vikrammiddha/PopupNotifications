@@ -26,6 +26,12 @@
             android:defaultValue="0xff000000"
             android:key="border_color_not"
             android:title="@string/not_border_color" />
+        
+        <EditTextPreference
+            android:key="border_size_pref"
+            android:summary=""
+            android:title="@string/border_size_desc"
+            android:inputType="number"  />
 
         <CheckBoxPreference
             android:key="transparent_background"

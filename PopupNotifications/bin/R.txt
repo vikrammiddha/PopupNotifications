@@ -186,6 +186,8 @@ int string banners_only 0x7f07005d
 int string banners_only_summary 0x7f070062
 int string blocked_apps 0x7f07001f
 int string blocked_apps_summary 0x7f070020
+int string border_size_desc 0x7f070099
+int string border_size_summary 0x7f07009a
 int string bottom 0x7f07008f
 int string broadcast_receiver_string 0x7f07003f
 int string bubbles 0x7f070093

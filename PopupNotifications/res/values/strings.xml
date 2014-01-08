@@ -192,7 +192,8 @@
     <string name="unlock_summary">Disable Unlocking of lockscreen on longpress of Dismiss All/Close buttons.</string>
     <string name="unlock_title">Disable Unlocking</string>
     <string name="not_border_color">Border Color</string>
-    
+    <string name="border_size_desc">Set Border Size</string>
+    <string name="border_size_summary">Border Size</string>
     
     
 

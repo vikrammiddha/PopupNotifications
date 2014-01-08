@@ -192,6 +192,8 @@
     <string name="unlock_title">désactiver Déverrouillage</string>
     <string name="not_border_color">Couleur de la bordure</string>
     <string name="ok">OK</string>
+    <string name="border_size_desc">Définir la taille de la bordure</string>
+	<string name="border_size_summary">Taille de la bordure</string>
     
 
 </resources>

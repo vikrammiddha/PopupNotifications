@@ -191,5 +191,7 @@
     <string name="unlock_summary">Disattivare Sblocco di lockscreen su longpress di licenziare tutti /i pulsanti Chiudi .</string>
     <string name="unlock_title">disattivare Sblocco</string>    
     <string name="not_border_color">Colore del bordo</string>
+    <string name="border_size_desc">Impostare Dimensione bordo</string>
+    <string name="border_size_summary">Dimensione bordo</string>
 
 </resources>

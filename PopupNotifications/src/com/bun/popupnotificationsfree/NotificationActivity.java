@@ -702,11 +702,11 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 
-                 int strokeWidth1 = 5; // 3dp
+                 int strokeWidth1 = Integer.valueOf(SharedPreferenceUtils.getBorderSize(ctx));
                  int roundRadius1 = 0; // 8dp
 
                  if(getString(R.string.bubbles).equals(SharedPreferenceUtils.getTheme(this))){
-                         strokeWidth1 = 5;
+                         //strokeWidth1 = 5;
                          roundRadius1 = 25;
                  }
 

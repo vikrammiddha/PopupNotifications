@@ -191,5 +191,7 @@
     <string name="unlock_summary">Kein Entsperren des Lockscreens durch langen Klick auf den Alle verwerfen/Schliessen Button.</string>
     <string name="unlock_title">Kein Entsperren</string>
     <string name="not_border_color">Randfarbe</string>
+    <string name="border_size_desc">Stellen Sie Randgröße</string>
+    <string name="border_size_summary">Randgröße</string>
 
 </resources>

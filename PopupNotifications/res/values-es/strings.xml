@@ -191,5 +191,6 @@
     <string name="unlock_summary">Desactivar desbloqueo de pantalla de bloqueo en LongPress de despedir a todos los botones / Cerrar.</string>
     <string name="unlock_title">Desactivar desbloqueo</string>
     <string name="not_border_color">color del borde</string>
-
+	<string name="border_size_desc">Establezca Tamaño del borde</string>
+    <string name="border_size_summary">Tamaño del borde</string>
 </resources>

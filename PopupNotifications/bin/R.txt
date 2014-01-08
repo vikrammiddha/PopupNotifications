@@ -192,6 +192,8 @@ int string banners_only 0x7f070063
 int string banners_only_summary 0x7f070069
 int string blocked_apps 0x7f07001f
 int string blocked_apps_summary 0x7f070020
+int string border_size_desc 0x7f07009e
+int string border_size_summary 0x7f07009f
 int string bottom 0x7f070094
 int string broadcast_receiver_string 0x7f070041
 int string bubbles 0x7f070098
@@ -212,7 +214,7 @@ int string dismiss_all_left_desc 0x7f07007c
 int string dismiss_all_left_summary 0x7f07007e
 int string dismiss_all_tutorial 0x7f07005e
 int string dismiss_no_all_left_summary 0x7f07007d
-int string display_contact 0x7f07009e
+int string display_contact 0x7f0700a0
 int string do_not_show 0x7f070087
 int string do_you_love_this_app 0x7f070083
 int string email_subject 0x7f07008e

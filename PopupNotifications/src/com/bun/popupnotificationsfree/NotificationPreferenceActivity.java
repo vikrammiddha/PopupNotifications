@@ -105,8 +105,10 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setMaxLinesPreferenceData();
 
 		setBannerLocationPreference();
-		
+
 		setThemePreference();
+
+		setBorderSizePreference();
 	}
 
 	private void setBlockedAppListener(){
@@ -455,24 +457,24 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 			public boolean onPreferenceChange(Preference preference,
 					Object newValue) {
 
-				 String time = (String)newValue;
-                 Boolean falseValue = false;
+				String time = (String)newValue;
+				Boolean falseValue = false;
 
-                 if("".equals(time.trim())){
-                         time = "5"; 
+				if("".equals(time.trim())){
+					time = "5"; 
 
-                 }else if(Integer.valueOf(time) > 120){
-                         time = "5";
-                         falseValue = true;
-                 }
-                 
-                 if(falseValue){
-                         return false;
-                 }else{
-                         customPref.setSummary(getString(R.string.banner_time_summary) + " " + time + " " + getString(R.string.seconds));
-                 }
+				}else if(Integer.valueOf(time) > 120){
+					time = "5";
+					falseValue = true;
+				}
 
-                 return true;
+				if(falseValue){
+					return false;
+				}else{
+					customPref.setSummary(getString(R.string.banner_time_summary) + " " + time + " " + getString(R.string.seconds));
+				}
+
+				return true;
 			}
 
 		});
@@ -563,6 +565,53 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		});
 	}
+
+	private void setBorderSizePreference(){
+
+		final Preference customPref = (Preference) findPreference("border_size_pref");
+
+		Integer borderSizePref = Integer.valueOf(SharedPreferenceUtils.getBorderSize(this));
+
+		customPref.setSummary(getString(R.string.border_size_summary) + " : " + borderSizePref) ;
+
+
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				String bSize = (String)newValue;
+
+				Boolean falseValue = false;
+
+				if("".equals(bSize.trim())){
+					bSize = "3"; 
+					falseValue = true;
+
+				}else if(Integer.valueOf(bSize) > 10){
+					bSize = "3";
+					falseValue = true;
+				}
+
+
+
+				//
+
+				if(falseValue){
+					return false;
+				}else{
+					customPref.setSummary(getString(R.string.border_size_summary) + " : " + bSize) ;
+				}
+
+
+
+				return true;
+			}
+
+		});
+	}
+
 
 
 	private void setSelectedAppListListener(){

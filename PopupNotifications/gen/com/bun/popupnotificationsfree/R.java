@@ -355,6 +355,8 @@ containing a value of this type.
         public static final int banners_only_summary=0x7f070069;
         public static final int blocked_apps=0x7f07001f;
         public static final int blocked_apps_summary=0x7f070020;
+        public static final int border_size_desc=0x7f07009e;
+        public static final int border_size_summary=0x7f07009f;
         public static final int bottom=0x7f070094;
         public static final int broadcast_receiver_string=0x7f070041;
         public static final int bubbles=0x7f070098;
@@ -375,7 +377,7 @@ containing a value of this type.
         public static final int dismiss_all_left_summary=0x7f07007e;
         public static final int dismiss_all_tutorial=0x7f07005e;
         public static final int dismiss_no_all_left_summary=0x7f07007d;
-        public static final int display_contact=0x7f07009e;
+        public static final int display_contact=0x7f0700a0;
         public static final int do_not_show=0x7f070087;
         public static final int do_you_love_this_app=0x7f070083;
         public static final int email_subject=0x7f07008e;

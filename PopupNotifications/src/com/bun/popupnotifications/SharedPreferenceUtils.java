@@ -199,6 +199,11 @@ public class SharedPreferenceUtils {
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getBoolean("dismiss_all_left", false);
 	}
+	
+	public static Boolean getCreateLogs(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getBoolean("create_logs", false);
+	}
 
 	public static Boolean getFirstTimeRun(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
@@ -240,6 +245,19 @@ public class SharedPreferenceUtils {
 
 	}
 	
+	public static String getFontSize(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
+		return sharedPrefs.getString("font_size", "-1");
+	}
+
+	public static void setFontSize(Context ctx, String size){
+
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("font_size", size).commit();
+
+	}
+	
+		
 	public static String getBorderSize(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
 		return sharedPrefs.getString("border_size_pref", "3");
@@ -302,7 +320,7 @@ public class SharedPreferenceUtils {
 			sp.edit().putBoolean("full_screen_notification", false).commit();
 			sp.edit().putBoolean("transparent_background", true).commit();
 			sp.edit().putBoolean("wake_up", true).commit();
-			sp.edit().putBoolean("mute_sleep_hours", true).commit();
+			sp.edit().putBoolean("mute_sleep_hours", false).commit();
 
 			sp.edit().putString("start_sleep_time", "23:00").commit();
 			sp.edit().putString("end_sleep_time", "07:00").commit();

@@ -75,8 +75,15 @@
             android:key="no_of_lines_pref"
             android:summary="@string/no_of_lines_summary"
             android:title="@string/no_of_lines_desc"
-            android:inputType="number"  />    
+            android:inputType="number"  /> 
             
+        <EditTextPreference
+            android:key="font_size"
+            android:summary=""
+            android:title="@string/font_size_desc"
+            android:inputType="number"  /> 
+            
+                   
         <CheckBoxPreference
             android:key="disable_animations"
             android:summary=""
@@ -97,6 +104,16 @@
             android:entryValues="@array/themeValues"
             android:key="theme"
             android:title="@string/theme_title" />
+        
+         <PreferenceScreen
+            android:key="test_lockscreen"
+            android:title="@string/test_lockscreen_desc" >
+        </PreferenceScreen>
+        
+          <PreferenceScreen
+            android:key="test_banner"
+            android:title="@string/test_banner_desc" >
+        </PreferenceScreen>
         
         
     </PreferenceScreen>
@@ -168,6 +185,34 @@
         <Preference
             android:key="settings_service_enable"
             android:title="@string/pref_settings_service_inactive" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory
+        android:key="support"
+        android:title="@string/support" >
+         <PreferenceScreen
+	        android:key="developer_support"
+	        android:summary=""	        
+	        android:title="@string/developer_support" >
+            
+             <CheckBoxPreference
+	            android:key="create_logs"
+	            android:summary="@string/create_logs_summary"
+	            android:title="@string/create_logs" />
+             
+        
+    	<PreferenceScreen
+	        android:key="email_logs"
+	        android:summary=""	    
+	        android:dependency="create_logs"    
+	        android:title="@string/email_logs" />
+    	
+    	<PreferenceScreen
+	        android:key="contact_developer"
+	        android:summary=""	        
+	        android:title="@string/contact_developer" />
+    	</PreferenceScreen> 
+    	
     </PreferenceCategory>
 
 </PreferenceScreen>

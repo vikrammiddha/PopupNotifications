@@ -1,6 +1,8 @@
 package com.bun.popupnotifications;
 
 
+import java.util.Locale;
+
 import yuku.ambilwarna.AmbilWarnaDialog;
 import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener;
 import android.app.AlertDialog;
@@ -97,6 +99,16 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setThemePreference();
 		
 		setBorderSizePreference();
+		
+		setEmailLogsListener();
+		
+		setContactDeveloperListener();
+		
+		setCreateLogsPreferenceData();
+		
+		setTestLockscreenListener();
+		
+		setTestBannersListener();
 	}
 
 	private void setBlockedAppListener(){
@@ -108,6 +120,125 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 				Intent testIntent = new Intent(getApplicationContext(), BlockedAppsActivity.class);
 				startActivity(testIntent);
+
+				return true;
+			}
+		});
+	}
+	
+	private void setCreateLogsPreferenceData(){
+		PreferenceScreen screen = getPreferenceScreen();		
+
+		final Preference customPref = (Preference) findPreference("create_logs");
+		
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+				
+				if((Boolean)newValue == true){
+					HelperUtils.writeLogs("---", ctx, false);
+				}
+			
+
+				return true;
+			}
+
+		});
+	}
+	
+	private void setEmailLogsListener(){
+		Preference pref = findPreference("email_logs");
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+
+				String subject = "Popup Notifications Logs";
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"bunny.decoder@gmail.com"});
+                i.putExtra(Intent.EXTRA_SUBJECT, subject);
+                i.putExtra(Intent.EXTRA_TEXT   , HelperUtils.readLogs(ctx));
+                try {
+                        ctx.startActivity(Intent.createChooser(i, "Send mail..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                        //Toast.makeText(MyActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
+
+				return true;
+			}
+		});
+	}
+	
+	private void setContactDeveloperListener(){
+		Preference pref = findPreference("contact_developer");
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				
+				String emailBody = "";
+				emailBody +=  "\n\n" +"Android Version : " + android.os.Build.VERSION.RELEASE + "\n";
+                emailBody += "Phone Model : " + Feedback.getDeviceName() + "\n";
+                emailBody += "Accessibility Service : " + Utils.isAccessibilityEnabled(ctx) + "\n";
+                emailBody += "App Version : " + Feedback.getAppVersion(ctx) + "\n";
+                emailBody += "Device Language : " + Locale.getDefault().getDisplayLanguage() + "\n";
+
+                String subject = ctx.getString(R.string.email_subject);
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"bunny.decoder@gmail.com"});
+                i.putExtra(Intent.EXTRA_SUBJECT, subject);
+                i.putExtra(Intent.EXTRA_TEXT   , emailBody);
+                try {
+                        ctx.startActivity(Intent.createChooser(i, "Send mail..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                        //Toast.makeText(MyActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
+
+				return true;
+			}
+		});
+	}
+	
+	private void setTestLockscreenListener(){
+		Preference pref = findPreference("test_lockscreen");
+		
+		final NotificationBean testBean = HelperUtils.getTestNotification(ctx);
+		
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+
+				Utils.getNotList().add(testBean);
+				
+				Intent dialogIntent = new Intent(ctx, NotificationActivity.class);
+				dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				ctx.startActivity(dialogIntent);
+
+				return true;
+			}
+		});
+	}
+	
+	private void setTestBannersListener(){
+		Preference pref = findPreference("test_banner");
+		
+		final NotificationBean testBean = HelperUtils.getTestNotification(ctx);
+		
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+
+				Utils.getNotList().add(testBean);
+				
+				Utils.isServiceRunning = true;
+				ctx.stopService(new Intent(ctx, BannerService.class));
+				ctx.startService(new Intent(ctx, BannerService.class));
 
 				return true;
 			}
@@ -356,6 +487,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		});
 	}
+	
+	
 	
 	private void setBorderSizePreference(){
 
@@ -627,7 +760,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 				if("".equals(time.trim())){
 					time = "5"; 
 
-				}else if(Integer.valueOf(time) > 120){
+				}else if(Integer.valueOf(time) > 9999){
 					time = "5";
 					falseValue = true;
 				}

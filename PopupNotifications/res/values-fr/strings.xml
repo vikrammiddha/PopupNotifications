@@ -189,5 +189,15 @@
     <string name="border_size_desc">Définir la taille de la bordure</string>
     <string name="border_size_summary">Taille de la bordure</string>
     
+    <string name="support">Support</string>
+    <string name="developer_support">Support des développeurs</string>
+    <string name="create_logs">Activer Logs</string>
+    <string name="create_logs_summary">Lui permettre de créer des journaux qui peuvent être partagées avec le développeur pour résoudre les problèmes auxquels vous êtes confrontés. Éteignez la suite.</string>
+	<string name="email_logs">Envoyer Logs pour les développeurs</string>
+	<string name="contact_developer">Contacter Developer</string>
+	<string name="font_size_desc">Régler la taille des caractères</string>
+	<string name="test_lockscreen_desc">Test Lockscreen</string>
+	<string name="test_banner_desc">Test Banner</string>
+     
 
 </resources>

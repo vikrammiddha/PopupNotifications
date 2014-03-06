@@ -198,11 +198,15 @@ int string close 0x7f07003b
 int string close_all 0x7f070075
 int string close_all_tutorial 0x7f07007a
 int string com 0x7f070033
+int string contact_developer 0x7f0700a0
 int string crash_dialog_comment_prompt 0x7f070007
 int string crash_dialog_ok_toast 0x7f070008
 int string crash_dialog_text 0x7f070006
 int string crash_dialog_title 0x7f070005
 int string crash_toast_text 0x7f070004
+int string create_logs 0x7f07009d
+int string create_logs_summary 0x7f07009e
+int string developer_support 0x7f07009c
 int string dismiss_all 0x7f07004a
 int string dismiss_all_left_desc 0x7f070076
 int string dismiss_all_left_summary 0x7f070078
@@ -210,6 +214,7 @@ int string dismiss_all_tutorial 0x7f070079
 int string dismiss_no_all_left_summary 0x7f070077
 int string do_not_show 0x7f070082
 int string do_you_love_this_app 0x7f07007e
+int string email_logs 0x7f07009f
 int string email_subject 0x7f070089
 int string end_time 0x7f07002a
 int string expanded_not_summary 0x7f07004c
@@ -220,6 +225,7 @@ int string fb_languate_translation 0x7f070085
 int string fb_ui_design 0x7f070087
 int string follow_on_facebook 0x7f07002c
 int string font_color 0x7f070018
+int string font_size_desc 0x7f0700a1
 int string for_ever 0x7f070034
 int string forever 0x7f070047
 int string google_tts 0x7f07001c
@@ -308,8 +314,11 @@ int string show_fullscreen_summary 0x7f07004e
 int string start_time 0x7f070029
 int string start_tutorial 0x7f070058
 int string start_tutorial_click 0x7f070059
+int string support 0x7f07009b
 int string sync_desc 0x7f07006b
 int string talkback_fix 0x7f07000a
+int string test_banner_desc 0x7f0700a3
+int string test_lockscreen_desc 0x7f0700a2
 int string theme_title 0x7f070094
 int string top 0x7f07008d
 int string tts_warning 0x7f07000e

@@ -188,6 +188,16 @@
     <string name="border_size_desc">Set Border Size</string>
     <string name="border_size_summary">Border Size</string>
     
+    <string name="support">Support</string>
+    <string name="developer_support">Developer Support</string>
+    <string name="create_logs">Enable Logs</string>
+    <string name="create_logs_summary">Enable it to create logs that can be shared with developer to fix the issues you are facing. Turn it off after that.</string>
+	<string name="email_logs">Email Logs to Developer</string>
+	<string name="contact_developer">Contact Developer</string>
+	<string name="font_size_desc">Set Font Size</string>
+	<string name="test_lockscreen_desc">Test Lockscreen</string>
+	<string name="test_banner_desc">Test Banner</string>
+	
+	
     
-
 </resources>

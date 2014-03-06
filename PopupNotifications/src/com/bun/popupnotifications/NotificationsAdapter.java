@@ -163,7 +163,9 @@ public class NotificationsAdapter extends BaseAdapter{
 		message += n.getMessage();		
 
 
-		holder.text.setText(Html.fromHtml(message));	
+		holder.text.setText(Html.fromHtml(message));
+		
+		holder.text.setTextSize(TypedValue.COMPLEX_UNIT_PX, Float.valueOf(SharedPreferenceUtils.getFontSize(context)));
 
 		int fontColor = HelperUtils.getFontColor(context);
 
@@ -176,13 +178,7 @@ public class NotificationsAdapter extends BaseAdapter{
 		if(textViewSize != null){
 			holder.text.setMaxLines(textViewSize);
 		}
-
-		float fontSize = holder.text.getTextSize();
-
-
-
-		//holder.text.setMaxLines(HelperUtils.getTextSize(context));
-
+		
 		if(n.getNotCount() > 1){
 			holder.badge.setText(String.valueOf(n.getNotCount()));
 
@@ -205,13 +201,15 @@ public class NotificationsAdapter extends BaseAdapter{
 			holder.badge.setVisibility(View.GONE);
 		}
 
-		if(Utils.isScreenLocked(context)){
+		if(Utils.isScreenLocked(context) || n.getPackageName().contains("com.bun.popupnotification")){
 			holder.timeText.setText(n.getNotTime());	
 			if(fontColor == 0){
 				holder.timeText.setTextColor(Color.WHITE);
 			}else{
 				holder.timeText.setTextColor(fontColor);
 			}
+			
+			holder.timeText.setTextSize(TypedValue.COMPLEX_UNIT_PX, Float.valueOf(SharedPreferenceUtils.getFontSize(context)));
 		}else{
 			holder.timeText.setVisibility(View.GONE);
 		}

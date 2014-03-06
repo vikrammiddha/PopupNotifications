@@ -67,7 +67,7 @@ public class NotificationService extends AccessibilityService {
 
 		Log.d("Notification Service", "Entered the accessibility method==" + event.getPackageName().toString());
 		
-		
+		HelperUtils.writeLogs("Entered the accessiblity Event method--" + event.getPackageName().toString(), ctx, true);
 		
 		Notification n = (Notification) event.getParcelableData();	
 		
@@ -76,9 +76,6 @@ public class NotificationService extends AccessibilityService {
 		event = null;
 
 	}
-
-
-
 	
 
 	@Override
@@ -114,9 +111,12 @@ public class NotificationService extends AccessibilityService {
 			{
 				//registerProximitySensor();
 			}
+			
+			HelperUtils.writeLogs("Service started successfully", ctx, true);
 
 		}catch(Exception e){
 			Log.e("NotificationHistory", "Failed to configure accessibility service", e);
+			HelperUtils.writeLogs("Exception in starting Service" + e, ctx, true);
 		}
 
 	}

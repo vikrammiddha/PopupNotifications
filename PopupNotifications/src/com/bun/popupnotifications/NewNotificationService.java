@@ -27,8 +27,14 @@ public class NewNotificationService extends NotificationListenerService {
 	@Override
 	public void onNotificationPosted(StatusBarNotification sbn) {
 		// TODO Auto-generated method stub
-		Log.d("NotificationListener", "Entered onNotificationPosted");
-		Log.d("NotificationListener", "tickertext-----" + sbn.getNotification().tickerText.toString());
+		//Log.d("NotificationListener", "Entered onNotificationPosted");
+		//Log.d("NotificationListener", "tickertext-----" + sbn.getNotification().tickerText.toString());
+		try{
+			HelperUtils.writeLogs("Journey started for Popup notifications --" + sbn.getNotification().tickerText.toString(), ctx, true);
+		}catch(Exception e){
+			
+		}
+		HelperUtils.writeLogs("Entered the onNotificationPosted method--" + sbn.getPackageName(), ctx, true);
 		np.processNotification(sbn.getNotification(), sbn.getPackageName(), sbn.getId(), sbn.getTag());
 		
 	}

@@ -116,7 +116,7 @@ ShowcaseView.OnShowcaseEventListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		//Debug.startMethodTracing("popup");
 		window = getWindow();
-		super.onCreate(savedInstanceState);	
+		super.onCreate(savedInstanceState);		
 
 		myKeyGuard = (KeyguardManager)getSystemService(Context.KEYGUARD_SERVICE);
 
@@ -139,7 +139,7 @@ ShowcaseView.OnShowcaseEventListener{
 		ctx = this;
 
 		act = this;
-
+		HelperUtils.writeLogs("Entered Notiications Activity Constructor ", ctx, true);
 
 		adapter = new NotificationsAdapter(this);
 		adapter.textViewSize = Integer.valueOf(SharedPreferenceUtils.getMaxLines(ctx));
@@ -148,6 +148,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 		populateAdapter(true);
+		
 		setLayoutBackground();
 
 		registerForContextMenu(layout);	
@@ -394,7 +395,8 @@ ShowcaseView.OnShowcaseEventListener{
 			sv.setShowcaseIndicatorScale(1.5f);
 			sv.setOnShowcaseEventListener(this);
 		}	
-
+		
+		Log.d("Not Activity Logs ===", HelperUtils.readLogs(ctx));
 
 	}
 
@@ -637,10 +639,11 @@ ShowcaseView.OnShowcaseEventListener{
 
 			for(NotificationBean n : Utils.getNotList()){
 				Log.d("NotActivity","Adapter Not=======" + n.getPackageName());
+				HelperUtils.writeLogs("Adding notifications to the adapter for app :. " + n.getAppName(), ctx, true);
 				if(n.getIsOddRow())
 					continue;
 				adapter.addNotification(n);
-
+				
 			}
 		}else{
 			LinkedHashMap<String,NotificationBean> lhm = new LinkedHashMap<String,NotificationBean>();
@@ -656,6 +659,7 @@ ShowcaseView.OnShowcaseEventListener{
 			}
 
 			for(NotificationBean nb : lhm.values()){
+				HelperUtils.writeLogs("Adding notifications to the adapter for app :. " + nb.getAppName(), ctx, true);
 				adapter.addNotification(nb);
 			}
 		}

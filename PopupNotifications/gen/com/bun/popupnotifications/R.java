@@ -360,11 +360,15 @@ containing a value of this type.
         public static final int close_all=0x7f070075;
         public static final int close_all_tutorial=0x7f07007a;
         public static final int com=0x7f070033;
+        public static final int contact_developer=0x7f0700a0;
         public static final int crash_dialog_comment_prompt=0x7f070007;
         public static final int crash_dialog_ok_toast=0x7f070008;
         public static final int crash_dialog_text=0x7f070006;
         public static final int crash_dialog_title=0x7f070005;
         public static final int crash_toast_text=0x7f070004;
+        public static final int create_logs=0x7f07009d;
+        public static final int create_logs_summary=0x7f07009e;
+        public static final int developer_support=0x7f07009c;
         public static final int dismiss_all=0x7f07004a;
         public static final int dismiss_all_left_desc=0x7f070076;
         public static final int dismiss_all_left_summary=0x7f070078;
@@ -372,6 +376,7 @@ containing a value of this type.
         public static final int dismiss_no_all_left_summary=0x7f070077;
         public static final int do_not_show=0x7f070082;
         public static final int do_you_love_this_app=0x7f07007e;
+        public static final int email_logs=0x7f07009f;
         public static final int email_subject=0x7f070089;
         public static final int end_time=0x7f07002a;
         public static final int expanded_not_summary=0x7f07004c;
@@ -382,6 +387,7 @@ containing a value of this type.
         public static final int fb_ui_design=0x7f070087;
         public static final int follow_on_facebook=0x7f07002c;
         public static final int font_color=0x7f070018;
+        public static final int font_size_desc=0x7f0700a1;
         public static final int for_ever=0x7f070034;
         public static final int forever=0x7f070047;
         public static final int google_tts=0x7f07001c;
@@ -470,8 +476,11 @@ containing a value of this type.
         public static final int start_time=0x7f070029;
         public static final int start_tutorial=0x7f070058;
         public static final int start_tutorial_click=0x7f070059;
+        public static final int support=0x7f07009b;
         public static final int sync_desc=0x7f07006b;
         public static final int talkback_fix=0x7f07000a;
+        public static final int test_banner_desc=0x7f0700a3;
+        public static final int test_lockscreen_desc=0x7f0700a2;
         public static final int theme_title=0x7f070094;
         public static final int top=0x7f07008d;
         public static final int tts_warning=0x7f07000e;

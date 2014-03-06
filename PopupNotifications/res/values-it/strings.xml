@@ -186,5 +186,15 @@
     <string name="not_border_color">Colore del bordo</string>
     <string name="border_size_desc">Impostare Dimensione bordo</string>
     <string name="border_size_summary">Dimensione bordo</string>
+    
+    <string name="support">supporto</string>
+    <string name="developer_support">costruttore Support</string>
+    <string name="create_logs">permettere Logs</string>
+    <string name="create_logs_summary">Consentirle di creare registri che possono essere condivise con lo sviluppatore per risolvere i problemi che state affrontando. Spegnerlo dopo.</string>
+	<string name="email_logs">Invia registri per gli sviluppatori</string>
+	<string name="contact_developer">Contatta lo sviluppatore</string>
+    <string name="font_size_desc">Set Font Size</string>
+	<string name="test_lockscreen_desc">prova Lockscreen</string>
+	<string name="test_banner_desc">prova Banner</string>
 
 </resources>

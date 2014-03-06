@@ -187,5 +187,15 @@
     <string name="not_border_color">color del borde</string>
     <string name="border_size_desc">Establezca Tamaño del borde</string>
     <string name="border_size_summary">Tamaño del borde</string>
+    
+    <string name="support">apoyo</string>
+    <string name="developer_support">creador apoyo</string>
+    <string name="create_logs">permitir Logs</string>
+    <string name="create_logs_summary">Permitirle que para crear registros que se pueden compartir con el desarrollador para solucionar los problemas que está enfrentando. Apágalo después de eso.</string>
+	<string name="email_logs">Enviar Logs a Developer</string>
+	<string name="contact_developer">Contactar al creador</string>
+	<string name="font_size_desc">Establezca el tamaño de fuente</string>
+	<string name="test_lockscreen_desc">Prueba Lockscreen</string>
+	<string name="test_banner_desc">Prueba Banner</string>
 
 </resources>

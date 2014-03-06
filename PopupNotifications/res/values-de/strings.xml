@@ -187,5 +187,14 @@
      <string name="border_size_desc">Stellen Sie Randgröße</string>
     <string name="border_size_summary">Randgröße</string>
     
+    <string name="support">Unterstützung</string>
+    <string name="developer_support">Unterstützung Entwickler</string>
+    <string name="create_logs">aktivieren Logs</string>
+    <string name="create_logs_summary">Aktivieren Sie es, um Protokolle, die mit Entwickler um die Probleme zu beheben Sie konfrontiert sind geteilt werden können. Schalten Sie es danach.</string>
+	<string name="email_logs">E-Mail Logs, um Entwickler</string>
+	<string name="contact_developer">Kontakt Entwickler</string>
+    <string name="font_size_desc">Stellen Sie Schriftgröße</string>
+	<string name="test_lockscreen_desc">Prüfung Lockscreen</string>
+	<string name="test_banner_desc">Prüfung Banner</string>
 
 </resources>

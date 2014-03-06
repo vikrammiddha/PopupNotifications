@@ -63,7 +63,8 @@ public class AppSelectionActivity extends SherlockActivity{
 		}
 		
 		ctx = this;
-
+		
+		
 	}
 
 

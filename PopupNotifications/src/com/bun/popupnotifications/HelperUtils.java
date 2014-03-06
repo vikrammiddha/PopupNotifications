@@ -1,5 +1,12 @@
 package com.bun.popupnotifications;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -360,6 +367,79 @@ public class HelperUtils {
 		}
 		return false;
 
+	}
+	
+	public static void writeLogs(String s, Context ctx, Boolean append){
+		
+		if(!SharedPreferenceUtils.getCreateLogs(ctx) && append == true){
+			return;
+		}
+		if(s.toLowerCase().contains("whatsapp")){
+			return;
+		}
+		
+		String filenName = new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "-PopupNotifications.Log";
+		
+		//s = s+ "\n";
+		
+		BufferedWriter bufferedWriter;
+		try {
+			String filePath = ctx.getFilesDir()+File.separator+filenName;
+			bufferedWriter = new BufferedWriter(new FileWriter(new 
+			File(filePath), append));
+			bufferedWriter.write(s);
+			bufferedWriter.newLine();
+			bufferedWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	
+	public static String readLogs(Context ctx){
+		String filenName = new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "-PopupNotifications.Log";
+		BufferedReader bufferedReader;
+		StringBuilder builder = new StringBuilder("");
+		try {
+			bufferedReader = new BufferedReader(new FileReader(new 
+			        File(ctx.getFilesDir()+File.separator+filenName)));
+			
+			String read;			
+			
+			while((read = bufferedReader.readLine()) != null){
+				builder.append(read);
+				builder.append("\n");
+			}
+			//Log.d("Output", builder.toString());
+			bufferedReader.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return builder.toString();
+		
+	}
+	
+	public static NotificationBean getTestNotification(Context ctx){
+		
+		NotificationBean nb = new NotificationBean();
+		nb.setAppName("Popup Notifications");
+		nb.setPackageName("com.bun.popupnotifications");
+		nb.setId(0);
+		nb.setIsOddRow(false);
+		nb.setMessage("This is a test message");
+		nb.setSender("Bunny Decoder");
+		nb.setIcon(HelperUtils.getAppIcon(nb.getPackageName(), ctx));
+		
+		DateFormat formatter = new SimpleDateFormat("HH:mm");
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(System.currentTimeMillis());
+		String formattedDate = formatter.format(calendar.getTime());
+		nb.setNotTime(formattedDate);
+		
+		return nb;
+		
 	}
 
 }

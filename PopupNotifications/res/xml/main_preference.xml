@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    				xmlns:robobunny="http://robobunny.com" >
 
     <PreferenceScreen
         android:key="notification_preference"
@@ -27,16 +28,31 @@
             android:key="border_color_not"
             android:title="@string/not_border_color" />
         
-        <EditTextPreference
-            android:key="border_size_pref"
-            android:summary=""
+               
+        <com.bun.popupnotifications.SeekBarPreference
+            android:key="border_size_pref1"
             android:title="@string/border_size_desc"
-            android:inputType="number"  />
-
-        <CheckBoxPreference
-            android:key="transparent_background"
             android:summary=""
-            android:title="@string/set_transparent_background" />
+            android:defaultValue="3"
+            android:max="10"
+            android:enabled="true"
+            robobunny:min="1"
+        	robobunny:unitsLeft=""
+            robobunny:unitsRight=""
+         />
+        
+        <com.bun.popupnotifications.SeekBarPreference
+            android:key="transparent_background1"
+            android:title="@string/set_transparent_background"
+            android:summary=""
+            android:defaultValue="200"
+            android:max="255"
+            android:enabled="true"
+            robobunny:min="1"
+        	robobunny:unitsLeft=""
+            robobunny:unitsRight=""
+         />
+        
         <CheckBoxPreference
             android:key="wake_up"
             android:summary=""
@@ -48,6 +64,11 @@
             android:key="sync_preference"
             android:title="@string/sync_desc" />
 
+        <CheckBoxPreference
+            android:key="show_circular_images"
+            android:summary=""
+            android:title="@string/show_circular_images" />
+        	
         <CheckBoxPreference
             android:key="dismiss_all_left"
             android:summary="@string/dismiss_all_left_summary"
@@ -63,27 +84,40 @@
             android:key="banner_time_pref"
             android:summary="@string/banner_time_summary"
             android:title="@string/banner_time_desc"
-            android:inputType="number"  />
+            android:inputType="number"  />       
+       
         
         <ListPreference
             android:entries="@array/banLoc"
             android:entryValues="@array/banLocValues"
             android:key="banner_location_preference"
             android:title="@string/ban_loc_desc" />
-        
-        <EditTextPreference
-            android:key="no_of_lines_pref"
-            android:summary="@string/no_of_lines_summary"
+              
+            
+        <com.bun.popupnotifications.SeekBarPreference
+            android:key="no_of_lines_pref1"
             android:title="@string/no_of_lines_desc"
-            android:inputType="number"  /> 
+            android:summary="@string/no_of_lines_summary"
+            android:defaultValue="10"
+            android:max="20"
+            android:enabled="true"
+            robobunny:min="1"
+        	robobunny:unitsLeft=""
+            robobunny:unitsRight=""
+         />
             
-        <EditTextPreference
-            android:key="font_size"
-            android:summary=""
+        <com.bun.popupnotifications.SeekBarPreference
+            android:key="font_size1"
             android:title="@string/font_size_desc"
-            android:inputType="number"  /> 
-            
-                   
+            android:summary=""
+            android:defaultValue="-1"
+            android:max="150"
+            android:enabled="true"
+            robobunny:min="1"
+        	robobunny:unitsLeft=""
+            robobunny:unitsRight=""
+         />
+                           
         <CheckBoxPreference
             android:key="disable_animations"
             android:summary=""

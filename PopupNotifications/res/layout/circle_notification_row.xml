@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.bun.popupnotifications"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingRight="5.0dip"    
+    android:paddingTop="2.0dip"
+    android:background="@drawable/layout_bg"
+    android:id="@+id/mainRowId1" >
+
+    <LinearLayout
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:gravity="top"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="80"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_weight="10" >
+
+                <com.bun.popupnotifications.CircleImage
+                    android:id="@+id/appImageViewId1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5.0dip"
+                    android:src="@drawable/ic_launcher"
+                    app:border_color="#EEEEEE"
+			        app:border_width="10"
+			        app:shadow="true" />
+
+                <TextView
+                    android:id="@+id/unreadCountTextId1"
+                    android:layout_width="20.0dip"
+                    android:layout_height="wrap_content"
+                    android:background="#FF0000"
+                    android:gravity="center_horizontal"
+                    android:text="33"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+            </FrameLayout>
+            
+            <TextView
+                android:id="@+id/notTimeTextId1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="90"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#FFFFFF" />
+            
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/notMessageTextId1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="25"
+            android:clickable="true"
+            android:gravity="left|center"
+            android:maxLines="10"
+            android:padding="5.0dip"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/appImageSmallId1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="95" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/front"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:orientation="horizontal"
+         >
+    </LinearLayout>
+
+</FrameLayout>

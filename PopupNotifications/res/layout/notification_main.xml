@@ -17,6 +17,7 @@
         android:background="#00000000"
         android:gravity="center"
         android:orientation="vertical" >
+        
 
         <LinearLayout
             android:id="@+id/expandingLayoutId1"
@@ -66,8 +67,6 @@
                 android:text="@string/dismiss_all"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold" />
-
-          
 
             <Button
                 android:id="@+id/CloseWindowId"

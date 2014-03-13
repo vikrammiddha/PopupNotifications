@@ -17,6 +17,8 @@ import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.app.KeyguardManager;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -174,16 +176,47 @@ public class HelperUtils {
 
 	}
 
-	public static Boolean isTransparentBackround(Context ctx){
+	public static Integer getTransparentBackround(Context ctx){
 
-		if((Boolean)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "transparent_background", "Boolean")){
-			return true;
+		Object val = SharedPreferenceUtils.getGenericPreferenceValue(ctx, "transparent_background1", "Integer");
+		if(val == null || "".equals(val)){
+			val = 200;
 		}
-
-		return false;
-
+		
+		return (Integer)val;
 	}
+	
+	public static Integer getBorderSize(Context ctx){
 
+		Object val = SharedPreferenceUtils.getGenericPreferenceValue(ctx, "border_size_pref1", "Integer");
+		if(val == null || "".equals(val)){
+			val = 3;
+		}
+		
+		return (Integer)val;
+	}
+	
+	public static Integer getFontSize(Context ctx){
+
+		Object val = SharedPreferenceUtils.getGenericPreferenceValue(ctx, "font_size1", "Integer");
+		if(val == null || ((Integer)val)  == 0){
+			val = -1;
+		}
+		
+		return (Integer)val;
+	}
+	
+	public static Integer getMaxLines(Context ctx){
+
+		Object val = SharedPreferenceUtils.getGenericPreferenceValue(ctx, "no_of_lines_pref1", "Integer");
+		if(val == null || ((Integer)val)  == 0){
+			val = 10;
+		}
+		
+		return (Integer)val;
+	}
+	
+	
 	public static int getFontColor(Context ctx){
 
 		try{
@@ -439,6 +472,28 @@ public class HelperUtils {
 		nb.setNotTime(formattedDate);
 		
 		return nb;
+		
+	}
+	
+	public static Boolean isAppUpgrade(Context ctx){
+		PackageInfo pInfo;
+		try {
+			pInfo = ctx.getPackageManager().getPackageInfo(ctx.getPackageName(), 0);
+			String version = pInfo.versionName;
+			
+			String prevVersion = SharedPreferenceUtils.getAppVersion(ctx);
+			
+			if(prevVersion == null || !prevVersion.equals(version)){
+				return true;
+			}
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return false;
+		
 		
 	}
 

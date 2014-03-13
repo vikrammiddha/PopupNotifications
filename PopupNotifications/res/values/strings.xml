@@ -198,6 +198,6 @@
 	<string name="test_lockscreen_desc">Test Lockscreen</string>
 	<string name="test_banner_desc">Test Banner</string>
 	
-	
+	<string name="show_circular_images">Show circular Images</string>
     
 </resources>

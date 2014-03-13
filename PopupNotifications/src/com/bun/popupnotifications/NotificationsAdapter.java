@@ -38,6 +38,7 @@ public class NotificationsAdapter extends BaseAdapter{
 	static class ViewHolder {
 		public TextView text;
 		public ImageView image;
+		public CircleImage circleImage;
 		public ImageView smallImage;
 		public TextView timeText;
 		public TextView badge;
@@ -86,7 +87,8 @@ public class NotificationsAdapter extends BaseAdapter{
 	}
 
 	public void clearNotifications(){
-		nList.clear();
+		if(nList != null)
+			nList.clear();
 		//nList = null;
 	}
 	@Override
@@ -128,20 +130,38 @@ public class NotificationsAdapter extends BaseAdapter{
 
 		NotificationBean n = nList.get(position);
 		//if(view == null || view.getTag() == null){
-		LayoutInflater inflater =
-				(LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		view = inflater.inflate(
-				R.layout.notification_row, parent, false);
+		LayoutInflater inflater;
+		ViewHolder viewHolder  = new ViewHolder();;
+		if(SharedPreferenceUtils.getCircularImages(context)){
+			inflater =
+					(LayoutInflater) context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			view = inflater.inflate(
+					R.layout.circle_notification_row, parent, false);
 
-		ViewHolder viewHolder = new ViewHolder();
-		viewHolder.text = (TextView) view.findViewById(R.id.notMessageTextId);
-		// viewHolder.text.setMovementMethod(new ScrollingMovementMethod());
-		// viewHolder.text.setSelected(true);
-		viewHolder.image = (ImageView)view.findViewById(R.id.appImageViewId);
-		viewHolder.smallImage = (ImageView)view.findViewById(R.id.appImageSmallId);
-		viewHolder.timeText = (TextView) view.findViewById(R.id.notTimeTextId);
-		viewHolder.badge = (TextView) view.findViewById(R.id.unreadCountTextId);
+			viewHolder.text = (TextView) view.findViewById(R.id.notMessageTextId1);
+			// viewHolder.text.setMovementMethod(new ScrollingMovementMethod());
+			// viewHolder.text.setSelected(true);
+			viewHolder.circleImage = (CircleImage)view.findViewById(R.id.appImageViewId1);
+			viewHolder.smallImage = (ImageView)view.findViewById(R.id.appImageSmallId1);
+			viewHolder.timeText = (TextView) view.findViewById(R.id.notTimeTextId1);
+			viewHolder.badge = (TextView) view.findViewById(R.id.unreadCountTextId1);
+		}else{
+			inflater =
+					(LayoutInflater) context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			view = inflater.inflate(
+					R.layout.notification_row, parent, false);
+
+			viewHolder.text = (TextView) view.findViewById(R.id.notMessageTextId);
+			// viewHolder.text.setMovementMethod(new ScrollingMovementMethod());
+			// viewHolder.text.setSelected(true);
+			viewHolder.image = (ImageView)view.findViewById(R.id.appImageViewId);
+			viewHolder.smallImage = (ImageView)view.findViewById(R.id.appImageSmallId);
+			viewHolder.timeText = (TextView) view.findViewById(R.id.notTimeTextId);
+			viewHolder.badge = (TextView) view.findViewById(R.id.unreadCountTextId);
+
+		}
 		view.setTag(viewHolder);
 
 		//}
@@ -149,9 +169,14 @@ public class NotificationsAdapter extends BaseAdapter{
 
 
 		ViewHolder holder = (ViewHolder) view.getTag();
-
-
-		holder.image.setImageDrawable(n.getIcon());
+		
+		if(SharedPreferenceUtils.getCircularImages(context)){		
+			holder.circleImage.setImageDrawable(n.getIcon());
+			holder.circleImage.setBorderColor(HelperUtils.getBorderColor(context));
+			holder.circleImage.setBorderWidth(HelperUtils.getBorderSize(context));
+		}else{
+			holder.image.setImageDrawable(n.getIcon());
+		}
 		holder.smallImage.setImageDrawable(n.getNotIcon());
 
 		String message = "";
@@ -165,7 +190,7 @@ public class NotificationsAdapter extends BaseAdapter{
 
 		holder.text.setText(Html.fromHtml(message));
 		
-		holder.text.setTextSize(TypedValue.COMPLEX_UNIT_PX, Float.valueOf(SharedPreferenceUtils.getFontSize(context)));
+		holder.text.setTextSize(TypedValue.COMPLEX_UNIT_PX, Float.valueOf(HelperUtils.getFontSize(context)));
 
 		int fontColor = HelperUtils.getFontColor(context);
 
@@ -209,7 +234,7 @@ public class NotificationsAdapter extends BaseAdapter{
 				holder.timeText.setTextColor(fontColor);
 			}
 			
-			holder.timeText.setTextSize(TypedValue.COMPLEX_UNIT_PX, Float.valueOf(SharedPreferenceUtils.getFontSize(context)));
+			holder.timeText.setTextSize(TypedValue.COMPLEX_UNIT_PX, Float.valueOf(HelperUtils.getFontSize(context)));
 		}else{
 			holder.timeText.setVisibility(View.GONE);
 		}
@@ -223,7 +248,7 @@ public class NotificationsAdapter extends BaseAdapter{
 
 		if(HelperUtils.getBackgroundColor(context) != null ){
 			
-			int strokeWidth = Integer.valueOf(SharedPreferenceUtils.getBorderSize(context)); // 3dp
+			int strokeWidth = HelperUtils.getBorderSize(context); // 3dp
 			int roundRadius = 0; // 8dp
 			
 			if(context.getString(R.string.bubbles).equals(SharedPreferenceUtils.getTheme(context))){
@@ -253,10 +278,9 @@ public class NotificationsAdapter extends BaseAdapter{
 			}
 		}
 
-		if(HelperUtils.isTransparentBackround(context)){
-			view.getBackground().setAlpha(200);
+		
+		view.getBackground().setAlpha(HelperUtils.getTransparentBackround(context));
 
-		}
 
 		if(!HelperUtils.isDisableAnimations(context)){
 

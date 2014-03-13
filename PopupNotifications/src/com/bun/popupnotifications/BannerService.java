@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 
 import android.annotation.SuppressLint;
-import android.app.PendingIntent;
-import android.app.PendingIntent.CanceledException;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +11,6 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.GradientDrawable;
-import android.os.AsyncTask;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
@@ -22,7 +19,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup.MarginLayoutParams;
 import android.view.WindowManager;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
@@ -30,7 +26,7 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
+
 
 @SuppressLint("NewApi")
 public class BannerService extends Service{
@@ -268,7 +264,7 @@ public class BannerService extends Service{
 
 		windowManager.addView(layout, params);
 
-
+		//ctx.startService(new Intent(ctx, ChatHeadService.class));
 		createTimer();
 		cTimer.start();
 
@@ -399,10 +395,10 @@ public class BannerService extends Service{
 			}
 
 
-			if(HelperUtils.isTransparentBackround(ctx)){
+			//if(HelperUtils.isTransparentBackround(ctx)){
 				//sListView.getBackground().setAlpha(500);
 
-			}
+			//}
 		}
 
 		if(cTimer != null){

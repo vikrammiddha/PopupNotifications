@@ -105,8 +105,8 @@ public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 
 		final ViewHolder holder = (ViewHolder) view.getTag();
 
-		if(SharedPreferenceUtils.getFontSize(context).equals("-1")){
-			SharedPreferenceUtils.setFontSize(context, String.valueOf(holder.appNameText.getTextSize()));
+		if(HelperUtils.getFontSize(context) == -1){
+			SharedPreferenceUtils.setFontSize(context, (int)holder.appNameText.getTextSize());
 		}
 		
 		

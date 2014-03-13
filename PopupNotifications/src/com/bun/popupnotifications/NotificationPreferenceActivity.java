@@ -92,14 +92,12 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		setBannerTimePreferenceData();
 
-		setMaxLinesPreferenceData();
-		
+				
 		setBannerLocationPreference();
 		
 		setThemePreference();
 		
-		setBorderSizePreference();
-		
+				
 		setEmailLogsListener();
 		
 		setContactDeveloperListener();
@@ -442,102 +440,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 	}
 
-	private void setMaxLinesPreferenceData(){
-
-		final Preference customPref = (Preference) findPreference("no_of_lines_pref");
-
-		Integer bannerTimePref = Integer.valueOf(SharedPreferenceUtils.getMaxLines(this));
-
-		customPref.setSummary(getString(R.string.no_of_lines_summary) + " " + bannerTimePref + " " + getString(R.string.lines));
-
-
-		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-
-			@Override
-			public boolean onPreferenceChange(Preference preference,
-					Object newValue) {
-
-				String lines = (String)newValue;
-
-                        Boolean falseValue = false;
-
-                        if("".equals(lines.trim())){
-                                lines = "10"; 
-                                falseValue = true;
-
-                        }else if(Integer.valueOf(lines) > 20){
-                                lines = "10";
-                                falseValue = true;
-                        }
-
-
-
-                        //
-
-                        if(falseValue){
-                                return false;
-                        }else{
-                                customPref.setSummary(getString(R.string.no_of_lines_summary) + " " + lines + " " + getString(R.string.lines));
-                        }
-
-				
-
-				return true;
-			}
-
-		});
-	}
 	
-	
-	
-	private void setBorderSizePreference(){
-
-		final Preference customPref = (Preference) findPreference("border_size_pref");
-
-		Integer borderSizePref = Integer.valueOf(SharedPreferenceUtils.getBorderSize(this));
-
-		customPref.setSummary(getString(R.string.border_size_summary) + " : " + borderSizePref) ;
-
-
-		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-
-			@Override
-			public boolean onPreferenceChange(Preference preference,
-					Object newValue) {
-
-				String bSize = (String)newValue;
-
-                        Boolean falseValue = false;
-
-                        if("".equals(bSize.trim())){
-                        	bSize = "3"; 
-                                falseValue = true;
-
-                        }else if(Integer.valueOf(bSize) > 10){
-                        	bSize = "3";
-                                falseValue = true;
-                        }
-
-
-
-                        //
-
-                        if(falseValue){
-                                return false;
-                        }else{
-                        	customPref.setSummary(getString(R.string.border_size_summary) + " : " + bSize) ;
-                        }
-
-				
-
-				return true;
-			}
-
-		});
-	}
-
-
-
 	private void setSelectedAppListListener(){
 		Preference pref = findPreference("mute_selected_screen");
 		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {

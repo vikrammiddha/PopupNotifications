@@ -28,6 +28,43 @@ public final class R {
         public static final int themeValues=0x7f0a0007;
     }
     public static final class attr {
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int border=0x7f01000a;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int border_color=0x7f01000c;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int border_width=0x7f01000b;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int circularImageViewStyle=0x7f01000e;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int shadow=0x7f01000d;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -92,7 +129,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>choice</code></td><td>2</td><td></td></tr>
 </table>
          */
-        public static final int swipeActionLeft=0x7f010012;
+        public static final int swipeActionLeft=0x7f010017;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -104,7 +141,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>choice</code></td><td>2</td><td></td></tr>
 </table>
          */
-        public static final int swipeActionRight=0x7f010013;
+        public static final int swipeActionRight=0x7f010018;
         /** <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -112,11 +149,11 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int swipeAnimationTime=0x7f01000b;
+        public static final int swipeAnimationTime=0x7f010010;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int swipeBackView=0x7f010010;
+        public static final int swipeBackView=0x7f010015;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -124,19 +161,19 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int swipeCloseAllItemsWhenMoveList=0x7f01000e;
+        public static final int swipeCloseAllItemsWhenMoveList=0x7f010013;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int swipeDrawableChecked=0x7f010014;
+        public static final int swipeDrawableChecked=0x7f010019;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int swipeDrawableUnchecked=0x7f010015;
+        public static final int swipeDrawableUnchecked=0x7f01001a;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int swipeFrontView=0x7f01000f;
+        public static final int swipeFrontView=0x7f010014;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -149,7 +186,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>left</code></td><td>3</td><td></td></tr>
 </table>
          */
-        public static final int swipeMode=0x7f010011;
+        public static final int swipeMode=0x7f010016;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -159,7 +196,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int swipeOffsetLeft=0x7f01000c;
+        public static final int swipeOffsetLeft=0x7f010011;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -169,7 +206,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int swipeOffsetRight=0x7f01000d;
+        public static final int swipeOffsetRight=0x7f010012;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -177,7 +214,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int swipeOpenOnLongPress=0x7f01000a;
+        public static final int swipeOpenOnLongPress=0x7f01000f;
     }
     public static final class bool {
         public static final int is_new_service_enabled=0x7f0b0001;
@@ -225,8 +262,8 @@ containing a value of this type.
         public static final int unlock=0x7f02001a;
     }
     public static final class id {
-        public static final int CloseWindowId=0x7f06003d;
-        public static final int CloseWindowId1=0x7f06003c;
+        public static final int CloseWindowId=0x7f060044;
+        public static final int CloseWindowId1=0x7f060043;
         public static final int ambilwarna_cursor=0x7f06000e;
         public static final int ambilwarna_dialogView=0x7f06000a;
         public static final int ambilwarna_pref_widget_kotak=0x7f060013;
@@ -237,8 +274,10 @@ containing a value of this type.
         public static final int ambilwarna_viewSatBri=0x7f06000c;
         public static final int ambilwarna_warnaBaru=0x7f060012;
         public static final int ambilwarna_warnaLama=0x7f060011;
-        public static final int appImageSmallId=0x7f060042;
-        public static final int appImageViewId=0x7f06003f;
+        public static final int appImageSmallId=0x7f060049;
+        public static final int appImageSmallId1=0x7f060021;
+        public static final int appImageViewId=0x7f060046;
+        public static final int appImageViewId1=0x7f06001d;
         public static final int appSelectionCheckBoxId=0x7f060017;
         public static final int appSelectionIconId=0x7f060015;
         public static final int appSelectionMainListViewId=0x7f060014;
@@ -247,59 +286,69 @@ containing a value of this type.
         public static final int bannerListViewId=0x7f060018;
         public static final int both=0x7f060004;
         public static final int choice=0x7f060009;
-        public static final int cpRoot=0x7f06001f;
+        public static final int circular_image_view=0x7f06001b;
+        public static final int cpRoot=0x7f060026;
         public static final int dismiss=0x7f060008;
-        public static final int endId=0x7f060048;
-        public static final int expandingLayoutId=0x7f060039;
-        public static final int expandingLayoutId1=0x7f06003a;
-        public static final int fbCB1=0x7f060032;
-        public static final int fbCB2=0x7f060033;
-        public static final int fbCB3=0x7f060034;
-        public static final int fbCB4=0x7f060035;
-        public static final int fbRootId=0x7f06001c;
-        public static final int feedbackAppImageViewId=0x7f06001d;
+        public static final int endId=0x7f060054;
+        public static final int expandingLayoutId=0x7f060040;
+        public static final int expandingLayoutId1=0x7f060041;
+        public static final int fbCB1=0x7f060039;
+        public static final int fbCB2=0x7f06003a;
+        public static final int fbCB3=0x7f06003b;
+        public static final int fbCB4=0x7f06003c;
+        public static final int fbRootId=0x7f060023;
+        public static final int feedbackAppImageViewId=0x7f060024;
         public static final int front=0x7f06001a;
         public static final int left=0x7f060006;
-        public static final int mainLayoutId=0x7f060038;
-        public static final int mainRowId=0x7f06003e;
-        public static final int menu_settings=0x7f060049;
-        public static final int mute15min=0x7f060024;
-        public static final int mute1hour=0x7f060026;
-        public static final int mute30min=0x7f060025;
-        public static final int mute4hours=0x7f060027;
-        public static final int mute8hours=0x7f060028;
-        public static final int muteAllApps=0x7f060022;
-        public static final int muteAppsButtonId=0x7f06002b;
-        public static final int muteOptions1=0x7f060020;
-        public static final int muteOptions2=0x7f060023;
-        public static final int muteSelectedAppSelectionCheckBoxId=0x7f06002f;
-        public static final int muteSelectedAppSelectionIconId=0x7f06002c;
-        public static final int muteSelectedAppSelectionTextId=0x7f06002d;
-        public static final int muteSelectedAppSummaryTextId=0x7f06002e;
-        public static final int muteSelectedListViewId=0x7f06002a;
-        public static final int muteSelectedRemoveId=0x7f060030;
-        public static final int muteSpecificApp=0x7f060021;
-        public static final int muteforeever=0x7f060029;
-        public static final int noDoNotShow=0x7f060037;
-        public static final int noFBId=0x7f060031;
+        public static final int mainLayoutId=0x7f06003f;
+        public static final int mainRowId=0x7f060045;
+        public static final int mainRowId1=0x7f06001c;
+        public static final int menu_settings=0x7f060055;
+        public static final int mute15min=0x7f06002b;
+        public static final int mute1hour=0x7f06002d;
+        public static final int mute30min=0x7f06002c;
+        public static final int mute4hours=0x7f06002e;
+        public static final int mute8hours=0x7f06002f;
+        public static final int muteAllApps=0x7f060029;
+        public static final int muteAppsButtonId=0x7f060032;
+        public static final int muteOptions1=0x7f060027;
+        public static final int muteOptions2=0x7f06002a;
+        public static final int muteSelectedAppSelectionCheckBoxId=0x7f060036;
+        public static final int muteSelectedAppSelectionIconId=0x7f060033;
+        public static final int muteSelectedAppSelectionTextId=0x7f060034;
+        public static final int muteSelectedAppSummaryTextId=0x7f060035;
+        public static final int muteSelectedListViewId=0x7f060031;
+        public static final int muteSelectedRemoveId=0x7f060037;
+        public static final int muteSpecificApp=0x7f060028;
+        public static final int muteforeever=0x7f060030;
+        public static final int noDoNotShow=0x7f06003e;
+        public static final int noFBId=0x7f060038;
         public static final int none=0x7f060003;
-        public static final int notMessageTextId=0x7f060041;
-        public static final int notTimeTextId=0x7f060040;
-        public static final int notificationsListViewId=0x7f06003b;
-        public static final int othersId=0x7f060036;
-        public static final int prefTimePicker=0x7f060044;
+        public static final int notMessageTextId=0x7f060048;
+        public static final int notMessageTextId1=0x7f060020;
+        public static final int notTimeTextId=0x7f060047;
+        public static final int notTimeTextId1=0x7f06001f;
+        public static final int notificationsListViewId=0x7f060042;
+        public static final int othersId=0x7f06003d;
+        public static final int prefTimePicker=0x7f060050;
         public static final int reveal=0x7f060007;
         public static final int right=0x7f060005;
-        public static final int scvId=0x7f060043;
-        public static final int searchBoxId=0x7f06001b;
+        public static final int scvId=0x7f06004f;
+        public static final int searchBoxId=0x7f060022;
+        public static final int seekBarPrefBarContainer=0x7f06004d;
+        public static final int seekBarPrefSeekBar=0x7f06004e;
+        public static final int seekBarPrefUnitsLeft=0x7f06004c;
+        public static final int seekBarPrefUnitsRight=0x7f06004a;
+        public static final int seekBarPrefValue=0x7f06004b;
         public static final int showcase_button=0x7f060000;
         public static final int showcase_sub_text=0x7f060002;
         public static final int showcase_title_text=0x7f060001;
-        public static final int startId=0x7f060047;
-        public static final int tutorial=0x7f06004a;
-        public static final int unreadCountTextId=0x7f06001e;
-        public static final int yesDoNotShow=0x7f060046;
-        public static final int yesFBId=0x7f060045;
+        public static final int startId=0x7f060053;
+        public static final int tutorial=0x7f060056;
+        public static final int unreadCountTextId=0x7f060025;
+        public static final int unreadCountTextId1=0x7f06001e;
+        public static final int yesDoNotShow=0x7f060052;
+        public static final int yesFBId=0x7f060051;
     }
     public static final class layout {
         public static final int ambilwarna_dialog=0x7f030000;
@@ -307,22 +356,26 @@ containing a value of this type.
         public static final int app_selection_main=0x7f030002;
         public static final int app_selection_row=0x7f030003;
         public static final int banners=0x7f030004;
-        public static final int collapsible_edittext=0x7f030005;
-        public static final int feedback_activity=0x7f030006;
-        public static final int feedback_dialog=0x7f030007;
-        public static final int handy=0x7f030008;
-        public static final int mute_app_dialogue=0x7f030009;
-        public static final int mute_selected_main=0x7f03000a;
-        public static final int mute_selected_row=0x7f03000b;
-        public static final int no_feedback=0x7f03000c;
-        public static final int notification_main=0x7f03000d;
-        public static final int notification_row=0x7f03000e;
-        public static final int show_case_view=0x7f03000f;
-        public static final int showcase_button=0x7f030010;
-        public static final int showcase_view_template=0x7f030011;
-        public static final int time_preference=0x7f030012;
-        public static final int tutorial_layout=0x7f030013;
-        public static final int yes_feedback=0x7f030014;
+        public static final int chatheadview1=0x7f030005;
+        public static final int chatterheadview=0x7f030006;
+        public static final int circle_notification_row=0x7f030007;
+        public static final int collapsible_edittext=0x7f030008;
+        public static final int feedback_activity=0x7f030009;
+        public static final int feedback_dialog=0x7f03000a;
+        public static final int handy=0x7f03000b;
+        public static final int mute_app_dialogue=0x7f03000c;
+        public static final int mute_selected_main=0x7f03000d;
+        public static final int mute_selected_row=0x7f03000e;
+        public static final int no_feedback=0x7f03000f;
+        public static final int notification_main=0x7f030010;
+        public static final int notification_row=0x7f030011;
+        public static final int seek_bar_preference=0x7f030012;
+        public static final int show_case_view=0x7f030013;
+        public static final int showcase_button=0x7f030014;
+        public static final int showcase_view_template=0x7f030015;
+        public static final int time_preference=0x7f030016;
+        public static final int tutorial_layout=0x7f030017;
+        public static final int yes_feedback=0x7f030018;
     }
     public static final class menu {
         public static final int notification=0x7f0c0000;
@@ -470,6 +523,7 @@ containing a value of this type.
         public static final int service_inactive=0x7f070039;
         public static final int service_warning=0x7f07000d;
         public static final int set_transparent_background=0x7f070051;
+        public static final int show_circular_images=0x7f0700a4;
         public static final int show_expanded_notifications=0x7f07004b;
         public static final int show_fullscreen_not=0x7f07004d;
         public static final int show_fullscreen_summary=0x7f07004e;
@@ -540,6 +594,82 @@ containing a value of this type.
         public static final int notification_pref=0x7f050002;
     }
     public static final class styleable {
+        /** Attributes that can be used with a CircularImageView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #CircularImageView_border com.bun.popupnotifications:border}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircularImageView_border_color com.bun.popupnotifications:border_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircularImageView_border_width com.bun.popupnotifications:border_width}</code></td><td></td></tr>
+           <tr><td><code>{@link #CircularImageView_shadow com.bun.popupnotifications:shadow}</code></td><td></td></tr>
+           </table>
+           @see #CircularImageView_border
+           @see #CircularImageView_border_color
+           @see #CircularImageView_border_width
+           @see #CircularImageView_shadow
+         */
+        public static final int[] CircularImageView = {
+            0x7f01000a, 0x7f01000b, 0x7f01000c, 0x7f01000d
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#border}
+          attribute's value can be found in the {@link #CircularImageView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.bun.popupnotifications:border
+        */
+        public static final int CircularImageView_border = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#border_color}
+          attribute's value can be found in the {@link #CircularImageView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.bun.popupnotifications:border_color
+        */
+        public static final int CircularImageView_border_color = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#border_width}
+          attribute's value can be found in the {@link #CircularImageView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.bun.popupnotifications:border_width
+        */
+        public static final int CircularImageView_border_width = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#shadow}
+          attribute's value can be found in the {@link #CircularImageView} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.bun.popupnotifications:shadow
+        */
+        public static final int CircularImageView_shadow = 3;
         /** Attributes that can be used with a CustomTheme.
            <p>Includes the following attributes:</p>
            <table>
@@ -730,9 +860,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            @see #SwipeListView_swipeOpenOnLongPress
          */
         public static final int[] SwipeListView = {
-            0x7f01000a, 0x7f01000b, 0x7f01000c, 0x7f01000d,
-            0x7f01000e, 0x7f01000f, 0x7f010010, 0x7f010011,
-            0x7f010012, 0x7f010013, 0x7f010014, 0x7f010015
+            0x7f01000f, 0x7f010010, 0x7f010011, 0x7f010012,
+            0x7f010013, 0x7f010014, 0x7f010015, 0x7f010016,
+            0x7f010017, 0x7f010018, 0x7f010019, 0x7f01001a
         };
         /**
           <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#swipeActionLeft}
@@ -903,5 +1033,28 @@ containing a value of this type.
           @attr name com.bun.popupnotifications:swipeOpenOnLongPress
         */
         public static final int SwipeListView_swipeOpenOnLongPress = 0;
+        /** Attributes that can be used with a Theme.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #Theme_circularImageViewStyle com.bun.popupnotifications:circularImageViewStyle}</code></td><td></td></tr>
+           </table>
+           @see #Theme_circularImageViewStyle
+         */
+        public static final int[] Theme = {
+            0x7f01000e
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.bun.popupnotifications.R.attr#circularImageViewStyle}
+          attribute's value can be found in the {@link #Theme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.bun.popupnotifications:circularImageViewStyle
+        */
+        public static final int Theme_circularImageViewStyle = 0;
     };
 }

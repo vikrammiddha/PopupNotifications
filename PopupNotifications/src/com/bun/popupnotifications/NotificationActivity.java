@@ -62,6 +62,7 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.DigitalClock;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -106,6 +107,7 @@ ShowcaseView.OnShowcaseEventListener{
 	ShowcaseView sv3;
 	ShowcaseView sv4;
 	ShowcaseView sv5;
+	
 
 	ShowcaseView.ConfigOptions co = new ShowcaseView.ConfigOptions();
 
@@ -142,9 +144,10 @@ ShowcaseView.OnShowcaseEventListener{
 		HelperUtils.writeLogs("Entered Notiications Activity Constructor ", ctx, true);
 
 		adapter = new NotificationsAdapter(this);
-		adapter.textViewSize = Integer.valueOf(SharedPreferenceUtils.getMaxLines(ctx));
+		adapter.textViewSize = HelperUtils.getMaxLines(ctx);
 		layout = (SwipeListView ) findViewById(R.id.notificationsListViewId);	
 		layout.setScrollingCacheEnabled(false);
+		
 
 
 		populateAdapter(true);
@@ -311,7 +314,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 						//Log.d("not activity", "intent----------" + Utils.notList.get(position).getPackageName());
 						//Utils.intentMap.get(Utils.getNotList().get(rowPos).getPackageName()).send();
-						Utils.intentMap.get(adapter.getItem(rowPos).getPackageName()).send();
+						Utils.intentMap.get(adapter.getItem(rowPos).getPackageName()).send();						
 						unlockLockScreen=true;
 						Utils.getNotList().clear();
 						Utils.intentMap.clear();
@@ -612,6 +615,7 @@ ShowcaseView.OnShowcaseEventListener{
 	}
 
 
+	@SuppressWarnings("deprecation")
 	private void populateAdapter(Boolean clearData){
 
 		Log.d("NotActivity","Entered Receiver=========" + Utils.getNotList().size());
@@ -677,7 +681,9 @@ ShowcaseView.OnShowcaseEventListener{
 
 		setBackgroundHeight(false);
 
-		FrameLayout ll1 = (FrameLayout) findViewById(R.id.mainRowId);
+		//FrameLayout ll1 = (FrameLayout) findViewById(R.id.mainRowId);
+		//
+		//LinearLayout dc = (LinearLayout)findViewById(R.id.digitalClock123);
 
 		Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
 		Button dismissButton1 = (Button) findViewById(R.id.CloseWindowId1);
@@ -711,7 +717,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 
 
-			int strokeWidth1 = Integer.valueOf(SharedPreferenceUtils.getBorderSize(ctx));
+			int strokeWidth1 = HelperUtils.getBorderSize(ctx);
 			int roundRadius1 = 0; // 8dp
 
 			if(getString(R.string.bubbles).equals(SharedPreferenceUtils.getTheme(this))){
@@ -726,21 +732,29 @@ ShowcaseView.OnShowcaseEventListener{
 			gd1.setColor(fillColor1);
 			gd1.setCornerRadius(roundRadius1);
 			gd1.setStroke(strokeWidth1, strokeColor1);
+			
+			GradientDrawable gd2 = new GradientDrawable();
+			gd2.setColor(fillColor1);
+			gd2.setCornerRadius(roundRadius1);
+			gd2.setStroke(strokeWidth1, strokeColor1);
 
 
 			dismissButton.setBackgroundDrawable(gd1);
 			dismissButton1.setBackgroundDrawable(gd1);
+					
 
-			if(HelperUtils.isTransparentBackround(ctx)){
-				//layout.getBackground().setAlpha(200);
-				dismissButton1.getBackground().setAlpha(200);
-				dismissButton.getBackground().setAlpha(200);
-			}
+			
+			//layout.getBackground().setAlpha(200);
+			dismissButton1.getBackground().setAlpha(HelperUtils.getTransparentBackround(ctx));
+			dismissButton.getBackground().setAlpha(HelperUtils.getTransparentBackround(ctx));
+			
+			
 		}
 
 
 		dismissButton.setTextColor(fontColor);
 		dismissButton1.setTextColor(fontColor);
+		
 
 		if(ctx.getResources().getBoolean(R.bool.is_service_enabled))
 			dismissButton.setVisibility(View.GONE);

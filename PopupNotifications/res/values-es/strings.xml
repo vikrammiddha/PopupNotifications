@@ -109,7 +109,7 @@
     <string name="long_press">Pulsación larga en la notificación para silenciar las notificaciones.</string>
     <string name="start_tutorial">iniciar Tutorial</string>
     <string name="start_tutorial_click">Haga clic en el botón Start Tutorial para iniciar el tutorial.</string>
-    <string name="dismiss_all_tutorial">Descartar Todo cierra la pantalla de notificación.</string>
+   
     <string name="upgrade_now_message">Actualizar a la versión de pago para desbloquear debajo de características: \n1) Silenciar una o más aplicaciones \n2) Habilitar hora sueño \n3)Habilitar Bloqueado apps \n4) Desactivar despertar la pantalla en la nueva Notificación \n5) Fondo transparente \nmany más</string>
     
     
@@ -165,7 +165,7 @@
     <string name="no">no </string>
     <string name="happy_to_know">Feliz de saber que te gusta nuestra aplicación. ¿Quieres que nos daría el Play Store ? </string>
     <string name="sad_to_know"> Lamento saber que usted no está satisfecho con nuestra aplicación. Por favor envíe sus comentarios para ayudarnos a mejorar mejor.</string>
-    <string name="later">más tarde</string>
+   
     <string name="do_not_show">No se repite el mensaje.</string>
     <string name="send">enviar</string>
     <string name="fb_app_not_working">Aplicación no funciona en mi teléfono.</string>
@@ -193,4 +193,17 @@
     <string name="not_border_color">color del borde</string>
 	<string name="border_size_desc">Establezca Tamaño del borde</string>
     <string name="border_size_summary">Tamaño del borde</string>
+    
+      <string name="support">apoyo</string>
+    <string name="developer_support">creador apoyo</string>
+    <string name="create_logs">permitir Logs</string>
+    <string name="create_logs_summary">Permitirle que para crear registros que se pueden compartir con el desarrollador para solucionar los problemas que está enfrentando. Apágalo después de eso.</string>
+	<string name="email_logs">Enviar Logs a Developer</string>
+	<string name="contact_developer">Contactar al creador</string>
+	<string name="font_size_desc">Establezca el tamaño de fuente</string>
+	<string name="test_lockscreen_desc">Prueba Lockscreen</string>
+	<string name="test_banner_desc">Prueba Banner</string>
+	
+	<string name="show_circular_images">Mostrar imágenes circulares</string>
+	
 </resources>

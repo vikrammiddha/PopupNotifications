@@ -98,7 +98,7 @@
     <string name="wake_on_not">Wake on Notification</string>
     <string name="lock_screen_only">Lock Screen Only</string>
     <string name="lock_screen_only_summary">Display Notifications only when screen is locked.\nAvailable in Paid Version</string>
-    <string name="lock_screen_only">Lock Screen Only</string>    
+      
     <string name="pref_upgrade_message">Available in Paid version</string>    
     <string name="upgrade_to_paid">Upgrade to Paid Version</string>
     
@@ -108,7 +108,7 @@
     <string name="long_press">Long press on notification to Mute the notifications.</string>
     <string name="start_tutorial">Start Tutorial</string>
     <string name="start_tutorial_click">Click on Start Tutorial button to start the tutorial.</string>
-    <string name="dismiss_all_tutorial">Dismiss All closes the notification screen.</string>
+    
     <string name="upgrade_now_message">Upgrade to Paid version to unlock below features :\n1)Mute one or more apps\n2)Enable sleep hours\n3)
         			Enable Blocked apps\n4)Disable waking up the screen on new Notification\n5)Transparent Background\nMany more</string>
     
@@ -166,7 +166,7 @@
     <string name="no">No </string>
     <string name="happy_to_know">Happy to know that you like our app. Would you like to rate us on Play Store ? </string>
     <string name="sad_to_know"> Sorry to know that you are not happy with our App. Please provide your feedback to help us improve it better.</string>
-    <string name="later">Later</string>
+    
     <string name="do_not_show">Do not show this again.</string>
     <string name="send">Send</string>
     <string name="fb_app_not_working">App is not working on my phone.</string>
@@ -195,6 +195,17 @@
     <string name="border_size_desc">Set Border Size</string>
     <string name="border_size_summary">Border Size</string>
     
+    <string name="support">Support</string>
+    <string name="developer_support">Developer Support</string>
+    <string name="create_logs">Enable Logs</string>
+    <string name="create_logs_summary">Enable it to create logs that can be shared with developer to fix the issues you are facing. Turn it off after that.</string>
+	<string name="email_logs">Email Logs to Developer</string>
+	<string name="contact_developer">Contact Developer</string>
+	<string name="font_size_desc">Set Font Size</string>
+	<string name="test_lockscreen_desc">Test Lockscreen</string>
+	<string name="test_banner_desc">Test Banner</string>
+    
+    <string name="show_circular_images">Show circular Images</string>
     
 
 </resources>

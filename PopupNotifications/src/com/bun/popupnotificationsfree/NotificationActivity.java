@@ -141,9 +141,11 @@ ShowcaseView.OnShowcaseEventListener{
 		ctx = this;
 
 		act = this;	
+		
+		HelperUtils.writeLogs("Entered Notiications Activity Constructor ", ctx, true);
 
 		adapter = new NotificationsAdapter(this);
-		adapter.textViewSize = Integer.valueOf(SharedPreferenceUtils.getMaxLines(ctx));
+		adapter.textViewSize = HelperUtils.getMaxLines(ctx);
 		layout = (SwipeListView ) findViewById(R.id.notificationsListViewId);	
 		layout.setScrollingCacheEnabled(false);
 
@@ -605,6 +607,7 @@ ShowcaseView.OnShowcaseEventListener{
 	}
 
 
+	@SuppressWarnings("deprecation")
 	private void populateAdapter(Boolean clearData){
 
 		Log.d("NotActivity","Entered Receiver=========" + Utils.getNotList().size());
@@ -615,7 +618,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 		if(clearData){
 			adapter.clearNotifications();
-		}        
+		}	
 
 		Iterator<NotificationBean> iter = Utils.getNotList().iterator();
 
@@ -632,6 +635,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 			for(NotificationBean n : Utils.getNotList()){
 				Log.d("NotActivity","Adapter Not=======" + n.getPackageName());
+				HelperUtils.writeLogs("Adding notifications to the adapter for app :. " + n.getAppName(), ctx, true);
 				if(n.getIsOddRow())
 					continue;
 				adapter.addNotification(n);
@@ -651,6 +655,7 @@ ShowcaseView.OnShowcaseEventListener{
 			}
 
 			for(NotificationBean nb : lhm.values()){
+				HelperUtils.writeLogs("Adding notifications to the adapter for app :. " + nb.getAppName(), ctx, true);
 				adapter.addNotification(nb);
 			}
 		}
@@ -664,77 +669,87 @@ ShowcaseView.OnShowcaseEventListener{
 		adapter.notifyDataSetChanged();
 		layout.setAdapter(adapter);
 
-		//LinearLayout ll = (LinearLayout) findViewById(R.id.expandingLayoutId);                        
+		//LinearLayout ll = (LinearLayout) findViewById(R.id.expandingLayoutId);			
 
-		 setBackgroundHeight(false);
+		setBackgroundHeight(false);
 
-         FrameLayout ll1 = (FrameLayout) findViewById(R.id.mainRowId);
+		//FrameLayout ll1 = (FrameLayout) findViewById(R.id.mainRowId);
+		//
+		//LinearLayout dc = (LinearLayout)findViewById(R.id.digitalClock123);
 
-         Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
-         Button dismissButton1 = (Button) findViewById(R.id.CloseWindowId1);
+		Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
+		Button dismissButton1 = (Button) findViewById(R.id.CloseWindowId1);
 
-         int fontColor = HelperUtils.getFontColor(ctx);
-         if(fontColor == 0){
-                 fontColor = Color.WHITE;
-         }
+		int fontColor = HelperUtils.getFontColor(ctx);
+		if(fontColor == 0){
+			fontColor = Color.WHITE;
+		}
 
-         int bgColor = HelperUtils.getBackgroundColor(ctx);
-         if(bgColor == 0){
-                 bgColor = Color.BLACK;
-         }
+		int bgColor = HelperUtils.getBackgroundColor(ctx);
+		if(bgColor == 0){
+			bgColor = Color.BLACK;
+		}
 
-         if(HelperUtils.getBackgroundColor(ctx) != null ){
-                 int strokeWidth = 5; // 3dp
-                 int roundRadius = 20; // 8dp
-                 int strokeColor = HelperUtils.getBorderColor(this);
-                 int fillColor = bgColor;
+		if(HelperUtils.getBackgroundColor(ctx) != null ){
+			int strokeWidth = 5; // 3dp
+			int roundRadius = 20; // 8dp
+			int strokeColor = HelperUtils.getBorderColor(this);
+			int fillColor = bgColor;
 
-                 GradientDrawable gd = new GradientDrawable();
-                 gd.setColor(fillColor);
-                 gd.setCornerRadius(roundRadius);
-                 gd.setStroke(strokeWidth, strokeColor);        
+			GradientDrawable gd = new GradientDrawable();
+			gd.setColor(fillColor);
+			gd.setCornerRadius(roundRadius);
+			gd.setStroke(strokeWidth, strokeColor);	
 
-                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                         //layout.setBackground(gd);
-                 }else{
-                         //layout.setBackgroundDrawable(gd);
-                 }
-
-
-
-                 int strokeWidth1 = Integer.valueOf(SharedPreferenceUtils.getBorderSize(ctx));
-                 int roundRadius1 = 0; // 8dp
-
-                 if(getString(R.string.bubbles).equals(SharedPreferenceUtils.getTheme(this))){
-                         //strokeWidth1 = 5;
-                         roundRadius1 = 25;
-                 }
-
-                 int strokeColor1 = HelperUtils.getBorderColor(this);
-                 int fillColor1 = bgColor;
-
-                 GradientDrawable gd1 = new GradientDrawable();
-                 gd1.setColor(fillColor1);
-                 gd1.setCornerRadius(roundRadius1);
-                 gd1.setStroke(strokeWidth1, strokeColor1);
+			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+				//layout.setBackground(gd);
+			}else{
+				//layout.setBackgroundDrawable(gd);
+			}
 
 
-                 dismissButton.setBackgroundDrawable(gd1);
-                 dismissButton1.setBackgroundDrawable(gd1);
 
-                 if(HelperUtils.isTransparentBackround(ctx)){
-                         //layout.getBackground().setAlpha(200);
-                         dismissButton1.getBackground().setAlpha(200);
-                         dismissButton.getBackground().setAlpha(200);
-                 }
-         }
+			int strokeWidth1 = HelperUtils.getBorderSize(ctx);
+			int roundRadius1 = 0; // 8dp
+
+			if(getString(R.string.bubbles).equals(SharedPreferenceUtils.getTheme(this))){
+
+				roundRadius1 = 25;
+			}
+
+			int strokeColor1 = HelperUtils.getBorderColor(this);
+			int fillColor1 = bgColor;
+
+			GradientDrawable gd1 = new GradientDrawable();
+			gd1.setColor(fillColor1);
+			gd1.setCornerRadius(roundRadius1);
+			gd1.setStroke(strokeWidth1, strokeColor1);
+
+			GradientDrawable gd2 = new GradientDrawable();
+			gd2.setColor(fillColor1);
+			gd2.setCornerRadius(roundRadius1);
+			gd2.setStroke(strokeWidth1, strokeColor1);
 
 
-         dismissButton.setTextColor(fontColor);
-         dismissButton1.setTextColor(fontColor);
+			dismissButton.setBackgroundDrawable(gd1);
+			dismissButton1.setBackgroundDrawable(gd1);
 
-         if(ctx.getResources().getBoolean(R.bool.is_service_enabled))
-                 dismissButton.setVisibility(View.GONE);
+
+
+			//layout.getBackground().setAlpha(200);
+			dismissButton1.getBackground().setAlpha(HelperUtils.getTransparentBackround(ctx));
+			dismissButton.getBackground().setAlpha(HelperUtils.getTransparentBackround(ctx));
+
+
+		}
+
+
+		dismissButton.setTextColor(fontColor);
+		dismissButton1.setTextColor(fontColor);
+
+
+		if(ctx.getResources().getBoolean(R.bool.is_service_enabled))
+			dismissButton.setVisibility(View.GONE);
 
 		//Utils.isAddedFirstItem = false;
 

@@ -1,7 +1,7 @@
 package com.bun.popupnotificationsfree;
 
 import com.bun.popupnotificationsfree.R;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -40,7 +40,8 @@ public class TimePreference extends DialogPreference {
    * @param context
    * @param attributes
    */
-  public TimePreference(Context context,
+  @SuppressLint("Instantiatable")
+public TimePreference(Context context,
                         AttributeSet attributes) {
     super(context, attributes);
     setPersistent(false);

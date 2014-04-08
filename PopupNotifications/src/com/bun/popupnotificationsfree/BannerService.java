@@ -65,6 +65,8 @@ public class BannerService extends Service{
 		adapter.textViewSize = 2;
 
 		ctx = this;
+		
+		HelperUtils.writeLogs("Entered Banner Service constructor. ", ctx, true);
 
 		windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
@@ -167,7 +169,7 @@ public class BannerService extends Service{
 			public void onClickFrontView(int position) {
 				try {
 					Utils.intentMap.get(adapter.getItem(position).getPackageName()).send();
-				} catch (CanceledException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -334,6 +336,7 @@ public class BannerService extends Service{
 			}
 		}
 		for(NotificationBean nb : lhm.values()){
+			HelperUtils.writeLogs("Adding notifications to the adapter for app :. " + nb.getAppName(), ctx, true);
 			adapter.addNotification(nb);
 		}
 		/*
@@ -396,10 +399,10 @@ public class BannerService extends Service{
 			}
 
 
-			if(HelperUtils.isTransparentBackround(ctx)){
+			//if(HelperUtils.isTransparentBackround(ctx)){
 				//sListView.getBackground().setAlpha(500);
 
-			}
+			//}
 		}
 
 		if(cTimer != null){

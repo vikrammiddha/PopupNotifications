@@ -397,9 +397,10 @@ public class NotificationParser {
 
 	public void processNotification(Notification nnn, String packageName, Integer id, String tagId){
 		Utils utils = new Utils(ctx);
+		HelperUtils.writeLogs("Entered the parseNotification method--" + packageName, ctx, true);
 		if(utils.performValidation(nnn , packageName)){
 			//Notification nnn = (Notification) event.getParcelableData();
-
+			HelperUtils.writeLogs("Validations cleared : --" + packageName, ctx, true);
 
 			NotificationBean bean = new NotificationBean();
 
@@ -552,6 +553,12 @@ public class NotificationParser {
 			Log.d("Notification Service", "Sender-----" + bean.getSender());
 			Log.d("Notification Service", "uniqueValue-----" + bean.getUniqueValue());
 			//Log.d("Notification Service", "tickertext-----" + event.getText().toString());
+			
+			HelperUtils.writeLogs("Notifications Bean data : " + packageName, ctx, true);
+			HelperUtils.writeLogs("App : " + bean.getAppName(), ctx , true);
+			HelperUtils.writeLogs("Package : " + bean.getPackageName(), ctx, true);
+			//HelperUtils.writeLogs("Message : " + bean.getSender(), ctx);
+			HelperUtils.writeLogs("Sender : " + bean.getSender(), ctx, true);
 
 			if(HelperUtils.showFeedback(ctx, SharedPreferenceUtils.getNotCount(ctx) + 1) && Utils.isScreenLocked(ctx)){
 				

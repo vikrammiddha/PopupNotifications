@@ -1,6 +1,8 @@
 package com.bun.popupnotificationsfree;
 
 
+import java.util.Locale;
+
 import com.bun.popupnotificationsfree.R;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
@@ -102,13 +104,20 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		setBannerTimePreferenceData();
 
-		setMaxLinesPreferenceData();
+		setEmailLogsListener();
+
+		setContactDeveloperListener();
+
+		setCreateLogsPreferenceData();
+
+		setTestLockscreenListener();
+
+		setTestBannersListener();
 
 		setBannerLocationPreference();
 
 		setThemePreference();
 
-		setBorderSizePreference();
 	}
 
 	private void setBlockedAppListener(){
@@ -120,6 +129,125 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 				Intent testIntent = new Intent(getApplicationContext(), BlockedAppsActivity.class);
 				startActivity(testIntent);
+
+				return true;
+			}
+		});
+	}
+	
+	private void setCreateLogsPreferenceData(){
+		PreferenceScreen screen = getPreferenceScreen();		
+
+		final Preference customPref = (Preference) findPreference("create_logs");
+
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				if((Boolean)newValue == true){
+					HelperUtils.writeLogs("---", ctx, false);
+				}
+
+
+				return true;
+			}
+
+		});
+	}
+
+	private void setEmailLogsListener(){
+		Preference pref = findPreference("email_logs");
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+
+				String subject = "Popup Notifications Free Logs";
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"bunny.decoder@gmail.com"});
+                i.putExtra(Intent.EXTRA_SUBJECT, subject);
+                i.putExtra(Intent.EXTRA_TEXT   , HelperUtils.readLogs(ctx));
+                try {
+                        ctx.startActivity(Intent.createChooser(i, "Send mail..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                        //Toast.makeText(MyActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
+
+				return true;
+			}
+		});
+	}
+
+	private void setContactDeveloperListener(){
+		Preference pref = findPreference("contact_developer");
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+
+				String emailBody = "";
+				emailBody +=  "\n\n" +"Android Version : " + android.os.Build.VERSION.RELEASE + "\n";
+                emailBody += "Phone Model : " + Feedback.getDeviceName() + "\n";
+                emailBody += "Accessibility Service : " + Utils.isAccessibilityEnabled(ctx) + "\n";
+                emailBody += "App Version : " + Feedback.getAppVersion(ctx) + "\n";
+                emailBody += "Device Language : " + Locale.getDefault().getDisplayLanguage() + "\n";
+
+                String subject = ctx.getString(R.string.email_subject);
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"bunny.decoder@gmail.com"});
+                i.putExtra(Intent.EXTRA_SUBJECT, subject);
+                i.putExtra(Intent.EXTRA_TEXT   , emailBody);
+                try {
+                        ctx.startActivity(Intent.createChooser(i, "Send mail..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                        //Toast.makeText(MyActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
+
+				return true;
+			}
+		});
+	}
+
+	private void setTestLockscreenListener(){
+		Preference pref = findPreference("test_lockscreen");
+
+		final NotificationBean testBean = HelperUtils.getTestNotification(ctx);
+
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+
+				Utils.getNotList().add(testBean);
+
+				Intent dialogIntent = new Intent(ctx, NotificationActivity.class);
+				dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				ctx.startActivity(dialogIntent);
+
+				return true;
+			}
+		});
+	}
+
+	private void setTestBannersListener(){
+		Preference pref = findPreference("test_banner");
+
+		final NotificationBean testBean = HelperUtils.getTestNotification(ctx);
+
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+
+				Utils.getNotList().add(testBean);
+
+				Utils.isServiceRunning = true;
+				ctx.stopService(new Intent(ctx, BannerService.class));
+				ctx.startService(new Intent(ctx, BannerService.class));
 
 				return true;
 			}
@@ -463,7 +591,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 				if("".equals(time.trim())){
 					time = "5"; 
 
-				}else if(Integer.valueOf(time) > 120){
+				}else if(Integer.valueOf(time) > 9999){
 					time = "5";
 					falseValue = true;
 				}
@@ -566,54 +694,6 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		});
 	}
 
-	private void setBorderSizePreference(){
-
-		final Preference customPref = (Preference) findPreference("border_size_pref");
-
-		Integer borderSizePref = Integer.valueOf(SharedPreferenceUtils.getBorderSize(this));
-
-		customPref.setSummary(getString(R.string.border_size_summary) + " : " + borderSizePref) ;
-
-
-		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-
-			@Override
-			public boolean onPreferenceChange(Preference preference,
-					Object newValue) {
-
-				String bSize = (String)newValue;
-
-				Boolean falseValue = false;
-
-				if("".equals(bSize.trim())){
-					bSize = "3"; 
-					falseValue = true;
-
-				}else if(Integer.valueOf(bSize) > 10){
-					bSize = "3";
-					falseValue = true;
-				}
-
-
-
-				//
-
-				if(falseValue){
-					return false;
-				}else{
-					customPref.setSummary(getString(R.string.border_size_summary) + " : " + bSize) ;
-				}
-
-
-
-				return true;
-			}
-
-		});
-	}
-
-
-
 	private void setSelectedAppListListener(){
 		Preference pref = findPreference("mute_selected_screen");
 		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
@@ -641,53 +721,6 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 			@Override
 			public boolean onPreferenceChange(Preference preference,
 					Object newValue) {
-
-				HelperUtils.upgradeNowDialogue(ctx);
-
-				return false;
-			}
-
-		});
-	}
-
-
-	private void setMaxLinesPreferenceData(){
-
-		final Preference customPref = (Preference) findPreference("no_of_lines_pref");
-
-		Integer bannerTimePref = Integer.valueOf(SharedPreferenceUtils.getMaxLines(this));
-
-		customPref.setSummary(getString(R.string.no_of_lines_summary) + " " + bannerTimePref + " " + getString(R.string.lines));
-
-
-		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-
-			@Override
-			public boolean onPreferenceChange(Preference preference,
-					Object newValue) {
-
-				/*String lines = (String)newValue;
-
-				Boolean falseValue = false;
-
-				if("".equals(lines.trim())){
-					lines = "10"; 
-					falseValue = true;
-
-				}else if(Integer.valueOf(lines) > 10){
-					lines = "10";
-					falseValue = true;
-				}
-
-
-
-				//
-
-				if(falseValue){
-					return false;
-				}else{
-					customPref.setSummary(getString(R.string.no_of_lines_summary) + " " + lines + " " + getString(R.string.lines));
-				}*/
 
 				HelperUtils.upgradeNowDialogue(ctx);
 

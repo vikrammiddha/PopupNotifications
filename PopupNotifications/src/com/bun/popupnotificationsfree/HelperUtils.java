@@ -1,5 +1,11 @@
 package com.bun.popupnotificationsfree;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +19,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -172,16 +180,46 @@ public class HelperUtils {
 
 	}
 
-	public static Boolean isTransparentBackround(Context ctx){
+	public static Integer getTransparentBackround(Context ctx){
 
-		if((Boolean)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "transparent_background", "Boolean")){
-			return true;
+		Object val = SharedPreferenceUtils.getGenericPreferenceValue(ctx, "transparent_background1", "Integer");
+		if(val == null || "".equals(val)){
+			val = 200;
 		}
 
-		return false;
-
+		return (Integer)val;
 	}
 
+	public static Integer getBorderSize(Context ctx){
+
+		Object val = SharedPreferenceUtils.getGenericPreferenceValue(ctx, "border_size_pref1", "Integer");
+		if(val == null || "".equals(val)){
+			val = 3;
+		}
+
+		return (Integer)val;
+	}
+
+	public static Integer getFontSize(Context ctx){
+
+		Object val = SharedPreferenceUtils.getGenericPreferenceValue(ctx, "font_size1", "Integer");
+		if(val == null || ((Integer)val)  == 0){
+			val = -1;
+		}
+
+		return (Integer)val;
+	}
+
+	public static Integer getMaxLines(Context ctx){
+
+		Object val = SharedPreferenceUtils.getGenericPreferenceValue(ctx, "no_of_lines_pref1", "Integer");
+		if(val == null || ((Integer)val)  == 0){
+			val = 10;
+		}
+
+		return (Integer)val;
+	}
+	
 	public static int getFontColor(Context ctx){
 
 		try{
@@ -192,7 +230,7 @@ public class HelperUtils {
 		}
 
 	}
-
+	
 	public static int getBorderColor(Context ctx){
 
 		try{
@@ -203,6 +241,7 @@ public class HelperUtils {
 		}
 
 	}
+
 
 	public static Integer getBackgroundColor(Context ctx){ 
 
@@ -401,6 +440,101 @@ public class HelperUtils {
 			return true;
 		}
 		return false;
+
+	}
+	
+	public static Boolean isAppUpgrade(Context ctx){
+		PackageInfo pInfo;
+		try {
+			pInfo = ctx.getPackageManager().getPackageInfo(ctx.getPackageName(), 0);
+			String version = pInfo.versionName;
+
+			String prevVersion = SharedPreferenceUtils.getAppVersion(ctx);
+
+			if(prevVersion == null || !prevVersion.equals(version)){
+				return true;
+			}
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return false;
+
+
+	}
+	
+	public static void writeLogs(String s, Context ctx, Boolean append){
+
+		if(!SharedPreferenceUtils.getCreateLogs(ctx) && append == true){
+			return;
+		}
+		if(s.toLowerCase().contains("whatsapp")){
+			return;
+		}
+
+		String filenName = new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "-PopupNotifications.Log";
+
+		//s = s+ "\n";
+
+		BufferedWriter bufferedWriter;
+		try {
+			String filePath = ctx.getFilesDir()+File.separator+filenName;
+			bufferedWriter = new BufferedWriter(new FileWriter(new 
+			File(filePath), append));
+			bufferedWriter.write(s);
+			bufferedWriter.newLine();
+			bufferedWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+
+	public static String readLogs(Context ctx){
+		String filenName = new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "-PopupNotifications.Log";
+		BufferedReader bufferedReader;
+		StringBuilder builder = new StringBuilder("");
+		try {
+			bufferedReader = new BufferedReader(new FileReader(new 
+			        File(ctx.getFilesDir()+File.separator+filenName)));
+
+			String read;			
+
+			while((read = bufferedReader.readLine()) != null){
+				builder.append(read);
+				builder.append("\n");
+			}
+			//Log.d("Output", builder.toString());
+			bufferedReader.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return builder.toString();
+
+	}
+	
+	public static NotificationBean getTestNotification(Context ctx){
+
+		NotificationBean nb = new NotificationBean();
+		nb.setAppName("Popup Notifications");
+		nb.setPackageName("com.bun.popupnotificationsfree");
+		nb.setId(0);
+		nb.setIsOddRow(false);
+		nb.setMessage("This is a test message");
+		nb.setSender("Bunny Decoder");
+		nb.setIcon(HelperUtils.getAppIcon(nb.getPackageName(), ctx));
+
+		DateFormat formatter = new SimpleDateFormat("HH:mm");
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(System.currentTimeMillis());
+		String formattedDate = formatter.format(calendar.getTime());
+		nb.setNotTime(formattedDate);
+
+		return nb;
 
 	}
 

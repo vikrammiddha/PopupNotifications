@@ -165,7 +165,7 @@
     <string name="no">Non </string>
     <string name="happy_to_know">Heureux de savoir que vous aimez notre application. Voulez-vous nous donner une note sur Play Store? </string>
     <string name="sad_to_know"> Désolé de savoir que vous n\'êtes pas heureux avec notre application. S\'il vous plaît envoyez vos commentaires pour nous aider à l\'améliorer.</string>
-    <string name="later">Plus tard</string>
+   
     <string name="do_not_show">Ne plus afficher ce message.</string>
     <string name="send">Envoyer</string>
     <string name="fb_app_not_working">Cette application ne fonctionne pas sur mon téléphone.</string>
@@ -194,6 +194,17 @@
     <string name="ok">OK</string>
     <string name="border_size_desc">Définir la taille de la bordure</string>
 	<string name="border_size_summary">Taille de la bordure</string>
+	
+	<string name="support">Support</string>
+    <string name="developer_support">Support des développeurs</string>
+    <string name="create_logs">Activer Logs</string>
+    <string name="create_logs_summary">Lui permettre de créer des journaux qui peuvent être partagées avec le développeur pour résoudre les problèmes auxquels vous êtes confrontés. Éteignez la suite.</string>
+	<string name="email_logs">Envoyer Logs pour les développeurs</string>
+	<string name="contact_developer">Contacter Developer</string>
+	<string name="font_size_desc">Régler la taille des caractères</string>
+	<string name="test_lockscreen_desc">Test Lockscreen</string>
+	<string name="test_banner_desc">Test Banner</string>
     
-
+	<string name="show_circular_images">Afficher les images circulaires</string>
+	
 </resources>

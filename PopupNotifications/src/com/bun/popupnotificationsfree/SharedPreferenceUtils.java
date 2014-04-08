@@ -209,24 +209,30 @@ public class SharedPreferenceUtils {
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getString("sync_preference", "");
 	}
-
-	public static String getBorderSize(Context ctx){
-		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
-		return sharedPrefs.getString("border_size_pref", "3");
-	}
-
-	public static void setBorderSize(Context ctx, String count){
+	
+	public static void setFontSize(Context ctx, Integer size){
 
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
-		sharedPrefs.edit().putString("border_size_pref", count).commit();
+		sharedPrefs.edit().putInt("font_size1", size).commit();
 
-	}
+	}	
+
+	
 
 	public static Boolean getDismissAll(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getBoolean("dismiss_all_left", false);
 	}	
-
+	
+	public static Boolean getCreateLogs(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getBoolean("create_logs", false);
+	}
+	
+	public static Boolean getCircularImages(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getBoolean("show_circular_images", false);
+	}
 
 	public static void setShowFeedback(Context ctx, Boolean bool){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
@@ -251,17 +257,7 @@ public class SharedPreferenceUtils {
 
 	}
 
-	public static String getMaxLines(Context ctx){
-		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());		
-		return sharedPrefs.getString("no_of_lines_pref", "10");
-	}
-
-	public static void setMaxLines(Context ctx, String count){
-
-		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
-		sharedPrefs.edit().putString("no_of_lines_pref", count).commit();
-
-	}
+	
 
 	public static String getTheme(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
@@ -273,6 +269,16 @@ public class SharedPreferenceUtils {
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		sharedPrefs.edit().putString("theme", theme).commit();
 
+	}
+	
+	public static String getAppVersion(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
+		return sharedPrefs.getString("app_version", null);
+	}
+
+	public static void setAppVersion(Context ctx, String version){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("app_version", version).commit();
 	}
 
 	public static Boolean isBlockedApp(Context ctx, String packageName){
@@ -309,7 +315,7 @@ public class SharedPreferenceUtils {
 
 			sp.edit().putBoolean("expanded_notification", true).commit();
 			sp.edit().putBoolean("full_screen_notification", false).commit();
-			sp.edit().putBoolean("transparent_background", true).commit();
+			sp.edit().putInt("transparent_background1", 200).commit();
 			sp.edit().putBoolean("wake_up", true).commit();
 			//sp.edit().putBoolean("mute_sleep_hours", true).commit();
 
@@ -325,7 +331,8 @@ public class SharedPreferenceUtils {
 			sp.edit().putBoolean("disable_animations", false).commit();
 			sp.edit().putBoolean("disable_unlock", false).commit();
 			sp.edit().putString("theme", ctx.getString(R.string.cards)).commit();
-			sp.edit().putString("border_size_pref", "3").commit();
+			sp.edit().putInt("border_size_pref1", 3).commit();
+			sp.edit().putBoolean("show_circular_images", true).commit();
 		}
 
 		sp.edit().putBoolean("vibrate", false).commit();
@@ -366,11 +373,9 @@ public class SharedPreferenceUtils {
 			sp.edit().putBoolean("transparent_background", true).commit();
 		}
 
-		String borderSize = sp.getString("border_size_pref", "");
-
-        if(borderSize.equals("")){
-                sp.edit().putString("border_size_pref", "3").commit();
-        }
+		if(HelperUtils.isAppUpgrade(ctx)){
+			sp.edit().putBoolean("show_circular_images", true).commit();
+		}
 
 	}
 

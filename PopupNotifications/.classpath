@@ -2,11 +2,12 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry kind="lib" path="C:/Vikram/Temp/joda-time-2.3.jar"/>
-	<classpathentry kind="lib" path="libs/acra-4.5.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/acra-4.5.0.jar"/>
 	<classpathentry kind="lib" path="libs/actionbarsherlock.jar"/>
+	<classpathentry kind="lib" path="/Users/vikrammiddha/Documents/Android Development/PopupNotifications/libs/joda-time-2.3.jar"/>
+	<classpathentry kind="lib" path="/Users/vikrammiddha/Documents/Android Development/adt-bundle-windows-x86_64-20130729/sdk/platforms/android-18/android.jar"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

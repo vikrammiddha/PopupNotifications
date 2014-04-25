@@ -105,6 +105,12 @@
         	robobunny:unitsLeft=""
             robobunny:unitsRight=""
          />
+        
+        <com.bun.popupnotifications.FontSelectionPreference
+            android:key="font"
+            android:title="@string/font_title" />
+        
+       
             
         <com.bun.popupnotifications.SeekBarPreference
             android:key="font_size1"

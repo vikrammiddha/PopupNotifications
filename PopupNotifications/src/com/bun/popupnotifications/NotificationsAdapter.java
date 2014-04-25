@@ -191,6 +191,8 @@ public class NotificationsAdapter extends BaseAdapter{
 		holder.text.setText(Html.fromHtml(message));
 		
 		holder.text.setTextSize(TypedValue.COMPLEX_UNIT_PX, Float.valueOf(HelperUtils.getFontSize(context)));
+		
+		if(Utils.typeFace!=null) holder.text.setTypeface(Utils.typeFace);
 
 		int fontColor = HelperUtils.getFontColor(context);
 

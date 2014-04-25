@@ -7,12 +7,12 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
-
 import com.espian.showcaseview.ShowcaseView;
 import com.espian.showcaseview.ShowcaseView.OnShowcaseEventListener;
 
 //import com.fortysevendeg.android.swipelistview.BaseSwipeListViewListener;
 //import com.fortysevendeg.android.swipelistview.SwipeListView;
+
 
 
 
@@ -89,6 +89,7 @@ ShowcaseView.OnShowcaseEventListener{
 	enum Direction {LEFT, RIGHT;}
 	public Context ctx;
 	Window window;
+	
 
 	public Boolean unlockLockScreen = false;
 
@@ -132,13 +133,15 @@ ShowcaseView.OnShowcaseEventListener{
 		screenWidth = display.getWidth();
 		screenHeight = display.getHeight();
 
-
+		
 
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.notification_main);
 
 		ctx = this;
+		
+		Utils.typeFace = FontLoader.getTypeFace(ctx,SharedPreferenceUtils.getFont(ctx)); 
 
 		act = this;
 		HelperUtils.writeLogs("Entered Notiications Activity Constructor ", ctx, true);
@@ -187,6 +190,8 @@ ShowcaseView.OnShowcaseEventListener{
 
 		Button b1 = (Button) findViewById(R.id.CloseWindowId);
 		Button b2 = (Button) findViewById(R.id.CloseWindowId1);
+		b1.setTypeface(Utils.typeFace);
+		b2.setTypeface(Utils.typeFace);
 
 		final Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 

@@ -46,6 +46,32 @@
         <item name="2">@string/bubbles</item>        
     </string-array>
     
+    <string-array name="fontLoc">
+        <item name="1">@string/normal</item>
+        <item name="2">@string/aaargh</item>
+        <item name="3">@string/architect</item>
+        <item name="4">@string/arial</item>
+        <item name="5">@string/calligraffiti</item>
+        <item name="6">@string/ruach</item>
+        <item name="7">@string/shoni</item>
+        <item name="8">@string/fingerpaint</item>
+        <item name="9">@string/georgia</item>
+        <item name="10">@string/sofadi</item>
+        <item name="11">@string/typewriter</item>         
+    </string-array>
+    <string-array name="fontValues">
+        <item name="1">@string/normal</item>
+        <item name="2">@string/aaargh</item>
+        <item name="3">@string/architect</item>
+        <item name="4">@string/arial</item>
+        <item name="5">@string/calligraffiti</item>
+        <item name="6">@string/ruach</item>
+        <item name="7">@string/shoni</item>
+        <item name="8">@string/fingerpaint</item>
+        <item name="9">@string/georgia</item>
+        <item name="10">@string/sofadi</item>
+        <item name="11">@string/typewriter</item>           
+    </string-array>
     
 
 </resources>

@@ -107,7 +107,24 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setTestLockscreenListener();
 		
 		setTestBannersListener();
+		
+		//setFontListListener();
 	}
+	
+	/*private void setFontListListener(){
+		Preference pref = findPreference("font");
+		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+
+				Intent testIntent = new Intent(getApplicationContext(), FontSelectionActivity.class);
+				startActivity(testIntent);
+
+				return true;
+			}
+		});
+	}*/
 
 	private void setBlockedAppListener(){
 		Preference pref = findPreference("blocked_apps");

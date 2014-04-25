@@ -259,6 +259,21 @@ public class SharedPreferenceUtils {
 
 	}
 	
+	public static String getFont(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
+		String retVal = sharedPrefs.getString("font", null);
+		if("normal".equals(retVal))
+				retVal = null;
+		return retVal;
+	}
+
+	public static void setFont(Context ctx, String font){
+
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("font", font).commit();
+
+	}
+	
 	public static String getAppVersion(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
 		return sharedPrefs.getString("app_version", null);

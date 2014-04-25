@@ -196,5 +196,20 @@
     <string name="font_size_desc">Set Font Size</string>
 	<string name="test_lockscreen_desc">prova Lockscreen</string>
 	<string name="test_banner_desc">prova Banner</string>
+	
+	<string name="show_circular_images">Mostra Immagini circolari</string>
+	
+	<string name="font_title">Set Font</string>
+	<string name="normal">Normal</string>
+	<string name="aaargh">Aaargh</string>
+	<string name="architect">Architect</string>
+	<string name="arial">Arial</string>
+	<string name="ruach">Ruach</string>
+	<string name="calligraffiti">Calligraffiti</string>
+	<string name="shoni">Shoni</string>
+	<string name="fingerpaint">Fingerpaint</string>
+	<string name="georgia">Georgia</string>
+	<string name="sofadi">Sofadi</string>
+	<string name="typewriter">Typewriter</string>
 
 </resources>

@@ -64,6 +64,9 @@ public class AppSelectionActivity extends SherlockActivity{
 		
 		ctx = this;
 		
+		if(SharedPreferenceUtils.getFont(ctx) == null){
+			SharedPreferenceUtils.setFont(ctx, "normal");
+		}
 		
 	}
 

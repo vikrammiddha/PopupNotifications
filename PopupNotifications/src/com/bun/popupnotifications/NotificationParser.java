@@ -6,12 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.app.Application;
+import android.app.KeyguardManager;
 import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
@@ -58,6 +61,7 @@ public class NotificationParser {
 	public int notification_subtext_id = 0;
 	public int notification_text_id = 0;
 	public int notification_title_id = 0;
+	private ScheduledExecutorService worker;
 
 	Context ctx;
 	Context baseContext;
@@ -72,25 +76,78 @@ public class NotificationParser {
 	public void turnScreenOn() 
 	{
 		PowerManager pm = (PowerManager) ctx.getSystemService(Context.POWER_SERVICE);
+		if(Utils.isScreenLocked(ctx)){
+			if(worker == null){
+				worker = Executors.newSingleThreadScheduledExecutor();
+			}else{
+				worker.shutdownNow();
+				worker = Executors.newSingleThreadScheduledExecutor();
+			}
+		}
 		// turn the screen on only if it was off
-		if (!pm.isScreenOn())
-		{
-			@SuppressWarnings("deprecation")
-			final PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "Notification");
-			wl.acquire();   
+		@SuppressWarnings("deprecation")
+		final PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "Notification");
+		wl.acquire();   
 
-			// release after 5 seconds
-			final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
-			Runnable task = new Runnable() 
+		// release after 5 seconds
+
+		Runnable task = new Runnable() 
+		{
+			public void run() 
 			{
-				public void run() 
-				{
-					wl.release();
-				}
-			};			
-			worker.schedule(task, 15, TimeUnit.SECONDS);
-		}                     
+				wl.release();
+				turnScreenOff();
+			}
+		};
+
+		worker.schedule(task, Integer.valueOf(SharedPreferenceUtils.getScreenTimeOut(ctx)), TimeUnit.SECONDS);                 
 	}
+
+
+	private void turnScreenOff()
+    {
+        KeyguardManager km = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE);
+        boolean isLocked = km.inKeyguardRestrictedInputMode();
+
+        if (!isLocked)
+        {
+            // check if another lock screen is currently used
+            String[] lockscreepApps = ctx.getResources().getStringArray(R.array.lockscreenapps);
+            for (String lockscreen : lockscreepApps)
+            {
+                if (isAppOnForeground(lockscreen))
+                    isLocked = true;
+            }
+        }
+
+        // turn screen of only if the device is still locked
+        if (isLocked)
+        {
+            Intent screenoffApp = ctx.getPackageManager().getLaunchIntentForPackage("com.cillinsoft.scrnoff");
+            if (screenoffApp == null)
+                screenoffApp = ctx.getPackageManager().getLaunchIntentForPackage("com.katecca.screenofflock");
+
+            if (screenoffApp != null) ctx.startActivity(screenoffApp);
+        }
+    }
+
+	private boolean isAppOnForeground(String packageName)
+    {
+        ActivityManager activityManager = (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
+        if (appProcesses == null)
+        {
+            return false;
+        }
+        for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses)
+        {
+            if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND && appProcess.processName.equals(packageName))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 	public void recursiveDetectNotificationsIds(ViewGroup v)
@@ -525,10 +582,17 @@ public class NotificationParser {
 
 			bean.setPendingIntent(nnn.contentIntent);
 
-			DateFormat formatter = new SimpleDateFormat("HH:mm");
+			DateFormat formatter;
+			String timeType = SharedPreferenceUtils.getTimeType(ctx);
+			if(timeType.equals("13:00")){
+				formatter = new SimpleDateFormat("HH:mm"); 
+			}else{
+				formatter = new SimpleDateFormat("hh:mm a"); 
+			}
+
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTimeInMillis(System.currentTimeMillis());
-			String formattedDate = formatter.format(calendar.getTime());
+			String formattedDate = formatter.format(calendar.getTime()).replaceAll("am","AM").replaceAll("pm", "PM");
 
 			bean.setNotTime(formattedDate);
 

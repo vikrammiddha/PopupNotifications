@@ -179,7 +179,17 @@ public class SharedPreferenceUtils {
 		sharedPrefs.edit().putString("banner_location_preference", banLoc).commit();
 
 	}
-
+	
+	public static String getTimeType(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
+		return sharedPrefs.getString("timetype_preference", "standard");
+	}
+	
+	public static String getScreenTimeOut(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getString("screen_timeout", "10");
+	}
+	
 	public static String getBanLoc(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getString("banner_location_preference", "");
@@ -338,6 +348,7 @@ public class SharedPreferenceUtils {
 			sp.edit().putString("theme", ctx.getString(R.string.cards)).commit();
 			sp.edit().putInt("border_size_pref1", 3).commit();
 			sp.edit().putBoolean("show_circular_images", true).commit();
+			sp.edit().putString("timetype_preference", "13:00").commit();
 
 		}
 
@@ -375,6 +386,7 @@ public class SharedPreferenceUtils {
 						
 		if(HelperUtils.isAppUpgrade(ctx)){
 			sp.edit().putBoolean("show_circular_images", true).commit();
+			sp.edit().putString("timetype_preference", "13:00").commit();
 		}
 
 	}

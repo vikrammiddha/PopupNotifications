@@ -15,12 +15,16 @@ import java.util.Date;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
+import android.app.AlertDialog;
 import android.app.KeyguardManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.util.Log;
 
 public class HelperUtils {
@@ -455,25 +459,33 @@ public class HelperUtils {
 	}
 	
 	public static NotificationBean getTestNotification(Context ctx){
-		
+
 		NotificationBean nb = new NotificationBean();
 		nb.setAppName("Popup Notifications");
-		nb.setPackageName("com.bun.popupnotifications");
+		nb.setPackageName("com.bun.popupnotificationsfree");
 		nb.setId(0);
 		nb.setIsOddRow(false);
 		nb.setMessage("This is a test message");
 		nb.setSender("Bunny Decoder");
 		nb.setIcon(HelperUtils.getAppIcon(nb.getPackageName(), ctx));
-		
-		DateFormat formatter = new SimpleDateFormat("HH:mm");
+
+		DateFormat formatter;
+		String timeType = SharedPreferenceUtils.getTimeType(ctx);
+		if(timeType.equals("13:00")){
+			formatter = new SimpleDateFormat("HH:mm"); 
+		}else{
+			formatter = new SimpleDateFormat("hh:mm a"); 
+		}
+
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(System.currentTimeMillis());
-		String formattedDate = formatter.format(calendar.getTime());
+		String formattedDate = formatter.format(calendar.getTime()).replaceAll("am","AM").replaceAll("pm", "PM");
 		nb.setNotTime(formattedDate);
-		
+
 		return nb;
-		
+
 	}
+
 	
 	public static Boolean isAppUpgrade(Context ctx){
 		PackageInfo pInfo;
@@ -495,6 +507,42 @@ public class HelperUtils {
 		return false;
 		
 		
+	}
+	
+	public static void installScreenLockMessage(final Context ctx){
+
+
+		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
+				ctx);
+
+		// Setting Dialog Title
+		alertDialog2.setTitle("");
+
+		// Setting Dialog Message
+		//alertDialog2.setView(layout);
+		alertDialog2.setMessage(ctx.getString(R.string.install_screen_timeout_message));
+
+		// Setting Icon to Dialog
+		//alertDialog2.setIcon(R.drawable.delete);
+
+		// Setting Positive "Yes" Btn
+		alertDialog2.setPositiveButton(ctx.getString(R.string.install),
+				new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(ctx.getString(R.string.market_url_screenurl)));
+				ctx.startActivity(intent);
+			}
+		});
+		// Setting Negative "NO" Btn
+		alertDialog2.setNegativeButton(ctx.getString(R.string.cancel),
+				new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {                                
+				dialog.cancel();
+			}
+		});
+
+		alertDialog2.show();
+
 	}
 
 }

@@ -212,5 +212,31 @@
 	<string name="georgia">Georgia</string>
 	<string name="sofadi">Sofadi</string>
 	<string name="typewriter">Typewriter</string>
+	
+	
+	<string name="standard">13:00</string>
+	<string name="military">01:00 pm</string>
+	<string name="time_type_desc">Set Time format</string>
+	<string-array name="lockscreenapps" translatable="false">
+        <item>com.teslacoilsw.widgetlocker</item>
+        <item>com.jiubang.goscreenlock</item>
+        <item>com.coverscreen.cover</item>
+        <item>com.campmobile.locker</item>
+        <item>com.lockscreen.optimus</item>
+        <item>com.mobint.locker</item>
+        <item>com.slidelock</item>
+        <item>com.celltick.lockscreen</item>
+        <item>com.sparkymobile.sparkylockscreenfull</item>
+        <item>com.sparkymobile.sparkylockscreenlite</item>
+        <item>com.miui.home</item>
+        <item>com.qiigame.flocker.global</item>
+        <item>com.productigeeky.lockerpro</item>
+        <item>com.productigeeky.lockerprolite</item>
+    </string-array>
+    <string name="screen_timeout_desc">Set Screen Timeout(Seconds)</string>
+	<string name="screen_timeout_summary">Screen will be turned off after : </string>
+	<string name="install">Install</string>
+	<string name="install_screen_timeout_message">You must install Screen Off and Lock app from play store to make it work. Click on Install to install this app and then set the screen timout in seconds. </string>
+	<string name="market_url_screenurl">market://details?id=com.katecca.screenofflock</string>
     
 </resources>

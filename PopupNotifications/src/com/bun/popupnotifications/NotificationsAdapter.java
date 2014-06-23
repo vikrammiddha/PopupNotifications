@@ -116,7 +116,12 @@ public class NotificationsAdapter extends BaseAdapter{
 	@Override
 	public NotificationBean getItem(int position) {
 		// TODO Auto-generated method stub
-		return nList.get(position);
+		try{
+			return nList.get(position);
+		}
+		catch(Exception e){
+			return null;
+		}
 	}
 
 	@Override

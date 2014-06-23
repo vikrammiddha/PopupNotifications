@@ -53,10 +53,23 @@
             robobunny:unitsRight=""
          />
         
+        <ListPreference
+            android:entries="@array/timeTypes"
+            android:entryValues="@array/timeTypeValues"
+            android:key="timetype_preference"
+            android:title="@string/time_type_desc" />
+        
         <CheckBoxPreference
             android:key="wake_up"
             android:summary=""
             android:title="@string/wake_on_not" />
+        
+        <EditTextPreference
+            android:key="screen_timeout"
+            android:dependency="wake_up"
+            android:title="@string/screen_timeout_desc"
+            android:summary="@string/screen_timeout_summary"
+            android:inputType="number"  />
 
         <ListPreference
             android:entries="@array/syncTypes"

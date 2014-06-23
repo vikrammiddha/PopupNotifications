@@ -22,12 +22,15 @@ public final class R {
         public static final int banLocValues=0x7f0a0005;
         public static final int fontLoc=0x7f0a0008;
         public static final int fontValues=0x7f0a0009;
+        public static final int lockscreenapps=0x7f0a000c;
         public static final int notTypeValues=0x7f0a0001;
         public static final int notTypes=0x7f0a0000;
         public static final int syncTypeValues=0x7f0a0003;
         public static final int syncTypes=0x7f0a0002;
         public static final int themeLoc=0x7f0a0006;
         public static final int themeValues=0x7f0a0007;
+        public static final int timeTypeValues=0x7f0a000b;
+        public static final int timeTypes=0x7f0a000a;
     }
     public static final class attr {
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
@@ -471,6 +474,8 @@ containing a value of this type.
         public static final int hour_1=0x7f070044;
         public static final int hour_4=0x7f070045;
         public static final int hour_8=0x7f070046;
+        public static final int install=0x7f0700b6;
+        public static final int install_screen_timeout_message=0x7f0700b7;
         public static final int later=0x7f070030;
         public static final int left_swipe=0x7f070055;
         public static final int lines=0x7f07008c;
@@ -486,10 +491,12 @@ containing a value of this type.
         public static final int lockscreen_only_summary=0x7f07005f;
         public static final int long_press=0x7f070057;
         public static final int market_url=0x7f07002b;
+        public static final int market_url_screenurl=0x7f0700b8;
         public static final int menu_rateus=0x7f070011;
         public static final int menu_settings=0x7f07000f;
         public static final int menu_tutorial=0x7f070010;
         public static final int middle=0x7f07008e;
+        public static final int military=0x7f0700b2;
         public static final int mins_15=0x7f070042;
         public static final int mins_30=0x7f070043;
         public static final int mute_15_mins=0x7f070023;
@@ -538,6 +545,8 @@ containing a value of this type.
         public static final int sad_to_know=0x7f070081;
         public static final int samsung_tts=0x7f07001b;
         public static final int save=0x7f070036;
+        public static final int screen_timeout_desc=0x7f0700b4;
+        public static final int screen_timeout_summary=0x7f0700b5;
         public static final int search=0x7f070031;
         public static final int search_applications=0x7f070048;
         public static final int seconds=0x7f07007d;
@@ -553,6 +562,7 @@ containing a value of this type.
         public static final int show_fullscreen_not=0x7f07004d;
         public static final int show_fullscreen_summary=0x7f07004e;
         public static final int sofadi=0x7f0700af;
+        public static final int standard=0x7f0700b1;
         public static final int start_time=0x7f070029;
         public static final int start_tutorial=0x7f070058;
         public static final int start_tutorial_click=0x7f070059;
@@ -562,6 +572,7 @@ containing a value of this type.
         public static final int test_banner_desc=0x7f0700a3;
         public static final int test_lockscreen_desc=0x7f0700a2;
         public static final int theme_title=0x7f070094;
+        public static final int time_type_desc=0x7f0700b3;
         public static final int top=0x7f07008d;
         public static final int tts_warning=0x7f07000e;
         public static final int two_way=0x7f070071;

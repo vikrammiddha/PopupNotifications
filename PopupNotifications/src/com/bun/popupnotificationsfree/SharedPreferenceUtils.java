@@ -188,6 +188,21 @@ public class SharedPreferenceUtils {
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getString("notification_type_preference", "");
 	}
+	
+	public static String getFont(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
+		String retVal = sharedPrefs.getString("font", null);
+		if("normal".equals(retVal))
+				retVal = null;
+		return retVal;
+	}
+
+	public static void setFont(Context ctx, String font){
+
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("font", font).commit();
+
+	}
 
 	public static void setBanLoc(Context ctx, String banLoc){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
@@ -203,6 +218,11 @@ public class SharedPreferenceUtils {
 	public static String getBannerTime(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getString("banner_time_pref", "5");
+	}
+	
+	public static String getScreenTimeOut(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getString("screen_timeout", "10");
 	}
 
 	public static String getSyncType(Context ctx){
@@ -271,6 +291,13 @@ public class SharedPreferenceUtils {
 
 	}
 	
+	public static String getTimeType(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
+		return sharedPrefs.getString("timetype_preference", "standard");
+	}
+
+	
+	
 	public static String getAppVersion(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
 		return sharedPrefs.getString("app_version", null);
@@ -333,6 +360,7 @@ public class SharedPreferenceUtils {
 			sp.edit().putString("theme", ctx.getString(R.string.cards)).commit();
 			sp.edit().putInt("border_size_pref1", 3).commit();
 			sp.edit().putBoolean("show_circular_images", true).commit();
+			sp.edit().putString("timetype_preference", "13:00").commit();
 		}
 
 		sp.edit().putBoolean("vibrate", false).commit();
@@ -375,6 +403,7 @@ public class SharedPreferenceUtils {
 
 		if(HelperUtils.isAppUpgrade(ctx)){
 			sp.edit().putBoolean("show_circular_images", true).commit();
+			sp.edit().putString("timetype_preference", "13:00").commit();
 		}
 
 	}

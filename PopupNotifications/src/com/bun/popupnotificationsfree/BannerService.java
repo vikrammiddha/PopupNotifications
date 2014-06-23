@@ -66,6 +66,8 @@ public class BannerService extends Service{
 
 		ctx = this;
 		
+		Utils.typeFace = FontLoader.getTypeFace(ctx,SharedPreferenceUtils.getFont(ctx)); 
+		
 		HelperUtils.writeLogs("Entered Banner Service constructor. ", ctx, true);
 
 		windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);

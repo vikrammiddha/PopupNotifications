@@ -139,6 +139,8 @@ ShowcaseView.OnShowcaseEventListener{
 		setContentView(R.layout.notification_main);
 
 		ctx = this;
+		
+		Utils.typeFace = FontLoader.getTypeFace(ctx,SharedPreferenceUtils.getFont(ctx)); 
 
 		act = this;	
 		
@@ -185,6 +187,9 @@ ShowcaseView.OnShowcaseEventListener{
 
 		Button b1 = (Button) findViewById(R.id.CloseWindowId);
 		Button b2 = (Button) findViewById(R.id.CloseWindowId1);
+		
+		b1.setTypeface(Utils.typeFace);
+		b2.setTypeface(Utils.typeFace);
 
 		final Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 

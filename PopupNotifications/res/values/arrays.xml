@@ -45,5 +45,14 @@
         <item name="1">@string/cards</item>
         <item name="2">@string/bubbles</item>        
     </string-array>
+    
+    <string-array name="timeTypes">
+        <item name="1">@string/standard</item>
+        <item name="2">@string/military</item>        
+    </string-array>
+    <string-array name="timeTypeValues">
+        <item name="1">@string/standard</item>
+        <item name="2">@string/military</item>        
+    </string-array>
 
 </resources>

@@ -116,7 +116,12 @@ public class NotificationsAdapter extends BaseAdapter{
 	@Override
 	public NotificationBean getItem(int position) {
 		// TODO Auto-generated method stub
-		return nList.get(position);
+		try{
+			return nList.get(position);
+		}
+		catch(Exception e){
+			return null;
+		}
 	}
 
 	@Override
@@ -203,6 +208,8 @@ public class NotificationsAdapter extends BaseAdapter{
 		if(textViewSize != null){
 			holder.text.setMaxLines(textViewSize);
 		}
+		
+		if(Utils.typeFace!=null) holder.text.setTypeface(Utils.typeFace);
 
 		if(n.getNotCount() > 1){
 			holder.badge.setText(String.valueOf(n.getNotCount()));

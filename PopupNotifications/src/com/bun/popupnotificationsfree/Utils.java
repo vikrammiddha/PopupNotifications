@@ -44,6 +44,7 @@ public class Utils {
 	public static Boolean isScreenScrolling = false;
 	public static Boolean isAddedFirstItem = false;
 	public static Boolean isScreenOnFromResume = false;
+	public static Typeface typeFace;
 
 
 	public static ArrayList<NotificationBean> getNotList(){

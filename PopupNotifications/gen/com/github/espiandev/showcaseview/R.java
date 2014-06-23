@@ -33,8 +33,8 @@ public final class R {
 		public static final int showcase_title_text = 0x7f070001;
 	}
 	public static final class layout {
-		public static final int handy = 0x7f030009;
-		public static final int showcase_button = 0x7f030012;
+		public static final int handy = 0x7f03000a;
+		public static final int showcase_button = 0x7f030013;
 	}
 	public static final class string {
 		public static final int ok = 0x7f080000;

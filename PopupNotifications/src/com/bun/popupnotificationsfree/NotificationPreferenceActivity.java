@@ -117,6 +117,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		setBannerLocationPreference();
 
 		setThemePreference();
+		
+		setScreenTimeOutPreferenceData();
 
 	}
 
@@ -215,13 +217,12 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 	private void setTestLockscreenListener(){
 		Preference pref = findPreference("test_lockscreen");
 
-		final NotificationBean testBean = HelperUtils.getTestNotification(ctx);
-
 		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-
+				NotificationBean testBean = HelperUtils.getTestNotification(ctx);
+				
 				Utils.getNotList().add(testBean);
 
 				Intent dialogIntent = new Intent(ctx, NotificationActivity.class);
@@ -236,13 +237,13 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 	private void setTestBannersListener(){
 		Preference pref = findPreference("test_banner");
 
-		final NotificationBean testBean = HelperUtils.getTestNotification(ctx);
+		
 
 		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-
+				NotificationBean testBean = HelperUtils.getTestNotification(ctx);
 				Utils.getNotList().add(testBean);
 
 				Utils.isServiceRunning = true;
@@ -600,6 +601,52 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 					return false;
 				}else{
 					customPref.setSummary(getString(R.string.banner_time_summary) + " " + time + " " + getString(R.string.seconds));
+				}
+
+				return true;
+			}
+
+		});
+	}
+	
+	private void setScreenTimeOutPreferenceData(){
+
+
+		final Preference customPref = (Preference) findPreference("screen_timeout");
+
+		String bannerTimePref = SharedPreferenceUtils.getScreenTimeOut(this);
+
+		customPref.setSummary(getString(R.string.screen_timeout_summary) + " " + bannerTimePref + " " + getString(R.string.seconds));
+
+		
+		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+				
+				Intent screenoffApp = ctx.getPackageManager().getLaunchIntentForPackage("com.katecca.screenofflock");
+				
+				if(screenoffApp == null){
+					HelperUtils.installScreenLockMessage(ctx);
+					return false;
+				}
+				
+				String time = (String)newValue;
+				Boolean falseValue = false;
+
+				if("".equals(time.trim())){
+					time = "10"; 
+
+				}else if(Integer.valueOf(time) > 9999){
+					time = "10";
+					falseValue = true;
+				}
+
+				if(falseValue){
+					return false;
+				}else{
+					customPref.setSummary(getString(R.string.screen_timeout_summary) + " " + time + " " + getString(R.string.seconds));
 				}
 
 				return true;

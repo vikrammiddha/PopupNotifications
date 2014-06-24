@@ -84,23 +84,26 @@ public class NotificationParser {
 				worker = Executors.newSingleThreadScheduledExecutor();
 			}
 		}
-		// turn the screen on only if it was off
-		@SuppressWarnings("deprecation")
-		final PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "Notification");
-		wl.acquire();   
-
-		// release after 5 seconds
-
-		Runnable task = new Runnable() 
-		{
-			public void run() 
+		
+		if(worker != null){
+			// turn the screen on only if it was off
+			@SuppressWarnings("deprecation")
+			final PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "Notification");
+			wl.acquire();   
+	
+			// release after 5 seconds
+	
+			Runnable task = new Runnable() 
 			{
-				wl.release();
-				turnScreenOff();
-			}
-		};
-
-		worker.schedule(task, Integer.valueOf(SharedPreferenceUtils.getScreenTimeOut(ctx)), TimeUnit.SECONDS);                 
+				public void run() 
+				{
+					wl.release();
+					turnScreenOff();
+				}
+			};
+	
+			worker.schedule(task, Integer.valueOf(SharedPreferenceUtils.getScreenTimeOut(ctx)), TimeUnit.SECONDS);  
+		}
 	}
 
 

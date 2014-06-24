@@ -269,7 +269,8 @@ containing a value of this type.
         public static final int rightarrow=0x7f02001c;
         public static final int sad=0x7f02001d;
         public static final int scrollbar_vertical_thumb=0x7f02001e;
-        public static final int touch=0x7f02001f;
+        public static final int settings=0x7f02001f;
+        public static final int touch=0x7f020020;
     }
     public static final class id {
         public static final int CloseWindowId=0x7f07004f;

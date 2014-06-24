@@ -40,7 +40,7 @@ public class Utils {
 	public static HashMap<String, PendingIntent> intentMap = new HashMap<String, PendingIntent>();
 	public static KeyguardManager.KeyguardLock keyguardLock;
 	public static Boolean isServiceRunning = false; 
-	public static Boolean isScreenOn = false;
+	public static Boolean isScreenOn = true;
 	public static Boolean isScreenScrolling = false;
 	public static Boolean isAddedFirstItem = false;
 	public static Boolean isScreenOnFromResume = false;
@@ -308,10 +308,10 @@ public class Utils {
 
 	public static Boolean isScreenLocked(Context ctx){
 		KeyguardManager myKM = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE);
-		if(!myKM.inKeyguardRestrictedInputMode()) {
-			return false;
-		}else{
+		if(myKM.inKeyguardRestrictedInputMode() || !Utils.isScreenOn) {
 			return true;
+		}else{
+			return false;
 		}
 	}
 

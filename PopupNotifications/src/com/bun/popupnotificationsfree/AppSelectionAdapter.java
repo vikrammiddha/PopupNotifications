@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
+import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
-
 import android.view.LayoutInflater;
-
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.Filter;
@@ -31,14 +29,17 @@ public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 		public TextView appNameText;
 		public ImageView appIcon;		
 		public CheckBox cb;
+		public ImageView settingIcon;
 	}
 	
 	private ArrayList<ApplicationBean> nList = new ArrayList<ApplicationBean>();
 	private Context context;
+	private AppSelectionActivity activity;
 
-	public AppSelectionAdapter(Context context) {
+	public AppSelectionAdapter(Context context, AppSelectionActivity activity) {
 		super();
 		this.context = context;
+		this.activity = activity;
 
 	}
 	
@@ -84,8 +85,9 @@ public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 
 
 	@Override
-	public View getView(final int position, View view, ViewGroup parent) {		
-
+	public View getView(final int position, View view, ViewGroup parent) {	
+	
+		final ImageView iv ;
 		final ApplicationBean n = nList.get(position);
 		if(view == null || view.getTag() == null){
 			LayoutInflater inflater =
@@ -93,19 +95,22 @@ public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			view = inflater.inflate(
 					R.layout.app_selection_row, parent, false);
-
+			
 			ViewHolder viewHolder = new ViewHolder();
 			viewHolder.appNameText = (TextView) view.findViewById(R.id.appSelectionTextId);			
 			viewHolder.appIcon = (ImageView)view.findViewById(R.id.appSelectionIconId);
 			viewHolder.cb = (CheckBox)view.findViewById(R.id.appSelectionCheckBoxId);
+			viewHolder.settingIcon = (ImageView)view.findViewById(R.id.settingsId);
 			
 			view.setTag(viewHolder);
 
 		}
-
-		final ViewHolder holder = (ViewHolder) view.getTag();
 		
-		if(HelperUtils.getFontSize(context) == -1){
+		final ViewHolder holder = (ViewHolder) view.getTag();
+		iv = holder.settingIcon;
+		//iv.setImageBitmap(null);
+		
+		if(HelperUtils.getFontSize(context, "") == -101){
 			SharedPreferenceUtils.setFontSize(context, (int)holder.appNameText.getTextSize());
 		}
 
@@ -127,7 +132,6 @@ public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 		
 		holder.cb.setChecked(n.getIsSelected());
 		
-			
 		
 		holder.cb.setOnClickListener(new View.OnClickListener() {
 	        public void onClick(View v) {
@@ -138,11 +142,23 @@ public class AppSelectionAdapter extends BaseAdapter implements Filterable{
 	                nList.get(position).setIsSelected(true);
 	                holder.cb.setChecked(true);
 	                SharedPreferenceUtils.setAllowedApps(context, n.getPackageName(), "");
+	                SharedPreferenceUtils.setAppSpecificSettings(nList.get(position).getPackageName(), context);
 	            } else if (!holder.cb.isChecked()) {
 	            	nList.get(position).setIsSelected(false);
 	                holder.cb.setChecked(false);
 	                SharedPreferenceUtils.removeApp(context, n.getPackageName());
+	                
 	            }
+	        }
+	    });
+		
+		holder.settingIcon.setOnClickListener(new View.OnClickListener() {
+	        public void onClick(View v) {
+	        	if(nList.get(position).getIsSelected()){
+		        	Intent i = new Intent(context, AppSpecificSettings.class);
+		    		i.putExtra("appName",n.getPackageName());
+		    		activity.startActivityForResult(i, 0);
+	        	}
 	        }
 	    });
 

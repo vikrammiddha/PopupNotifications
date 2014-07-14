@@ -152,13 +152,7 @@ public class NotificationParser {
 
         if (!isLocked)
         {
-            // check if another lock screen is currently used
-            String[] lockscreepApps = ctx.getResources().getStringArray(R.array.lockscreenapps);
-            for (String lockscreen : lockscreepApps)
-            {
-                if (isAppOnForeground(lockscreen))
-                    isLocked = true;
-            }
+            isLocked = Utils.isCustomLockScreen(ctx);
         }
 
         // turn screen of only if the device is still locked
@@ -172,23 +166,7 @@ public class NotificationParser {
         }
     }
 	
-	private boolean isAppOnForeground(String packageName)
-    {
-        ActivityManager activityManager = (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
-        if (appProcesses == null)
-        {
-            return false;
-        }
-        for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses)
-        {
-            if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND && appProcess.processName.equals(packageName))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+	
 	
 	private Runnable mReleaseWakelock = new Runnable()
     {
@@ -690,7 +668,7 @@ public class NotificationParser {
 				ctx.sendBroadcast(new Intent(NotificationReceiver.ACTION_NOTIFICATION_CHANGED));
 
 			}else{
-				if(Utils.notList != null){
+				if(Utils.notList != null && !Utils.isNotActivityRunning){
 					for(NotificationBean n : Utils.notList){
 						n = null;
 					}		
@@ -708,7 +686,7 @@ public class NotificationParser {
 					dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					app.startActivity(dialogIntent);
 				}else if(!Utils.isScreenLocked(ctx) && (HelperUtils.getNotType(ctx) == Constants.NOT_POPUP  || HelperUtils.getNotType(ctx) == Constants.LOCKSCREEN_POPUP ) ){
-					dialogIntent = new Intent(baseContext, PopupActivity.class);
+					dialogIntent = new Intent(baseContext, PopupActivity.class); 
 					dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					app.startActivity(dialogIntent);
 				}
@@ -729,7 +707,7 @@ public class NotificationParser {
 				app.startActivity(dialogIntent);
 			}
 
-			if(HelperUtils.wakeOnNotification(ctx)){
+			if(HelperUtils.wakeOnNotification(ctx, bean.getPackageName())){
 				turnScreenOn();
 			}
 

@@ -173,6 +173,12 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
 		persistInt(newValue);
 
 	}
+	
+	public void forceSetValue(int value) {
+		this.mCurrentValue = value;
+		persistInt(value);
+		notifyChanged();
+	}
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {}

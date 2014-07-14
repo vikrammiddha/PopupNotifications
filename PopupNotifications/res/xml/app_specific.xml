@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:robobunny="http://robobunny.com" >
+
+    <yuku.ambilwarna.widget.AmbilWarnaPreference
+        android:defaultValue="0xffffffff"
+        android:key="app_font_color"
+        android:title="@string/not_text_color" />
+    <yuku.ambilwarna.widget.AmbilWarnaPreference
+        android:defaultValue="0xff000000"
+        android:key="app_background_color_not"
+        android:title="@string/not_back_color" />
+    <yuku.ambilwarna.widget.AmbilWarnaPreference
+        android:defaultValue="0xff000000"
+        android:key="app_border_color_not"
+        android:title="@string/not_border_color" />
+
+    <CheckBoxPreference
+        android:key="app_show_circular_images"
+        android:summary=""
+        android:title="@string/show_circular_images" />
+
+    <com.bun.popupnotificationsfree.FontSelectionPreference
+        android:key="app_font"
+        android:summary="@string/pref_upgrade_message"
+        android:title="@string/font_title" />
+
+    <com.bun.popupnotificationsfree.SeekBarPreference
+        android:defaultValue="-1"
+        android:enabled="true"
+        android:key="app_font_size1"
+        android:max="150"
+        android:summary=""
+        android:title="@string/font_size_desc"
+        robobunny:min="1"
+        robobunny:unitsLeft=""
+        robobunny:unitsRight="" />
+    
+    <CheckBoxPreference
+            android:key="app_wake_up"
+            android:summary="@string/pref_upgrade_message"
+            android:title="@string/wake_on_not" />
+
+    <PreferenceScreen
+        android:key="app_test_lockscreen"
+        android:title="@string/test_lockscreen_desc" >
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="app_test_banner"
+        android:title="@string/test_banner_desc" >
+    </PreferenceScreen>
+
+</PreferenceScreen>

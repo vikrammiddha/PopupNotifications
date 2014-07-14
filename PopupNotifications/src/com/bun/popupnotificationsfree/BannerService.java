@@ -373,12 +373,7 @@ public class BannerService extends Service{
 		//SwipeListView ll1 = (SwipeListView) findViewById(R.id.bannerListViewId);		
 
 
-		int fontColor = HelperUtils.getFontColor(ctx);
-		if(fontColor == 0){
-			fontColor = Color.WHITE;
-		}
-
-		int bgColor = HelperUtils.getBackgroundColor(ctx);
+		/*int bgColor = HelperUtils.getBackgroundColor(ctx);
 		if(bgColor == 0){
 			bgColor = Color.BLACK;
 		}
@@ -405,7 +400,7 @@ public class BannerService extends Service{
 				//sListView.getBackground().setAlpha(500);
 
 			//}
-		}
+		}*/
 
 		if(cTimer != null){
 			cTimer.cancel();

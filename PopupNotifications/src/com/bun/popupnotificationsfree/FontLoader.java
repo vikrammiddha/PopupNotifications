@@ -36,7 +36,8 @@ public static Typeface getTypeFace(Context context,String name){
            item.typeFace=Typeface.createFromAsset(context.getAssets(), "fonts/"+item.name+".ttf");                 
        }           
        return item.typeFace;
-   } catch (Exception e) {         
+   } catch (Exception e) {   
+	   e.printStackTrace();
        return null;
    }                   
 }

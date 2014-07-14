@@ -27,9 +27,11 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
+
 import com.actionbarsherlock.view.MenuItem;
 
 
@@ -51,8 +53,10 @@ public class AppSelectionActivity extends SherlockActivity{
 		setContentView(R.layout.app_selection_main); 
 		layout = (ListView) findViewById(R.id.appSelectionMainListViewId);	
 
-		adapter = new AppSelectionAdapter(this);
-
+		adapter = new AppSelectionAdapter(this,this);
+		ctx = this;
+		
+		SharedPreferenceUtils.loadDefaultSettings(ctx);
 		new Load().execute();	
 
 
@@ -62,11 +66,13 @@ public class AppSelectionActivity extends SherlockActivity{
 			showServiceAlert();
 		}
 
-		ctx = this;
+		
 		
 		if(SharedPreferenceUtils.getFont(ctx) == null){
 			SharedPreferenceUtils.setFont(ctx, "normal");
 		}
+		
+		Utils.activityObj = this;
 
 	}
 
@@ -96,6 +102,7 @@ public class AppSelectionActivity extends SherlockActivity{
 					Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"); 
 					startActivityForResult(intent, 0);
 				}
+				
 			}
 		});
 		// Setting Negative "NO" Btn
@@ -231,7 +238,7 @@ public class AppSelectionActivity extends SherlockActivity{
 		try{
 
 			if(adapter == null){
-				adapter = new AppSelectionAdapter(this);
+				adapter = new AppSelectionAdapter(this, this);
 			}
 
 			final PackageManager pm = this.getApplicationContext().getPackageManager();
@@ -282,7 +289,7 @@ public class AppSelectionActivity extends SherlockActivity{
 			});
 
 			if(adapter == null){
-				adapter = new AppSelectionAdapter(this);
+				adapter = new AppSelectionAdapter(this, this);
 			}
 
 			//Log.d("adapter", "adapter=======" + adapter);
@@ -314,7 +321,7 @@ public class AppSelectionActivity extends SherlockActivity{
 			});
 
 			if(adapter == null){
-				adapter = new AppSelectionAdapter(this);
+				adapter = new AppSelectionAdapter(this, this);
 			}
 
 			adapter.addAppList(aList);
@@ -370,5 +377,6 @@ public class AppSelectionActivity extends SherlockActivity{
 		progDailog.dismiss();
 		//finish();
 	}
+
 
 }

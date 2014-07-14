@@ -49,6 +49,8 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		addPreferencesFromResource(R.xml.main_preference);
 
 		ctx = this;
+		
+		Utils.tempApp = "";
 
 		prefs = PreferenceManager
 				.getDefaultSharedPreferences(this);
@@ -65,11 +67,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		//setDisplayContactPreference();
 
-		setWakeUpPreference();
-
-		//setTransparentBackgroundPreference();
-
-
+		
 		setFullScreenPreference();
 
 		//setFontColorListener();
@@ -110,10 +108,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 		setCreateLogsPreferenceData();
 
-		setTestLockscreenListener();
-
-		setTestBannersListener();
-
+		
 		setBannerLocationPreference();
 
 		setThemePreference();
@@ -214,47 +209,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		});
 	}
 
-	private void setTestLockscreenListener(){
-		Preference pref = findPreference("test_lockscreen");
-
-		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-
-			@Override
-			public boolean onPreferenceClick(Preference preference) {
-				NotificationBean testBean = HelperUtils.getTestNotification(ctx);
-				
-				Utils.getNotList().add(testBean);
-
-				Intent dialogIntent = new Intent(ctx, NotificationActivity.class);
-				dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				ctx.startActivity(dialogIntent);
-
-				return true;
-			}
-		});
-	}
-
-	private void setTestBannersListener(){
-		Preference pref = findPreference("test_banner");
-
-		
-
-		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-
-			@Override
-			public boolean onPreferenceClick(Preference preference) {
-				NotificationBean testBean = HelperUtils.getTestNotification(ctx);
-				Utils.getNotList().add(testBean);
-
-				Utils.isServiceRunning = true;
-				ctx.stopService(new Intent(ctx, BannerService.class));
-				ctx.startService(new Intent(ctx, BannerService.class));
-
-				return true;
-			}
-		});
-	}
-
+	
 	private void setResetSettingsListener(){
 		Preference pref = findPreference("reset_settings");
 		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
@@ -782,25 +737,6 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 
 
 		final Preference customPref = (Preference) findPreference("mute_sleep_hours");
-
-		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-
-			@Override
-			public boolean onPreferenceChange(Preference preference,
-					Object newValue) {
-
-				HelperUtils.upgradeNowDialogue(ctx);
-
-
-				return false;
-			}
-
-		});
-	}
-
-	private void setWakeUpPreference(){
-
-		final Preference customPref = (Preference) findPreference("wake_up");
 
 		customPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 

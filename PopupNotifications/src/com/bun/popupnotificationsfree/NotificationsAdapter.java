@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
@@ -13,21 +12,16 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
-
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-
 import android.view.View;
-
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-
 import android.widget.TextView;
 
 @SuppressLint("NewApi")
@@ -136,7 +130,7 @@ public class NotificationsAdapter extends BaseAdapter{
 		//if(view == null || view.getTag() == null){
 		LayoutInflater inflater;
 		ViewHolder viewHolder  = new ViewHolder();;
-		if(SharedPreferenceUtils.getCircularImages(context)){
+		if(HelperUtils.isCircularImage(context, n.getPackageName())){
 			inflater =
 					(LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -174,9 +168,9 @@ public class NotificationsAdapter extends BaseAdapter{
 
 		ViewHolder holder = (ViewHolder) view.getTag();
 
-		if(SharedPreferenceUtils.getCircularImages(context)){		
+		if(HelperUtils.isCircularImage(context, n.getPackageName())){		
 			holder.circleImage.setImageDrawable(n.getIcon());
-			holder.circleImage.setBorderColor(HelperUtils.getBorderColor(context));
+			holder.circleImage.setBorderColor(HelperUtils.getBorderColor(context, n.getPackageName()));
 			holder.circleImage.setBorderWidth(HelperUtils.getBorderSize(context));
 		}else{
 			holder.image.setImageDrawable(n.getIcon());
@@ -195,9 +189,9 @@ public class NotificationsAdapter extends BaseAdapter{
 		holder.text.setText(Html.fromHtml(message));
 		
 		
-		holder.text.setTextSize(TypedValue.COMPLEX_UNIT_PX, Float.valueOf(HelperUtils.getFontSize(context)));
+		holder.text.setTextSize(TypedValue.COMPLEX_UNIT_PX, Float.valueOf(HelperUtils.getFontSize(context,n.getPackageName())));
 
-		int fontColor = HelperUtils.getFontColor(context);
+		int fontColor = HelperUtils.getFontColor(context, n.getPackageName());
 
 		if(fontColor == 0){
 			holder.text.setTextColor(Color.WHITE);
@@ -209,7 +203,11 @@ public class NotificationsAdapter extends BaseAdapter{
 			holder.text.setMaxLines(textViewSize);
 		}
 		
-		if(Utils.typeFace!=null) holder.text.setTypeface(Utils.typeFace);
+		if(SharedPreferenceUtils.getAppFont(context, n.getPackageName()) != ""){
+			holder.text.setTypeface(FontLoader.getTypeFace(context,SharedPreferenceUtils.getAppFont(context, n.getPackageName()))); 
+		}else{
+			holder.text.setTypeface(Utils.typeFace);
+		}
 
 		if(n.getNotCount() > 1){
 			holder.badge.setText(String.valueOf(n.getNotCount()));
@@ -241,19 +239,19 @@ public class NotificationsAdapter extends BaseAdapter{
 				holder.timeText.setTextColor(fontColor);
 			}
 
-			holder.timeText.setTextSize(TypedValue.COMPLEX_UNIT_PX, Float.valueOf(HelperUtils.getFontSize(context)));
+			holder.timeText.setTextSize(TypedValue.COMPLEX_UNIT_PX, Float.valueOf(HelperUtils.getFontSize(context, n.getPackageName())));
 		}else{
 			holder.timeText.setVisibility(View.GONE);
 		}
 
-		int bgColor = HelperUtils.getBackgroundColor(context);
+		int bgColor = HelperUtils.getBackgroundColor(context, n.getPackageName());
 		if(bgColor == 0){
 			bgColor = Color.BLACK;
 		}
 
-		int borderColor = HelperUtils.getBorderColor(context);
+		int borderColor = HelperUtils.getBorderColor(context, n.getPackageName());
 
-		if(HelperUtils.getBackgroundColor(context) != null ){
+		if(HelperUtils.getBackgroundColor(context, n.getPackageName()) != null ){
 
 			int strokeWidth = HelperUtils.getBorderSize(context); // 3dp
 			int roundRadius = 0; // 8dp

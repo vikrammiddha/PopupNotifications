@@ -22,16 +22,7 @@
                 android:key="border_color_not"
                 android:title="@string/not_border_color" />
 
-            <com.bun.popupnotificationsfree.SeekBarPreference
-                android:defaultValue="3"
-                android:enabled="true"
-                android:key="border_size_pref1"
-                android:max="10"
-                android:summary=""
-                android:title="@string/border_size_desc"
-                robobunny:min="1"
-                robobunny:unitsLeft=""
-                robobunny:unitsRight="" />
+            
 
             <com.bun.popupnotificationsfree.FontSelectionPreference
                 android:key="font"
@@ -69,6 +60,17 @@
             robobunny:min="1"
             robobunny:unitsLeft=""
             robobunny:unitsRight="" />
+        
+        <com.bun.popupnotificationsfree.SeekBarPreference
+                android:defaultValue="3"
+                android:enabled="true"
+                android:key="border_size_pref1"
+                android:max="10"
+                android:summary=""
+                android:title="@string/border_size_desc"
+                robobunny:min="1"
+                robobunny:unitsLeft=""
+                robobunny:unitsRight="" />
 
         <ListPreference
             android:entries="@array/timeTypes"

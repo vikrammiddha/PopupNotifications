@@ -67,7 +67,15 @@ public class FontSelectionPreference extends DialogPreference{
 			radioButton9.setTypeface(FontLoader.getTypeFace(ctx,"sofadi"));
 			radioButton10.setTypeface(FontLoader.getTypeFace(ctx,"typewriter"));
 			
-			String font = SharedPreferenceUtils.getFont(ctx);
+			String app = Utils.tempApp;
+
+			String font = "";
+			if("".equals(app)){
+				font = SharedPreferenceUtils.getFont(ctx);
+			}else{
+				font = SharedPreferenceUtils.getAppFont(ctx, app);
+			}
+
 			if(font == null)
 				font = "";
 			

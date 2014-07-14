@@ -114,13 +114,7 @@ public class NotificationParser {
 
         if (!isLocked)
         {
-            // check if another lock screen is currently used
-            String[] lockscreepApps = ctx.getResources().getStringArray(R.array.lockscreenapps);
-            for (String lockscreen : lockscreepApps)
-            {
-                if (isAppOnForeground(lockscreen))
-                    isLocked = true;
-            }
+            isLocked = Utils.isCustomLockScreen(ctx);
         }
 
         // turn screen of only if the device is still locked
@@ -639,7 +633,7 @@ public class NotificationParser {
 				ctx.sendBroadcast(new Intent(NotificationReceiver.ACTION_NOTIFICATION_CHANGED));
 
 			}else{
-				if(Utils.notList != null){
+				if(Utils.notList != null && !Utils.isNotActivityRunning){
 					for(NotificationBean n : Utils.notList){
 						n = null;
 					}		
@@ -678,7 +672,7 @@ public class NotificationParser {
 				app.startActivity(dialogIntent);
 			}
 
-			if(HelperUtils.wakeOnNotification(ctx)){
+			if(HelperUtils.wakeOnNotification(ctx, bean.getPackageName())){
 				HelperUtils.writeLogs("Turning Screen on for the new Notifications. ", ctx, true);
 				turnScreenOn();
 			}

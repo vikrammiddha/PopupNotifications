@@ -200,14 +200,43 @@ public class HelperUtils {
 		return (Integer)val;
 	}
 	
-	public static Integer getFontSize(Context ctx){
+	public static Integer getFontSize(Context ctx, String app){
 
-		Object val = SharedPreferenceUtils.getGenericPreferenceValue(ctx, "font_size1", "Integer");
-		if(val == null || ((Integer)val)  == 0){
-			val = -1;
+		try{
+			if(SharedPreferenceUtils.getAppFontSize(ctx, app) != -101){
+				return SharedPreferenceUtils.getAppFontSize(ctx, app);
+			}else{
+				Object val = SharedPreferenceUtils.getGenericPreferenceValue(ctx, "font_size1", "Integer");
+				if(val == null || ((Integer)val)  == 0){
+					val = -101;
+				}
+
+				return (Integer)val;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			return -101;
 		}
-		
-		return (Integer)val;
+
+
+	}
+	
+	public static Boolean isCircularImage(Context ctx, String app){
+
+		try{
+			if(SharedPreferenceUtils.getAppShowCircularImages(ctx, app) != ""){
+				return Boolean.valueOf(SharedPreferenceUtils.getAppShowCircularImages(ctx, app));
+			}else{
+				Object val = SharedPreferenceUtils.getGenericPreferenceValue(ctx, "show_circular_images", "Boolean");
+
+				return (Boolean)val;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+
+
 	}
 	
 	public static Integer getMaxLines(Context ctx){
@@ -221,38 +250,66 @@ public class HelperUtils {
 	}
 	
 	
-	public static int getFontColor(Context ctx){
+	public static int getFontColor(Context ctx, String app){
 
 		try{
-			return (Integer)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "font_color", "Integer");
-		}catch(Exception e){
-			e.printStackTrace();
-			return Color.BLACK;
-		}
-
-	}
-	
-	public static int getBorderColor(Context ctx){
-
-		try{
-			return (Integer)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "border_color_not", "Integer");
+			if(SharedPreferenceUtils.getAppFontColor(ctx, app) != -101){
+				return SharedPreferenceUtils.getAppFontColor(ctx, app);
+			}else{
+				Integer retVal = (Integer)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "font_color", "Integer");
+				if(retVal == 0)
+					return Color.WHITE;
+				else
+					return retVal;
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 			return Color.WHITE;
 		}
 
+		//return Color.WHITE;
 	}
-
-	public static Integer getBackgroundColor(Context ctx){ 
+	
+	public static int getBorderColor(Context ctx, String app){
 
 		try{
-			return (Integer)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "background_color_not", "Integer");
+			if(SharedPreferenceUtils.getAppBorderColor(ctx, app) != -101){
+				return SharedPreferenceUtils.getAppBorderColor(ctx, app);
+			}else{
+				Integer retVal = (Integer)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "border_color_not", "Integer");
+				if(retVal == 0)
+					return Color.WHITE;
+				else
+					return retVal;
+			}
 		}catch(Exception e){
 			e.printStackTrace();
-			return null;
+			return Color.WHITE;
 		}
+
+		//return Color.WHITE;
+
 	}
 
+	public static Integer getBackgroundColor(Context ctx, String app){ 
+
+		try{
+			if(SharedPreferenceUtils.getAppBGColor(ctx, app) != -101){
+				return SharedPreferenceUtils.getAppBGColor(ctx, app);
+			}else{
+				Integer retVal = (Integer)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "background_color_not", "Integer");
+				if(retVal == 0)
+					return Color.BLACK;
+				else
+					return retVal;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			return Color.BLACK;
+		}
+
+		//return Color.BLACK;
+	}
 	public static Integer getTextSize(Context ctx){
 
 		try{
@@ -263,20 +320,25 @@ public class HelperUtils {
 		}
 	}
 
-	public static Boolean wakeOnNotification(Context ctx){
+	public static Boolean wakeOnNotification(Context ctx, String app){
 
 		try{
+			if(SharedPreferenceUtils.getAppWakeup(ctx, app) != ""){
+				return Boolean.valueOf(SharedPreferenceUtils.getAppWakeup(ctx, app));
+			}else{
+				Object val = SharedPreferenceUtils.getGenericPreferenceValue(ctx, "wake_up", "Boolean");
 
-			if((Boolean)SharedPreferenceUtils.getGenericPreferenceValue(ctx, "wake_up", "Boolean")){
-				return true;
+				return (Boolean)val;
 			}
 		}catch(Exception e){
+			e.printStackTrace();
 			return false;
-		}		
+		}
 
-		return false;
+
 
 	}
+
 
 	public static Boolean isLockscreenOnly(Context ctx){
 
@@ -458,11 +520,15 @@ public class HelperUtils {
 		
 	}
 	
-	public static NotificationBean getTestNotification(Context ctx){
+	public static NotificationBean getTestNotification(Context ctx, String packageName){
 
 		NotificationBean nb = new NotificationBean();
 		nb.setAppName("Popup Notifications");
-		nb.setPackageName("com.bun.popupnotificationsfree");
+		if(!"".equals(packageName))
+			nb.setPackageName(packageName);
+		else{
+			nb.setPackageName("com.bun.popupnotifications");
+		}
 		nb.setId(0);
 		nb.setIsOddRow(false);
 		nb.setMessage("This is a test message");
@@ -485,7 +551,6 @@ public class HelperUtils {
 		return nb;
 
 	}
-
 	
 	public static Boolean isAppUpgrade(Context ctx){
 		PackageInfo pInfo;

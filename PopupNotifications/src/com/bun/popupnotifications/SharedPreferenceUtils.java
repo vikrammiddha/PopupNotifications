@@ -210,10 +210,10 @@ public class SharedPreferenceUtils {
 		return sharedPrefs.getBoolean("dismiss_all_left", false);
 	}
 	
-	public static Boolean getCircularImages(Context ctx){
+	/*public static Boolean getCircularImages(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getBoolean("show_circular_images", false);
-	}
+	}*/
 	
 	public static Boolean getCreateLogs(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
@@ -223,6 +223,16 @@ public class SharedPreferenceUtils {
 	public static Boolean getFirstTimeRun(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
 		return sharedPrefs.getBoolean("FirstTimeRun", false);
+	}
+	
+	public static void setShowTutorial(Context ctx, Boolean bool){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putBoolean("showTutorial", bool).commit();
+	}
+
+	public static Boolean getShowTutorial(Context ctx){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getBoolean("showTutorial", true);
 	}
 
 	public static void setShowFeedback(Context ctx, Boolean bool){
@@ -269,6 +279,113 @@ public class SharedPreferenceUtils {
 
 	}
 	
+	public static Integer getAppFontColor(Context ctx, String app){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getInt("app_font_color" + app, -101);
+	}
+
+	public static void setAppFontColor(Context ctx, String color, String app){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putInt("app_font_color" + app, Integer.valueOf(color)).commit();
+	}
+
+	public static void setAppFontColorDefault(Context ctx, String color){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putInt("app_font_color", Integer.valueOf(color)).commit();
+	}
+
+
+	public static Integer getAppBGColor(Context ctx, String app){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getInt("app_background_color_not" + app, -101);
+	}
+
+	public static void setAppBGColor(Context ctx, String color, String app){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putInt("app_background_color_not" + app, Integer.valueOf(color)).commit();
+	}
+
+	public static void setAppBGColorDefault(Context ctx, String color){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putInt("app_background_color_not", Integer.valueOf(color)).commit();
+	}
+
+	public static Integer getAppBorderColor(Context ctx, String app){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getInt("app_border_color_not" + app, -101);
+	}
+
+	public static void setAppBorderColor(Context ctx, String color, String app){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putInt("app_border_color_not" + app, Integer.valueOf(color)).commit();
+	}
+
+	public static void setAppBorderColorDefault(Context ctx, String color){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putInt("app_border_color_not", Integer.valueOf(color)).commit();
+	}
+
+	public static String getAppFont(Context ctx, String app){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getString("app_font" + app, "");
+	}
+
+	public static void setAppFont(Context ctx, String font, String app){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("app_font" + app, font).commit();
+	}
+
+	public static void setAppFontDefault(Context ctx, String font){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("app_font", font).commit();
+	}
+
+	public static String getAppShowCircularImages(Context ctx, String app){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getString("app_show_circular_images" + app, "");
+	}
+
+	public static void setAppShowCircularImages(Context ctx, String val, String app){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("app_show_circular_images" + app, val).commit();
+	}
+
+	public static void setAppShowCircularImagesDefault(Context ctx, Boolean val){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putBoolean("app_show_circular_images", val).commit();
+	}
+
+	public static String getAppWakeup(Context ctx, String app){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getString("app_wake_up" + app, "");
+	}
+
+	public static void setAppWakeup(Context ctx, String val, String app){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putString("app_wake_up" + app, val).commit();
+	}
+
+	public static void setAppWakeupDefault(Context ctx, Boolean val){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putBoolean("app_wake_up", val).commit();
+	}
+
+	public static Integer getAppFontSize(Context ctx, String app){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		return sharedPrefs.getInt("app_font_size1" + app, -101);
+	}
+
+	public static void setAppFontSize(Context ctx, Integer fontSize, String app){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putInt("app_font_size1" + app, fontSize).commit();
+	}
+
+	public static void setAppFontSizeDefault(Context ctx, Integer fontSize){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
+		sharedPrefs.edit().putInt("app_font_size1", fontSize).commit();
+	}
+
+	
 	public static String getFont(Context ctx){
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());                
 		String retVal = sharedPrefs.getString("font", null);
@@ -280,7 +397,12 @@ public class SharedPreferenceUtils {
 	public static void setFont(Context ctx, String font){
 
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx.getApplicationContext());
-		sharedPrefs.edit().putString("font", font).commit();
+		String app = Utils.tempApp;
+		if(!"".equals(app)){
+			sharedPrefs.edit().putString("app_font" + app, font).commit();
+		}else{
+			sharedPrefs.edit().putString("font", font).commit();
+		}
 
 	}
 	
@@ -303,6 +425,30 @@ public class SharedPreferenceUtils {
 		retVal = (String) blockedAppsPref.getString(packageName, null );
 
 		return retVal == null ? false : true;	
+	}
+	
+	public static void setAppSpecificSettings(String app, Context ctx){
+
+		if(!"".equals(app)){
+			setAppSpecificSettingsValues(ctx, app);
+		}else{
+			for(String packageName : getAllAlowedApps(ctx)){
+				setAppSpecificSettingsValues(ctx, packageName);
+			}
+
+		}
+
+	}
+
+	private static void setAppSpecificSettingsValues(Context ctx, String packageName){
+		SharedPreferenceUtils.setAppFontColor(ctx, String.valueOf(Color.WHITE) , packageName);
+		SharedPreferenceUtils.setAppBGColor(ctx,String.valueOf(Color.BLACK) , packageName);
+		SharedPreferenceUtils.setAppShowCircularImages(ctx, "true", packageName);
+		SharedPreferenceUtils.setAppBorderColor(ctx,String.valueOf(Color.WHITE) , packageName);
+		SharedPreferenceUtils.setAppFont(ctx,"normal" , packageName);
+		SharedPreferenceUtils.setAppFontSize(ctx, HelperUtils.getFontSize(ctx, "") , packageName);
+		SharedPreferenceUtils.setAppWakeup(ctx,"true" , packageName);
+
 	}
 
 	public static void loadDefaultSettings(Context ctx){
@@ -349,6 +495,8 @@ public class SharedPreferenceUtils {
 			sp.edit().putInt("border_size_pref1", 3).commit();
 			sp.edit().putBoolean("show_circular_images", true).commit();
 			sp.edit().putString("timetype_preference", "13:00").commit();
+			setFirstTimeRun(ctx, true);
+			setAppSpecificSettings("", ctx);
 
 		}
 
@@ -379,14 +527,10 @@ public class SharedPreferenceUtils {
 			sp.edit().putString("theme", ctx.getString(R.string.cards)).commit();
 		}
 		
-		int borderColor = sp.getInt("border_color_not", -1);
-		if(borderColor == -1){
-			sp.edit().putInt("border_color_not", Color.WHITE).commit();
-		}
+		
 						
 		if(HelperUtils.isAppUpgrade(ctx)){
-			sp.edit().putBoolean("show_circular_images", true).commit();
-			sp.edit().putString("timetype_preference", "13:00").commit();
+			
 		}
 
 	}

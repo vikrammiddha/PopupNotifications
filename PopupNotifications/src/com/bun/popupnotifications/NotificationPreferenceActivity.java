@@ -48,7 +48,9 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		addPreferencesFromResource(R.xml.main_preference);
 
 		ctx = this;
-
+		
+		Utils.tempApp = "";
+		
 		prefs = PreferenceManager
 				.getDefaultSharedPreferences(this);
 
@@ -104,9 +106,6 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		
 		setCreateLogsPreferenceData();
 		
-		setTestLockscreenListener();
-		
-		setTestBannersListener();
 		
 		setScreenTimeOutPreferenceData();
 		
@@ -220,47 +219,7 @@ public class NotificationPreferenceActivity  extends PreferenceActivity implemen
 		});
 	}
 	
-	private void setTestLockscreenListener(){
-		Preference pref = findPreference("test_lockscreen");
-
-		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-
-			@Override
-			public boolean onPreferenceClick(Preference preference) {
-				NotificationBean testBean = HelperUtils.getTestNotification(ctx);
-
-				Utils.getNotList().add(testBean);
-
-				Intent dialogIntent = new Intent(ctx, NotificationActivity.class);
-				dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				ctx.startActivity(dialogIntent);
-
-				return true;
-			}
-		});
-	}
-
 	
-	private void setTestBannersListener(){
-		Preference pref = findPreference("test_banner");
-		
-		final NotificationBean testBean = HelperUtils.getTestNotification(ctx);
-		
-		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-
-			@Override
-			public boolean onPreferenceClick(Preference preference) {
-
-				Utils.getNotList().add(testBean);
-				
-				Utils.isServiceRunning = true;
-				ctx.stopService(new Intent(ctx, BannerService.class));
-				ctx.startService(new Intent(ctx, BannerService.class));
-
-				return true;
-			}
-		});
-	}
 
 	private void setResetSettingsListener(){
 		Preference pref = findPreference("reset_settings");

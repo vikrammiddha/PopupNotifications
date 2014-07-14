@@ -51,8 +51,10 @@ public class AppSelectionActivity extends SherlockActivity{
 		setContentView(R.layout.app_selection_main); 
 		layout = (ListView) findViewById(R.id.appSelectionMainListViewId);	
 
-		adapter = new AppSelectionAdapter(this);
-
+		adapter = new AppSelectionAdapter(this,this);
+		ctx = this;
+		
+		SharedPreferenceUtils.loadDefaultSettings(ctx);
 		new Load().execute();	
 
 
@@ -61,12 +63,14 @@ public class AppSelectionActivity extends SherlockActivity{
 		if(serviceStatus == false){
 			showServiceAlert();
 		}
+
 		
-		ctx = this;
 		
 		if(SharedPreferenceUtils.getFont(ctx) == null){
 			SharedPreferenceUtils.setFont(ctx, "normal");
 		}
+		
+		Utils.activityObj = this;
 		
 	}
 
@@ -225,7 +229,7 @@ public class AppSelectionActivity extends SherlockActivity{
 		try{
 
 			if(adapter == null){
-				adapter = new AppSelectionAdapter(this);
+				adapter = new AppSelectionAdapter(this, this);
 			}
 
 			final PackageManager pm = this.getApplicationContext().getPackageManager();
@@ -276,7 +280,7 @@ public class AppSelectionActivity extends SherlockActivity{
 			});
 
 			if(adapter == null){
-				adapter = new AppSelectionAdapter(this);
+				adapter = new AppSelectionAdapter(this, this);
 			}
 
 			//Log.d("adapter", "adapter=======" + adapter);
@@ -308,7 +312,7 @@ public class AppSelectionActivity extends SherlockActivity{
 			});
 
 			if(adapter == null){
-				adapter = new AppSelectionAdapter(this);
+				adapter = new AppSelectionAdapter(this, this);
 			}
 
 			adapter.addAppList(aList);

@@ -69,7 +69,7 @@ public class NewNotificationService extends NotificationListenerService {
         super.onCreate();
         Log.d("NotificationListener", "Entered onCreate");
         try{			
-			SharedPreferenceUtils.loadDefaultSettings(this);
+			//SharedPreferenceUtils.loadDefaultSettings(this);
 			Log.d("NotificationHistory", "notification service started.");
 			ctx = this;		
 			IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
@@ -121,6 +121,14 @@ public class NewNotificationService extends NotificationListenerService {
 			} else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
 				isScreenOn = true;
 				Utils.isScreenOn = true;
+				if(Utils.getNotList().size() > 0){
+					if(Utils.isCustomLockScreen(ctx)){
+						Intent dialogIntent = new Intent(ctx, NotificationActivity.class);
+						dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						getApplication().startActivity(dialogIntent);
+					}
+					//ctx.sendBroadcast(new Intent(NotificationReceiver.ACTION_NOTIFICATION_CHANGED));
+				}
 			}
 		}
 

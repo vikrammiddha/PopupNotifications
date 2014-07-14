@@ -117,6 +117,7 @@ ShowcaseView.OnShowcaseEventListener{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Utils.isNotActivityRunning = true;
 		//Debug.startMethodTracing("popup");
 		window = getWindow();
 		super.onCreate(savedInstanceState);		
@@ -395,16 +396,30 @@ ShowcaseView.OnShowcaseEventListener{
 
 		setLayoutBackground();
 
-		if(!SharedPreferenceUtils.getFirstTimeRun(ctx)){
+		if(SharedPreferenceUtils.getShowTutorial(ctx) == true){
 			co.hideOnClickOutside = false;
 			co.shotType = ShowcaseView.TYPE_ONE_SHOT;
 			//co.shotType = ShowcaseView.TYPE_ONE_SHOT;
 			sv = ShowcaseView.insertShowcaseView(R.id.notificationsListViewId, this, "Tutorial", "Click on Next button to start Tutorial.", co);
 			sv.setShowcaseIndicatorScale(1.5f);
 			sv.setOnShowcaseEventListener(this);
-		}	
-		
-		Log.d("Not Activity Logs ===", HelperUtils.readLogs(ctx));
+			SharedPreferenceUtils.setShowTutorial(ctx, false);
+		}
+
+		//SharedPreferenceUtils.setNotCount(ctx, SharedPreferenceUtils.getNotCount(ctx) + 1);
+
+		//if(HelperUtils.showFeedback(ctx)){
+		//Feedback.initiateFeedback(ctx, this);
+		//}		
+
+		if(Utils.activityObj != null){
+			try{
+				Utils.activityObj.finish();
+			}catch(Exception e){
+
+			}
+		}
+
 
 	}
 
@@ -693,20 +708,20 @@ ShowcaseView.OnShowcaseEventListener{
 		Button dismissButton = (Button) findViewById(R.id.CloseWindowId);
 		Button dismissButton1 = (Button) findViewById(R.id.CloseWindowId1);
 
-		int fontColor = HelperUtils.getFontColor(ctx);
+		int fontColor = HelperUtils.getFontColor(ctx, "xxxx");
 		if(fontColor == 0){
 			fontColor = Color.WHITE;
 		}
 
-		int bgColor = HelperUtils.getBackgroundColor(ctx);
+		int bgColor = HelperUtils.getBackgroundColor(ctx, "xxxx");
 		if(bgColor == 0){
 			bgColor = Color.BLACK;
 		}
 
-		if(HelperUtils.getBackgroundColor(ctx) != null ){
+		if(HelperUtils.getBackgroundColor(ctx, "xxxx") != null ){
 			int strokeWidth = 5; // 3dp
 			int roundRadius = 20; // 8dp
-			int strokeColor = HelperUtils.getBorderColor(this);
+			int strokeColor = HelperUtils.getBorderColor(this, "xxxx");
 			int fillColor = bgColor;
 
 			GradientDrawable gd = new GradientDrawable();
@@ -730,7 +745,7 @@ ShowcaseView.OnShowcaseEventListener{
 				roundRadius1 = 25;
 			}
 
-			int strokeColor1 = HelperUtils.getBorderColor(this);
+			int strokeColor1 = HelperUtils.getBorderColor(this, "xxxx");
 			int fillColor1 = bgColor;
 
 			GradientDrawable gd1 = new GradientDrawable();
@@ -846,6 +861,8 @@ ShowcaseView.OnShowcaseEventListener{
 		}
 
 		layout.setAdapter(null);
+		
+		Utils.isNotActivityRunning = false;
 
 	}
 

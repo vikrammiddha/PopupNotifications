@@ -43,6 +43,9 @@ public class Utils {
 	public static Boolean isAddedFirstItem = false;
 	public static Boolean isScreenOnFromResume = false;
 	public static Typeface typeFace;
+	public static String tempApp = "";
+	public static Boolean isNotActivityRunning = false;
+	public static AppSelectionActivity activityObj = null;
 
 	public static ArrayList<NotificationBean> getNotList(){
 		if(notList == null){
@@ -305,12 +308,13 @@ public class Utils {
 
 	public static Boolean isScreenLocked(Context ctx){
 		KeyguardManager myKM = (KeyguardManager) ctx.getSystemService(Context.KEYGUARD_SERVICE);
-		if(myKM.inKeyguardRestrictedInputMode() || !Utils.isScreenOn) {
+		if(myKM.inKeyguardRestrictedInputMode() || !Utils.isScreenOn || Utils.isCustomLockScreen(ctx)) {
 			return true;
 		}else{
 			return false;
 		}
 	}
+
 
 
 	public Boolean performValidation(Notification n, String packageName){
@@ -614,6 +618,17 @@ public class Utils {
 		}
 		
 		
+	}
+	
+	public static Boolean isCustomLockScreen(Context ctx){
+		String[] lockscreepApps = ctx.getResources().getStringArray(R.array.lockscreenapps);
+        for (String lockscreen : lockscreepApps)
+        {
+            if (isForgroundApp(ctx, lockscreen))
+                return true;
+        }
+        
+        return false;
 	}
 
 

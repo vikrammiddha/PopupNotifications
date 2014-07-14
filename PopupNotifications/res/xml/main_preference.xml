@@ -1,10 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    				xmlns:robobunny="http://robobunny.com" >
+    xmlns:robobunny="http://robobunny.com" >
 
     <PreferenceScreen
         android:key="notification_preference"
         android:title="@string/pref_notification_category" >
+        <PreferenceScreen
+            android:key="notification_preference_buttons"
+            android:summary="@string/button_appearance_Summary"
+            android:title="@string/button_appearance_title" >
+            <yuku.ambilwarna.widget.AmbilWarnaPreference
+                android:defaultValue="0xffffffff"
+                android:key="font_color"
+                android:title="@string/not_text_color" />
+            <yuku.ambilwarna.widget.AmbilWarnaPreference
+                android:defaultValue="0xff000000"
+                android:key="background_color_not"
+                android:title="@string/not_back_color" />
+            <yuku.ambilwarna.widget.AmbilWarnaPreference
+                android:defaultValue="0xff000000"
+                android:key="border_color_not"
+                android:title="@string/not_border_color" />
+
+            <com.bun.popupnotifications.FontSelectionPreference
+                android:key="font"
+                android:summary=""
+                android:title="@string/font_title" />
+
+            <com.bun.popupnotifications.SeekBarPreference
+                android:defaultValue="-1"
+                android:enabled="true"
+                android:key="font_size1"
+                android:max="150"
+                android:summary=""
+                android:title="@string/font_size_desc"
+                robobunny:min="1"
+                robobunny:unitsLeft=""
+                robobunny:unitsRight="" />
+        </PreferenceScreen>
+
         <CheckBoxPreference
             android:key="expanded_notification"
             android:summary="@string/expanded_not_summary"
@@ -14,62 +48,39 @@
             android:summary="@string/show_fullscreen_summary"
             android:title="@string/show_fullscreen_not" />
 
-        <yuku.ambilwarna.widget.AmbilWarnaPreference
-            android:defaultValue="0xffffffff"
-            android:key="font_color"
-            android:title="@string/not_text_color" />
-        <yuku.ambilwarna.widget.AmbilWarnaPreference
-            android:defaultValue="0xff000000"
-            android:key="background_color_not"
-            android:title="@string/not_back_color" />
-        
-        <yuku.ambilwarna.widget.AmbilWarnaPreference
-            android:defaultValue="0xff000000"
-            android:key="border_color_not"
-            android:title="@string/not_border_color" />
-        
-               
         <com.bun.popupnotifications.SeekBarPreference
-            android:key="border_size_pref1"
-            android:title="@string/border_size_desc"
-            android:summary=""
             android:defaultValue="3"
+            android:enabled="true"
+            android:key="border_size_pref1"
             android:max="10"
-            android:enabled="true"
-            robobunny:min="1"
-        	robobunny:unitsLeft=""
-            robobunny:unitsRight=""
-         />
-        
-        <com.bun.popupnotifications.SeekBarPreference
-            android:key="transparent_background1"
-            android:title="@string/set_transparent_background"
             android:summary=""
-            android:defaultValue="200"
-            android:max="255"
-            android:enabled="true"
+            android:title="@string/border_size_desc"
             robobunny:min="1"
-        	robobunny:unitsLeft=""
-            robobunny:unitsRight=""
-         />
-        
+            robobunny:unitsLeft=""
+            robobunny:unitsRight="" />
+        <com.bun.popupnotifications.SeekBarPreference
+            android:defaultValue="200"
+            android:enabled="true"
+            android:key="transparent_background1"
+            android:max="255"
+            android:summary=""
+            android:title="@string/set_transparent_background"
+            robobunny:min="1"
+            robobunny:unitsLeft=""
+            robobunny:unitsRight="" />
+
         <ListPreference
             android:entries="@array/timeTypes"
             android:entryValues="@array/timeTypeValues"
             android:key="timetype_preference"
             android:title="@string/time_type_desc" />
-        
-        <CheckBoxPreference
-            android:key="wake_up"
-            android:summary=""
-            android:title="@string/wake_on_not" />
-        
+
         <EditTextPreference
+            
+            android:inputType="number"
             android:key="screen_timeout"
-            android:dependency="wake_up"
-            android:title="@string/screen_timeout_desc"
             android:summary="@string/screen_timeout_summary"
-            android:inputType="number"  />
+            android:title="@string/screen_timeout_desc" />
 
         <ListPreference
             android:entries="@array/syncTypes"
@@ -77,11 +88,6 @@
             android:key="sync_preference"
             android:title="@string/sync_desc" />
 
-        <CheckBoxPreference
-            android:key="show_circular_images"
-            android:summary=""
-            android:title="@string/show_circular_images" />
-        	
         <CheckBoxPreference
             android:key="dismiss_all_left"
             android:summary="@string/dismiss_all_left_summary"
@@ -94,81 +100,46 @@
             android:title="@string/not_type_desc" />
 
         <EditTextPreference
+            android:inputType="number"
             android:key="banner_time_pref"
             android:summary="@string/banner_time_summary"
-            android:title="@string/banner_time_desc"
-            android:inputType="number"  />       
-       
-        
+            android:title="@string/banner_time_desc" />
+
         <ListPreference
             android:entries="@array/banLoc"
             android:entryValues="@array/banLocValues"
             android:key="banner_location_preference"
             android:title="@string/ban_loc_desc" />
-              
-            
+
         <com.bun.popupnotifications.SeekBarPreference
-            android:key="no_of_lines_pref1"
-            android:title="@string/no_of_lines_desc"
-            android:summary="@string/no_of_lines_summary"
             android:defaultValue="10"
+            android:enabled="true"
+            android:key="no_of_lines_pref1"
             android:max="20"
-            android:enabled="true"
+            android:summary="@string/no_of_lines_summary"
+            android:title="@string/no_of_lines_desc"
             robobunny:min="1"
-        	robobunny:unitsLeft=""
-            robobunny:unitsRight=""
-         />
-        
-        <com.bun.popupnotifications.FontSelectionPreference
-            android:key="font"
-            android:title="@string/font_title" />
-        
-       
-            
-        <com.bun.popupnotifications.SeekBarPreference
-            android:key="font_size1"
-            android:title="@string/font_size_desc"
-            android:summary=""
-            android:defaultValue="-1"
-            android:max="150"
-            android:enabled="true"
-            robobunny:min="1"
-        	robobunny:unitsLeft=""
-            robobunny:unitsRight=""
-         />
-                           
+            robobunny:unitsLeft=""
+            robobunny:unitsRight="" />
+
         <CheckBoxPreference
             android:key="disable_animations"
             android:summary=""
             android:title="@string/animation_title" />
-
         <CheckBoxPreference
             android:key="vibrate"
             android:summary=""
             android:title="@string/vibrate_summary" />
-        
         <CheckBoxPreference
             android:key="disable_unlock"
             android:summary="@string/unlock_summary"
             android:title="@string/unlock_title" />
-        
+
         <ListPreference
             android:entries="@array/themeLoc"
             android:entryValues="@array/themeValues"
             android:key="theme"
             android:title="@string/theme_title" />
-        
-         <PreferenceScreen
-            android:key="test_lockscreen"
-            android:title="@string/test_lockscreen_desc" >
-        </PreferenceScreen>
-        
-          <PreferenceScreen
-            android:key="test_banner"
-            android:title="@string/test_banner_desc" >
-        </PreferenceScreen>
-        
-        
     </PreferenceScreen>
     <PreferenceScreen
         android:key="mute_settings"
@@ -239,33 +210,28 @@
             android:key="settings_service_enable"
             android:title="@string/pref_settings_service_inactive" />
     </PreferenceCategory>
-    
     <PreferenceCategory
         android:key="support"
         android:title="@string/support" >
-         <PreferenceScreen
-	        android:key="developer_support"
-	        android:summary=""	        
-	        android:title="@string/developer_support" >
-            
-             <CheckBoxPreference
-	            android:key="create_logs"
-	            android:summary="@string/create_logs_summary"
-	            android:title="@string/create_logs" />
-             
-        
-    	<PreferenceScreen
-	        android:key="email_logs"
-	        android:summary=""	    
-	        android:dependency="create_logs"    
-	        android:title="@string/email_logs" />
-    	
-    	<PreferenceScreen
-	        android:key="contact_developer"
-	        android:summary=""	        
-	        android:title="@string/contact_developer" />
-    	</PreferenceScreen> 
-    	
+        <PreferenceScreen
+            android:key="developer_support"
+            android:summary=""
+            android:title="@string/developer_support" >
+            <CheckBoxPreference
+                android:key="create_logs"
+                android:summary="@string/create_logs_summary"
+                android:title="@string/create_logs" />
+
+            <PreferenceScreen
+                android:dependency="create_logs"
+                android:key="email_logs"
+                android:summary=""
+                android:title="@string/email_logs" />
+            <PreferenceScreen
+                android:key="contact_developer"
+                android:summary=""
+                android:title="@string/contact_developer" />
+        </PreferenceScreen>
     </PreferenceCategory>
 
 </PreferenceScreen>

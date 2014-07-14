@@ -238,6 +238,9 @@
 	<string name="install">Install</string>
 	<string name="install_screen_timeout_message">You must install Screen Off and Lock app from play store to make it work. Click on Install to install this app and then set the screen timout in seconds. </string>
 	<string name="market_url_screenurl">market://details?id=com.katecca.screenofflock</string>
+	
+	<string name="button_appearance_title">Button Appeance settings</string>
+	<string name="button_appearance_Summary">Appearance settings for Dismiss and Close buttons.</string>
      
 
 </resources>
